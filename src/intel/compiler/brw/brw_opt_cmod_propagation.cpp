@@ -73,8 +73,32 @@ implicit_accumulator_conflict(const intel_device_info *devinfo,
 }
 
 static bool
-cmod_propagate_cmp_to_add(const intel_device_info *devinfo, brw_inst *inst)
+can_do_cmod(const brw_shader &s, const brw_inst *inst,
+            enum brw_conditional_mod cond)
 {
+   /* get_fpu_lowered_simd_width() in brw_lower_simd_width.cpp enforces the
+    * Broadwell PRM restriction on SIMD32 three-source instructions with
+    * condition modifiers before Gfx12.  This pass runs again after width
+    * lowering, and no later pass re-splits an instruction that gains a
+    * condition modifier here, so reject that propagation.
+    *
+    * The phase check relies on no cmod propagation running between the first
+    * width-lowering pass and the update to
+    * BRW_SHADER_PHASE_AFTER_EARLY_LOWERING; it does not record whether width
+    * lowering actually happened.
+    */
+   if (s.phase >= BRW_SHADER_PHASE_AFTER_EARLY_LOWERING &&
+       s.devinfo->ver < 12 && inst->exec_size > 16 &&
+       inst->is_3src(s.compiler))
+      return false;
+
+   return inst->can_do_cmod(cond);
+}
+
+static bool
+cmod_propagate_cmp_to_add(const brw_shader &s, brw_inst *inst)
+{
+   const intel_device_info *devinfo = s.devinfo;
    bool read_flag = false;
    const unsigned flags_written = inst->flags_written(devinfo);
 
@@ -232,7 +256,7 @@ cmod_propagate_cmp_to_add(const intel_device_info *devinfo, brw_inst *inst)
          }
 
          /* Otherwise, try propagating the conditional. */
-         if (scan_inst->can_do_cmod(cond) &&
+         if (can_do_cmod(s, scan_inst, cond) &&
              ((!read_flag && scan_inst->conditional_mod == BRW_CONDITIONAL_NONE) ||
               scan_inst->conditional_mod == cond)) {
             scan_inst->conditional_mod = cond;
@@ -292,8 +316,9 @@ regs_are_same(const brw_reg a, const brw_reg b)
 }
 
 static bool
-opt_cmod_propagation_local(const intel_device_info *devinfo, bblock_t *block)
+opt_cmod_propagation_local(const brw_shader &s, bblock_t *block)
 {
+   const intel_device_info *devinfo = s.devinfo;
    bool progress = false;
 
    foreach_inst_in_block_reverse_safe(brw_inst, inst, block) {
@@ -334,7 +359,7 @@ opt_cmod_propagation_local(const intel_device_info *devinfo, bblock_t *block)
        * instruction.
        */
       if (inst->opcode == BRW_OPCODE_CMP && !inst->src[1].is_zero()) {
-         if (cmod_propagate_cmp_to_add(devinfo, inst))
+         if (cmod_propagate_cmp_to_add(s, inst))
             progress = true;
 
          continue;
@@ -533,7 +558,7 @@ opt_cmod_propagation_local(const intel_device_info *devinfo, bblock_t *block)
                   progress = true;
                   break;
                } else if (!read_flag &&
-                          scan_inst->can_do_cmod(inst->conditional_mod)) {
+                          can_do_cmod(s, scan_inst, inst->conditional_mod)) {
                   scan_inst->conditional_mod = inst->conditional_mod;
                   scan_inst->flag_subreg = inst->flag_subreg;
                   inst->remove();
@@ -603,7 +628,7 @@ opt_cmod_propagation_local(const intel_device_info *devinfo, bblock_t *block)
              */
 
             /* Otherwise, try propagating the conditional. */
-            if (scan_inst->can_do_cmod(cond) &&
+            if (can_do_cmod(s, scan_inst, cond) &&
                 ((!read_flag && scan_inst->conditional_mod == BRW_CONDITIONAL_NONE) ||
                  scan_inst->conditional_mod == cond)) {
                scan_inst->conditional_mod = cond;
@@ -673,7 +698,7 @@ brw_opt_cmod_propagation(brw_shader &s)
    bool progress = false;
 
    foreach_block_reverse(block, s.cfg) {
-      progress = opt_cmod_propagation_local(s.devinfo, block) || progress;
+      progress = opt_cmod_propagation_local(s, block) || progress;
    }
 
    if (progress) {

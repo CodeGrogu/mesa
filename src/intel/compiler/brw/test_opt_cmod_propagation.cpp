@@ -2929,3 +2929,175 @@ TEST_F(cmod_propagation_test, add_implict_accumulator_write)
 
    EXPECT_NO_PROGRESS(brw_opt_cmod_propagation, bld);
 }
+
+static brw_inst *
+emit_hf_mad_cmp(const brw_builder &bld, const brw_reg &dest, const brw_reg &src0,
+                const brw_reg &src1, const brw_reg &src2)
+{
+   brw_inst *mad = bld.MAD(dest, src0, src1, src2);
+   bld.CMP(retype(bld.null_reg_f(), BRW_TYPE_HF), dest,
+           retype(brw_imm_uw(0), BRW_TYPE_HF), BRW_CONDITIONAL_L);
+   return mad;
+}
+
+TEST_F(cmod_propagation_test, simd32_mad_before_simd_lowering)
+{
+   for (unsigned verx10 : { 90, 110 }) {
+      SCOPED_TRACE(verx10);
+      set_gfx_verx10(verx10);
+
+      brw_builder bld = make_shader(MESA_SHADER_COMPUTE, 32);
+      brw_builder exp = make_shader(MESA_SHADER_COMPUTE, 32);
+
+      brw_reg dest = vgrf(bld, exp, BRW_TYPE_HF);
+      brw_reg src0 = vgrf(bld, exp, BRW_TYPE_HF);
+      brw_reg src1 = vgrf(bld, exp, BRW_TYPE_HF);
+      brw_reg src2 = vgrf(bld, exp, BRW_TYPE_HF);
+
+      emit_hf_mad_cmp(bld, dest, src0, src1, src2);
+
+      bld.shader->phase = BRW_SHADER_PHASE_AFTER_OPT_LOOP;
+      exp.shader->phase = BRW_SHADER_PHASE_AFTER_OPT_LOOP;
+
+      EXPECT_PROGRESS(brw_opt_cmod_propagation, bld);
+
+      exp.MAD(dest, src0, src1, src2)->conditional_mod = BRW_CONDITIONAL_L;
+
+      EXPECT_SHADERS_MATCH(bld, exp);
+   }
+}
+
+TEST_F(cmod_propagation_test, simd32_mad_after_simd_lowering)
+{
+   for (unsigned verx10 : { 90, 110 }) {
+      for (enum brw_shader_phase phase : { BRW_SHADER_PHASE_AFTER_EARLY_LOWERING,
+                                           BRW_SHADER_PHASE_AFTER_MIDDLE_LOWERING,
+                                           BRW_SHADER_PHASE_AFTER_LATE_LOWERING,
+                                           BRW_SHADER_PHASE_AFTER_REGALLOC }) {
+         SCOPED_TRACE(verx10);
+         SCOPED_TRACE(phase);
+         set_gfx_verx10(verx10);
+
+         brw_builder bld = make_shader(MESA_SHADER_COMPUTE, 32);
+
+         brw_reg dest = vgrf(bld, BRW_TYPE_HF);
+         brw_reg src0 = vgrf(bld, BRW_TYPE_HF);
+         brw_reg src1 = vgrf(bld, BRW_TYPE_HF);
+         brw_reg src2 = vgrf(bld, BRW_TYPE_HF);
+
+         emit_hf_mad_cmp(bld, dest, src0, src1, src2);
+
+         bld.shader->phase = phase;
+
+         EXPECT_NO_PROGRESS(brw_opt_cmod_propagation, bld);
+      }
+   }
+}
+
+TEST_F(cmod_propagation_test, simd32_mad_after_regalloc)
+{
+   brw_builder bld = make_shader(MESA_SHADER_COMPUTE, 32);
+
+   brw_reg dest = retype(brw_vec16_grf(10, 0), BRW_TYPE_HF);
+   brw_reg src0 = retype(brw_vec16_grf(12, 0), BRW_TYPE_HF);
+   brw_reg src1 = retype(brw_vec16_grf(14, 0), BRW_TYPE_HF);
+   brw_reg src2 = retype(brw_vec16_grf(16, 0), BRW_TYPE_HF);
+
+   emit_hf_mad_cmp(bld, dest, src0, src1, src2);
+
+   bld.shader->phase = BRW_SHADER_PHASE_AFTER_LATE_LOWERING;
+
+   EXPECT_NO_PROGRESS(brw_opt_cmod_propagation, bld);
+}
+
+TEST_F(cmod_propagation_test, simd32_mad_lowered_then_late_cmod)
+{
+   for (const char *platform : { "skl", "icl" }) {
+      SCOPED_TRACE(platform);
+      set_gfx_platform(platform);
+
+      brw_builder bld = make_shader(MESA_SHADER_COMPUTE, 32);
+
+      brw_reg dest = vgrf(bld, BRW_TYPE_HF);
+      brw_reg src0 = vgrf(bld, BRW_TYPE_HF);
+      brw_reg src1 = vgrf(bld, BRW_TYPE_HF);
+      brw_reg src2 = vgrf(bld, BRW_TYPE_HF);
+
+      emit_hf_mad_cmp(bld, dest, src0, src1, src2);
+
+      brw_calculate_cfg(*bld.shader);
+      brw_lower_simd_width(*bld.shader);
+      bld.shader->phase = BRW_SHADER_PHASE_AFTER_EARLY_LOWERING;
+
+      EXPECT_NO_PROGRESS(brw_opt_cmod_propagation, bld);
+   }
+}
+
+TEST_F(cmod_propagation_test, simd32_mad_after_simd_lowering_gfx12)
+{
+   set_gfx_verx10(120);
+
+   brw_builder bld = make_shader(MESA_SHADER_COMPUTE, 32);
+   brw_builder exp = make_shader(MESA_SHADER_COMPUTE, 32);
+
+   brw_reg dest = vgrf(bld, exp, BRW_TYPE_HF);
+   brw_reg src0 = vgrf(bld, exp, BRW_TYPE_HF);
+   brw_reg src1 = vgrf(bld, exp, BRW_TYPE_HF);
+   brw_reg src2 = vgrf(bld, exp, BRW_TYPE_HF);
+
+   emit_hf_mad_cmp(bld, dest, src0, src1, src2);
+
+   bld.shader->phase = BRW_SHADER_PHASE_AFTER_LATE_LOWERING;
+   exp.shader->phase = BRW_SHADER_PHASE_AFTER_LATE_LOWERING;
+
+   EXPECT_PROGRESS(brw_opt_cmod_propagation, bld);
+
+   exp.MAD(dest, src0, src1, src2)->conditional_mod = BRW_CONDITIONAL_L;
+
+   EXPECT_SHADERS_MATCH(bld, exp);
+}
+
+TEST_F(cmod_propagation_test, simd16_mad_after_simd_lowering)
+{
+   brw_builder bld = make_shader(MESA_SHADER_COMPUTE, 16);
+   brw_builder exp = make_shader(MESA_SHADER_COMPUTE, 16);
+
+   brw_reg dest = vgrf(bld, exp, BRW_TYPE_HF);
+   brw_reg src0 = vgrf(bld, exp, BRW_TYPE_HF);
+   brw_reg src1 = vgrf(bld, exp, BRW_TYPE_HF);
+   brw_reg src2 = vgrf(bld, exp, BRW_TYPE_HF);
+
+   emit_hf_mad_cmp(bld, dest, src0, src1, src2);
+
+   bld.shader->phase = BRW_SHADER_PHASE_AFTER_LATE_LOWERING;
+   exp.shader->phase = BRW_SHADER_PHASE_AFTER_LATE_LOWERING;
+
+   EXPECT_PROGRESS(brw_opt_cmod_propagation, bld);
+
+   exp.MAD(dest, src0, src1, src2)->conditional_mod = BRW_CONDITIONAL_L;
+
+   EXPECT_SHADERS_MATCH(bld, exp);
+}
+
+TEST_F(cmod_propagation_test, simd32_add_after_simd_lowering)
+{
+   brw_builder bld = make_shader(MESA_SHADER_COMPUTE, 32);
+   brw_builder exp = make_shader(MESA_SHADER_COMPUTE, 32);
+
+   brw_reg dest = vgrf(bld, exp, BRW_TYPE_HF);
+   brw_reg src0 = vgrf(bld, exp, BRW_TYPE_HF);
+   brw_reg src1 = vgrf(bld, exp, BRW_TYPE_HF);
+
+   bld.ADD(dest, src0, src1);
+   bld.CMP(retype(bld.null_reg_f(), BRW_TYPE_HF), dest,
+           retype(brw_imm_uw(0), BRW_TYPE_HF), BRW_CONDITIONAL_L);
+
+   bld.shader->phase = BRW_SHADER_PHASE_AFTER_LATE_LOWERING;
+   exp.shader->phase = BRW_SHADER_PHASE_AFTER_LATE_LOWERING;
+
+   EXPECT_PROGRESS(brw_opt_cmod_propagation, bld);
+
+   exp.ADD(dest, src0, src1)->conditional_mod = BRW_CONDITIONAL_L;
+
+   EXPECT_SHADERS_MATCH(bld, exp);
+}
