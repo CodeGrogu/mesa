@@ -210,7 +210,10 @@ static const struct {
    { "mad (32) (lt)f0.0 r0:hf r2:hf r4:hf r6:hf", SAME_ERROR, { .eq = 110 } },
    { "mad (32) (lt)f0.0 r0:hf r2:hf r4:hf r6:hf", VALID,      { .ge = 120 } },
    { "mad (16) (lt)f0.0 r0.:hf r2:hf r4:hf r6:hf {Align16}", VALID, { .eq = 90 } },
-   { "mad (32) r0.:hf r2:hf r4:hf r6:hf {Align16}",          VALID, { .eq = 90 } },
+   { "mad (32) r0.:hf r2:hf r4:hf r6:hf {Align16}",
+     "Gfx9 3-source instructions cannot use SIMD32.", { .eq = 90 }
+   },
+   { "mad (32) r0:hf r2:hf r4:hf r6:hf",                     VALID, { .eq = 110 } },
 
    { "mad (8) r0.:f r1:f 0x0:f r3:f {Align16}",
      "3-source instructions cannot use an immediate src1.", { .eq = 90 }

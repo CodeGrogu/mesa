@@ -553,6 +553,9 @@ private:
                "Pre-Gfx12 3-source instructions with a conditional modifier "
                "cannot use SIMD32.");
 
+      ERROR_IF(num_sources == 3 && devinfo->ver == 9 && inst->exec_size == 32,
+               "Gfx9 3-source instructions cannot use SIMD32.");
+
       if (devinfo->ver >= 20) {
          ERROR_IF(inst->acc_wr_control,
                   "AccWrControl is not present on Gfx20+.");

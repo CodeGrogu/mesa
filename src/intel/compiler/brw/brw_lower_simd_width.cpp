@@ -102,6 +102,17 @@ get_fpu_lowered_simd_width(const brw_shader *shader,
    if (inst->conditional_mod && inst->is_3src(compiler) && devinfo->ver < 12)
       max_width = MIN2(max_width, 16);
 
+   /* On tested Gfx9 hardware, SIMD32 Align16 FP16 three-source instructions
+    * use the execution-mask bit of lane L - 8 for lanes L = 16..31, producing
+    * incorrect results under non-uniform control flow.  This is measured
+    * hardware behaviour, not a documented restriction.  See the related
+    * workaround in elk_fs.cpp: "shifts exactly 8 channels per compressed
+    * half".  Among the platforms supported by brw, only Gfx9 uses Align16
+    * three-source encoding, hence the version check below.
+    */
+   if (inst->is_3src(compiler) && devinfo->ver == 9)
+      max_width = MIN2(max_width, 16);
+
    /* From the IVB PRMs (applies to other devices that don't have the
     * intel_device_info::supports_simd16_3src flag set):
     *  "In Align16 access mode, SIMD16 is not allowed for DW operations and
