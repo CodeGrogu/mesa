@@ -945,12 +945,15 @@ genX(cmd_buffer_load_clear_color)(struct anv_cmd_buffer *cmd_buffer,
     *    the new surface or sampler state is fetched from system memory.
     *
     * In testing, SKL doesn't actually seem to need this, but HSW does.
+    * anv_gfx9_skip_clear_color_state_invalidate lets users opt out.
     */
-   anv_add_pending_pipe_bits(cmd_buffer,
-                             VK_PIPELINE_STAGE_2_TOP_OF_PIPE_BIT,
-                             VK_PIPELINE_STAGE_2_TOP_OF_PIPE_BIT,
-                             ANV_PIPE_STATE_CACHE_INVALIDATE_BIT,
-                             "after load_clear_color surface state update");
+   if (!cmd_buffer->device->physical->drirc.perf.gfx9_skip_clear_color_state_invalidate) {
+      anv_add_pending_pipe_bits(cmd_buffer,
+                                VK_PIPELINE_STAGE_2_TOP_OF_PIPE_BIT,
+                                VK_PIPELINE_STAGE_2_TOP_OF_PIPE_BIT,
+                                ANV_PIPE_STATE_CACHE_INVALIDATE_BIT,
+                                "after load_clear_color surface state update");
+   }
 #endif
 }
 

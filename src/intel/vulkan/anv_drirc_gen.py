@@ -227,6 +227,11 @@ def declare_options(android_version):
         B("intel_force_sampler_prefetch", False,
           "Enable binding table sampler prefteching",
           c_name="sampler_prefetch"),
+        B("anv_gfx9_skip_clear_color_state_invalidate", False,
+          "Gfx9: skip the state cache invalidate after copying a fast-clear "
+          "colour into a surface state (about 0.66 us per render pass on "
+          "HD 620; the SKL PRM asks for it, but testing has not needed it)",
+          c_name="gfx9_skip_clear_color_state_invalidate"),
         E("intel_code_motion", 0, 0, 2,
           [EV(0, "compiler default"),
            EV(1, "nir_opt_licm, hoist out of loops only"),
