@@ -1098,9 +1098,18 @@ add_primary_surface(struct anv_device *device,
       .tiling_flags = isl_tiling_flags);
 
    if (!ok) {
-      /* TODO: Should return
-       * VK_ERROR_INVALID_DRM_FORMAT_MODIFIER_PLANE_LAYOUT_EXT in come cases.
+      /* Only the explicit DRM format modifier path passes an app-provided
+       * offset.  There the spec requires a bad plane layout (for example a
+       * row pitch isl cannot use) to fail with this error rather than with
+       * undefined behaviour or an allocation error.
        */
+      if (image->vk.tiling == VK_IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT &&
+          offset != ANV_OFFSET_IMPLICIT) {
+         return vk_errorf(device,
+                          VK_ERROR_INVALID_DRM_FORMAT_MODIFIER_PLANE_LAYOUT_EXT,
+                          "plane %u: rowPitch %u is not usable for this "
+                          "format and modifier", plane, stride);
+      }
       return VK_ERROR_OUT_OF_DEVICE_MEMORY;
    }
 

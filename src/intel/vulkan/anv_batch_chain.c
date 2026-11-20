@@ -1160,8 +1160,9 @@ anv_cmd_buffer_add_secondary(struct anv_cmd_buffer *primary,
                                                 secondary,
                                                 &copy_list);
       if (result != VK_SUCCESS) {
+         /* anv_batch_bo_list_clone() already freed any partial copy. */
          anv_batch_set_error(&primary->batch, result);
-         return; /* FIXME */
+         return;
       }
 
       list_for_each_entry(struct anv_batch_bo, bbo, &copy_list, link) {
@@ -1169,6 +1170,10 @@ anv_cmd_buffer_add_secondary(struct anv_cmd_buffer *primary,
          if (bbo_ptr == NULL) {
             anv_batch_set_error(&primary->batch,
                                 VK_ERROR_OUT_OF_HOST_MEMORY);
+            /* Hand the copies to the primary so that reset/destroy frees
+             * them.  Splice at the head to keep the current batch BO last.
+             */
+            list_splice(&copy_list, &primary->batch_bos);
             return;
          }
          *bbo_ptr = bbo;
