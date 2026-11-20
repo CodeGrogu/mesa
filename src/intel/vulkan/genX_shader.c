@@ -67,12 +67,13 @@ get_sampler_count(const struct anv_device *device,
 static UNUSED struct anv_address
 get_scratch_address(struct anv_device *device, struct anv_shader *shader)
 {
-   return (struct anv_address) {
-      .bo = anv_scratch_pool_alloc(device, &device->scratch_pool,
-                                   shader->vk.stage,
-                                   shader->prog_data->total_scratch),
-      .offset = 0,
-   };
+   struct anv_bo *bo =
+      anv_scratch_pool_alloc(device, &device->scratch_pool,
+                             shader->vk.stage,
+                             shader->prog_data->total_scratch);
+   /* Reserved by anv_scratch_pool_reserve() when the shader was created. */
+   assert(bo != NULL || shader->prog_data->total_scratch == 0);
+   return (struct anv_address) { .bo = bo, .offset = 0 };
 }
 
 static UNUSED uint32_t

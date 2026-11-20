@@ -1432,8 +1432,12 @@ anv_scratch_pool_alloc(struct anv_device *device, struct anv_scratch_pool *pool,
                                          pool->alloc_flags,
                                          0 /* explicit_address */,
                                          &bo);
+   /* Shader creation reserves scratch through anv_scratch_pool_reserve(),
+    * so callers that emit state only see NULL when that was skipped.  They
+    * must not program a NULL BO.
+    */
    if (result != VK_SUCCESS)
-      return NULL; /* TODO */
+      return NULL;
 
    struct anv_bo *current_bo =
       p_atomic_cmpxchg(&pool->bos[bucket][stage], NULL, bo);
@@ -1467,6 +1471,8 @@ anv_scratch_pool_get_surf(struct anv_device *device,
    struct anv_bo *bo =
       anv_scratch_pool_alloc(device, pool, MESA_SHADER_COMPUTE,
                              1u << scratch_size_log2);
+   if (bo == NULL)
+      return 0;
    struct anv_address addr = { .bo = bo };
 
    struct anv_state state =
@@ -1497,6 +1503,35 @@ anv_scratch_pool_get_surf(struct anv_device *device,
    }
 }
 
+/* Allocate the scratch BOs a shader will use, so that allocation failure is
+ * reported when the shader is created.  Scratch BOs are cached per size
+ * bucket and stage for the lifetime of the device, which makes the lookups
+ * done while emitting the shader's state infallible afterwards.
+ */
+VkResult
+anv_scratch_pool_reserve(struct anv_device *device,
+                         mesa_shader_stage stage,
+                         uint32_t total_scratch)
+{
+   if (total_scratch == 0)
+      return VK_SUCCESS;
+
+   if (anv_scratch_pool_alloc(device, &device->scratch_pool, stage,
+                              total_scratch) == NULL)
+      return vk_error(device, VK_ERROR_OUT_OF_DEVICE_MEMORY);
+
+   /* Only the surface-based scratch model (Gfx12.5+) uses a separate pool
+    * for protected shader state.
+    */
+   if (device->info->verx10 >= 125 &&
+       device->vk.enabled_features.protectedMemory &&
+       anv_scratch_pool_alloc(device, &device->protected_scratch_pool, stage,
+                              total_scratch) == NULL)
+      return vk_error(device, VK_ERROR_OUT_OF_DEVICE_MEMORY);
+
+   return VK_SUCCESS;
+}
+
 uint32_t
 anv_shader_get_scratch_surf(struct anv_batch *batch,
                             struct anv_device *device,
@@ -1511,6 +1546,11 @@ anv_shader_get_scratch_surf(struct anv_batch *batch,
       &device->protected_scratch_pool : &device->scratch_pool;
    struct anv_bo *bo =
       anv_scratch_pool_alloc(device, pool, stage, total_scratch);
+   if (bo == NULL) {
+      if (batch != NULL)
+         anv_batch_set_error(batch, VK_ERROR_OUT_OF_DEVICE_MEMORY);
+      return 0;
+   }
    if (batch != NULL)
       anv_reloc_list_add_bo(batch->relocs, bo);
    uint32_t ret = anv_scratch_pool_get_surf(device, pool, total_scratch);

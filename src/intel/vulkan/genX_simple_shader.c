@@ -762,19 +762,20 @@ genX(emit_simple_shader_dispatch)(struct anv_simple_shader *state,
             vfe.CURBEAllocationSize    = vfe_curbe_allocation;
 
             if (prog_data->base.total_scratch) {
+               struct anv_bo *scratch_bo =
+                  anv_scratch_pool_alloc(device, &device->scratch_pool,
+                                         MESA_SHADER_COMPUTE,
+                                         prog_data->base.total_scratch);
+               /* Never point the hardware at a NULL scratch BO. */
+               if (scratch_bo == NULL)
+                  anv_batch_set_error(batch, VK_ERROR_OUT_OF_DEVICE_MEMORY);
                /* Broadwell's Per Thread Scratch Space is in the range [0, 11]
                 * where 0 = 1k, 1 = 2k, 2 = 4k, ..., 11 = 2M.
                 */
                vfe.PerThreadScratchSpace =
                   ffs(prog_data->base.total_scratch) - 11;
                vfe.ScratchSpaceBasePointer =
-                  (struct anv_address) {
-                  .bo = anv_scratch_pool_alloc(device,
-                                               &device->scratch_pool,
-                                               MESA_SHADER_COMPUTE,
-                                               prog_data->base.total_scratch),
-                  .offset = 0,
-               };
+                  (struct anv_address) { .bo = scratch_bo, .offset = 0 };
             }
          }
          struct anv_state iface_desc_state =

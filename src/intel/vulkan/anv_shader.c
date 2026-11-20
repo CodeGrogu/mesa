@@ -909,6 +909,14 @@ anv_shader_create(struct anv_device *device,
 
    shader->instance_multiplier = shader_data->instance_multiplier;
 
+   /* Relocation (efficient 64-bit mode) and shader_emit() below look up the
+    * scratch BOs and cannot fail, so allocate them now.
+    */
+   result = anv_scratch_pool_reserve(device, shader->vk.stage,
+                                     shader->prog_data->total_scratch);
+   if (result != VK_SUCCESS)
+      goto error_state;
+
    struct anv_shader_reloc reloc;
    result = anv_shader_reloc_begin(&reloc, device, shader_data->code,
                                    shader, pAllocator);

@@ -963,6 +963,9 @@ struct anv_bo *anv_scratch_pool_alloc(struct anv_device *device,
                                       struct anv_scratch_pool *pool,
                                       mesa_shader_stage stage,
                                       unsigned per_thread_scratch);
+VkResult anv_scratch_pool_reserve(struct anv_device *device,
+                                  mesa_shader_stage stage,
+                                  uint32_t total_scratch);
 uint32_t anv_scratch_pool_get_surf(struct anv_device *device,
                                    struct anv_scratch_pool *pool,
                                    unsigned per_thread_scratch);
