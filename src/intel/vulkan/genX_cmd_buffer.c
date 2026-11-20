@@ -2414,8 +2414,17 @@ genX(cmd_buffer_apply_pipe_flushes)(struct anv_cmd_buffer *cmd_buffer)
        (bits & ANV_PIPE_CS_STALL_BIT) &&
        (bits & ANV_PIPE_VF_CACHE_INVALIDATE_BIT)) {
       /* If we are doing a VF cache invalidate AND a CS stall (it must be
-       * both) then we can reset our vertex cache tracking.
+       * both) then we can reset our vertex cache tracking.  Keep what was
+       * used before the first one for vkCmdExecuteCommands.
        */
+      if (!cmd_buffer->state.gfx.vf_cache_invalidated) {
+         memcpy(cmd_buffer->state.gfx.vb_entry_ranges,
+                cmd_buffer->state.gfx.vb_dirty_ranges,
+                sizeof(cmd_buffer->state.gfx.vb_entry_ranges));
+         cmd_buffer->state.gfx.ib_entry_range =
+            cmd_buffer->state.gfx.ib_dirty_range;
+         cmd_buffer->state.gfx.vf_cache_invalidated = true;
+      }
       memset(cmd_buffer->state.gfx.vb_dirty_ranges, 0,
              sizeof(cmd_buffer->state.gfx.vb_dirty_ranges));
       memset(&cmd_buffer->state.gfx.ib_dirty_range, 0,
@@ -4396,6 +4405,85 @@ genX(EndCommandBuffer)(
    return status;
 }
 
+#if GFX_VER == 9
+static bool
+gfx9_vf_range_too_wide(const struct anv_vb_cache_range *a,
+                       const struct anv_vb_cache_range *b)
+{
+   struct anv_vb_cache_range merged = *a;
+   anv_merge_vb_cache_range(&merged, b);
+   return (merged.end - merged.start) > (1ull << 32);
+}
+
+/* The secondary's draws before its first VF cache invalidate run against
+ * whatever the container left in the cache.  Invalidate first if the two
+ * together would exceed the 32-bit VF cache range (see
+ * genX(cmd_buffer_set_binding_for_gfx8_vb_flush)).
+ */
+static void
+gfx9_vf_cache_before_secondary(struct anv_cmd_buffer *container,
+                               const struct anv_cmd_buffer *secondary)
+{
+   const struct anv_cmd_graphics_state *s = &secondary->state.gfx;
+   const struct anv_vb_cache_range *vb_entry =
+      s->vf_cache_invalidated ? s->vb_entry_ranges : s->vb_dirty_ranges;
+   const struct anv_vb_cache_range *ib_entry =
+      s->vf_cache_invalidated ? &s->ib_entry_range : &s->ib_dirty_range;
+
+   bool flush = gfx9_vf_range_too_wide(&container->state.gfx.ib_dirty_range,
+                                       ib_entry);
+   for (unsigned i = 0; i < HW_MAX_VBS && !flush; i++) {
+      flush = gfx9_vf_range_too_wide(&container->state.gfx.vb_dirty_ranges[i],
+                                     &vb_entry[i]);
+   }
+
+   if (flush) {
+      anv_add_pending_pipe_bits(container,
+                                VK_PIPELINE_STAGE_2_VERTEX_SHADER_BIT,
+                                VK_PIPELINE_STAGE_2_TOP_OF_PIPE_BIT,
+                                ANV_PIPE_CS_STALL_BIT |
+                                ANV_PIPE_VF_CACHE_INVALIDATE_BIT,
+                                "secondary cmd buffer VF cache range");
+      genX(cmd_buffer_apply_pipe_flushes)(container);
+   }
+}
+
+/* After the secondary, the VF cache holds the secondary's ranges since its
+ * last invalidate, plus the container's ranges if it never invalidated.
+ */
+static void
+gfx9_vf_cache_after_secondary(struct anv_cmd_buffer *container,
+                              const struct anv_cmd_buffer *secondary)
+{
+   struct anv_cmd_graphics_state *c = &container->state.gfx;
+   const struct anv_cmd_graphics_state *s = &secondary->state.gfx;
+
+   if (s->vf_cache_invalidated) {
+      if (!c->vf_cache_invalidated) {
+         /* The container's own entry ranges are what it used before this
+          * secondary's first invalidate.
+          */
+         for (unsigned i = 0; i < HW_MAX_VBS; i++) {
+            c->vb_entry_ranges[i] = c->vb_dirty_ranges[i];
+            anv_merge_vb_cache_range(&c->vb_entry_ranges[i],
+                                     &s->vb_entry_ranges[i]);
+         }
+         c->ib_entry_range = c->ib_dirty_range;
+         anv_merge_vb_cache_range(&c->ib_entry_range, &s->ib_entry_range);
+         c->vf_cache_invalidated = true;
+      }
+      memcpy(c->vb_dirty_ranges, s->vb_dirty_ranges,
+             sizeof(c->vb_dirty_ranges));
+      c->ib_dirty_range = s->ib_dirty_range;
+   } else {
+      for (unsigned i = 0; i < HW_MAX_VBS; i++)
+         anv_merge_vb_cache_range(&c->vb_dirty_ranges[i],
+                                  &s->vb_dirty_ranges[i]);
+      anv_merge_vb_cache_range(&c->ib_dirty_range, &s->ib_dirty_range);
+   }
+}
+#endif
+
 void
 genX(CmdExecuteCommands)(
     VkCommandBuffer                             commandBuffer,
@@ -4538,7 +4626,15 @@ genX(CmdExecuteCommands)(
          }
       }
 
+#if GFX_VER == 9
+      gfx9_vf_cache_before_secondary(container, secondary);
+#endif
+
       anv_cmd_buffer_add_secondary(container, secondary);
+
+#if GFX_VER == 9
+      gfx9_vf_cache_after_secondary(container, secondary);
+#endif
 
       /* Add secondary buffer's RCS command buffer to container buffer's RCS
        * command buffer for execution if secondary RCS is valid.
@@ -4607,16 +4703,9 @@ genX(CmdExecuteCommands)(
                 secondary->state.gfx.dyn_state.emitted);
    }
 
-   /* The secondary isn't counted in our VF cache tracking so we need to
-    * invalidate the whole thing.
+   /* Gfx9 VF cache tracking was carried across each secondary by
+    * gfx9_vf_cache_before/after_secondary(), so no blanket invalidate.
     */
-   if (GFX_VER == 9) {
-      anv_add_pending_pipe_bits(container,
-                                VK_PIPELINE_STAGE_2_VERTEX_SHADER_BIT,
-                                VK_PIPELINE_STAGE_2_TOP_OF_PIPE_BIT,
-                                ANV_PIPE_CS_STALL_BIT | ANV_PIPE_VF_CACHE_INVALIDATE_BIT,
-                                "Secondary cmd buffer not tracked in VF cache");
-   }
 
 #if INTEL_WA_16014538804_GFX_VER
    if (anv_cmd_buffer_is_render_queue(container) &&

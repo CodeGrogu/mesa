@@ -4647,6 +4647,16 @@ struct anv_cmd_graphics_state {
    struct anv_vb_cache_range vb_bound_ranges[HW_MAX_VBS];
    struct anv_vb_cache_range vb_dirty_ranges[HW_MAX_VBS];
 
+   /* Gfx9 VF cache tracking across vkCmdExecuteCommands.  A command buffer
+    * cannot know what the command buffer executing it left in the VF cache,
+    * so it records the ranges it used before its first VF cache invalidate
+    * (vb/ib_entry_ranges, valid once vf_cache_invalidated is set; until then
+    * the dirty ranges are the entry ranges).
+    */
+   bool                      vf_cache_invalidated;
+   struct anv_vb_cache_range ib_entry_range;
+   struct anv_vb_cache_range vb_entry_ranges[HW_MAX_VBS];
+
    uint32_t restart_index;
 
    VkShaderStageFlags push_constant_stages;

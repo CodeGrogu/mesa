@@ -770,6 +770,26 @@ cmd_buffer_flush_vertex_buffers(struct anv_cmd_buffer *cmd_buffer,
 {
    const struct vk_dynamic_graphics_state *dyn =
       &cmd_buffer->vk.dynamic_graphics_state;
+
+#if GFX_VER == 9
+   /* Track the new bindings and apply any VF cache invalidate they require
+    * before emitting them.  The draw path applied pending flushes before
+    * getting here, so a bit queued while packing would only land after the
+    * 3DPRIMITIVE that uses these buffers, letting it read stale VF cache
+    * lines for a buffer 4GiB away (the SKL PRM wants the invalidate "before
+    * binding and then using" the buffers).
+    */
+   u_foreach_bit(vb, vb_emit) {
+      const struct anv_vertex_binding *binding =
+         &cmd_buffer->state.gfx.vertex_bindings[vb];
+      genX(cmd_buffer_set_binding_for_gfx8_vb_flush)(
+         cmd_buffer, vb,
+         binding->size > 0 ? anv_address_from_u64(binding->addr) : ANV_NULL_ADDRESS,
+         binding->size > 0 ? binding->size : 0);
+   }
+   genX(cmd_buffer_apply_pipe_flushes)(cmd_buffer);
+#endif
+
    const uint32_t num_buffers = __builtin_popcount(vb_emit);
    const uint32_t num_dwords = 1 + num_buffers * 4;
    uint32_t *p = anv_batch_emitn(&cmd_buffer->batch, num_dwords,
@@ -804,12 +824,6 @@ cmd_buffer_flush_vertex_buffers(struct anv_cmd_buffer *cmd_buffer,
                              ISL_SURF_USAGE_VERTEX_BUFFER_BIT),
          };
       }
-
-#if GFX_VER == 9
-      genX(cmd_buffer_set_binding_for_gfx8_vb_flush)(cmd_buffer, vb,
-                                                     state.BufferStartingAddress,
-                                                     state.BufferSize);
-#endif
 
       GENX(VERTEX_BUFFER_STATE_pack)(&cmd_buffer->batch, &p[1 + i * 4], &state);
       i++;
