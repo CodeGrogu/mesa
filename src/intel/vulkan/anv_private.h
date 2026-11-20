@@ -1544,6 +1544,12 @@ struct anv_physical_device {
     bool                                        flush_astc_ldr_void_extent_denorms;
     /** True if ASTC LDR is supported via emulation */
     bool                                        emu_astc_ldr;
+    /** True if only the ASTC 5x5 formats are emulated.
+     *
+     * Gfx9 hangs when ASTC 5x5 and CCS data are in the sampler cache at the
+     * same time, so ASTC 5x5 is decompressed into an RGBA8 plane instead.
+     */
+    bool                                        emu_astc_5x5;
     /* true if EXT_subgroup_size_control extension should be disabled. */
     bool                                        brw_disable_subgroup_size_control;
 
@@ -5844,6 +5850,11 @@ static inline VkFormat
 anv_get_compressed_format_emulation(const struct anv_physical_device *pdevice,
                                     VkFormat format)
 {
+   if (pdevice->emu_astc_5x5 &&
+       (format == VK_FORMAT_ASTC_5x5_UNORM_BLOCK ||
+        format == VK_FORMAT_ASTC_5x5_SRGB_BLOCK))
+      return vk_texcompress_astc_emulation_format(format);
+
    if (pdevice->flush_astc_ldr_void_extent_denorms) {
       const struct util_format_description *desc =
          vk_format_description(format);

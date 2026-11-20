@@ -2307,8 +2307,10 @@ anv_image_init(struct anv_device *device, struct anv_image *image,
        * which need denorms flushed as they don't support compression on the
        * storage image usage.
        */
-      if (device->physical->flush_astc_ldr_void_extent_denorms)
+      if (image->emu_plane_format == image->vk.format) {
+         assert(device->physical->flush_astc_ldr_void_extent_denorms);
          emu_format_list_info_ptr = NULL;
+      }
 
       assert(image->vk.create_flags & VK_IMAGE_CREATE_2_MUTABLE_FORMAT_BIT_KHR);
 

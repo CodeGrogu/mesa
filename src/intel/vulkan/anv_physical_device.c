@@ -3210,6 +3210,14 @@ anv_physical_device_try_create(struct vk_instance *vk_instance,
       device->flush_astc_ldr_void_extent_denorms =
          device->has_astc_ldr && !device->emu_astc_ldr;
    }
+   /* Having both ASTC 5x5 and CCS data in the sampler cache hangs Gfx9
+    * (see i965's gfx9_apply_astc5x5_wa_flush).  Iris fakes ASTC 5x5 with
+    * uncompressed textures on Gfx9 for the same reason, so decompress ASTC
+    * 5x5 into the emulation plane and keep native ASTC for other sizes.
+    */
+   device->emu_astc_5x5 = devinfo.ver == 9 && device->has_astc_ldr &&
+      !device->emu_astc_ldr &&
+      !debug_get_bool_option("ANV_NATIVE_ASTC_5X5", false);
    device->brw_disable_subgroup_size_control =
       !intel_use_jay_for_stage(&devinfo, MESA_SHADER_COMPUTE) &&
       device->drirc.debug.disable_subgroup_size_control;

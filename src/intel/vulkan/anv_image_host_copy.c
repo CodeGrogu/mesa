@@ -289,21 +289,123 @@ rgb_rgba_conversion_callback(const uint8_t *src,
    }
 }
 
-/* ASTC decompression callback */
+/* CPU counterpart of astc_emu_flush_denorm_slice() in anv_astc_emu.c.
+ *
+ * When denorms are flushed, the emulation plane has the same ASTC format as
+ * the image and the copy works on whole 16-byte blocks.  A 2D LDR void-extent
+ * block stores its RGBA colour as four 16-bit values in bytes 8..15; values
+ * below 4 are flushed to zero.
+ */
 static void
-astc_decompression_callback(const uint8_t *src,
-                            uint64_t src_stride_B,
-                            uint8_t *dst,
-                            uint64_t dst_stride_B,
-                            const VkExtent3D *extent,
-                            const void *user_data)
+astc_flush_denorms(const uint8_t *src, uint64_t src_stride_B,
+                   uint8_t *dst, uint64_t dst_stride_B,
+                   uint32_t width_blocks, uint32_t height_blocks)
 {
-   const struct util_format_description *desc = user_data;
+   for (uint32_t y = 0; y < height_blocks; y++) {
+      const uint8_t *row_src = src + y * src_stride_B;
+      uint8_t *row_dst = dst + y * dst_stride_B;
+      for (uint32_t x = 0; x < width_blocks; x++) {
+         uint16_t block[8];
+         memcpy(block, row_src + x * 16, sizeof(block));
+         if ((block[0] & 0xfff) == 0xdfc) {
+            for (unsigned c = 4; c < 8; c++) {
+               if (block[c] < 4)
+                  block[c] = 0;
+            }
+         }
+         memcpy(row_dst + x * 16, block, sizeof(block));
+      }
+   }
+}
 
-   _mesa_unpack_astc_2d_ldr(dst, dst_stride_B,
-                            src, src_stride_B,
-                            extent->width, extent->height,
-                            desc->format);
+#define EMU_STRIP_BUDGET_B (64 * 1024)
+
+/* Fill part of an ASTC image's emulation plane from raw blocks.
+ *
+ * blocks points at the block containing offset_px, with block_row_pitch_B
+ * bytes between block rows.  offset_px and extent_px are in texels of the
+ * mip level; the offset is block aligned and the extent may end at a partial
+ * block on the level's edge.
+ *
+ * The plane holds either decompressed RGBA8 texels, or the same ASTC blocks
+ * with void-extent denorms flushed (Gfx9).  Work proceeds in strips of block
+ * rows so that the scratch allocation stays bounded.
+ */
+static VkResult
+write_emu_plane(struct anv_device *device,
+                struct anv_image *image,
+                const uint8_t *blocks,
+                uint64_t block_row_pitch_B,
+                VkOffset2D offset_px,
+                VkExtent2D extent_px,
+                uint32_t level,
+                uint32_t base_array_layer,
+                uint32_t base_z_offset_px,
+                uint32_t array_layer,
+                uint32_t z_offset_px)
+{
+   const struct anv_surface *emu_surf =
+      &image->planes[image->n_planes].primary_surface;
+   const struct anv_image_binding *binding =
+      &image->bindings[emu_surf->memory_range.binding];
+   const struct util_format_description *desc =
+      vk_format_description(image->vk.format);
+   if (unlikely(desc->layout != UTIL_FORMAT_LAYOUT_ASTC))
+      UNREACHABLE("Unsupported emulated format");
+
+   const uint32_t bw = desc->block.width, bh = desc->block.height;
+   const bool flush_denorms = image->emu_plane_format == image->vk.format;
+   assert(!flush_denorms ||
+          device->physical->flush_astc_ldr_void_extent_denorms);
+   assert(offset_px.x % bw == 0 && offset_px.y % bh == 0);
+
+   const uint32_t width_blocks = DIV_ROUND_UP(extent_px.width, bw);
+   const uint32_t height_blocks = DIV_ROUND_UP(extent_px.height, bh);
+   if (width_blocks == 0 || height_blocks == 0)
+      return VK_SUCCESS;
+
+   /* Bytes and rows produced in the plane for one block row. */
+   const uint64_t out_row_B = flush_denorms ? width_blocks * 16ull :
+                                              extent_px.width * 4ull;
+   const uint32_t out_rows_per_block_row = flush_denorms ? 1 : bh;
+   const uint64_t block_row_out_B = out_row_B * out_rows_per_block_row;
+   const uint32_t strip_block_rows =
+      MIN2(height_blocks, MAX2(1, EMU_STRIP_BUDGET_B / block_row_out_B));
+
+   uint8_t *tmp = vk_alloc(&device->vk.alloc, block_row_out_B * strip_block_rows,
+                           8, VK_SYSTEM_ALLOCATION_SCOPE_COMMAND);
+   if (tmp == NULL)
+      return vk_error(device, VK_ERROR_OUT_OF_HOST_MEMORY);
+
+   for (uint32_t by = 0; by < height_blocks; by += strip_block_rows) {
+      const uint32_t rows = MIN2(strip_block_rows, height_blocks - by);
+      const uint8_t *src = blocks + by * block_row_pitch_B;
+      VkOffset3D offset_el;
+      VkExtent3D extent_el;
+
+      if (flush_denorms) {
+         astc_flush_denorms(src, block_row_pitch_B, tmp, out_row_B,
+                            width_blocks, rows);
+         offset_el = (VkOffset3D) { offset_px.x / bw, offset_px.y / bh + by, 0 };
+         extent_el = (VkExtent3D) { width_blocks, rows, 1 };
+      } else {
+         const uint32_t y_px = by * bh;
+         const uint32_t height_px = MIN2(rows * bh, extent_px.height - y_px);
+         _mesa_unpack_astc_2d_ldr(tmp, out_row_B, src, block_row_pitch_B,
+                                  extent_px.width, height_px, desc->format);
+         offset_el = (VkOffset3D) { offset_px.x, offset_px.y + y_px, 0 };
+         extent_el = (VkExtent3D) { extent_px.width, height_px, 1 };
+      }
+
+      anv_copy_image_memory(device, &emu_surf->isl, binding,
+                            emu_surf->memory_range.offset,
+                            tmp, out_row_B, &offset_el, &extent_el,
+                            level, base_array_layer, base_z_offset_px,
+                            array_layer, z_offset_px, true /* mem_to_img */);
+   }
+
+   vk_free(&device->vk.alloc, tmp);
+   return VK_SUCCESS;
 }
 
 static void
@@ -453,13 +555,6 @@ anv_CopyMemoryToImage(
       const struct anv_format *anv_format =
          anv_get_format(device->physical, image->vk.format);
       struct anv_format_plane anv_plane_format = anv_format->planes[plane];
-      const struct util_format_description *desc = NULL;
-
-      if (is_emulated) {
-         desc = vk_format_description(image->vk.format);
-         if (unlikely(desc->layout != UTIL_FORMAT_LAYOUT_ASTC))
-            UNREACHABLE("Unsupported emulated format");
-      }
 
       /* We can use the image format to figure out all the pitches if using
        * memcpy, otherwise memory & image might have different formats, so use
@@ -514,12 +609,19 @@ anv_CopyMemoryToImage(
                                         region->imageOffset.z,
                                         a, z, true /* mem_to_img */);
 
-                  copy_intermediate(
-                     device, mem_ptr, mem_row_pitch_B, mem_format,
-                     image, &image->planes[image->n_planes].primary_surface,
-                     region, true, /* mem_to_img */
-                     tmp_mem, a, z,
-                     astc_decompression_callback, desc);
+                  VkResult result = write_emu_plane(
+                     device, image, mem_ptr, mem_row_pitch_B,
+                     (VkOffset2D) { region->imageOffset.x,
+                                    region->imageOffset.y },
+                     (VkExtent2D) { region->imageExtent.width,
+                                    region->imageExtent.height },
+                     region->imageSubresource.mipLevel,
+                     region->imageSubresource.baseArrayLayer,
+                     region->imageOffset.z, a, z);
+                  if (result != VK_SUCCESS) {
+                     vk_free(&device->vk.alloc, tmp_mem);
+                     return result;
+                  }
 
                } else if (temp_copy) {
                   mem_format =
@@ -695,14 +797,13 @@ anv_CopyImageToMemory(
 /* This functions copies from one image to another through an intermediate
  * linear buffer.
  */
-static void
+static VkResult
 copy_image_to_image(struct anv_device *device,
                     struct anv_image *src_image,
                     struct anv_image *dst_image,
                     int src_plane, int dst_plane,
                     const VkImageCopy2 *region,
-                    void *tmp_map,
-                    void *emu_tmp_map)
+                    void *tmp_map)
 {
    const struct anv_surface *src_anv_surf =
       &src_image->planes[src_plane].primary_surface;
@@ -730,9 +831,13 @@ copy_image_to_image(struct anv_device *device,
       tile_height_el = dst_tile.logical_extent_el.h;
    }
 
-   /* Only decompress if we're writing to the emulated (decompressed) plane */
-   const bool is_emulated = (dst_image->emu_plane_format != VK_FORMAT_UNDEFINED) &&
-                            (&dst_image->planes[dst_plane] == &dst_image->planes[dst_image->n_planes]);
+   /* The API only addresses the primary plane of an emulated image.  Fill
+    * the emulation plane, which is what gets sampled, from the same blocks.
+    */
+   const bool fill_emu_plane =
+      dst_image->emu_plane_format != VK_FORMAT_UNDEFINED && dst_plane == 0;
+   const struct util_format_description *dst_desc =
+      vk_format_description(dst_image->vk.format);
 
    /* There is no requirement that the extent be aligned to the texel block
     * size.
@@ -788,46 +893,40 @@ copy_image_to_image(struct anv_device *device,
                                      a, z,
                                      false /* mem_to_img */);
 
-               if (is_emulated) {
-                  const struct VkMemoryToImageCopy mem_copy = {
-                     .sType = VK_STRUCTURE_TYPE_MEMORY_TO_IMAGE_COPY,
-                     .pNext = NULL,
-                     .pHostPointer = tmp_map,
-                     .memoryRowLength = linear_stride_B,
-                     .memoryImageHeight = 0,
-                     .imageSubresource = region->dstSubresource,
-                     .imageOffset = vk_el_to_offset3d(src_surf->format,
-                                                      dst_offset),
-                     .imageExtent = vk_el_to_extent3d(src_surf->format,
-                                                      extent),
-                  };
-                  VkFormat format = dst_image->vk.format;
+               anv_copy_image_memory(device, dst_surf,
+                                     dst_binding,
+                                     dst_anv_surf->memory_range.offset,
+                                     tmp_map,
+                                     linear_stride_B,
+                                     &dst_offset, &extent,
+                                     region->dstSubresource.mipLevel,
+                                     region->dstSubresource.baseArrayLayer,
+                                     region->dstOffset.z,
+                                     a, z,
+                                     true /* mem_to_img */);
 
-                  copy_intermediate(
-                     device,
-                     tmp_map, linear_stride_B,
-                     dst_image->planes[dst_plane].primary_surface.isl.format,
-                     dst_image, &dst_image->planes[dst_plane].primary_surface,
-                     &mem_copy, true, /* mem_to_img */
-                     emu_tmp_map, a, z,
-                     astc_decompression_callback, &format);
-               } else {
-                  anv_copy_image_memory(device, dst_surf,
-                                        dst_binding,
-                                        dst_anv_surf->memory_range.offset,
-                                        tmp_map,
-                                        linear_stride_B,
-                                        &dst_offset, &extent,
-                                        region->dstSubresource.mipLevel,
-                                        region->dstSubresource.baseArrayLayer,
-                                        region->dstOffset.z,
-                                        a, z,
-                                        true /* mem_to_img */);
+               if (fill_emu_plane) {
+                  const uint32_t bw = dst_desc->block.width;
+                  const uint32_t bh = dst_desc->block.height;
+                  VkResult result = write_emu_plane(
+                     device, dst_image, tmp_map, linear_stride_B,
+                     (VkOffset2D) { region->dstOffset.x + x_el * bw,
+                                    region->dstOffset.y + y_el * bh },
+                     (VkExtent2D) {
+                        MIN2(extent.width * bw, region->extent.width - x_el * bw),
+                        MIN2(extent.height * bh, region->extent.height - y_el * bh) },
+                     region->dstSubresource.mipLevel,
+                     region->dstSubresource.baseArrayLayer,
+                     region->dstOffset.z, a, z);
+                  if (result != VK_SUCCESS)
+                     return result;
                }
             }
          }
       }
    }
+
+   return VK_SUCCESS;
 }
 
 VkResult
@@ -840,12 +939,12 @@ anv_CopyImageToImage(
    ANV_FROM_HANDLE(anv_image, dst_image, pCopyImageToImageInfo->dstImage);
 
    /* Work with a tile's worth of data */
-   void *tmp_map = vk_alloc(&device->vk.alloc, 2 * TMP_BUFFER_SIZE, 8,
+   void *tmp_map = vk_alloc(&device->vk.alloc, TMP_BUFFER_SIZE, 8,
                             VK_SYSTEM_ALLOCATION_SCOPE_COMMAND);
    if (tmp_map == NULL)
       return vk_error(device, VK_ERROR_OUT_OF_HOST_MEMORY);
 
-   void *emu_tmp_map = tmp_map + TMP_BUFFER_SIZE;
+   VkResult result = VK_SUCCESS;
 
    for (uint32_t r = 0; r < pCopyImageToImageInfo->regionCount; r++) {
       const VkImageCopy2 *region = &pCopyImageToImageInfo->pRegions[r];
@@ -859,20 +958,25 @@ anv_CopyImageToImage(
          anv_foreach_image_aspect_bit(aspect_bit, src_image, src_mask) {
             int plane = anv_image_aspect_to_plane(src_image,
                                                   1UL << aspect_bit);
-            copy_image_to_image(device, src_image, dst_image,
-                                plane, plane, region, tmp_map, emu_tmp_map);
+            result = copy_image_to_image(device, src_image, dst_image,
+                                         plane, plane, region, tmp_map);
+            if (result != VK_SUCCESS)
+               goto out;
          }
       } else {
          int src_plane = anv_image_aspect_to_plane(src_image, src_mask);
          int dst_plane = anv_image_aspect_to_plane(dst_image, dst_mask);
-         copy_image_to_image(device, src_image, dst_image,
-                             src_plane, dst_plane, region, tmp_map, emu_tmp_map);
+         result = copy_image_to_image(device, src_image, dst_image,
+                                      src_plane, dst_plane, region, tmp_map);
+         if (result != VK_SUCCESS)
+            goto out;
       }
    }
 
+out:
    vk_free(&device->vk.alloc, tmp_map);
 
-   return VK_SUCCESS;
+   return result;
 }
 
 VkResult

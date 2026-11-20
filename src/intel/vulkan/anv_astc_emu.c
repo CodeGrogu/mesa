@@ -422,10 +422,14 @@ anv_astc_emu_process(struct anv_cmd_buffer *cmd_buffer,
                      VkOffset3D block_offset,
                      VkExtent3D block_extent)
 {
-   const bool flush_denorms =
-      cmd_buffer->device->physical->flush_astc_ldr_void_extent_denorms;
-
    assert(image->emu_plane_format != VK_FORMAT_UNDEFINED);
+
+   /* Void-extent denorm flushing keeps the ASTC format in the emulation
+    * plane; decompression stores RGBA8.  Gfx9 can use both on one device.
+    */
+   const bool flush_denorms = image->emu_plane_format == image->vk.format;
+   assert(!flush_denorms ||
+          cmd_buffer->device->physical->flush_astc_ldr_void_extent_denorms);
 
    const VkRect2D rect = {
       .offset = {
@@ -492,7 +496,7 @@ anv_device_init_astc_emu(struct anv_device *device)
    if (device->physical->flush_astc_ldr_void_extent_denorms)
       simple_mtx_init(&astc_emu->mutex, mtx_plain);
 
-   if (device->physical->emu_astc_ldr) {
+   if (device->physical->emu_astc_ldr || device->physical->emu_astc_5x5) {
       result = vk_texcompress_astc_init(
          &device->vk, &device->vk.alloc, VK_NULL_HANDLE,
          &astc_emu->texcompress,
