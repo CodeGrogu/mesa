@@ -14,6 +14,10 @@
 #include <stdio.h>
 #include <errno.h>
 #include <sys/ioctl.h>
+#include <sys/stat.h>
+#include <sys/sysmacros.h>
+#include <dirent.h>
+#include <string.h>
 #include "pipe/p_defines.h"
 #include "pipe/p_state.h"
 #include "pipe/p_context.h"
@@ -214,6 +218,49 @@ iris_init_shader_caps(struct iris_screen *screen)
    }
 }
 
+/* Maximum configured GPU frequency in MHz from the kernel's sysfs files
+ * (the same ones intel_perf reads), or 0 if they cannot be read.
+ */
+static unsigned
+iris_get_max_gpu_freq_mhz(int fd, enum intel_kmd_type kmd_type)
+{
+   struct stat st;
+   if (fstat(fd, &st) != 0 || !S_ISCHR(st.st_mode))
+      return 0;
+
+   char dir[128];
+   snprintf(dir, sizeof(dir), "/sys/dev/char/%u:%u/device/drm",
+            major(st.st_rdev), minor(st.st_rdev));
+
+   char path[256] = "";
+   if (kmd_type == INTEL_KMD_TYPE_XE) {
+      snprintf(path, sizeof(path), "%s/../tile0/gt0/freq0/max_freq", dir);
+   } else {
+      DIR *d = opendir(dir);
+      if (!d)
+         return 0;
+      struct dirent *e;
+      while ((e = readdir(d))) {
+         if (strncmp(e->d_name, "card", 4) == 0) {
+            snprintf(path, sizeof(path), "%s/%s/gt_max_freq_mhz", dir, e->d_name);
+            break;
+         }
+      }
+      closedir(d);
+   }
+   if (!path[0])
+      return 0;
+
+   FILE *f = fopen(path, "r");
+   if (!f)
+      return 0;
+   unsigned mhz = 0;
+   if (fscanf(f, "%u", &mhz) != 1)
+      mhz = 0;
+   fclose(f);
+   return mhz;
+}
+
 static void
 iris_init_compute_caps(struct iris_screen *screen)
 {
@@ -256,7 +303,13 @@ iris_init_compute_caps(struct iris_screen *screen)
    caps->max_mem_alloc_size =
    caps->max_global_size = 1 << 30; /* TODO */
 
-   caps->max_clock_frequency = 400; /* TODO */
+   /* CL_DEVICE_MAX_CLOCK_FREQUENCY: the maximum configured frequency.  Keep
+    * the old placeholder when sysfs is unavailable (e.g. in a sandbox).
+    */
+   caps->max_clock_frequency =
+      iris_get_max_gpu_freq_mhz(screen->fd, devinfo->kmd_type);
+   if (caps->max_clock_frequency == 0)
+      caps->max_clock_frequency = 400;
 
    caps->max_compute_units = intel_device_info_subslice_total(devinfo);
 }
