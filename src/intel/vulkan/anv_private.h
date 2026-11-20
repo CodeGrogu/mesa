@@ -7318,6 +7318,24 @@ void anv_calculate_qmul(const struct VkVideoDecodeVP9PictureInfoKHR *vp9_pic,
                         uint32_t seg_id,
                         int16_t *ptr);
 
+#define ANV_VIDEO_DECODE_CODEC_OPS                  \
+   (VK_VIDEO_CODEC_OPERATION_DECODE_H264_BIT_KHR |  \
+    VK_VIDEO_CODEC_OPERATION_DECODE_H265_BIT_KHR |  \
+    VK_VIDEO_CODEC_OPERATION_DECODE_AV1_BIT_KHR |   \
+    VK_VIDEO_CODEC_OPERATION_DECODE_VP9_BIT_KHR)
+
+#define ANV_VIDEO_ENCODE_CODEC_OPS                  \
+   (VK_VIDEO_CODEC_OPERATION_ENCODE_H264_BIT_KHR |  \
+    VK_VIDEO_CODEC_OPERATION_ENCODE_H265_BIT_KHR |  \
+    VK_VIDEO_CODEC_OPERATION_ENCODE_AV1_BIT_KHR)
+
+VkResult anv_video_profile_supported(struct anv_physical_device *pdevice,
+                                     const VkVideoProfileInfoKHR *profile);
+
+VkResult anv_video_profile_list_usage_supported(
+   const VkVideoProfileListInfoKHR *profile_list,
+   VkImageUsageFlags2KHR usage);
+
 uint32_t anv_video_get_image_mv_size(struct anv_device *device,
                                      struct anv_image *image,
                                      const struct VkVideoProfileListInfoKHR *profile_list);

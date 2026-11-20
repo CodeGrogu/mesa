@@ -354,19 +354,78 @@ get_device_descriptor_limits(const struct anv_physical_device *device,
 }
 
 
+/* Codec operations that this build, the debug flags, the hardware
+ * generation and the HuC firmware allow. Queue setup and extension
+ * exposure both derive from this mask.
+ */
+static VkVideoCodecOperationFlagsKHR
+anv_physical_device_candidate_video_ops(const struct anv_physical_device *device)
+{
+   VkVideoCodecOperationFlagsKHR ops = 0;
+
+   if (ANV_DEBUG(VIDEO_DECODE)) {
+      if (VIDEO_CODEC_H264DEC)
+         ops |= VK_VIDEO_CODEC_OPERATION_DECODE_H264_BIT_KHR;
+      if (VIDEO_CODEC_H265DEC && device->has_huc)
+         ops |= VK_VIDEO_CODEC_OPERATION_DECODE_H265_BIT_KHR;
+      if (VIDEO_CODEC_AV1DEC && device->info.ver >= 12)
+         ops |= VK_VIDEO_CODEC_OPERATION_DECODE_AV1_BIT_KHR;
+      if (VIDEO_CODEC_VP9DEC)
+         ops |= VK_VIDEO_CODEC_OPERATION_DECODE_VP9_BIT_KHR;
+   }
+
+   if (ANV_DEBUG(VIDEO_ENCODE) && device->info.verx10 <= 125) {
+      if (VIDEO_CODEC_H264ENC)
+         ops |= VK_VIDEO_CODEC_OPERATION_ENCODE_H264_BIT_KHR;
+      if (VIDEO_CODEC_H265ENC && device->info.ver >= 12)
+         ops |= VK_VIDEO_CODEC_OPERATION_ENCODE_H265_BIT_KHR;
+      if (VIDEO_CODEC_AV1ENC && device->info.verx10 == 125)
+         ops |= VK_VIDEO_CODEC_OPERATION_ENCODE_AV1_BIT_KHR;
+   }
+
+   return ops;
+}
+
+static VkQueueFlags
+anv_video_queue_flags_for_ops(VkVideoCodecOperationFlagsKHR ops)
+{
+   return ((ops & ANV_VIDEO_DECODE_CODEC_OPS) ?
+           VK_QUEUE_VIDEO_DECODE_BIT_KHR : 0) |
+          ((ops & ANV_VIDEO_ENCODE_CODEC_OPS) ?
+           VK_QUEUE_VIDEO_ENCODE_BIT_KHR : 0);
+}
+
 static void
 get_device_extensions(const struct anv_physical_device *device,
                       struct vk_device_extension_table *ext)
 {
    const bool rt_enabled = ANV_SUPPORT_RT && device->info.has_ray_tracing;
-   const bool hw_video_encode_supported = device->info.verx10 <= 125;
 
-   const bool video_encode_enabled = hw_video_encode_supported &&
-                                     ANV_DEBUG(VIDEO_ENCODE);
-   const bool video_decode_enabled = ANV_DEBUG(VIDEO_DECODE);
-
-   if (VIDEO_CODEC_H265DEC && video_decode_enabled && !device->has_huc)
+   if (VIDEO_CODEC_H265DEC && ANV_DEBUG(VIDEO_DECODE) && !device->has_huc)
       debug_warn_once("HuC firmware is not loaded, disabling H.265 video decoding");
+
+   /* Only expose codecs that an enumerated video queue can execute. */
+   VkQueueFlags video_queue_flags = 0;
+   for (uint32_t i = 0; i < device->queue.family_count; i++) {
+      video_queue_flags |= device->queue.families[i].queueFlags &
+                           (VK_QUEUE_VIDEO_DECODE_BIT_KHR |
+                            VK_QUEUE_VIDEO_ENCODE_BIT_KHR);
+   }
+
+   VkVideoCodecOperationFlagsKHR video_ops =
+      anv_physical_device_candidate_video_ops(device);
+   if (!(video_queue_flags & VK_QUEUE_VIDEO_DECODE_BIT_KHR))
+      video_ops &= ~ANV_VIDEO_DECODE_CODEC_OPS;
+   if (!(video_queue_flags & VK_QUEUE_VIDEO_ENCODE_BIT_KHR))
+      video_ops &= ~ANV_VIDEO_ENCODE_CODEC_OPS;
+
+   const bool video_decode_enabled = video_ops & ANV_VIDEO_DECODE_CODEC_OPS;
+   const bool video_encode_enabled = video_ops & ANV_VIDEO_ENCODE_CODEC_OPS;
+   const bool video_h26x_enabled =
+      video_ops & (VK_VIDEO_CODEC_OPERATION_DECODE_H264_BIT_KHR |
+                   VK_VIDEO_CODEC_OPERATION_DECODE_H265_BIT_KHR |
+                   VK_VIDEO_CODEC_OPERATION_ENCODE_H264_BIT_KHR |
+                   VK_VIDEO_CODEC_OPERATION_ENCODE_H265_BIT_KHR);
 
    *ext = (struct vk_device_extension_table) {
       .KHR_8bit_storage                      = true,
@@ -494,22 +553,16 @@ get_device_extensions(const struct anv_physical_device *device,
       .KHR_vertex_attribute_divisor          = true,
       .KHR_video_queue                       = video_decode_enabled || video_encode_enabled,
       .KHR_video_decode_queue                = video_decode_enabled,
-      .KHR_video_decode_h264                 = VIDEO_CODEC_H264DEC && video_decode_enabled,
-      .KHR_video_decode_h265                 = VIDEO_CODEC_H265DEC && video_decode_enabled && device->has_huc,
-      .KHR_video_decode_av1                  = device->info.ver >= 12 && VIDEO_CODEC_AV1DEC && video_decode_enabled,
-      .KHR_video_decode_vp9                  = VIDEO_CODEC_VP9DEC && video_decode_enabled,
+      .KHR_video_decode_h264                 = video_ops & VK_VIDEO_CODEC_OPERATION_DECODE_H264_BIT_KHR,
+      .KHR_video_decode_h265                 = video_ops & VK_VIDEO_CODEC_OPERATION_DECODE_H265_BIT_KHR,
+      .KHR_video_decode_av1                  = video_ops & VK_VIDEO_CODEC_OPERATION_DECODE_AV1_BIT_KHR,
+      .KHR_video_decode_vp9                  = video_ops & VK_VIDEO_CODEC_OPERATION_DECODE_VP9_BIT_KHR,
       .KHR_video_encode_queue                = video_encode_enabled,
-      .KHR_video_encode_h264                 = VIDEO_CODEC_H264ENC && video_encode_enabled,
-      .KHR_video_encode_h265                 = device->info.ver >= 12 && VIDEO_CODEC_H265ENC && video_encode_enabled,
-      .KHR_video_encode_av1                  = device->info.verx10 == 125 && VIDEO_CODEC_AV1ENC && video_encode_enabled,
-      .KHR_video_maintenance1                = (video_decode_enabled &&
-                                               (VIDEO_CODEC_H264DEC || VIDEO_CODEC_H265DEC)) ||
-                                               (video_encode_enabled &&
-                                               (VIDEO_CODEC_H264ENC || VIDEO_CODEC_H265ENC)),
-      .KHR_video_maintenance2                = (video_decode_enabled &&
-                                               (VIDEO_CODEC_H264DEC || VIDEO_CODEC_H265DEC)) ||
-                                               (video_encode_enabled &&
-                                               (VIDEO_CODEC_H264ENC || VIDEO_CODEC_H265ENC)),
+      .KHR_video_encode_h264                 = video_ops & VK_VIDEO_CODEC_OPERATION_ENCODE_H264_BIT_KHR,
+      .KHR_video_encode_h265                 = video_ops & VK_VIDEO_CODEC_OPERATION_ENCODE_H265_BIT_KHR,
+      .KHR_video_encode_av1                  = video_ops & VK_VIDEO_CODEC_OPERATION_ENCODE_AV1_BIT_KHR,
+      .KHR_video_maintenance1                = video_h26x_enabled,
+      .KHR_video_maintenance2                = video_h26x_enabled,
       .KHR_vulkan_memory_model               = true,
       .KHR_workgroup_memory_explicit_layout  = true,
       .KHR_zero_initialize_workgroup_memory  = true,
@@ -2958,7 +3011,9 @@ anv_physical_device_init_queue_families(struct anv_physical_device *pdevice)
             .engine_class = compute_class,
          };
       }
-      if (v_count > 0 && (ANV_DEBUG(VIDEO_DECODE) || ANV_DEBUG(VIDEO_ENCODE))) {
+      const VkQueueFlags video_flags =
+         anv_video_queue_flags_for_ops(anv_physical_device_candidate_video_ops(pdevice));
+      if (v_count > 0 && video_flags) {
          /* HEVC support on Gfx9 is only available on VCS0. So limit the number of video queues
           * to the first VCS engine instance.
           *
@@ -2971,10 +3026,7 @@ anv_physical_device_init_queue_families(struct anv_physical_device *pdevice)
           */
          /* TODO: enable protected content on video queue */
          pdevice->queue.families[family_count++] = (struct anv_queue_family) {
-            .queueFlags = (ANV_DEBUG(VIDEO_DECODE) ?
-                           VK_QUEUE_VIDEO_DECODE_BIT_KHR : 0) |
-                          (ANV_DEBUG(VIDEO_ENCODE) ?
-                           VK_QUEUE_VIDEO_ENCODE_BIT_KHR : 0),
+            .queueFlags = video_flags,
             .queueCount = pdevice->info.ver == 9 ? MIN2(1, v_count) : v_count,
             .engine_class = INTEL_ENGINE_CLASS_VIDEO,
          };
@@ -3482,20 +3534,34 @@ void anv_GetPhysicalDeviceQueueFamilyProperties2(
             case VK_STRUCTURE_TYPE_QUEUE_FAMILY_VIDEO_PROPERTIES_KHR: {
                VkQueueFamilyVideoPropertiesKHR *prop =
                   (VkQueueFamilyVideoPropertiesKHR *)ext;
+               const struct vk_device_extension_table *exts =
+                  &pdevice->vk.supported_extensions;
+               VkVideoCodecOperationFlagsKHR ops = 0;
+
+               /* Only report codec operations whose extension is exposed, so
+                * the queue properties match the device extension list.
+                */
                if (queue_family->queueFlags & VK_QUEUE_VIDEO_DECODE_BIT_KHR) {
-                  prop->videoCodecOperations = VK_VIDEO_CODEC_OPERATION_DECODE_H264_BIT_KHR |
-                                               VK_VIDEO_CODEC_OPERATION_DECODE_H265_BIT_KHR |
-                                               VK_VIDEO_CODEC_OPERATION_DECODE_VP9_BIT_KHR;
-                  if (pdevice->info.ver >= 12)
-                     prop->videoCodecOperations |= VK_VIDEO_CODEC_OPERATION_DECODE_AV1_BIT_KHR;
+                  if (exts->KHR_video_decode_h264)
+                     ops |= VK_VIDEO_CODEC_OPERATION_DECODE_H264_BIT_KHR;
+                  if (exts->KHR_video_decode_h265)
+                     ops |= VK_VIDEO_CODEC_OPERATION_DECODE_H265_BIT_KHR;
+                  if (exts->KHR_video_decode_av1)
+                     ops |= VK_VIDEO_CODEC_OPERATION_DECODE_AV1_BIT_KHR;
+                  if (exts->KHR_video_decode_vp9)
+                     ops |= VK_VIDEO_CODEC_OPERATION_DECODE_VP9_BIT_KHR;
                }
 
                if (queue_family->queueFlags & VK_QUEUE_VIDEO_ENCODE_BIT_KHR) {
-                  prop->videoCodecOperations |= VK_VIDEO_CODEC_OPERATION_ENCODE_H264_BIT_KHR |
-                                                VK_VIDEO_CODEC_OPERATION_ENCODE_H265_BIT_KHR;
-                  if (pdevice->info.verx10 == 125)
-                     prop->videoCodecOperations |= VK_VIDEO_CODEC_OPERATION_ENCODE_AV1_BIT_KHR;
+                  if (exts->KHR_video_encode_h264)
+                     ops |= VK_VIDEO_CODEC_OPERATION_ENCODE_H264_BIT_KHR;
+                  if (exts->KHR_video_encode_h265)
+                     ops |= VK_VIDEO_CODEC_OPERATION_ENCODE_H265_BIT_KHR;
+                  if (exts->KHR_video_encode_av1)
+                     ops |= VK_VIDEO_CODEC_OPERATION_ENCODE_AV1_BIT_KHR;
                }
+
+               prop->videoCodecOperations = ops;
                break;
             }
 

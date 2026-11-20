@@ -862,11 +862,14 @@ anv_get_color_format_features(const struct anv_physical_device *physical_device,
    if (anv_format->flags & ANV_FORMAT_FLAG_CAN_VIDEO &&
          !(create_flags & VK_IMAGE_CREATE_2_DISJOINT_BIT_KHR) &&
          video_tiling_supported) {
-      flags |= ANV_DEBUG(VIDEO_DECODE) ?
+      const struct vk_device_extension_table *exts =
+         &physical_device->vk.supported_extensions;
+
+      flags |= exts->KHR_video_decode_queue ?
                   VK_FORMAT_FEATURE_2_VIDEO_DECODE_OUTPUT_BIT_KHR |
                   VK_FORMAT_FEATURE_2_VIDEO_DECODE_DPB_BIT_KHR : 0;
 
-      flags |= ANV_DEBUG(VIDEO_ENCODE) ?
+      flags |= exts->KHR_video_encode_queue ?
                   VK_FORMAT_FEATURE_2_VIDEO_ENCODE_INPUT_BIT_KHR |
                   VK_FORMAT_FEATURE_2_VIDEO_ENCODE_DPB_BIT_KHR : 0;
    }
@@ -1503,6 +1506,13 @@ anv_formats_are_compatible(
    if (img_fmt == img_view_fmt)
       return true;
 
+   /* Depth/stencil formats are only compatible with themselves, so a
+    * distinct format of the same size is not a possible view format.
+    */
+   if (vk_format_is_depth_or_stencil(img_fmt->vk_format) ||
+       vk_format_is_depth_or_stencil(img_view_fmt->vk_format))
+      return false;
+
    if (img_view_fmt->n_planes != 1)
       return false;
 
@@ -1709,17 +1719,14 @@ anv_get_image_format_properties(
    const VkImageCompressionControlEXT *comp_info = NULL;
    const VkImageCreateFlags2CreateInfoKHR *create_flags_2_info = NULL;
    const VkImageUsageFlags2CreateInfoKHR *usage_flags_2_info = NULL;
+   const VkVideoProfileListInfoKHR *video_profile_list = NULL;
    VkExternalImageFormatProperties *external_props = NULL;
    VkSamplerYcbcrConversionImageFormatProperties *ycbcr_props = NULL;
    VkTextureLODGatherFormatPropertiesAMD *texture_lod_gather_props = NULL;
    VkImageCompressionPropertiesEXT *comp_props = NULL;
    VkHostImageCopyDevicePerformanceQueryEXT *host_props = NULL;
    const struct wsi_image_create_info *wsi_info = NULL;
-
-   /* Unsupported format or unsupported image format */
-   if (format == NULL ||
-       format->planes[0].isl_format == ISL_FORMAT_UNSUPPORTED)
-      goto unsupported;
+   VkResult unsupported_result = VK_ERROR_FORMAT_NOT_SUPPORTED;
 
    /* Extract input structs */
    vk_foreach_struct_const(sType, s, info->pNext) {
@@ -1740,7 +1747,7 @@ anv_get_image_format_properties(
          wsi_info = s;
          break;
       case VK_STRUCTURE_TYPE_VIDEO_PROFILE_LIST_INFO_KHR:
-         /* Ignore but don't warn */
+         video_profile_list = s;
          break;
       case VK_STRUCTURE_TYPE_IMAGE_COMPRESSION_CONTROL_EXT:
          comp_info = s;
@@ -1756,6 +1763,37 @@ anv_get_image_format_properties(
          break;
       }
    }
+
+   /* From the Vulkan spec (vkGetPhysicalDeviceImageFormatProperties2):
+    *
+    *    If any of the video profiles specified via
+    *    VkVideoProfileListInfoKHR::pProfiles are not supported, then this
+    *    command returns one of the video-profile-specific error codes.
+    */
+   if (video_profile_list != NULL) {
+      for (uint32_t i = 0; i < video_profile_list->profileCount; i++) {
+         VkResult res = anv_video_profile_supported(
+            physical_device, &video_profile_list->pProfiles[i]);
+         if (res != VK_SUCCESS) {
+            unsupported_result = res;
+            goto unsupported;
+         }
+      }
+
+      /* Reference picture usages need a profile of the matching direction. */
+      VkResult res = anv_video_profile_list_usage_supported(
+         video_profile_list,
+         usage_flags_2_info ? usage_flags_2_info->usage : info->usage);
+      if (res != VK_SUCCESS) {
+         unsupported_result = res;
+         goto unsupported;
+      }
+   }
+
+   /* Unsupported format or unsupported image format */
+   if (format == NULL ||
+       format->planes[0].isl_format == ISL_FORMAT_UNSUPPORTED)
+      goto unsupported;
 
    /* Extract output structs */
    vk_foreach_struct(sType, s, props->pNext) {
@@ -2262,7 +2300,7 @@ unsupported:
       .maxResourceSize = 0,
    };
 
-   return VK_ERROR_FORMAT_NOT_SUPPORTED;
+   return unsupported_result;
 }
 
 VkResult anv_GetPhysicalDeviceImageFormatProperties2(
