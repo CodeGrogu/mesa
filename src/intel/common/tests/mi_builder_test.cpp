@@ -1252,6 +1252,99 @@ TEST_F(mi_builder_test, udiv32_imm)
    }
 }
 
+static const uint64_t udiv64_values[] = {
+   0,
+   1,
+   0xfffffffffull,          /* largest 36-bit timestamp */
+   0x1000000000ull,
+   0x0123456789abcdefull,
+   0x8000000000000000ull,
+   0xfffffffffffffffeull,
+   0xffffffffffffffffull,
+};
+
+TEST_F(mi_builder_test, udiv64_imm)
+{
+   /* Divisors covering every digit size: 16-bit digits up to 2^16, then
+    * 8-, 4-, 2- and 1-bit digits.
+    */
+   const uint32_t divisors[] = {
+      1, 2, 3, 12, 24, 65521, 65536, 65537, 16777259, 0x7fffffff, 0x80000000,
+   };
+   memcpy(input, udiv64_values, sizeof(udiv64_values));
+
+   for (unsigned j = 0; j < ARRAY_SIZE(divisors); j++) {
+      batch_offset = 0;
+      mi_builder_init(&b, &devinfo, this);
+
+      for (unsigned i = 0; i < ARRAY_SIZE(udiv64_values); i++) {
+         struct mi_value rem;
+         struct mi_value q =
+            mi_udiv64_imm(&b, in_mem64(i * 8), divisors[j], 64, &rem);
+         mi_store(&b, out_mem64(i * 16), q);
+         mi_store(&b, out_mem64(i * 16 + 8), rem);
+      }
+
+      submit_batch();
+
+      for (unsigned i = 0; i < ARRAY_SIZE(udiv64_values); i++) {
+         EXPECT_EQ(*(uint64_t *)(output + i * 16),
+                   udiv64_values[i] / divisors[j]) << "D=" << divisors[j];
+         EXPECT_EQ(*(uint64_t *)(output + i * 16 + 8),
+                   udiv64_values[i] % divisors[j]) << "D=" << divisors[j];
+      }
+   }
+}
+
+/* CS timestamp frequencies that i915 and Xe can report: fixed Gen8-9
+ * values, crystal clocks shifted by the CTC shift parameter, divide-logic
+ * values such as 12 + 1/3 MHz, and extreme divisors.
+ */
+static const uint32_t timestamp_frequencies[] = {
+   12500000, 12000000, 19200000, 24000000, 25000000, 38400000,
+   3000000, 6000000, 2400000, 4800000, 9600000, 3125000, 6250000,
+   12333333, 1000000000, 1, 0x7fffffff,
+};
+
+static uint64_t
+cpu_timebase_scale(uint32_t frequency, uint64_t ticks)
+{
+   struct intel_device_info info = {};
+   info.timestamp_frequency = frequency;
+   return intel_device_info_timebase_scale(&info, ticks);
+}
+
+TEST_F(mi_builder_test, umul_udiv64_imm_timebase_scale)
+{
+   memcpy(input, udiv64_values, sizeof(udiv64_values));
+
+   /* One batch per value: a divisor near 2^31 needs 1-bit digits, which
+    * makes a single conversion several hundred kilobytes of MI_MATH.
+    */
+   for (unsigned j = 0; j < ARRAY_SIZE(timestamp_frequencies); j++) {
+      for (unsigned i = 0; i < ARRAY_SIZE(udiv64_values); i++) {
+         batch_offset = 0;
+         mi_builder_init(&b, &devinfo, this);
+
+         struct mi_value ns =
+            mi_umul_udiv64_imm(&b, in_mem64(i * 8), 1000000000,
+                               timestamp_frequencies[j]);
+         mi_store(&b, out_mem64(0), mi_value_ref(&b, ns));
+         mi_store(&b, out_mem32(8), ns);
+
+         submit_batch();
+
+         uint64_t expected =
+            cpu_timebase_scale(timestamp_frequencies[j], udiv64_values[i]);
+         EXPECT_EQ(*(uint64_t *)(output + 0), expected)
+            << "f=" << timestamp_frequencies[j] << " i=" << i;
+         EXPECT_EQ(*(uint32_t *)(output + 8), (uint32_t)expected)
+            << "f=" << timestamp_frequencies[j] << " i=" << i;
+         EXPECT_EQ(*(uint32_t *)(output + 12), (uint32_t)canary);
+      }
+   }
+}
+
 TEST_F(mi_builder_test, umax2_32)
 {
    const uint32_t values[] = {

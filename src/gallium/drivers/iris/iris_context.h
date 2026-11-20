@@ -1134,6 +1134,12 @@ struct iris_context {
        */
       struct iris_address compute_predicate;
 
+      /**
+       * A timer query snapshot was written to the render batch.  The next
+       * compute dispatch must not start until that snapshot has executed.
+       */
+      bool compute_after_timer_snapshot;
+
       /** Is a PIPE_QUERY_PRIMITIVES_GENERATED query active? */
       bool prims_generated_query_active;
 

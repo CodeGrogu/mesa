@@ -196,6 +196,14 @@ write_value(struct iris_context *ice, struct iris_query *q, unsigned offset)
    case PIPE_QUERY_TIMESTAMP:
    case PIPE_QUERY_TIMESTAMP_DISJOINT:
    case PIPE_QUERY_TIMESTAMP_RAW:
+      /* Timer snapshots go in the render batch, while dispatches go in the
+       * compute batch, which is a separate hardware context.  Order the
+       * snapshot after previously submitted compute work, and make the next
+       * dispatch wait for the snapshot (see iris_launch_grid).
+       */
+      iris_batch_wait_for_batch(&ice->batches[IRIS_BATCH_RENDER],
+                                &ice->batches[IRIS_BATCH_COMPUTE]);
+      ice->state.compute_after_timer_snapshot = true;
       iris_pipelined_write(&ice->batches[IRIS_BATCH_RENDER], q,
                            PIPE_CONTROL_WRITE_TIMESTAMP,
                            offset);
@@ -400,20 +408,22 @@ calculate_result_on_gpu(const struct intel_device_info *devinfo,
    case PIPE_QUERY_TIMESTAMP_RAW:
       result = start_val;
       break;
-   case PIPE_QUERY_TIMESTAMP: {
-      /* TODO: This discards any fractional bits of the timebase scale.
-       * We would need to do a bit of fixed point math on the CS ALU, or
-       * launch an actual shader to calculate this with full precision.
+   case PIPE_QUERY_TIMESTAMP:
+      /* Same value as calculate_result_on_cpu(), so a query buffer and
+       * glGetQueryObject agree whichever path resolves the query.
        */
-      uint32_t scale = 1000000000ull / devinfo->timestamp_frequency;
-      result = mi_iand(b, mi_imm((1ull << 36) - 1),
-                          mi_imul_imm(b, start_val, scale));
+      result = mi_umul_udiv64_imm(b, start_val, 1000000000,
+                                  devinfo->timestamp_frequency);
       break;
-   }
    case PIPE_QUERY_TIME_ELAPSED: {
-      /* TODO: This discards fractional bits (see above). */
-      uint32_t scale = 1000000000ull / devinfo->timestamp_frequency;
-      result = mi_imul_imm(b, mi_isub(b, end_val, start_val), scale);
+      /* iris_raw_timestamp_delta(): end - start, plus 2^36 if the 36-bit
+       * counter wrapped (end < start), then scaled as on the CPU.
+       */
+      struct mi_value wrap =
+         mi_iand(b, mi_ult(b, end_val, start_val), mi_imm(1ull << 36));
+      result = mi_iadd(b, mi_isub(b, end_val, start_val), wrap);
+      result = mi_umul_udiv64_imm(b, result, 1000000000,
+                                  devinfo->timestamp_frequency);
       break;
    }
    default:
@@ -656,6 +666,45 @@ iris_get_query_result(struct pipe_context *ctx,
    return true;
 }
 
+/**
+ * Largest value a 32-bit query buffer destination can hold.
+ *
+ * Every query result Iris produces is a nonnegative unsigned 64-bit logical
+ * value.  GL (ARB_query_buffer_object) writes the result to a buffer exactly
+ * as glGetQueryObject{i,ui}v would return it, and those saturate to the
+ * largest representable value (ARB_timer_query; queryobj.c clamps the same
+ * way for client memory).  64-bit destinations need no clamp.
+ */
+static uint64_t
+query_result_limit32(enum pipe_query_value_type result_type)
+{
+   assert(result_type <= PIPE_QUERY_TYPE_U32);
+   return result_type == PIPE_QUERY_TYPE_I32 ? INT32_MAX : UINT32_MAX;
+}
+
+/**
+ * Unsigned min(val, limit) computed by MI_MATH:
+ *
+ *    mask = limit < val ? ~0 : 0
+ *    val ^ ((val ^ limit) & mask)
+ *
+ * Consumes the caller's reference to \p val.
+ */
+static struct mi_value
+mi_umin_imm(struct mi_builder *b, struct mi_value val, uint64_t limit)
+{
+   if (val.type == MI_VALUE_TYPE_IMM)
+      return mi_imm(MIN2(mi_value_to_u64(val), limit));
+
+   /* Load memory/register sources once; val is used three times below. */
+   assert(!val.invert);
+   val = mi_value_to_gpr(b, val);
+
+   struct mi_value mask = mi_ult(b, mi_imm(limit), mi_value_ref(b, val));
+   struct mi_value diff = mi_ixor(b, mi_value_ref(b, val), mi_imm(limit));
+   return mi_ixor(b, val, mi_iand(b, diff, mask));
+}
+
 static void
 iris_get_query_result_resource(struct pipe_context *ctx,
                                struct pipe_query *query,
@@ -702,7 +751,8 @@ iris_get_query_result_resource(struct pipe_context *ctx,
    if (q->ready) {
       /* We happen to have the result on the CPU, so just copy it. */
       if (result_type <= PIPE_QUERY_TYPE_U32) {
-         batch->screen->vtbl.store_data_imm32(batch, dst_bo, offset, q->result);
+         batch->screen->vtbl.store_data_imm32(batch, dst_bo, offset,
+            MIN2(q->result, query_result_limit32(result_type)));
       } else {
          batch->screen->vtbl.store_data_imm64(batch, dst_bo, offset, q->result);
       }
@@ -722,6 +772,9 @@ iris_get_query_result_resource(struct pipe_context *ctx,
    iris_batch_sync_region_start(batch);
 
    struct mi_value result = calculate_result_on_gpu(devinfo, &b, q);
+   if (result_type <= PIPE_QUERY_TYPE_U32)
+      result = mi_umin_imm(&b, result, query_result_limit32(result_type));
+
    struct mi_value dst =
       result_type <= PIPE_QUERY_TYPE_U32 ?
       mi_mem32(rw_bo(dst_bo, offset, IRIS_DOMAIN_OTHER_WRITE)) :

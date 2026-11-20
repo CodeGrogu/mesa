@@ -109,6 +109,32 @@ iris_batch_add_syncobj(struct iris_batch *batch,
 }
 
 /**
+ * Make the next submission of \p batch wait until all work recorded so far
+ * in \p other has completed.
+ *
+ * \p other is flushed if it has queued commands, so the syncobj we wait on
+ * has been submitted.  Nothing is added when \p other has no outstanding
+ * work.  Batches on one i915 context execute in order, so waiting for the
+ * last submission covers all earlier submissions of \p other.
+ */
+void
+iris_batch_wait_for_batch(struct iris_batch *batch, struct iris_batch *other)
+{
+   iris_batch_flush(other);
+
+   struct iris_fine_fence *last = other->last_fence;
+   if (iris_fine_fence_signaled(last))
+      return;
+
+   util_dynarray_foreach(&batch->syncobjs, struct iris_syncobj *, s) {
+      if (*s == last->syncobj)
+         return;
+   }
+
+   iris_batch_add_syncobj(batch, last->syncobj, IRIS_BATCH_FENCE_WAIT);
+}
+
+/**
  * Walk through a batch's dependencies (any IRIS_BATCH_FENCE_WAIT syncobjs)
  * and unreference any which have already passed.
  *

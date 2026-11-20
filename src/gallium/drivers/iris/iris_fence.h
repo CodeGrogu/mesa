@@ -27,6 +27,8 @@ void iris_syncobj_signal(struct iris_bufmgr *, struct iris_syncobj *);
 void iris_batch_add_syncobj(struct iris_batch *batch,
                             struct iris_syncobj *syncobj,
                             uint32_t flags);
+void iris_batch_wait_for_batch(struct iris_batch *batch,
+                               struct iris_batch *other);
 bool iris_wait_syncobj(struct iris_bufmgr *bufmgr,
                        struct iris_syncobj *syncobj,
                        int64_t timeout_nsec);

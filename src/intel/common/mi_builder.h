@@ -1301,6 +1301,100 @@ mi_udiv32_imm(struct mi_builder *b, struct mi_value N, uint32_t D)
    }
 }
 
+/**
+ * Divide a 64-bit value by an immediate.
+ *
+ * Returns floor(N / D) and, if rem_out is not NULL, N % D.  N must be less
+ * than 2^bits, and D must be in [1, 2^31].
+ *
+ * The CS ALU has no divide and mi_udiv32_imm() needs a 32-bit numerator, so
+ * this is schoolbook long division in base 2^k.  k is the largest power of
+ * two up to 16 with D * 2^k <= 2^32, so every partial dividend
+ * rem * 2^k + digit < D * 2^k fits mi_udiv32_imm().
+ */
+static inline struct mi_value
+mi_udiv64_imm(struct mi_builder *b, struct mi_value N, uint32_t D,
+              unsigned bits, struct mi_value *rem_out)
+{
+   assert(D >= 1 && D <= (1u << 31));
+   assert(bits >= 1 && bits <= 64);
+
+   if (N.type == MI_VALUE_TYPE_IMM) {
+      uint64_t n = mi_value_to_u64(N);
+      if (rem_out)
+         *rem_out = mi_imm(n % D);
+      return mi_imm(n / D);
+   }
+
+   unsigned k = 16;
+   while (k > 1 && ((uint64_t)D << k) > (1ull << 32))
+      k /= 2;
+
+   N = mi_value_to_gpr(b, N);
+
+   struct mi_value Q = mi_imm(0), R = mi_imm(0);
+   for (int d = DIV_ROUND_UP(bits, k) - 1; d >= 0; d--) {
+      struct mi_value digit =
+         mi_iand(b, mi_ushr32_imm(b, mi_value_ref(b, N), d * k),
+                    mi_imm((1u << k) - 1));
+      struct mi_value P = mi_iadd(b, mi_ishl_imm(b, R, k), digit);
+      struct mi_value q = mi_udiv32_imm(b, mi_value_ref(b, P), D);
+      R = mi_isub(b, P, mi_imul_imm(b, mi_value_ref(b, q), D));
+      Q = mi_iadd(b, mi_ishl_imm(b, Q, k), q);
+   }
+   mi_value_unref(b, N);
+
+   if (rem_out)
+      *rem_out = R;
+   else
+      mi_value_unref(b, R);
+
+   return Q;
+}
+
+/**
+ * Compute floor(N * num / den) mod 2^64 exactly, for every 64-bit N.
+ *
+ * This gives the same value as intel_device_info_timebase_scale() on the
+ * CPU when num is 1000000000 and den is the timestamp frequency.  After
+ * reducing num / den, den must be at most 2^31.
+ */
+static inline struct mi_value
+mi_umul_udiv64_imm(struct mi_builder *b, struct mi_value N,
+                   uint32_t num, uint32_t den)
+{
+   assert(den > 0);
+
+   if (num == 0) {
+      mi_value_unref(b, N);
+      return mi_imm(0);
+   }
+
+   uint32_t g = num, r = den;
+   while (r) {
+      uint32_t t = g % r;
+      g = r;
+      r = t;
+   }
+   num /= g;
+   den /= g;
+
+   if (den == 1)
+      return mi_imul_imm(b, N, num);
+
+   /* With N = q * den + rem and rem < den,
+    * floor(N * num / den) = q * num + floor(rem * num / den), and
+    * rem * num < den * num < 2^63 cannot overflow.
+    */
+   struct mi_value rem;
+   struct mi_value q = mi_udiv64_imm(b, N, den, 64, &rem);
+   struct mi_value frac =
+      mi_udiv64_imm(b, mi_imul_imm(b, rem, num), den,
+                    util_last_bit64((uint64_t)(den - 1) * num), NULL);
+
+   return mi_iadd(b, mi_imul_imm(b, q, num), frac);
+}
+
 /* Finds the maximum between the two specified unsigned numbers. */
 static inline struct mi_value
 mi_umax2(struct mi_builder *b, struct mi_value val1, struct mi_value val2)
