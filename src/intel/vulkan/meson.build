@@ -221,6 +221,7 @@ libanv_files = files(
   'anv_nir_lower_descriptor_heap.c',
   'anv_nir_lower_driver_values.c',
   'anv_nir_lower_multiview.c',
+  'anv_nir_lower_packed_422.c',
   'anv_nir_lower_ubo_loads.c',
   'anv_nir_lower_resource_intel.c',
   'anv_nir_lower_unaligned_dispatch.c',

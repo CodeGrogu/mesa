@@ -434,11 +434,14 @@ static const struct anv_format ycbcr_formats[] = {
    fmt_unsupported(VK_FORMAT_G12X4_B12X4_R12X4_3PLANE_422_UNORM_3PACK16),
    fmt_unsupported(VK_FORMAT_G12X4_B12X4R12X4_2PLANE_422_UNORM_3PACK16),
    fmt_unsupported(VK_FORMAT_G12X4_B12X4_R12X4_3PLANE_444_UNORM_3PACK16),
-   /* TODO: it is possible to enable the following 2 formats, but that
-    * requires further refactoring of how we handle multiplanar formats.
+   /* No sampler format packs 16-bit 4:2:2, so these are stored as
+    * R16G16_UNORM at full width (each pixel holds luma and one of Cb/Cr) and
+    * anv_nir_lower_packed_422() rebuilds chroma in the shader.
     */
-   fmt_unsupported(VK_FORMAT_G16B16G16R16_422_UNORM),
-   fmt_unsupported(VK_FORMAT_B16G16R16G16_422_UNORM),
+   ycbcr_fmt(VK_FORMAT_G16B16G16R16_422_UNORM, 1, true, false,
+             ycbcr_plane(0, ISL_FORMAT_R16G16_UNORM, RGBA)),
+   ycbcr_fmt(VK_FORMAT_B16G16R16G16_422_UNORM, 1, true, false,
+             ycbcr_plane(0, ISL_FORMAT_R16G16_UNORM, RGBA)),
 
    ycbcr_fmt(VK_FORMAT_G16_B16_R16_3PLANE_420_UNORM, 3, true, false,
              ycbcr_plane(0, ISL_FORMAT_R16_UNORM, RGBA),
@@ -1057,16 +1060,25 @@ anv_get_color_format_features(const struct anv_physical_device *physical_device,
        * its own.
        */
       if (isl_format_is_yuv(anv_format->planes[0].isl_format)) {
-         /* TODO: We've disabled linear implicit reconstruction with the
-          * sampler. The failures show a slightly out of range values on the
-          * bottom left of the sampled image.
+         /* The sampler's own linear chroma filtering is slightly off (CTS
+          * fails), so anv_nir_lower_packed_422() rebuilds linear chroma in
+          * the shader.
           */
-         flags |= VK_FORMAT_FEATURE_2_MIDPOINT_CHROMA_SAMPLES_BIT;
+         flags |= VK_FORMAT_FEATURE_2_MIDPOINT_CHROMA_SAMPLES_BIT |
+                  VK_FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT;
       } else {
          flags |= VK_FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT |
                   VK_FORMAT_FEATURE_2_MIDPOINT_CHROMA_SAMPLES_BIT |
                   VK_FORMAT_FEATURE_2_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT;
       }
+
+      /* Packed 16-bit 4:2:2 chroma is rebuilt in the shader (implicit
+       * reconstruction: chroma is sampled at the filtered position), which
+       * handles both chroma locations.
+       */
+      if (vk_format == VK_FORMAT_G16B16G16R16_422_UNORM ||
+          vk_format == VK_FORMAT_B16G16R16G16_422_UNORM)
+         flags |= VK_FORMAT_FEATURE_COSITED_CHROMA_SAMPLES_BIT;
 
       /* We can support cosited chroma locations when handle planes with our
        * own shader snippets.

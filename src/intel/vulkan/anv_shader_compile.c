@@ -1453,6 +1453,7 @@ anv_shader_lower_nir(struct anv_device *device,
    }
 
    NIR_PASS(_, nir, nir_vk_lower_ycbcr_tex, lookup_ycbcr_conversion, shader_data->info);
+   NIR_PASS(_, nir, anv_nir_lower_packed_422, lookup_ycbcr_conversion, shader_data->info);
 
    if (nir->info.stage <= MESA_SHADER_FRAGMENT) {
       NIR_PASS(_, nir, anv_nir_lower_multiview,

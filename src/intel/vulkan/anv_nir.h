@@ -26,6 +26,7 @@
 
 #include "nir/nir.h"
 #include "anv_private.h"
+#include "vk_nir_convert_ycbcr.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -76,6 +77,10 @@ bool anv_check_for_primitive_replication(struct anv_device *device,
 
 bool anv_nir_lower_multiview(nir_shader *shader, uint32_t view_mask,
                              bool use_primitive_replication);
+
+bool anv_nir_lower_packed_422(nir_shader *shader,
+                              nir_vk_ycbcr_conversion_lookup_cb cb,
+                              const void *cb_data);
 
 static inline nir_address_format
 anv_nir_ssbo_addr_format(const struct anv_physical_device *pdevice,

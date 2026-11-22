@@ -276,6 +276,12 @@ vk_format_to_pipe_format(VkFormat vkformat)
          return PIPE_FORMAT_G8B8_G8R8_UNORM;
       case VK_FORMAT_B8G8R8G8_422_UNORM:
          return PIPE_FORMAT_B8G8_R8G8_UNORM;
+      /* There is no B-first 16-bit 4:2:2 pipe format.  The mapping is used
+       * for block size and channel widths, which both formats share.
+       */
+      case VK_FORMAT_G16B16G16R16_422_UNORM:
+      case VK_FORMAT_B16G16R16G16_422_UNORM:
+         return PIPE_FORMAT_R16G16_R16B16_422_UNORM;
       case VK_FORMAT_G8_B8_R8_3PLANE_420_UNORM:
          return PIPE_FORMAT_G8_B8_R8_420_UNORM;
       case VK_FORMAT_G8_B8R8_2PLANE_420_UNORM:
