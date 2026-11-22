@@ -1198,6 +1198,13 @@ void
 anv_cmd_buffer_add_secondary(struct anv_cmd_buffer *primary,
                              struct anv_cmd_buffer *secondary)
 {
+   /* A secondary that never emitted anything has no batch BO (and so no
+    * exec mode).  This happens on the Gfx9 copy queue, where secondaries
+    * record all their work on the companion RCS command buffer.
+    */
+   if (list_is_empty(&secondary->batch_bos))
+      return;
+
    anv_measure_add_secondary(primary, secondary);
    switch (secondary->exec_mode) {
    case ANV_CMD_BUFFER_EXEC_MODE_EMIT:

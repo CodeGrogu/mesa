@@ -1272,8 +1272,10 @@ VkResult anv_CreateDevice(
    p_atomic_set(&device->draw_call_count, 0);
    p_atomic_set(&device->dispatch_call_count, 0);
 
-   /* Create a separate command pool for companion RCS command buffer. */
-   if (device->info->verx10 >= 125) {
+   /* Create a separate command pool for companion RCS command buffer.
+    * Gfx9 needs it for the opt-in copy queue (anv_gfx9_copy_queue).
+    */
+   if (device->info->verx10 >= 125 || device->info->ver == 9) {
       VkCommandPoolCreateInfo pool_info = {
          .sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO,
          .queueFamilyIndex =
@@ -1414,7 +1416,7 @@ VkResult anv_CreateDevice(
  fail_trtt:
    anv_device_finish_trtt(device);
  fail_companion_cmd_pool:
-   if (device->info->verx10 >= 125) {
+   if (device->info->verx10 >= 125 || device->info->ver == 9) {
       vk_common_DestroyCommandPool(anv_device_to_handle(device),
                                    device->companion_rcs_cmd_pool, NULL);
    }
@@ -1555,7 +1557,7 @@ void anv_DestroyDevice(
       anv_device_release_bo(device, device->btd_fifo_bo);
    }
 
-   if (device->info->verx10 >= 125) {
+   if (device->info->verx10 >= 125 || device->info->ver == 9) {
       vk_common_DestroyCommandPool(anv_device_to_handle(device),
                                    device->companion_rcs_cmd_pool, NULL);
    }
