@@ -40,3 +40,28 @@ margin.
 
 Browsers already ship their own dav1d paths. 4K AV1 and 10-bit AV1 were not
 measured.
+
+## AV1 on the GPU: what can be offloaded (2026-11-22)
+
+- **Full hardware decode: impossible.** Neither driver offers AV1 decode on
+  KBL: VA-API (iHD 26.1.2) lists HEVC and VP9 VLD only, and Vulkan exposes
+  `VK_KHR_video_decode_h264/h265/vp9`. Forcing AV1 commands onto the video
+  engine was not tried, because a GPU hang on this machine freezes the
+  desktop (see the 22:30 freeze in the memory notes).
+- **Film grain synthesis on the GPU: possible.** It is a real AV1 decode
+  stage: mpv `--vd-lavc-film-grain=gpu` makes dav1d export the grain
+  parameters and libplacebo applies them in shaders. Test clip: 1080p30, 10 s,
+  SVT-AV1 preset 11, CRF 32, `film-grain=20`, made noisy with `noise=alls=12`.
+
+| Run (300 frames) | Wall | CPU (user) | Drops |
+| --- | --- | --- | --- |
+| ffmpeg dav1d decode only, grain applied, 2 threads | 3.43× real time | | |
+| ffmpeg dav1d decode only, grain skipped (`-export_side_data film_grain`) | 3.95× real time | | |
+| mpv `--untimed`, grain on CPU | 4.48 s (67 fps) | 7.93 s | 0 |
+| mpv `--untimed`, grain on GPU | 4.72 s (64 fps) | 7.44 s | 0 |
+
+Moving grain to the GPU saves about 6% CPU time but is about 5% slower end to
+end. The 24-EU GPU, which also scales and presents, becomes the limit. A
+full compute-shader AV1 decoder would do worse still, since entropy decoding
+is serial. On this laptop the CPU (dav1d) is the faster AV1 decoder. Grainy
+1080p30 still plays at 2.2× real time.
