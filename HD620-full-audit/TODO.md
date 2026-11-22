@@ -39,7 +39,7 @@ Open work after round 2. Numbers match the master list from 2026-11-19. Effort: 
 - [x] **48. Software AV1 decode into presentation (L). Done.** mpv with `hwdec=auto-safe` decodes AV1 in software (dav1d, 6–9× real time at 1080p30, 0 decoder drops) and presents through gpu-next/Vulkan. The same config uses the GPU decoders for H.264 and VP9 (0 drops). Evidence: [av1-playback/](av1-playback/README.md).
 
 - [ ] **New (from test 5). Gen9 transfer queue on the copy engine (L).** `XY_FAST_COPY_BLT` ran at 10.5 GB/s versus 6.3 GB/s for render-engine copies. ANV has no Gen9 BCS command emission, and every BCS execbuf goes through i915's command parser, which limits batch chaining. Needs a design, plus concurrency, visibility and ownership tests.
-- [ ] **New (from test 15). VP9 8-bit encode on KBL through iHD (L, out of Mesa).** No driver exposes it, even though Intel marketed the hardware feature.
+- [ ] **New (from test 15). VP9 8-bit encode on KBL through iHD (L, out of Mesa). Researched: blocked.** iHD has the KBL HCP VP9 encode commands, but no Gen9 VP9 encoder and no Gen9 VP9 ENC kernels, and the Gen9 caps never add the entrypoint. Enabling it means writing a new encoder plus EU kernels. [vp9-encode-ihd/](vp9-encode-ihd/README.md). No driver exposes it, even though Intel marketed the hardware feature.
 
 ## Performance optimization
 
