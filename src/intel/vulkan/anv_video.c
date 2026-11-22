@@ -372,6 +372,24 @@ anv_video_encode_brc_supported(const struct anv_physical_device *pdevice)
    return pdevice->info.ver >= 12 && pdevice->has_huc;
 }
 
+/* H.264 HuC BRC also runs on Kaby Lake class Gfx9 parts (KBL, CFL, CML),
+ * whose AVC BRC DMEM layout matches gen12's.  Sky Lake and the Gfx9 LP
+ * parts use different layouts in the media driver and are left out.
+ */
+static bool
+anv_video_encode_h264_brc_supported(const struct anv_physical_device *pdevice)
+{
+   const struct intel_device_info *devinfo = &pdevice->info;
+
+   if (devinfo->ver == 9) {
+      return pdevice->has_huc &&
+             devinfo->platform != INTEL_PLATFORM_SKL &&
+             !intel_device_info_is_9lp(devinfo);
+   }
+
+   return anv_video_encode_brc_supported(pdevice);
+}
+
 VkResult
 anv_GetPhysicalDeviceVideoCapabilitiesKHR(VkPhysicalDevice physicalDevice,
                                            const VkVideoProfileInfoKHR *pVideoProfile,
@@ -494,10 +512,11 @@ anv_GetPhysicalDeviceVideoCapabilitiesKHR(VkPhysicalDevice physicalDevice,
          break;
       }
 
-      if (((pVideoProfile->videoCodecOperation == VK_VIDEO_CODEC_OPERATION_ENCODE_H264_BIT_KHR) ||
-           (pVideoProfile->videoCodecOperation == VK_VIDEO_CODEC_OPERATION_ENCODE_H265_BIT_KHR) ||
-           (pVideoProfile->videoCodecOperation == VK_VIDEO_CODEC_OPERATION_ENCODE_AV1_BIT_KHR)) &&
-            anv_video_encode_brc_supported(pdevice)) {
+      if ((pVideoProfile->videoCodecOperation == VK_VIDEO_CODEC_OPERATION_ENCODE_H264_BIT_KHR &&
+           anv_video_encode_h264_brc_supported(pdevice)) ||
+          (((pVideoProfile->videoCodecOperation == VK_VIDEO_CODEC_OPERATION_ENCODE_H265_BIT_KHR) ||
+            (pVideoProfile->videoCodecOperation == VK_VIDEO_CODEC_OPERATION_ENCODE_AV1_BIT_KHR)) &&
+           anv_video_encode_brc_supported(pdevice))) {
          enc_caps->rateControlModes |= VK_VIDEO_ENCODE_RATE_CONTROL_MODE_CBR_BIT_KHR |
                                        VK_VIDEO_ENCODE_RATE_CONTROL_MODE_VBR_BIT_KHR;
          enc_caps->maxBitrate = 160000000;
@@ -1065,7 +1084,7 @@ get_h264_video_session_mem_reqs(struct anv_device *dev,
    }
 
    if ((vid->vk.op & VK_VIDEO_CODEC_OPERATION_ENCODE_H264_BIT_KHR) &&
-        anv_video_encode_brc_supported(dev->physical)) {
+        anv_video_encode_h264_brc_supported(dev->physical)) {
       get_brc_video_session_mem_reqs(vid, &out.base, memory_types);
    }
 }

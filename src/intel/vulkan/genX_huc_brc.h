@@ -266,10 +266,22 @@ anv_brc_estimate_init_qp(double frame_size, double frame_rate, double bitrate)
                     pow(10.0, (x - x0) * (y1 - y0) / (x1 - x0) + y0) + 0.5) + 2;
 }
 
-#if GFX_VER >= 12
-/* H.264 (AVC) HuC BRC building blocks. gen12+ only. Mirrors the HEVC BRC
- * helpers but targets the MFX PAK second level batch buffer and the AVC DMEM.
+#if GFX_VER >= 9
+/* H.264 (AVC) HuC BRC building blocks.  Runs on gen12+ and on Kaby Lake
+ * class Gfx9 (see anv_video_encode_h264_brc_supported()), whose AVC BRC DMEM,
+ * constant data and 228-byte image-state SLB match gen12's.  Mirrors the HEVC
+ * BRC helpers but targets the MFX PAK second level batch buffer and the AVC
+ * DMEM.
  */
+#if GFX_VER == 9
+/* Bytes that the KBL firmware reads but that are reserved on gen12. */
+static_assert(offsetof(struct anv_huc_avc_brc_init_dmem, INIT_LookaheadDepth_U8) == 134,
+              "KBL INIT_SliceSizeCtrlWA");
+static_assert(offsetof(struct anv_huc_avc_brc_update_dmem, RSVD3) == 369,
+              "KBL UPD_SklCabacWAEnable_U8");
+static_assert(offsetof(struct anv_huc_avc_brc_update_dmem, RSVD4) == 371,
+              "KBL UPD_SLCSZ_ConsertativeThreshold_U8");
+#endif
 /* Second level batch buffer (SLBB) image-state group size. gen120 is
  * MFX_AVC_IMG_STATE (84) + VDENC_IMG_STATE (140) + MI_BATCH_BUFFER_END (4) =
  * 228 bytes. gen125 replaces VDENC_IMG_STATE with VDENC_CMD3 +
@@ -507,6 +519,14 @@ anv_h264_brc_fill_init_dmem(struct anv_cmd_buffer *cmd,
    dmem->INIT_BotQPDeltaThrForAdapt2Pass_U8 = 1;
    dmem->INIT_TopFrmSzThrForAdapt2Pass_U8 = 32;
    dmem->INIT_BotFrmSzThrForAdapt2Pass_U8 = 24;
+#if GFX_VER == 9
+   /* KBL: INIT_SliceSizeCtrlWA, always 1 in the media driver. */
+   dmem->INIT_LookaheadDepth_U8 = 1;
+   /* The media driver leaves fractional QP off on KBL; only gen12 enables
+    * it.
+    */
+   dmem->INIT_FracQPEnable_U8 = 0;
+#endif
 }
 
 static void
@@ -571,6 +591,14 @@ anv_h264_brc_fill_update_dmem(struct anv_cmd_buffer *cmd,
    dmem->UPD_SceneChgCurIntraPctThreshold_U8 = 192;
    dmem->UPD_IPAverageCoeff_U8 = 128;
    dmem->UPD_HMECostEnable_U8 = 1;
+#if GFX_VER == 9
+   /* KBL: UPD_SLCSZ_ConsertativeThreshold_U8 (byte 371) is 1 unless the
+    * rate control is VCM; byte 369 is UPD_SklCabacWAEnable_U8 and stays 0.
+    * Bytes 416-419 (UPD_TR_TargetSize_U32 on KBL) stay 0, which keeps
+    * target-size BRC off.
+    */
+   dmem->RSVD4 = 1;
+#endif
 }
 
 /* Defined in genX_cmd_video_enc.c; the BRC input SLB reuses the same image
@@ -709,7 +737,9 @@ anv_h264_brc_emit_huc_flush_and_status(struct anv_cmd_buffer *cmd)
 
    anv_batch_emit(&cmd->batch, GENX(MI_STORE_REGISTER_MEM), srm) {
       srm.RegisterAddress = ANV_HUC_STATUS_MMIO_OFFSET;
+#if GFX_VER >= 11
       srm.AddCSMMIOStartOffset = 1;
+#endif
       srm.MemoryAddress = pak_mmio_addr;
    }
 
@@ -723,10 +753,13 @@ anv_h264_brc_emit_huc_flush_and_status(struct anv_cmd_buffer *cmd)
 
    anv_batch_emit(&cmd->batch, GENX(MI_STORE_REGISTER_MEM), srm) {
       srm.RegisterAddress = ANV_HUC_STATUS_MMIO_OFFSET;
+#if GFX_VER >= 11
       srm.AddCSMMIOStartOffset = 1;
+#endif
       srm.MemoryAddress = huc_err_addr;
    }
 
+#if GFX_VER >= 12
    anv_batch_emit(&cmd->batch, GENX(MI_CONDITIONAL_BATCH_BUFFER_END), cbbe) {
       cbbe.CompareOperation = MADEqualIDD;
       cbbe.CompareSemaphore = 1;
@@ -734,6 +767,12 @@ anv_h264_brc_emit_huc_flush_and_status(struct anv_cmd_buffer *cmd)
       cbbe.CompareDataDword = 0;
       cbbe.CompareAddress = huc_err_addr;
    }
+#endif
+   /* Gfx9's MI_CONDITIONAL_BATCH_BUFFER_END only continues when the memory
+    * value is greater than the inline data, which cannot express "stop on
+    * error".  As in the media driver's Gen9 path, the status stays recorded
+    * but does not end the batch.
+    */
 }
 
 static void
@@ -750,7 +789,9 @@ anv_h264_brc_emit_huc_tail(struct anv_cmd_buffer *cmd)
 
    anv_batch_emit(&cmd->batch, GENX(MI_STORE_REGISTER_MEM), srm) {
       srm.RegisterAddress = ANV_HUC_STATUS2_MMIO_OFFSET;
+#if GFX_VER >= 11
       srm.AddCSMMIOStartOffset = 1;
+#endif
       srm.MemoryAddress = status_addr;
    }
 
@@ -780,6 +821,7 @@ anv_h264_brc_emit_huc_init(struct anv_cmd_buffer *cmd,
    memset(dmem_state.map, 0, dmem_size);
    anv_h264_brc_fill_init_dmem(cmd, sps, dmem_state.map);
    vid->rc.brc_init_frame = vid->rc.frame_counter;
+   vid->rc.h264_brc_types_seen = 0;
    vid->rc.brc_reset = false;
 
    anv_h264_brc_emit_huc_common(cmd, ANV_HUC_AVC_BRC_INIT_KERNEL_DESCRIPTOR,
@@ -883,7 +925,10 @@ anv_h264_brc_emit_huc_update(struct anv_cmd_buffer *cmd,
 
    anv_h264_brc_emit_huc_tail(cmd);
 }
-#endif /* GFX_VER >= 12 */
+#endif /* GFX_VER >= 9 */
+
+/* Everything below (HEVC and AV1 BRC) is gen12+ only. */
+#if GFX_VER >= 12
 
 /* HEVC encoding from here */
 #define ANV_HUC_HEVC_BRC_INIT_KERNEL_DESCRIPTOR   8
@@ -2898,5 +2943,7 @@ anv_av1_brc_emit_huc_update(struct anv_cmd_buffer *cmd,
    anv_av1_brc_emit_huc_tail(cmd);
 }
 #endif /* GFX_VERx10 == 125 */
+
+#endif /* GFX_VER >= 12 */
 
 #endif /* GENX_HUC_BRC_H */

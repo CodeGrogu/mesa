@@ -33,7 +33,7 @@
 #include "h265_vdenc_tables.h"
 #include "av1_vdenc_tables.h"
 
-#if GFX_VER >= 12
+#if GFX_VER >= 9
 #include "genX_huc_brc.h"
 #endif
 
@@ -367,6 +367,22 @@ anv_video_emit_brc_slb_jump_reencode(struct anv_cmd_buffer *cmd,
    if (reencode) {
       anv_reencode_end(cmd, reencode);
       anv_reencode_begin(cmd, reencode, segment_size);
+   }
+}
+#elif GFX_VER >= 9
+/* The H.264 HuC BRC encode reads the HuC-patched image state from the
+ * session's SLB, as on gen12.
+ */
+static void
+anv_video_emit_brc_slb_jump(struct anv_cmd_buffer *cmd, uint32_t buf_id, uint32_t offset)
+{
+   const struct anv_video_session *vid = cmd->video.vid;
+
+   anv_batch_emit(&cmd->batch, GENX(MI_BATCH_BUFFER_START), bbs) {
+      bbs.SecondLevelBatchBuffer = Secondlevelbatch;
+      bbs.AddressSpaceIndicator = ASI_PPGTT;
+      bbs.BatchBufferStartAddress =
+         anv_address_add(ANV_VID_MEM_ADDR(vid, buf_id), offset);
    }
 }
 #endif
@@ -787,7 +803,7 @@ anv_h264_emit_mfx_pipe_buf_addr_state(struct anv_cmd_buffer *cmd,
          ANV_VID_ATTR(cmd->device,
                       buf.OriginalUncompressedPictureSourceAddress.bo);
 
-#if GFX_VER >= 12
+#if GFX_VER >= 9
       /* BRC: the MFX frame statistics stream out into the PAK stats buffer the
        * HuC BRC Update kernel reads(region 2). */
       if (brc_enabled)
@@ -831,7 +847,7 @@ anv_h264_emit_mfx_pipe_buf_addr_state(struct anv_cmd_buffer *cmd,
 
       buf.ReferencePictureAttributes = ANV_VID_ATTR(cmd->device, ref_bo);
 
-#if GFX_VER >= 12
+#if GFX_VER >= 9
       /* BRC: the PAK writes the frame-level statistics the HuC BRC Update
        * reads into the MB status buffer(region 2), so point it at the same
        * PAK stats buffer.
@@ -914,11 +930,11 @@ anv_h264_emit_vdenc_pipe_mode_select(struct anv_cmd_buffer *cmd,
       vdenc_pipe_mode.SourceChromaTLBPrefetchEnable = true;
       vdenc_pipe_mode.HzShift32Minus1Src = 3;
       vdenc_pipe_mode.PrefetchOffsetforSource = 4;
+#endif
       /* BRC: emit the VDENC per-frame statistics into region 1 so the HuC BRC
        * Update kernel can drive the distortion-based QP adjustment. */
       if (brc_enabled)
          vdenc_pipe_mode.FrameStatisticsStreamOutEnable = true;
-#endif
    }
 }
 
@@ -986,10 +1002,8 @@ anv_h264_emit_vdenc_pipe_buf_addr_state(struct anv_cmd_buffer *cmd,
       .src = anv_image_dpb_address(iv, enc_info->srcPictureResource.baseArrayLayer),
       .row_store = ANV_VID_MEM_ADDR(vid, ANV_VID_MEM_H264_MPR_ROW_SCRATCH),
    };
-#if GFX_VER >= 12
    if (brc_enabled)
       buf.stats = ANV_VID_MEM_ADDR(vid, ANV_VID_MEM_BRC_VDENC_STATS);
-#endif
 
    const VkVideoReferenceSlotInfoKHR *l0_slots[2] = { NULL, NULL };
    anv_h264_l0_slots(enc_info, dpb_idx, l0_slots);
@@ -1886,7 +1900,7 @@ anv_h264_emit_vdenc_walker_state(struct anv_cmd_buffer *cmd,
    }
 }
 
-#if GFX_VER >= 12
+#if GFX_VER >= 9
 static void
 anv_h264_brc_init_update(struct anv_cmd_buffer *cmd,
                          const VkVideoEncodeInfoKHR *enc_info,
@@ -1904,8 +1918,45 @@ anv_h264_brc_init_update(struct anv_cmd_buffer *cmd,
       anv_h264_brc_emit_huc_init(cmd, frame_info);
    anv_h264_brc_emit_huc_update(cmd, frame_info, 0, brc_input_slb);
 
+#if GFX_VER >= 12
    /* The encode PAK reads the HuC-patched image state from the SLBB. */
    anv_video_emit_brc_slb_jump(cmd, ANV_VID_MEM_BRC_EXEC_SLB, 0);
+#endif
+}
+
+static void
+anv_h264_brc_stage_pak_info(struct anv_cmd_buffer *cmd)
+{
+   const struct anv_video_session *vid = cmd->video.vid;
+
+   /* Stage this frame's PAK MMIO outputs into the persistent PAK info
+    * buffer. The next frame's HuC BRC Update copies them into its DMEM so
+    * it can measure the encoded size and drive the bitrate. */
+   struct anv_address pak_info =
+      ANV_VID_MEM_ADDR(vid, ANV_VID_MEM_BRC_PAK_INFO);
+   /* Gfx11+ address these relative to the engine's MMIO base.  Before that
+    * there is one video engine per Gfx9 GT2 part and its registers sit at
+    * 0x12000.
+    */
+#if GFX_VER >= 11
+   const uint32_t mmio_base = 0;
+#else
+   const uint32_t mmio_base = 0x12000;
+#endif
+   const uint32_t pak_regs[3] = {
+      ANV_H264_MFC_BITSTREAM_BYTECOUNT_FRAME_OFFSET,
+      ANV_H264_MFC_IMAGE_STATUS_CTRL_OFFSET,
+      ANV_H264_MFC_AVC_NUM_SLICES_OFFSET,
+   };
+   for (unsigned r = 0; r < ARRAY_SIZE(pak_regs); r++) {
+      anv_batch_emit(&cmd->batch, GENX(MI_STORE_REGISTER_MEM), srm) {
+         srm.RegisterAddress = mmio_base + pak_regs[r];
+#if GFX_VER >= 11
+         srm.AddCSMMIOStartOffset = 1;
+#endif
+         srm.MemoryAddress = anv_address_add(pak_info, 4 * r);
+      }
+   }
 }
 
 static void
@@ -1914,28 +1965,8 @@ anv_h264_brc_store_pak_stats(struct anv_cmd_buffer *cmd,
                              struct anv_state brc_input_slb)
 {
    const struct VkVideoEncodeH264PictureInfoKHR *frame_info = anv_h264_frame_info(enc_info);
-   const struct anv_video_session *vid = cmd->video.vid;
 
-   /* Stage this frame's PAK MMIO outputs into the persistent PAK info
-    * buffer. The next frame's HuC BRC Update copies them into its DMEM so
-    * it can measure the encoded size and drive the bitrate. */
-   struct anv_address pak_info =
-      ANV_VID_MEM_ADDR(vid, ANV_VID_MEM_BRC_PAK_INFO);
-   anv_batch_emit(&cmd->batch, GENX(MI_STORE_REGISTER_MEM), srm) {
-      srm.RegisterAddress = ANV_H264_MFC_BITSTREAM_BYTECOUNT_FRAME_OFFSET;
-      srm.AddCSMMIOStartOffset = 1;
-      srm.MemoryAddress = pak_info;
-   }
-   anv_batch_emit(&cmd->batch, GENX(MI_STORE_REGISTER_MEM), srm) {
-      srm.RegisterAddress = ANV_H264_MFC_IMAGE_STATUS_CTRL_OFFSET;
-      srm.AddCSMMIOStartOffset = 1;
-      srm.MemoryAddress = anv_address_add(pak_info, 4);
-   }
-   anv_batch_emit(&cmd->batch, GENX(MI_STORE_REGISTER_MEM), srm) {
-      srm.RegisterAddress = ANV_H264_MFC_AVC_NUM_SLICES_OFFSET;
-      srm.AddCSMMIOStartOffset = 1;
-      srm.MemoryAddress = anv_address_add(pak_info, 8);
-   }
+   anv_h264_brc_stage_pak_info(cmd);
 
    /* Second BRC pass: after the encode, run the HuC BRC Update again with
     * this frame's actual PAK result (now staged in PAK_INFO) so it folds
@@ -1969,11 +2000,54 @@ anv_h264_encode_video(struct anv_cmd_buffer *cmd, const VkVideoEncodeInfoKHR *en
       vid->rc_mode == VK_VIDEO_ENCODE_RATE_CONTROL_MODE_CBR_BIT_KHR ||
       vid->rc_mode == VK_VIDEO_ENCODE_RATE_CONTROL_MODE_VBR_BIT_KHR;
 
-#if GFX_VER >= 12
+#if GFX_VER >= 9
    struct anv_state brc_input_slb = ANV_STATE_NULL;
 #endif
 
    anv_video_emit_mi_flush_dw(cmd, true);
+
+#if GFX_VER < 12
+   /* On Gfx9 the HuC shares the video box with MFX/VDEnc, so, as in the
+    * media driver, run the BRC passes before the frame selects the MFX
+    * pipeline.  The HuC-patched image state is picked up later from the SLB.
+    */
+   if (brc_enabled) {
+      brc_input_slb = anv_cmd_buffer_alloc_temporary_state(cmd,
+         align(ANV_H264_BRC_SLB_SIZE, 4096), 4096);
+      if (brc_input_slb.map == NULL)
+         return;
+
+      anv_h264_brc_init_update(cmd, enc_info, dpb_idx, brc_input_slb);
+      anv_video_emit_mi_flush_dw(cmd, true);
+   }
+#endif
+
+   /* The KBL BRC firmware relies on a second PAK pass, with the QP from the
+    * pass-1 BRC update, to correct frames that overshoot; the media driver
+    * re-encodes when the HuC sets the REENCODE status.  On Gfx9 a
+    * MI_CONDITIONAL_BATCH_BUFFER_END ends the whole batch even from a
+    * second-level batch (measured), so the second pass cannot be made
+    * conditional inside an application command buffer.  Always taking it
+    * would also apply the pass-1 QP when no re-encode was wanted, which
+    * overspends on easy frames.  What needs it is the first frame of each
+    * picture type after a BRC init/reset: the BRC has no history for that
+    * type, so its first pass can be far off (measured: a 4 Mbit I frame and
+    * a 17 Mbit first B frame at 4 Mbit/s CBR).
+    */
+   unsigned n_pak_passes = 1;
+#if GFX_VER < 12
+   if (brc_enabled) {
+      StdVideoH264PictureType type = frame_info->pStdPictureInfo->primary_pic_type;
+      if (type == STD_VIDEO_H264_PICTURE_TYPE_IDR)
+         type = STD_VIDEO_H264_PICTURE_TYPE_I;
+      const uint8_t type_bit = 1u << type;
+      if (!(vid->rc.h264_brc_types_seen & type_bit))
+         n_pak_passes = 2;
+      vid->rc.h264_brc_types_seen |= type_bit;
+   }
+#endif
+
+   for (unsigned pak_pass = 0; pak_pass < n_pak_passes; pak_pass++) {
    anv_h264_emit_startup(cmd);
    anv_h264_emit_mfx_pipe_mode_select(cmd, enc_info);
 
@@ -2003,6 +2077,11 @@ anv_h264_encode_video(struct anv_cmd_buffer *cmd, const VkVideoEncodeInfoKHR *en
          return;
 
       anv_h264_brc_init_update(cmd, enc_info, dpb_idx, brc_input_slb);
+   } else
+#elif GFX_VER >= 9
+   if (brc_enabled) {
+      /* The HuC-patched image state from the BRC pass above. */
+      anv_video_emit_brc_slb_jump(cmd, ANV_VID_MEM_BRC_EXEC_SLB, 0);
    } else
 #endif
    {
@@ -2038,11 +2117,24 @@ anv_h264_encode_video(struct anv_cmd_buffer *cmd, const VkVideoEncodeInfoKHR *en
 
    anv_video_emit_mi_flush_dw(cmd, true);
 
-#if GFX_VER >= 12
+#if GFX_VER >= 9
+   /* The pass-1 BRC update folds this PAK's result into the history and,
+    * for a re-encode, rewrites the image state the next PAK reads.  After
+    * the final re-encode PAK only its statistics are staged for the next
+    * frame.
+    */
    if (brc_enabled) {
-      anv_h264_brc_store_pak_stats(cmd, enc_info, brc_input_slb);
-      vid->rc.frame_counter++;
+      if (pak_pass == 0)
+         anv_h264_brc_store_pak_stats(cmd, enc_info, brc_input_slb);
+      else
+         anv_h264_brc_stage_pak_info(cmd);
    }
+#endif
+   }
+
+#if GFX_VER >= 9
+   if (brc_enabled)
+      vid->rc.frame_counter++;
 #endif
 }
 

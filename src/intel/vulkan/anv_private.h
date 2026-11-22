@@ -7277,6 +7277,10 @@ struct anv_video_rc_state {
    uint32_t frame_counter;
    uint32_t brc_init_frame;
    bool brc_reset;
+   /* H.264 picture types (1 << StdVideoH264PictureType) encoded since the
+    * last BRC init, for the Gfx9 first-of-type re-encode.
+    */
+   uint8_t h264_brc_types_seen;
    double av1_target_fullness;
    int32_t av1_hrd_fullness;
 };
