@@ -117,6 +117,17 @@ anv_queue_init(struct anv_device *device, struct anv_queue *queue,
       }
    }
 
+   if (device->info->ver == 9 &&
+       queue_family->engine_class == INTEL_ENGINE_CLASS_COPY) {
+      result = vk_sync_create(&device->vk,
+                              &device->physical->sync_syncobj_type,
+                              0, 0, &queue->gfx9_bcs_done);
+      if (result != VK_SUCCESS) {
+         anv_queue_finish(queue);
+         return result;
+      }
+   }
+
    return VK_SUCCESS;
 }
 
@@ -150,6 +161,8 @@ anv_queue_finish(struct anv_queue *queue)
 
    if (queue->companion_sync)
       vk_sync_destroy(&queue->device->vk, queue->companion_sync);
+   if (queue->gfx9_bcs_done)
+      vk_sync_destroy(&queue->device->vk, queue->gfx9_bcs_done);
 
    anv_destroy_engine(queue);
    vk_queue_finish(&queue->vk);

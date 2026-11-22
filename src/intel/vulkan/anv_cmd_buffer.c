@@ -92,6 +92,7 @@ anv_cmd_state_reset(struct anv_cmd_buffer *cmd_buffer)
 {
    anv_cmd_state_finish(cmd_buffer);
    anv_cmd_state_init(cmd_buffer);
+   cmd_buffer->gfx9_rcs_sticky = false;
 }
 
 VkResult
@@ -1812,8 +1813,16 @@ anv_begin_companion_cmd_buffer_helper(struct anv_cmd_buffer **cmd_buffer,
                                  "new cmd buffer with aux-tt");
    }
 
-   struct anv_state syncpoint =
-      anv_genX(info, cmd_buffer_begin_companion_rcs_syncpoint)(prev_cmd_buffer);
+   /* Gfx9 copy queue: no semaphore handshake.  The companion batch is
+    * ordered after the whole BCS batch at submission, so from here on every
+    * command of this command buffer goes to the companion.
+    */
+   struct anv_state syncpoint = ANV_STATE_NULL;
+   if (info->ver == 9 && anv_cmd_buffer_is_blitter_queue(prev_cmd_buffer))
+      prev_cmd_buffer->gfx9_rcs_sticky = true;
+   else
+      syncpoint =
+         anv_genX(info, cmd_buffer_begin_companion_rcs_syncpoint)(prev_cmd_buffer);
 
    *cmd_buffer = prev_cmd_buffer->companion_rcs_cmd_buffer;
 

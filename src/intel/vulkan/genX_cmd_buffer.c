@@ -4029,6 +4029,16 @@ genX(BeginCommandBuffer)(
    if (cmd_buffer->vk.level == VK_COMMAND_BUFFER_LEVEL_SECONDARY)
       cmd_buffer->state.gfx.viewport_set = true;
 
+#if GFX_VER == 9
+   /* Gfx9 copy queue: a secondary cannot know whether the primary already
+    * moved to the companion RCS, so it records everything there, which keeps
+    * the order when it is executed.
+    */
+   if (cmd_buffer->vk.level == VK_COMMAND_BUFFER_LEVEL_SECONDARY &&
+       anv_cmd_buffer_is_blitter_queue(cmd_buffer))
+      cmd_buffer->gfx9_rcs_sticky = true;
+#endif
+
    trace_intel_begin_cmd_buffer(&cmd_buffer->trace);
 
    if (anv_cmd_buffer_is_video_queue(cmd_buffer) ||
@@ -4651,6 +4661,10 @@ genX(CmdExecuteCommands)(
 
          anv_cmd_buffer_add_secondary(container->companion_rcs_cmd_buffer,
                                       secondary->companion_rcs_cmd_buffer);
+#if GFX_VER == 9
+         if (anv_cmd_buffer_is_blitter_queue(container))
+            container->gfx9_rcs_sticky = true;
+#endif
       }
 
       assert(secondary->perf_query_pool == NULL || container->perf_query_pool == NULL ||
@@ -5327,6 +5341,47 @@ gfx9_blitter_aux_transitions_on_companion(struct anv_cmd_buffer *cmd_buffer,
       STACK_ARRAY_FINISH(barriers);
    }
 }
+
+/* Run a copy-queue barrier on the companion RCS (Gfx9).  With
+ * include_images=false the image barriers are dropped because their layout
+ * transitions were already done.  An event signal is written once the
+ * companion work before it is complete.
+ */
+static void
+gfx9_blitter_barrier_on_companion(struct anv_cmd_buffer *cmd_buffer,
+                                  uint32_t n_dep_infos,
+                                  const VkDependencyInfo *dep_infos,
+                                  bool include_images,
+                                  struct anv_address signal_addr,
+                                  uint64_t signal_value)
+{
+   STACK_ARRAY(VkDependencyInfo, deps, n_dep_infos);
+   for (uint32_t d = 0; d < n_dep_infos; d++) {
+      deps[d] = dep_infos[d];
+      if (!include_images) {
+         deps[d].imageMemoryBarrierCount = 0;
+         deps[d].pImageMemoryBarriers = NULL;
+      }
+   }
+
+   anv_cmd_require_rcs(cmd_buffer, true) {
+      cmd_buffer_barrier(cmd_buffer, n_dep_infos, deps,
+                         "gfx9 copy queue barrier on companion");
+      if (!anv_address_is_null(signal_addr)) {
+         anv_add_pending_pipe_bits(cmd_buffer,
+                                   VK_PIPELINE_STAGE_2_ALL_COMMANDS_BIT,
+                                   VK_PIPELINE_STAGE_2_BOTTOM_OF_PIPE_BIT,
+                                   ANV_PIPE_END_OF_PIPE_SYNC_BIT,
+                                   "gfx9 copy queue event signal");
+         genX(cmd_buffer_apply_pipe_flushes)(cmd_buffer);
+         struct mi_builder b;
+         mi_builder_init(&b, cmd_buffer->device->info, &cmd_buffer->batch);
+         mi_store(&b, mi_mem32(signal_addr), mi_imm(signal_value));
+      }
+   }
+
+   STACK_ARRAY_FINISH(deps);
+}
 #endif
 
 static void
@@ -5340,7 +5395,22 @@ cmd_buffer_barrier_blitter(struct anv_cmd_buffer *cmd_buffer,
    assert(anv_cmd_buffer_is_blitter_queue(cmd_buffer));
 
 #if GFX_VER == 9
+   if (cmd_buffer->gfx9_rcs_sticky) {
+      gfx9_blitter_barrier_on_companion(cmd_buffer, n_dep_infos, dep_infos,
+                                        true, signal_addr, signal_value);
+      return;
+   }
+
    gfx9_blitter_aux_transitions_on_companion(cmd_buffer, n_dep_infos, dep_infos);
+
+   /* The transitions moved the command buffer to the companion: apply the
+    * rest of the barrier (memory dependencies, event signal) there too.
+    */
+   if (cmd_buffer->gfx9_rcs_sticky) {
+      gfx9_blitter_barrier_on_companion(cmd_buffer, n_dep_infos, dep_infos,
+                                        false, signal_addr, signal_value);
+      return;
+   }
 #endif
 
    /* The blitter requires an MI_FLUSH_DW command when a buffer transitions
@@ -7442,6 +7512,18 @@ void genX(CmdSetEvent2)(
    ANV_FROM_HANDLE(anv_cmd_buffer, cmd_buffer, commandBuffer);
    ANV_FROM_HANDLE(anv_event, event, _event);
 
+#if GFX_VER == 9
+   /* Gfx9 copy queue: once commands moved to the companion RCS, keep them
+    * there so they stay ordered after it.
+    */
+   if (anv_cmd_buffer_is_blitter_queue(cmd_buffer) && cmd_buffer->gfx9_rcs_sticky) {
+      anv_cmd_require_rcs(cmd_buffer, true) {
+         genX(CmdSetEvent2)(vk_command_buffer_to_handle(&cmd_buffer->vk), _event, pDependencyInfo);
+      }
+      return;
+   }
+#endif
+
    switch (cmd_buffer->batch.engine_class) {
    case INTEL_ENGINE_CLASS_VIDEO:
       cmd_buffer_barrier_video(cmd_buffer, 1, pDependencyInfo,
@@ -7500,6 +7582,18 @@ void genX(CmdResetEvent2)(
    ANV_FROM_HANDLE(anv_cmd_buffer, cmd_buffer, commandBuffer);
    ANV_FROM_HANDLE(anv_event, event, _event);
 
+#if GFX_VER == 9
+   /* Gfx9 copy queue: once commands moved to the companion RCS, keep them
+    * there so they stay ordered after it.
+    */
+   if (anv_cmd_buffer_is_blitter_queue(cmd_buffer) && cmd_buffer->gfx9_rcs_sticky) {
+      anv_cmd_require_rcs(cmd_buffer, true) {
+         genX(CmdResetEvent2)(vk_command_buffer_to_handle(&cmd_buffer->vk), _event, stageMask);
+      }
+      return;
+   }
+#endif
+
    /* Write a 0 as reset value, for PIPE_CONTROL/MI_FLUSH_DW we can write 1 as
     * signal value. RESOURCE_BARRIER can write a non 0 value.
     */
@@ -7557,6 +7651,18 @@ void genX(CmdWaitEvents2)(
     const VkDependencyInfo*                     pDependencyInfos)
 {
    ANV_FROM_HANDLE(anv_cmd_buffer, cmd_buffer, commandBuffer);
+
+#if GFX_VER == 9
+   /* Gfx9 copy queue: once commands moved to the companion RCS, keep them
+    * there so they stay ordered after it.
+    */
+   if (anv_cmd_buffer_is_blitter_queue(cmd_buffer) && cmd_buffer->gfx9_rcs_sticky) {
+      anv_cmd_require_rcs(cmd_buffer, true) {
+         genX(CmdWaitEvents2)(vk_command_buffer_to_handle(&cmd_buffer->vk), eventCount, pEvents, pDependencyInfos);
+      }
+      return;
+   }
+#endif
 
    VkPipelineStageFlags2 final_src_stages = 0, final_dst_stages = 0;
    enum anv_pipe_bits final_invalidates = 0;

@@ -1954,6 +1954,11 @@ struct anv_queue {
     */
    struct vk_sync                           *companion_sync;
 
+   /** Gfx9 copy queue: signaled by the BCS batch, waited on by its
+    * companion RCS batch.
+    */
+   struct vk_sync                           *gfx9_bcs_done;
+
    struct intel_ds_queue                     ds;
 
    struct anv_async_submit                  *init_submit;
@@ -5151,6 +5156,15 @@ struct anv_cmd_buffer {
     * Whether this command buffer is a companion command buffer of compute one.
     */
    bool                                         is_companion_rcs_cmd_buffer;
+
+   /** Gfx9 copy queue: once a command needs the companion RCS, every later
+    * command of this command buffer is recorded on the companion too.  The
+    * companion batch then runs strictly after the BCS batch (kernel fence,
+    * see i915_queue_exec_locked), so no MI_SEMAPHORE_WAIT handshake is
+    * needed.  Gfx9 cannot preempt or reset an engine polling a semaphore,
+    * and a stuck handshake wedged rcs0 for the whole desktop.
+    */
+   bool                                         gfx9_rcs_sticky;
 
 };
 

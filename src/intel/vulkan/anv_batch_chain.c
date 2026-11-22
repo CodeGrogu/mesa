@@ -585,12 +585,25 @@ anv_cmd_buffer_grow_single_batch_bo(struct anv_cmd_buffer *cmd_buffer,
       return result;
    }
 
-   struct anv_batch_bo **seen_bbo = u_vector_add(&cmd_buffer->seen_bbos);
-   if (seen_bbo == NULL) {
-      anv_batch_bo_destroy(new_bbo, cmd_buffer);
-      return vk_error(cmd_buffer, VK_ERROR_OUT_OF_HOST_MEMORY);
+   /* The old BO is destroyed below: replace it in seen_bbos instead of
+    * appending, so nothing iterates a freed batch BO later.
+    */
+   bool replaced = false;
+   struct anv_batch_bo **seen_bbo;
+   u_vector_foreach(seen_bbo, &cmd_buffer->seen_bbos) {
+      if (*seen_bbo == old_bbo) {
+         *seen_bbo = new_bbo;
+         replaced = true;
+      }
    }
-   *seen_bbo = new_bbo;
+   if (!replaced) {
+      seen_bbo = u_vector_add(&cmd_buffer->seen_bbos);
+      if (seen_bbo == NULL) {
+         anv_batch_bo_destroy(new_bbo, cmd_buffer);
+         return vk_error(cmd_buffer, VK_ERROR_OUT_OF_HOST_MEMORY);
+      }
+      *seen_bbo = new_bbo;
+   }
 
    memcpy(new_bbo->bo->map, batch->start, used);
    list_replace(&old_bbo->link, &new_bbo->link);
@@ -1045,7 +1058,8 @@ anv_cmd_buffer_reset_batch_bo_chain(struct anv_cmd_buffer *cmd_buffer)
 
       struct anv_batch_bo *first_bbo = anv_cmd_buffer_current_batch_bo(cmd_buffer);
       *(struct anv_batch_bo **)u_vector_add(&cmd_buffer->seen_bbos) = first_bbo;
-      assert(first_bbo->bo->size == ANV_MIN_CMD_BUFFER_BATCH_SIZE);
+      assert(first_bbo->bo->size == ANV_MIN_CMD_BUFFER_BATCH_SIZE ||
+             anv_cmd_buffer_needs_single_batch_bo(cmd_buffer));
       cmd_buffer->batch.allocated_batch_size = first_bbo->bo->size;
    } else {
       anv_batch_set_storage(&cmd_buffer->batch, ANV_NULL_ADDRESS, NULL, 0);

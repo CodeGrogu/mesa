@@ -757,6 +757,9 @@ gfx9_blt_memory_image(struct anv_cmd_buffer *cmd_buffer,
                       const VkCopyDeviceMemoryImageInfoKHR *info,
                       bool to_image, bool emit)
 {
+   if (cmd_buffer->gfx9_rcs_sticky)
+      return false;
+
    for (uint32_t r = 0; r < info->regionCount; r++) {
       const VkDeviceMemoryImageCopyKHR *region = &info->pRegions[r];
       const struct vk_image_buffer_layout bl =
@@ -809,6 +812,9 @@ gfx9_blt_image_image(struct anv_cmd_buffer *cmd_buffer,
                      const struct anv_image *dst_image,
                      const VkCopyImageInfo2 *info, bool emit)
 {
+   if (cmd_buffer->gfx9_rcs_sticky)
+      return false;
+
    for (uint32_t r = 0; r < info->regionCount; r++) {
       const VkImageCopy2 *region = &info->pRegions[r];
       const VkImageAspectFlags src_aspect = region->srcSubresource.aspectMask;
@@ -1531,7 +1537,8 @@ anv_cmd_gfx9_blitter_copy(struct anv_cmd_buffer *cmd_buffer,
 {
    const struct intel_device_info *devinfo = cmd_buffer->device->info;
 
-   if (anv_genX(devinfo, gfx9_blt_can_copy_memory)(src_addr, dst_addr)) {
+   if (!cmd_buffer->gfx9_rcs_sticky &&
+       anv_genX(devinfo, gfx9_blt_can_copy_memory)(src_addr, dst_addr)) {
       anv_genX(devinfo, cmd_buffer_gfx9_blt_copy_memory)(cmd_buffer, src_addr,
                                                          dst_addr, size);
       return;
@@ -1629,8 +1636,14 @@ anv_cmd_buffer_update_addr(
    struct anv_device *device = cmd_buffer->device;
 
    if (anv_cmd_buffer_is_gfx9_blitter(cmd_buffer)) {
-      anv_genX(device->info, cmd_buffer_gfx9_blt_update)(cmd_buffer, address,
-                                                         dataSize, pData);
+      if (cmd_buffer->gfx9_rcs_sticky) {
+         anv_cmd_require_rcs(cmd_buffer, true) {
+            anv_cmd_buffer_update_addr(cmd_buffer, address, dataSize, pData);
+         }
+      } else {
+         anv_genX(device->info, cmd_buffer_gfx9_blt_update)(cmd_buffer, address,
+                                                            dataSize, pData);
+      }
       return;
    }
 
@@ -1726,8 +1739,14 @@ anv_cmd_buffer_fill_area(struct anv_cmd_buffer *cmd_buffer,
                          uint32_t data)
 {
    if (anv_cmd_buffer_is_gfx9_blitter(cmd_buffer)) {
-      anv_genX(cmd_buffer->device->info, cmd_buffer_gfx9_blt_fill)(
-         cmd_buffer, address, size, data);
+      if (cmd_buffer->gfx9_rcs_sticky) {
+         anv_cmd_require_rcs(cmd_buffer, true) {
+            anv_cmd_buffer_fill_area(cmd_buffer, address, size, data);
+         }
+      } else {
+         anv_genX(cmd_buffer->device->info, cmd_buffer_gfx9_blt_fill)(
+            cmd_buffer, address, size, data);
+      }
       return;
    }
 

@@ -806,6 +806,13 @@ i915_companion_rcs_queue_exec_locked(struct anv_queue *queue,
          goto error;
    }
 
+   if (queue->gfx9_bcs_done) {
+      result = anv_execbuf_add_sync(device, &execbuf, queue->gfx9_bcs_done,
+                                    false /* is_signal */, 0);
+      if (result != VK_SUCCESS)
+         goto error;
+   }
+
    result = setup_execbuf_for_cmd_buffers(&execbuf, queue,
                                           &companion_rcs_cmd_buffer, 1);
    if (result != VK_SUCCESS)
@@ -906,6 +913,17 @@ i915_queue_exec_locked(struct anv_queue *queue,
                                     queue->sync,
                                     true /* is_signal */,
                                     0 /* signal_value */);
+      if (result != VK_SUCCESS)
+         goto error;
+   }
+
+   /* Gfx9 copy queue: the companion RCS batch must start only once this BCS
+    * batch is complete (there is no in-batch semaphore handshake on Gfx9).
+    */
+   if (queue->gfx9_bcs_done && cmd_buffer_count != 0 &&
+       cmd_buffers[0]->companion_rcs_cmd_buffer) {
+      result = anv_execbuf_add_sync(device, &execbuf, queue->gfx9_bcs_done,
+                                    true /* is_signal */, 0);
       if (result != VK_SUCCESS)
          goto error;
    }

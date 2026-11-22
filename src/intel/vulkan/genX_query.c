@@ -2036,6 +2036,18 @@ void genX(CmdWriteTimestamp2)(
 
    assert(pool->vk.query_type == VK_QUERY_TYPE_TIMESTAMP);
 
+#if GFX_VER == 9
+   /* Gfx9 copy queue: once commands moved to the companion RCS, keep them
+    * there so they stay ordered after it.
+    */
+   if (anv_cmd_buffer_is_blitter_queue(cmd_buffer) && cmd_buffer->gfx9_rcs_sticky) {
+      anv_cmd_require_rcs(cmd_buffer, true) {
+         genX(CmdWriteTimestamp2)(vk_command_buffer_to_handle(&cmd_buffer->vk), stage, queryPool, query);
+      }
+      return;
+   }
+#endif
+
    /* Anything bottom-of-pipe, request a post-sync */
    if (stage != VK_PIPELINE_STAGE_2_TOP_OF_PIPE_BIT)
       cmd_buffer->state.pending_pipe_bits |= ANV_PIPE_POST_SYNC_BIT;
