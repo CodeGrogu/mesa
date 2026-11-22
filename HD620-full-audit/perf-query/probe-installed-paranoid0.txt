@@ -1,0 +1,7 @@
+195 counters
+passes: 1
+  CS Threads Dispatched = 0
+  GPU Time Elapsed = 6914000
+  GPU Core Clocks = 82968
+  GPU Busy = 2622.04
+  EU Active = 0

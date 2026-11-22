@@ -1,0 +1,13 @@
+run 1 astc5x5-noWA: 200 iterations in 0.07 s, GL error 0x0, reset 0x0
+PASS (limit 1)
+run 1 astc5x5: 200 iterations in 0.17 s, GL error 0x0, reset 0x0
+PASS (limit 1)
+run 2 astc5x5-noWA: 200 iterations in 0.07 s, GL error 0x0, reset 0x0
+PASS (limit 1)
+run 2 astc5x5: 200 iterations in 0.08 s, GL error 0x0, reset 0x0
+PASS (limit 1)
+run 3 astc5x5-noWA: 200 iterations in 0.10 s, GL error 0x0, reset 0x0
+PASS (limit 1)
+run 3 astc5x5: 200 iterations in 0.07 s, GL error 0x0, reset 0x0
+PASS (limit 1)
+GPU HANG lines: before=2 after=2

@@ -1,0 +1,40 @@
+== groups 168 iter 4
+passes: 2
+  N compute shader invocations = 5376
+  CS Threads Dispatched = 672
+  GPU Time Elapsed = 58083
+  GPU Core Clocks = 15761
+  AVG GPU Core Frequency = 271353063
+  GPU Busy = 100
+  EU Active = 25.9628
+PASS: compute invocations 5376, expected 5376
+== groups 168 iter 400
+passes: 2
+  N compute shader invocations = 5376
+  CS Threads Dispatched = 672
+  GPU Time Elapsed = 730833
+  GPU Core Clocks = 388869
+  AVG GPU Core Frequency = 532090094
+  GPU Busy = 100
+  EU Active = 92.9395
+PASS: compute invocations 5376, expected 5376
+== groups 1000 iter 4
+passes: 2
+  N compute shader invocations = 32000
+  CS Threads Dispatched = 4000
+  GPU Time Elapsed = 58916
+  GPU Core Clocks = 36261
+  AVG GPU Core Frequency = 615469481
+  GPU Busy = 100
+  EU Active = 64.4191
+PASS: compute invocations 32000, expected 32000
+== groups 1000 iter 400
+passes: 2
+  N compute shader invocations = 32000
+  CS Threads Dispatched = 4000
+  GPU Time Elapsed = 6695333
+  GPU Core Clocks = 2210956
+  AVG GPU Core Frequency = 330223455
+  GPU Busy = 100
+  EU Active = 96.8368
+PASS: compute invocations 32000, expected 32000

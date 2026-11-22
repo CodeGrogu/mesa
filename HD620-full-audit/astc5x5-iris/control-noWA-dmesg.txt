@@ -1,0 +1,5 @@
+[173950.028539] i915 0000:00:02.0: [drm] python3[401327] context reset due to GPU hang
+[173950.034954] i915 0000:00:02.0: [drm] GPU HANG: ecode 9:1:85dffffb, in python3 [401327]
+[173950.732460] i915 0000:00:02.0: [drm] Resetting rcs0 for preemption time out
+[173950.732523] i915 0000:00:02.0: [drm] python3[401327] context reset due to GPU hang
+[173950.737512] i915 0000:00:02.0: [drm] GPU HANG: ecode 9:1:8ed9fff2, in python3 [401327]

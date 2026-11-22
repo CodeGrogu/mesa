@@ -1,0 +1,4 @@
+PASS: compute invocations 32, expected 32
+PASS: compute invocations 5376, expected 5376
+PASS: compute invocations 32000, expected 32000
+PASS: compute invocations 131072, expected 131072

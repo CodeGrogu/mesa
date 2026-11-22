@@ -1,0 +1,5 @@
+Mesa Intel(R) HD Graphics 620 (KBL GT2) 4.6 (Core Profile) Mesa 27.0.0-devel
+Mapped /home/polarbear/.local/state/catchingup/round2/astc5x5-noWA/lib/x86_64-linux-gnu/libgallium-27.0.0-devel.so
+ASTC 5x5 256x256, 43264 bytes
+1 iterations in 1.42 s, GL error 0x0, reset 0x0
+exit 0

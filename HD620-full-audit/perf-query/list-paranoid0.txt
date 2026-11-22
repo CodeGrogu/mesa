@@ -1,0 +1,219 @@
+215 counters
+  [0] (null) / N TCS shader invocations
+  [1] (null) / N TES shader invocations
+  [2] (null) / N compute shader invocations
+  [3] (null) / N fragment shader invocations
+  [4] (null) / N geometry shader invocations
+  [5] (null) / N geometry shader primitives emitted
+  [6] (null) / N primitives entering clipping
+  [7] (null) / N primitives leaving clipping
+  [8] (null) / N primitives submitted
+  [9] (null) / N vertex shader invocations
+  [10] (null) / N vertices submitted
+  [11] (null) / N z-pass fragments
+  [12] (null) / SO_NUM_PRIMS_WRITTEN (Stream 0)
+  [13] (null) / SO_NUM_PRIMS_WRITTEN (Stream 1)
+  [14] (null) / SO_NUM_PRIMS_WRITTEN (Stream 2)
+  [15] (null) / SO_NUM_PRIMS_WRITTEN (Stream 3)
+  [16] (null) / SO_PRIM_STORAGE_NEEDED (Stream 0)
+  [17] (null) / SO_PRIM_STORAGE_NEEDED (Stream 1)
+  [18] (null) / SO_PRIM_STORAGE_NEEDED (Stream 2)
+  [19] (null) / SO_PRIM_STORAGE_NEEDED (Stream 3)
+  [20] 3D Pipe/Clipper / CL Stall
+  [21] 3D Pipe/Clipper / Clipper Bottleneck
+  [22] 3D Pipe/Domain Shader / DS Bottleneck
+  [23] 3D Pipe/Domain Shader / DS Stall
+  [24] 3D Pipe/Fragment Shader / FS Both FPU Active
+  [25] 3D Pipe/Fragment Shader / Samples Killed in FS
+  [26] 3D Pipe/Geometry Shader / GS Bottleneck
+  [27] 3D Pipe/Hull Shader / HS Bottleneck
+  [28] 3D Pipe/Hull Shader / HS Stall
+  [29] 3D Pipe/Input Assembler / VF Bottleneck
+  [30] 3D Pipe/Output Merger / Pixels Failing Tests
+  [31] 3D Pipe/Output Merger / Samples Blended
+  [32] 3D Pipe/Output Merger / Samples Written
+  [33] 3D Pipe/Rasterizer / Rasterized Pixels
+  [34] 3D Pipe/Rasterizer/Barycentric Calc / BC Bottleneck
+  [35] 3D Pipe/Rasterizer/Early Depth Test / Early Depth Bottleneck
+  [36] 3D Pipe/Rasterizer/Early Depth Test / Early Depth Test Fails
+  [37] 3D Pipe/Rasterizer/Hi-Depth Test / Early Hi-Depth Test Fails
+  [38] 3D Pipe/Rasterizer/Hi-Depth Test / Hi-Depth Bottleneck
+  [39] 3D Pipe/Rasterizer/Strip-Fans / SF Stall
+  [40] 3D Pipe/Rasterizer/Strip-Fans / Strip-Fans Bottleneck
+  [41] 3D Pipe/Stream Output / SO Bottleneck
+  [42] 3D Pipe/Stream Output / SO Stall
+  [43] 3D Pipe/Vertex Shader / VS Bottleneck
+  [44] EU Array / CS FPU0 Pipe Active
+  [45] EU Array / CS FPU1 Pipe Active
+  [46] EU Array / EU AVG IPC Rate
+  [47] EU Array / EU Active
+  [48] EU Array / EU Stall
+  [49] EU Array / EU Thread Occupancy
+  [50] EU Array/Barrier / Shader Barrier Messages
+  [51] EU Array/Compute Shader / CS Threads Dispatched
+  [52] EU Array/Domain Shader / DS Threads Dispatched
+  [53] EU Array/Fragment Shader / FS Threads Dispatched
+  [54] EU Array/Geometry Shader / GS Threads Dispatched
+  [55] EU Array/Hull Shader / HS Threads Dispatched
+  [56] EU Array/Pipes / EU Both FPU Pipes Active
+  [57] EU Array/Pipes / EU FPU0 Pipe Active
+  [58] EU Array/Pipes / EU FPU1 Pipe Active
+  [59] EU Array/Pipes / EU FPU1 Pipe Active including Ext Math
+  [60] EU Array/Pipes / EU Send Pipe Active
+  [61] EU Array/Pipes/Instructions / EU FPU0 Binary Instruction
+  [62] EU Array/Pipes/Instructions / EU FPU0 Hybrid Instruction
+  [63] EU Array/Pipes/Instructions / EU FPU0 Move Instruction
+  [64] EU Array/Pipes/Instructions / EU FPU0 Ternary Instruction
+  [65] EU Array/Pipes/Instructions / EU FPU1 Binary Instruction
+  [66] EU Array/Pipes/Instructions / EU FPU1 Hybrid Instruction
+  [67] EU Array/Pipes/Instructions / EU FPU1 Move Instruction
+  [68] EU Array/Pipes/Instructions / EU FPU1 Ternary Instruction
+  [69] EU Array/Pixel Shader / PS FPU0 Pipe Active
+  [70] EU Array/Pixel Shader / PS FPU1 Pipe Active
+  [71] EU Array/Pixel Shader / PS Send Pipeline Active
+  [72] EU Array/Vertex Shader / VS FPU0 Pipe Active
+  [73] EU Array/Vertex Shader / VS FPU1 Pipe Active
+  [74] EU Array/Vertex Shader / VS Send Pipe Active
+  [75] EU Array/Vertex Shader / VS Threads Dispatched
+  [76] GPU / AVG GPU Core Frequency
+  [77] GPU / AnyRingBusy
+  [78] GPU / Blitter Ring Busy
+  [79] GPU / GPU Busy
+  [80] GPU / GPU Core Clocks
+  [81] GPU / GPU Time Elapsed
+  [82] GPU / Render Ring Busy
+  [83] GPU / TestCounter0
+  [84] GPU / TestCounter1
+  [85] GPU / TestCounter2
+  [86] GPU / TestCounter3
+  [87] GPU / TestCounter4
+  [88] GPU / TestCounter5
+  [89] GPU / TestCounter6
+  [90] GPU / TestCounter7
+  [91] GPU / TestCounter8
+  [92] GPU / Vdbox0 Ring Busy
+  [93] GPU / Vebox Ring Busy
+  [94] GPU/3D Pipe / Slice0 PS Output Available
+  [95] GPU/3D Pipe / Slice0 Pixel Values Ready
+  [96] GPU/3D Pipe/Strip-Fans / Polygon Data Ready
+  [97] GPU/Data Port / HDC stalled by L3 (s0.ss0)
+  [98] GPU/Data Port / HDC stalled by L3 (s0.ss1)
+  [99] GPU/Data Port / HDC stalled by L3 (s0.ss2)
+  [100] GPU/Rasterizer / Slice0 Rasterizer Input Available
+  [101] GPU/Rasterizer / Slice0 Rasterizer Output Ready
+  [102] GPU/Rasterizer/Early Depth Test / Slice0 Post-EarlyZ Pixel Data Ready
+  [103] GPU/Sampler / Slice0 Subslice0 Input Available
+  [104] GPU/Sampler / Slice0 Subslice0 Sampler Output Ready
+  [105] GPU/Sampler / Slice0 Subslice1 Input Available
+  [106] GPU/Sampler / Slice0 Subslice1 Sampler Output Ready
+  [107] GPU/Sampler / Slice0 Subslice2 Input Available
+  [108] GPU/Sampler / Slice0 Subslice2 Sampler Output Ready
+  [109] GPU/Stencil Cache / STC PMA stall
+  [110] GPU/Thread Dispatcher / NonPS Thread Ready For Dispatch on Slice0 Subslice0
+  [111] GPU/Thread Dispatcher / NonPS Thread Ready For Dispatch on Slice0 Subslice1
+  [112] GPU/Thread Dispatcher / NonPS Thread Ready For Dispatch on Slice0 Subslice2
+  [113] GPU/Thread Dispatcher / PS Thread Ready For Dispatch on Slice0 Subslice0
+  [114] GPU/Thread Dispatcher / PS Thread Ready For Dispatch on Slice0 Subslice1
+  [115] GPU/Thread Dispatcher / PS Thread Ready For Dispatch on Slice0 Subslice2
+  [116] GPU/Thread Dispatcher / Thread Header Ready on Slice0 Subslice0 Port 0
+  [117] GPU/Thread Dispatcher / Thread Header Ready on Slice0 Subslice0 Port 1
+  [118] GPU/Thread Dispatcher / Thread Header Ready on Slice0 Subslice1 Port 0
+  [119] GPU/Thread Dispatcher / Thread Header Ready on Slice0 Subslice1 Port 1
+  [120] GPU/Thread Dispatcher / Thread Header Ready on Slice0 Subslice2 Port 0
+  [121] GPU/Thread Dispatcher / Thread Header Ready on Slice0 Subslice2 Port 1
+  [122] GTI / GTI Read Throughput
+  [123] GTI / GTI Write Throughput
+  [124] GTI / GtiMemoryReads
+  [125] GTI / GtiMemoryWrites
+  [126] GTI / GtiRingAccesses
+  [127] GTI / SQ is full
+  [128] GTI/3D Pipe / GTI Fixed Pipe Throughput
+  [129] GTI/3D Pipe/Command Streamer / GtiCmdStreamerMemoryReads
+  [130] GTI/3D Pipe/Command Streamer / GtiCmdStreamerMemoryWrites
+  [131] GTI/3D Pipe/Resource Streamer / GtiRsMemoryReads
+  [132] GTI/3D Pipe/Stream Output / GtiSoMemoryWrites
+  [133] GTI/3D Pipe/Vertex Fetch / GtiVfMemoryReads
+  [134] GTI/Color Cache / GTI RCC Throughput
+  [135] GTI/Color Cache / GtiMscMemoryReads
+  [136] GTI/Color Cache / GtiMscMemoryWrites
+  [137] GTI/Color Cache / GtiRccMemoryReads
+  [138] GTI/Color Cache / GtiRccMemoryWrites
+  [139] GTI/Depth Cache / GTI Depth Throughput
+  [140] GTI/Depth Cache / GtiHizMemoryReads
+  [141] GTI/Depth Cache / GtiHizMemoryWrites
+  [142] GTI/Depth Cache / GtiRczMemoryReads
+  [143] GTI/Depth Cache / GtiRczMemoryWrites
+  [144] GTI/Depth Cache / GtiStcMemoryReads
+  [145] GTI/Depth Cache / GtiStcMemoryWrites
+  [146] GTI/L3 / GTI HDC TLB Lookup Throughput
+  [147] GTI/L3 / GTI L3 Throughput
+  [148] GTI/L3 / GtiL3Bank0Reads
+  [149] GTI/L3 / GtiL3Bank0Writes
+  [150] GTI/L3 / GtiL3Bank1Reads
+  [151] GTI/L3 / GtiL3Bank1Writes
+  [152] GTI/L3 / GtiL3Bank2Reads
+  [153] GTI/L3 / GtiL3Bank2Writes
+  [154] GTI/L3 / GtiL3Bank3Reads
+  [155] GTI/L3 / GtiL3Bank3Writes
+  [156] GTI/L3 / GtiL3Reads
+  [157] GTI/L3 / GtiL3Writes
+  [158] GTI/L3 / Slice0 L3 Bank0 Active
+  [159] GTI/L3 / Slice0 L3 Bank0 Stalled
+  [160] GTI/L3 / Slice0 L3 Bank1 Active
+  [161] GTI/L3 / Slice0 L3 Bank1 Stalled
+  [162] GTI/L3 / Slice0 L3 Bank2 Active
+  [163] GTI/L3 / Slice0 L3 Bank2 Stalled
+  [164] GTI/L3 / Slice0 L3 Bank3 Active
+  [165] GTI/L3 / Slice0 L3 Bank3 Stalled
+  [166] L3 / L3 Accesses
+  [167] L3 / L3 Bank 00 Accesses
+  [168] L3 / L3 Bank 01 Accesses
+  [169] L3 / L3 Bank 02 Accesses
+  [170] L3 / L3 Bank 03 Accesses
+  [171] L3 / L3 Total Throughput
+  [172] L3/Data Port / EuA64UntypedReads0
+  [173] L3/Data Port / EuA64UntypedWrites0
+  [174] L3/Data Port / EuTypedAtomics0
+  [175] L3/Data Port / EuTypedReads0
+  [176] L3/Data Port / EuTypedWrites0
+  [177] L3/Data Port / EuUntypedAtomics0
+  [178] L3/Data Port / EuUntypedReads0
+  [179] L3/Data Port / EuUntypedWrites0
+  [180] L3/Data Port / L3 Shader Throughput
+  [181] L3/Data Port / Shader Memory Accesses
+  [182] L3/Data Port / Typed Atomics 0
+  [183] L3/Data Port / Typed Bytes Read
+  [184] L3/Data Port / Typed Bytes Written
+  [185] L3/Data Port / Typed Reads 0
+  [186] L3/Data Port / Typed Writes 0
+  [187] L3/Data Port / TypedAtomicsPerCacheLine
+  [188] L3/Data Port / TypedReadsPerCacheLine
+  [189] L3/Data Port / TypedWritesPerCacheLine
+  [190] L3/Data Port / Untyped Bytes Read
+  [191] L3/Data Port / Untyped Reads 0
+  [192] L3/Data Port / Untyped Writes
+  [193] L3/Data Port / Untyped Writes 0
+  [194] L3/Data Port / UntypedReadsPerCacheLine
+  [195] L3/Data Port / UntypedWritesPerCacheLine
+  [196] L3/Data Port/Atomics / Shader Atomic Memory Accesses
+  [197] L3/Data Port/SLM / SLM Bytes Read
+  [198] L3/Data Port/SLM / SLM Bytes Written
+  [199] L3/IC / L3 Bank 00 IC Accesses
+  [200] L3/IC / L3 Bank 00 IC Hits
+  [201] L3/Sampler / L3 Sampler Throughput
+  [202] L3/TAG / L3 Lookup Accesses w/o IC
+  [203] L3/TAG / L3 Misses
+  [204] Sampler / Sampler 0 Bottleneck
+  [205] Sampler / Sampler 0 Busy
+  [206] Sampler / Sampler 1 Bottleneck
+  [207] Sampler / Sampler 1 Busy
+  [208] Sampler / Sampler Accesses
+  [209] Sampler / Samplers Bottleneck
+  [210] Sampler / Samplers Busy
+  [211] Sampler/Sampler Cache / Sampler Cache Misses
+  [212] Sampler/Sampler Cache / Sampler Texels Misses
+  [213] Sampler/Sampler Input / Sampler Texels
+  [214] VME Pipe / VME Busy
+passes: 1
+  N compute shader invocations = 32
+PASS: compute invocations 32, expected 32
