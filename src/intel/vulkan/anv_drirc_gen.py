@@ -306,6 +306,11 @@ def declare_options(android_version):
     ]
 
     feature_options = [
+        B("anv_gfx9_video_decode", True,
+          "Gfx9: expose Vulkan Video decode (H.264, VP9; H.265 when the HuC "
+          "firmware is loaded) without ANV_DEBUG=video-decode.  CTS video "
+          "decode groups pass on HD 620 (Kaby Lake)",
+          c_name="gfx9_video_decode"),
         B("fake_sparse", False,
           "Advertise support for sparse binding of textures regardless of real support",
           c_name="fake_sparse"),

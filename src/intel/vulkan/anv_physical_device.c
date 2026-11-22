@@ -363,7 +363,14 @@ anv_physical_device_candidate_video_ops(const struct anv_physical_device *device
 {
    VkVideoCodecOperationFlagsKHR ops = 0;
 
-   if (ANV_DEBUG(VIDEO_DECODE)) {
+   /* Gfx9 decode is on by default: the CTS video decode groups (H.264, VP9,
+    * and H.265 with HuC) pass on KBL.  anv_gfx9_video_decode=false turns it
+    * off.  Other generations and all encode still need ANV_DEBUG.
+    */
+   const bool decode = ANV_DEBUG(VIDEO_DECODE) ||
+      (device->info.ver == 9 && device->drirc.features.gfx9_video_decode);
+
+   if (decode) {
       if (VIDEO_CODEC_H264DEC)
          ops |= VK_VIDEO_CODEC_OPERATION_DECODE_H264_BIT_KHR;
       if (VIDEO_CODEC_H265DEC && device->has_huc)
