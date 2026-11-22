@@ -1,0 +1,488 @@
+Splitting the commandline.
+Reading option '-y' ... matched as option 'y' (overwrite output files) with argument '1'.
+Reading option '-hide_banner' ... matched as option 'hide_banner' (do not show program banner) with argument '1'.
+Reading option '-nostdin' ... matched as option 'stdin' (enable or disable interaction on standard input) with argument 0.
+Reading option '-xerror' ... matched as option 'xerror' (exit on error) with argument '1'.
+Reading option '-loglevel' ... matched as option 'loglevel' (set logging level) with argument 'debug'.
+Reading option '-hwaccel' ... matched as option 'hwaccel' (use HW accelerated decoding) with argument 'vulkan'.
+Reading option '-hwaccel_output_format' ... matched as option 'hwaccel_output_format' (select output format used with HW accelerated decoding) with argument 'vulkan'.
+Reading option '-i' ... matched as input url with argument 'evidence/hevc-regression/inputs/main.hevc'.
+Reading option '-map' ... matched as option 'map' (set input stream mapping) with argument '0:v:0'.
+Reading option '-vf' ... matched as option 'vf' (alias for -filter:v (apply filters to video streams)) with argument 'hwdownload,format=nv12'.
+Reading option '-c:v' ... matched as option 'c' (select encoder/decoder ('copy' to copy stream without reencoding)) with argument 'rawvideo'.
+Reading option '-f' ... matched as option 'f' (force container format (auto-detected otherwise)) with argument 'framemd5'.
+Reading option 'hevc-huc/main-vulkan.md5' ... matched as output url.
+Finished splitting the commandline.
+Parsing a group of options: global .
+Applying option y (overwrite output files) with argument 1.
+Applying option hide_banner (do not show program banner) with argument 1.
+Applying option nostdin (enable or disable interaction on standard input) with argument 0.
+Applying option xerror (exit on error) with argument 1.
+Applying option loglevel (set logging level) with argument debug.
+Successfully parsed a group of options.
+Parsing a group of options: input url evidence/hevc-regression/inputs/main.hevc.
+Applying option hwaccel (use HW accelerated decoding) with argument vulkan.
+Applying option hwaccel_output_format (select output format used with HW accelerated decoding) with argument vulkan.
+Successfully parsed a group of options.
+Opening an input file: evidence/hevc-regression/inputs/main.hevc.
+[AVFormatContext @ 0x5a5a4c2e1040] Opening 'evidence/hevc-regression/inputs/main.hevc' for reading
+[file @ 0x5a5a4c2e1640] Setting default whitelist 'file,crypto,data'
+[hevc @ 0x5a5a4c2e1040] Format hevc probed with size=4096 and score=51
+[hevc @ 0x5a5a4c2e1040] Before avformat_find_stream_info() pos: 0 bytes read:32768 seeks:0 nb_streams:1
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 32(VPS), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 33(SPS), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 34(PPS), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 39(SEI_PREFIX), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 20(IDR_N_LP), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c2e1f00] Decoding VPS
+[hevc @ 0x5a5a4c2e1f00] Main profile bitstream
+[hevc @ 0x5a5a4c2e1f00] Decoding SPS
+[hevc @ 0x5a5a4c2e1f00] Main profile bitstream
+[hevc @ 0x5a5a4c2e1f00] Decoding VUI
+[hevc @ 0x5a5a4c2e1f00] Decoding PPS
+[hevc @ 0x5a5a4c2e1f00] Decoding SEI
+[extract_extradata @ 0x5a5a4c2fb280] nal_unit_type: 32(VPS), nuh_layer_id: 0, temporal_id: 0
+[extract_extradata @ 0x5a5a4c2fb280] nal_unit_type: 33(SPS), nuh_layer_id: 0, temporal_id: 0
+[extract_extradata @ 0x5a5a4c2fb280] nal_unit_type: 34(PPS), nuh_layer_id: 0, temporal_id: 0
+[extract_extradata @ 0x5a5a4c2fb280] nal_unit_type: 39(SEI_PREFIX), nuh_layer_id: 0, temporal_id: 0
+[extract_extradata @ 0x5a5a4c2fb280] nal_unit_type: 20(IDR_N_LP), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 32(VPS), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 33(SPS), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 34(PPS), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 39(SEI_PREFIX), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 20(IDR_N_LP), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c2e1f00] Decoding VPS
+[hevc @ 0x5a5a4c2e1f00] Main profile bitstream
+[hevc @ 0x5a5a4c2e1f00] Decoding SPS
+[hevc @ 0x5a5a4c2e1f00] Main profile bitstream
+[hevc @ 0x5a5a4c2e1f00] Decoding VUI
+[hevc @ 0x5a5a4c2e1f00] Decoding PPS
+[hevc @ 0x5a5a4c2e1f00] Decoding SEI
+[hevc @ 0x5a5a4c2e1f00] Format yuv420p chosen by get_format().
+[hevc @ 0x5a5a4c2e1f00] Decoded frame with POC 0/0.
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 32(VPS), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 33(SPS), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 34(PPS), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c2e1f00] Decoding SPS
+[hevc @ 0x5a5a4c2e1f00] Main profile bitstream
+[hevc @ 0x5a5a4c2e1f00] Decoding VUI
+[hevc @ 0x5a5a4c2e1f00] Decoding PPS
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 1(TRAIL_R), nuh_layer_id: 0, temporal_id: 0
+    Last message repeated 1 times
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 0(TRAIL_N), nuh_layer_id: 0, temporal_id: 0
+    Last message repeated 1 times
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 1(TRAIL_R), nuh_layer_id: 0, temporal_id: 0
+    Last message repeated 1 times
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 0(TRAIL_N), nuh_layer_id: 0, temporal_id: 0
+    Last message repeated 1 times
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 1(TRAIL_R), nuh_layer_id: 0, temporal_id: 0
+    Last message repeated 1 times
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 0(TRAIL_N), nuh_layer_id: 0, temporal_id: 0
+    Last message repeated 1 times
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 1(TRAIL_R), nuh_layer_id: 0, temporal_id: 0
+    Last message repeated 1 times
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 0(TRAIL_N), nuh_layer_id: 0, temporal_id: 0
+    Last message repeated 1 times
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 32(VPS), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 33(SPS), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 34(PPS), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 39(SEI_PREFIX), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 21(CRA_NUT), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c2e1f00] Decoding SPS
+[hevc @ 0x5a5a4c2e1f00] Main profile bitstream
+[hevc @ 0x5a5a4c2e1f00] Decoding VUI
+[hevc @ 0x5a5a4c2e1f00] Decoding PPS
+[hevc @ 0x5a5a4c2e1f00] Decoding SEI
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 8(RASL_N), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 1(TRAIL_R), nuh_layer_id: 0, temporal_id: 0
+    Last message repeated 1 times
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 0(TRAIL_N), nuh_layer_id: 0, temporal_id: 0
+    Last message repeated 1 times
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 1(TRAIL_R), nuh_layer_id: 0, temporal_id: 0
+    Last message repeated 1 times
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 0(TRAIL_N), nuh_layer_id: 0, temporal_id: 0
+    Last message repeated 1 times
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 1(TRAIL_R), nuh_layer_id: 0, temporal_id: 0
+    Last message repeated 1 times
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 0(TRAIL_N), nuh_layer_id: 0, temporal_id: 0
+    Last message repeated 1 times
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 1(TRAIL_R), nuh_layer_id: 0, temporal_id: 0
+    Last message repeated 1 times
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 0(TRAIL_N), nuh_layer_id: 0, temporal_id: 0
+    Last message repeated 1 times
+[hevc @ 0x5a5a4c2e1f00] nal_unit_type: 1(TRAIL_R), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c2e1040] After avformat_find_stream_info() pos: 113346 bytes read:113346 seeks:0 frames:36
+[vist#0:0/hevc @ 0x5a5a4c2e2cc0] Selecting decoder 'hevc' because of requested hwaccel method vulkan
+Input #0, hevc, from 'evidence/hevc-regression/inputs/main.hevc':
+  Duration: N/A, bitrate: N/A
+  Stream #0:0, 36, 1/1200000: Video: hevc (Main), 1 reference frame, yuv420p(tv, left), 640x384 [SAR 1:1 DAR 5:3], 0/1, 25 fps, 30 tbr, 1200k tbn
+Successfully opened the file.
+Parsing a group of options: output url hevc-huc/main-vulkan.md5.
+Applying option map (set input stream mapping) with argument 0:v:0.
+Applying option vf (alias for -filter:v (apply filters to video streams)) with argument hwdownload,format=nv12.
+Applying option c:v (select encoder/decoder ('copy' to copy stream without reencoding)) with argument rawvideo.
+Applying option f (force container format (auto-detected otherwise)) with argument framemd5.
+Successfully parsed a group of options.
+Opening an output file: hevc-huc/main-vulkan.md5.
+[out#0/framemd5 @ 0x5a5a4c39f900] Adding streams from explicit maps...
+[vost#0:0/rawvideo @ 0x5a5a4c2e2780] Created video stream from input stream 0:0
+[AVFilterGraph @ 0x5a5a4c2e2a00] Setting 'pix_fmts' to value 'nv12'
+[Vulkan @ 0x5a5a4c2e3440] Supported layers:
+[Vulkan @ 0x5a5a4c2e3440] 	VK_LAYER_MESA_device_select
+[Vulkan @ 0x5a5a4c2e3440] 	VK_LAYER_MESA_anti_lag
+[Vulkan @ 0x5a5a4c2e3440] 	VK_LAYER_MESA_screenshot
+[Vulkan @ 0x5a5a4c2e3440] 	VK_LAYER_INTEL_nullhw
+[Vulkan @ 0x5a5a4c2e3440] 	VK_LAYER_MESA_overlay
+[Vulkan Loader] DRIVER:         Searching for driver manifest files
+[Vulkan Loader] DRIVER:            In following locations:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/mesa-round2/share/vulkan/icd.d/intel_icd.x86_64.json
+[Vulkan Loader] DRIVER:            Found the following files:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/mesa-round2/share/vulkan/icd.d/intel_icd.x86_64.json
+[Vulkan Loader] DRIVER:         Found ICD manifest file /home/polarbear/.local/mesa-round2/share/vulkan/icd.d/intel_icd.x86_64.json, version 1.0.1
+[Vulkan Loader] DEBUG | DRIVER: Searching for ICD drivers named /home/polarbear/.local/mesa-round2/lib/x86_64-linux-gnu/libvulkan_intel.so
+[Vulkan Loader] DRIVER:         Searching for driver manifest files
+[Vulkan Loader] DRIVER:            In following locations:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/mesa-round2/share/vulkan/icd.d/intel_icd.x86_64.json
+[Vulkan Loader] DRIVER:            Found the following files:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/mesa-round2/share/vulkan/icd.d/intel_icd.x86_64.json
+[Vulkan Loader] DRIVER:         Found ICD manifest file /home/polarbear/.local/mesa-round2/share/vulkan/icd.d/intel_icd.x86_64.json, version 1.0.1
+[Vulkan Loader] DEBUG | DRIVER: Searching for ICD drivers named /home/polarbear/.local/mesa-round2/lib/x86_64-linux-gnu/libvulkan_intel.so
+[Vulkan Loader] DRIVER:         Searching for driver manifest files
+[Vulkan Loader] DRIVER:            In following locations:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/mesa-round2/share/vulkan/icd.d/intel_icd.x86_64.json
+[Vulkan Loader] DRIVER:            Found the following files:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/mesa-round2/share/vulkan/icd.d/intel_icd.x86_64.json
+[Vulkan Loader] DRIVER:         Found ICD manifest file /home/polarbear/.local/mesa-round2/share/vulkan/icd.d/intel_icd.x86_64.json, version 1.0.1
+[Vulkan Loader] DEBUG | DRIVER: Searching for ICD drivers named /home/polarbear/.local/mesa-round2/lib/x86_64-linux-gnu/libvulkan_intel.so
+[Vulkan @ 0x5a5a4c2e3440] Using instance extension VK_EXT_layer_settings
+[Vulkan Loader] DRIVER:         Searching for driver manifest files
+[Vulkan Loader] DRIVER:            In following locations:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/mesa-round2/share/vulkan/icd.d/intel_icd.x86_64.json
+[Vulkan Loader] DRIVER:            Found the following files:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/mesa-round2/share/vulkan/icd.d/intel_icd.x86_64.json
+[Vulkan Loader] DRIVER:         Found ICD manifest file /home/polarbear/.local/mesa-round2/share/vulkan/icd.d/intel_icd.x86_64.json, version 1.0.1
+[Vulkan Loader] DEBUG | DRIVER: Searching for ICD drivers named /home/polarbear/.local/mesa-round2/lib/x86_64-linux-gnu/libvulkan_intel.so
+[Vulkan Loader] INFO | DRIVER:  linux_read_sorted_physical_devices:
+[Vulkan Loader] INFO | DRIVER:       Original order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan Loader] INFO | DRIVER:       Sorted order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)  
+[Vulkan Loader] INFO | DRIVER:  linux_read_sorted_physical_devices:
+[Vulkan Loader] INFO | DRIVER:       Original order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan Loader] INFO | DRIVER:       Sorted order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)  
+[Vulkan Loader] DEBUG | DRIVER: Copying old device 0 into new device 0
+[Vulkan Loader] INFO | DRIVER:  linux_read_sorted_physical_devices:
+[Vulkan Loader] INFO | DRIVER:       Original order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan Loader] INFO | DRIVER:       Sorted order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)  
+[Vulkan Loader] DEBUG | DRIVER: Copying old device 0 into new device 0
+[Vulkan Loader] INFO | DRIVER:  linux_read_sorted_physical_devices:
+[Vulkan Loader] INFO | DRIVER:       Original order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan Loader] INFO | DRIVER:       Sorted order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)  
+[Vulkan Loader] DEBUG | DRIVER: Copying old device 0 into new device 0
+[Vulkan @ 0x5a5a4c2e3440] GPU listing:
+[Vulkan @ 0x5a5a4c2e3440]     0: Intel(R) HD Graphics 620 (KBL GT2) (integrated) (0x5916)
+[Vulkan @ 0x5a5a4c2e3440] Device 0 selected: Intel(R) HD Graphics 620 (KBL GT2) (integrated) (0x5916)
+[Vulkan @ 0x5a5a4c2e3440] Using device extension VK_KHR_push_descriptor
+[Vulkan @ 0x5a5a4c2e3440] Using device extension VK_EXT_physical_device_drm
+[Vulkan @ 0x5a5a4c2e3440] Using device extension VK_EXT_shader_atomic_float
+[Vulkan @ 0x5a5a4c2e3440] Using device extension VK_EXT_shader_object
+[Vulkan @ 0x5a5a4c2e3440] Using device extension VK_KHR_shader_subgroup_rotate
+[Vulkan @ 0x5a5a4c2e3440] Using device extension VK_KHR_shader_expect_assume
+[Vulkan @ 0x5a5a4c2e3440] Using device extension VK_KHR_video_maintenance1
+[Vulkan @ 0x5a5a4c2e3440] Using device extension VK_KHR_video_maintenance2
+[Vulkan @ 0x5a5a4c2e3440] Using device extension VK_KHR_external_memory_fd
+[Vulkan @ 0x5a5a4c2e3440] Using device extension VK_EXT_external_memory_dma_buf
+[Vulkan @ 0x5a5a4c2e3440] Using device extension VK_EXT_image_drm_format_modifier
+[Vulkan @ 0x5a5a4c2e3440] Using device extension VK_KHR_external_semaphore_fd
+[Vulkan @ 0x5a5a4c2e3440] Using device extension VK_EXT_external_memory_host
+[Vulkan @ 0x5a5a4c2e3440] Using device extension VK_KHR_video_queue
+[Vulkan @ 0x5a5a4c2e3440] Using device extension VK_KHR_video_decode_queue
+[Vulkan @ 0x5a5a4c2e3440] Using device extension VK_KHR_video_decode_h264
+[Vulkan @ 0x5a5a4c2e3440] Using device extension VK_KHR_video_decode_h265
+[Vulkan @ 0x5a5a4c2e3440] Using device extension VK_KHR_video_decode_vp9
+[Vulkan @ 0x5a5a4c2e3440] Queue families:
+[Vulkan @ 0x5a5a4c2e3440]     0: graphics compute transfer (queues: 1)
+[Vulkan @ 0x5a5a4c2e3440]     1: decode (queues: 1)
+[Vulkan Loader] DRIVER:         vkCreateDevice layer callstack setup to:
+[Vulkan Loader] DRIVER:            <Application>
+[Vulkan Loader] DRIVER:              ||
+[Vulkan Loader] DRIVER:            <Loader>
+[Vulkan Loader] DRIVER:              ||
+[Vulkan Loader] DRIVER:            <Device>
+[Vulkan Loader] DRIVER:                Using "Intel(R) HD Graphics 620 (KBL GT2)" with driver: "/home/polarbear/.local/mesa-round2/lib/x86_64-linux-gnu/libvulkan_intel.so"
+[Vulkan @ 0x5a5a4c2e3440] Using device: Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan @ 0x5a5a4c2e3440] Alignments:
+[Vulkan @ 0x5a5a4c2e3440]     optimalBufferCopyRowPitchAlignment: 64
+[Vulkan @ 0x5a5a4c2e3440]     minMemoryMapAlignment:              4096
+[Vulkan @ 0x5a5a4c2e3440]     nonCoherentAtomSize:                64
+[Vulkan @ 0x5a5a4c2e3440]     minImportedHostPointerAlignment:    4096
+[Vulkan @ 0x5a5a4c2e3440] Using queue family 0 (queues: 1) for graphics compute transfers
+[Vulkan @ 0x5a5a4c2e3440] Using queue family 1 (queues: 1) for decode
+detected 4 logical cores
+[hevc @ 0x5a5a4c34a840] nal_unit_type: 32(VPS), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c34a840] nal_unit_type: 33(SPS), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c34a840] nal_unit_type: 34(PPS), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c34a840] Decoding VPS
+[hevc @ 0x5a5a4c34a840] Main profile bitstream
+[hevc @ 0x5a5a4c34a840] Decoding SPS
+[hevc @ 0x5a5a4c34a840] Main profile bitstream
+[hevc @ 0x5a5a4c34a840] Decoding VUI
+[hevc @ 0x5a5a4c34a840] Decoding PPS
+[file @ 0x5a5a4c8bfd00] Setting default whitelist 'file,crypto,data'
+Successfully opened the file.
+Stream mapping:
+  Stream #0:0 -> #0:0 (hevc (native) -> rawvideo (native))
+[vost#0:0/rawvideo @ 0x5a5a4c2e2780] Starting thread...
+[vf#0:0 @ 0x5a5a4c303140] Starting thread...
+[vist#0:0/hevc @ 0x5a5a4c2e2cc0] [dec:hevc @ 0x5a5a4c39fb00] Starting thread...
+[in#0/hevc @ 0x5a5a4c2e0d80] Starting thread...
+[hevc @ 0x5a5a4c34a840] nal_unit_type: 32(VPS), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c34a840] nal_unit_type: 33(SPS), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c34a840] nal_unit_type: 34(PPS), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c34a840] nal_unit_type: 39(SEI_PREFIX), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c34a840] nal_unit_type: 20(IDR_N_LP), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c34a840] Decoding SPS
+[hevc @ 0x5a5a4c34a840] Main profile bitstream
+[hevc @ 0x5a5a4c34a840] Decoding VUI
+[hevc @ 0x5a5a4c34a840] Decoding PPS
+[hevc @ 0x5a5a4c34a840] Decoding SEI
+[hevc @ 0x5a5a4c34a840] Format vulkan chosen by get_format().
+[hevc @ 0x5a5a4c34a840] Format vulkan requires hwaccel hevc_vulkan initialisation.
+[hevc @ 0x5a5a4c34a840] Decoder capabilities for hevc profile "Main":
+[hevc @ 0x5a5a4c34a840]     Maximum level: 62 (stream 63)
+[hevc @ 0x5a5a4c34a840]     Width: from 64 to 4096
+[hevc @ 0x5a5a4c34a840]     Height: from 64 to 4096
+[hevc @ 0x5a5a4c34a840]     Width alignment: 64
+[hevc @ 0x5a5a4c34a840]     Height alignment: 64
+[hevc @ 0x5a5a4c34a840]     Bitstream offset alignment: 32
+[hevc @ 0x5a5a4c34a840]     Bitstream size alignment: 1
+[hevc @ 0x5a5a4c34a840]     Maximum references: 16
+[hevc @ 0x5a5a4c34a840]     Maximum active references: 8
+[hevc @ 0x5a5a4c34a840]     Codec header name: 'VK_STD_vulkan_video_codec_h265_decode' (driver), 'VK_STD_vulkan_video_codec_h265_decode' (compiled)
+[hevc @ 0x5a5a4c34a840]     Codec header version: 1.0.0 (driver), 1.0.0 (compiled)
+[hevc @ 0x5a5a4c34a840]     Decode modes: reuse_dst_dpb
+[hevc @ 0x5a5a4c34a840]     Capability flags: separate_references
+[hevc @ 0x5a5a4c34a840] Choosing best pixel format for decoding from 2:
+[hevc @ 0x5a5a4c34a840]     nv12* (Vulkan ID: 1000156003)
+    Last message repeated 1 times
+[hevc @ 0x5a5a4c34a840] Chosen frame pixfmt: nv12 (Vulkan ID: 1000156003)
+[hevc @ 0x5a5a4c34a840] Allocating 32768 bytes in bind index 0 for video session
+[hevc @ 0x5a5a4c34a840] Allocating 32768 bytes in bind index 1 for video session
+[hevc @ 0x5a5a4c34a840] Allocating 35840 bytes in bind index 2 for video session
+[hevc @ 0x5a5a4c34a840] Allocating 6208 bytes in bind index 3 for video session
+[hevc @ 0x5a5a4c34a840] Allocating 5696 bytes in bind index 4 for video session
+[hevc @ 0x5a5a4c34a840] Allocating 6464 bytes in bind index 5 for video session
+[hevc @ 0x5a5a4c34a840] Allocating 17920 bytes in bind index 6 for video session
+[hevc @ 0x5a5a4c34a840] Allocating 19456 bytes in bind index 7 for video session
+[hevc @ 0x5a5a4c34a840] Allocating 19456 bytes in bind index 8 for video session
+[hevc @ 0x5a5a4c34a840] Vulkan decoder initialization successful
+[hevc @ 0x5a5a4c34a840] [vk @ 0x7615ac02d9c0] Creating a buffer of 2097152 bytes, usage: 0x2000, flags: 0x2
+[hevc @ 0x5a5a4c34a840] Decoding frame, 7552 bytes, 1 slices
+[hevc @ 0x5a5a4c34a840] Decoded frame with POC 0/0.
+[hevc @ 0x5a5a4c3337c0] nal_unit_type: 1(TRAIL_R), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c34a840] [vk @ 0x7615ac02d9c0] Creating a buffer of 2097152 bytes, usage: 0x2000, flags: 0x2
+[hevc @ 0x5a5a4c3337c0] Decoding frame, 6830 bytes, 1 slices
+[hevc @ 0x5a5a4c3337c0] Decoded frame with POC 0/4.
+[hevc @ 0x5a5a4c37ea00] nal_unit_type: 1(TRAIL_R), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c37ea00] Output frame with POC 0/0.
+[hevc @ 0x5a5a4c34a840] [vk @ 0x7615ac02d9c0] Creating a buffer of 2097152 bytes, usage: 0x2000, flags: 0x2
+[hevc @ 0x5a5a4c37ea00] Decoding frame, 3052 bytes, 1 slices
+[hevc @ 0x5a5a4c37ea00] Decoded frame with POC 0/2.
+[hevc @ 0x5a5a4c7410c0] nal_unit_type: 0(TRAIL_N), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c7410c0] Output frame with POC 0/1.
+[hevc @ 0x5a5a4c34a840] [vk @ 0x7615ac02d9c0] Creating a buffer of 2097152 bytes, usage: 0x2000, flags: 0x2
+[hevc @ 0x5a5a4c7410c0] Decoding frame, 1784 bytes, 1 slices
+[hevc @ 0x5a5a4c7410c0] Decoded frame with POC 0/1.
+[hevc @ 0x5a5a4c800580] nal_unit_type: 0(TRAIL_N), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c800580] Output frame with POC 0/2.
+[hevc @ 0x5a5a4c34a840] [vk @ 0x7615ac02d9c0] Creating a buffer of 2097152 bytes, usage: 0x2000, flags: 0x2
+[hevc @ 0x5a5a4c800580] Decoding frame, 1699 bytes, 1 slices
+[hevc @ 0x5a5a4c800580] Decoded frame with POC 0/3.
+[hevc @ 0x5a5a4c34a840] nal_unit_type: 1(TRAIL_R), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c34a840] Output frame with POC 0/3.
+[hevc @ 0x5a5a4c34a840] [vk @ 0x7615ac02d9c0] Creating a buffer of 2097152 bytes, usage: 0x2000, flags: 0x2
+[AVFilterGraph @ 0x7615b40010c0] Setting 'pix_fmts' to value 'nv12'
+[hevc @ 0x5a5a4c34a840] Decoding frame, 4624 bytes, 1 slices
+[hevc @ 0x5a5a4c34a840] Decoded frame with POC 0/8.
+[hevc @ 0x5a5a4c3337c0] nal_unit_type: 1(TRAIL_R), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c3337c0] Output frame with POC 0/4.
+[hevc @ 0x5a5a4c3337c0] Decoding frame, 2544 bytes, 1 slices
+[hevc @ 0x5a5a4c3337c0] Decoded frame with POC 0/6.
+[hevc @ 0x5a5a4c37ea00] nal_unit_type: 0(TRAIL_N), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c37ea00] Output frame with POC 0/5.
+[hevc @ 0x5a5a4c37ea00] Decoding frame, 1738 bytes, 1 slices
+[hevc @ 0x5a5a4c37ea00] Decoded frame with POC 0/5.
+[hevc @ 0x5a5a4c7410c0] nal_unit_type: 0(TRAIL_N), nuh_layer_id: 0, temporal_id: 0
+[graph -1 input from stream 0:0 @ 0x7615b40029c0] w:640 h:384 pixfmt:vulkan tb:1/1200000 fr:30/1 sar:1/1 csp:unknown range:tv
+Filter 'Parsed_hwdownload_0' formats:
+  in[0] 'default': vaapi dxva2_vld vdpau qsv mmal d3d11va_vld cuda videotoolbox_vld mediacodec d3d11 drm_prime opencl vulkan d3d12 amf ohcodec
+  out[0] 'default': yuv420p yuyv422 rgb24 bgr24 yuv422p yuv444p yuv410p yuv411p gray monow monob pal8 yuvj420p yuvj422p yuvj444p uyvy422 uyyvyy411 bgr8 bgr4 bgr4_byte rgb8 rgb4 rgb4_byte nv12 nv21 argb rgba abgr bgra gray16be gray16le yuv440p yuvj440p yuva420p rgb48be rgb48le rgb565be rgb565le rgb555be rgb555le bgr565be bgr565le bgr555be bgr555le yuv420p16le yuv420p16be yuv422p16le yuv422p16be yuv444p16le yuv444p16be rgb444le rgb444be bgr444le bgr444be ya8 bgr48be bgr48le yuv420p9be yuv420p9le yuv420p10be yuv420p10le yuv422p10be yuv422p10le yuv444p9be yuv444p9le yuv444p10be yuv444p10le yuv422p9be yuv422p9le gbrp gbrp9be gbrp9le gbrp10be gbrp10le gbrp16be gbrp16le yuva422p yuva444p yuva420p9be yuva420p9le yuva422p9be yuva422p9le yuva444p9be yuva444p9le yuva420p10be yuva420p10le yuva422p10be yuva422p10le yuva444p10be yuva444p10le yuva420p16be yuva420p16le yuva422p16be yuva422p16le yuva444p16be yuva444p16le xyz12le xyz12be nv16 nv20le nv20be rgba64be rgba64le bgra64be bgra64le yvyu422 ya16be ya16le gbrap gbrap16be gbrap16le 0rgb rgb0 0bgr bgr0 yuv420p12be yuv420p12le yuv420p14be yuv420p14le yuv422p12be yuv422p12le yuv422p14be yuv422p14le yuv444p12be yuv444p12le yuv444p14be yuv444p14le gbrp12be gbrp12le gbrp14be gbrp14le yuvj411p bayer_bggr8 bayer_rggb8 bayer_gbrg8 bayer_grbg8 bayer_bggr16le bayer_bggr16be bayer_rggb16le bayer_rggb16be bayer_gbrg16le bayer_gbrg16be bayer_grbg16le bayer_grbg16be yuv440p10le yuv440p10be yuv440p12le yuv440p12be ayuv64le ayuv64be p010le p010be gbrap12be gbrap12le gbrap10be gbrap10le gray12be gray12le gray10be gray10le p016le p016be gray9be gray9le gbrpf32be gbrpf32le gbrapf32be gbrapf32le gray14be gray14le grayf32be grayf32le yuva422p12be yuva422p12le yuva444p12be yuva444p12le nv24 nv42 y210be y210le x2rgb10le x2rgb10be x2bgr10le x2bgr10be p210be p210le p410be p410le p216be p216le p416be p416le vuya rgbaf16be rgbaf16le vuyx p012le p012be y212be y212le xv30be xv30le xv36be xv36le rgbf32be rgbf32le rgbaf32be rgbaf32le p212be p212le p412be p412le gbrap14be gbrap14le ayuv uyva vyu444 v30xbe v30xle rgbf16be rgbf16le rgba128be rgba128le rgb96be rgb96le y216be y216le xv48be xv48le gbrpf16be gbrpf16le gbrapf16be gbrapf16le grayf16be grayf16le gray32be gray32le yaf32be yaf32le yaf16be yaf16le gbrap32be gbrap32le yuv444p10msbbe yuv444p10msble yuv444p12msbbe yuv444p12msble gbrp10msbbe gbrp10msble gbrp12msbbe gbrp12msble
+Filter 'Parsed_format_1' formats:
+  in[0] 'default': nv12
+  out[0] 'default': nv12
+Filter 'graph -1 input from stream 0:0' formats:
+  out[0] 'default': vulkan
+Filter 'out_#0:0' formats:
+  in[0] 'default': yuv420p yuyv422 rgb24 bgr24 yuv422p yuv444p yuv410p yuv411p gray monow monob pal8 yuvj420p yuvj422p yuvj444p uyvy422 uyyvyy411 bgr8 bgr4 bgr4_byte rgb8 rgb4 rgb4_byte nv12 nv21 argb rgba abgr bgra gray16be gray16le yuv440p yuvj440p yuva420p rgb48be rgb48le rgb565be rgb565le rgb555be rgb555le bgr565be bgr565le bgr555be bgr555le vaapi yuv420p16le yuv420p16be yuv422p16le yuv422p16be yuv444p16le yuv444p16be dxva2_vld rgb444le rgb444be bgr444le bgr444be ya8 bgr48be bgr48le yuv420p9be yuv420p9le yuv420p10be yuv420p10le yuv422p10be yuv422p10le yuv444p9be yuv444p9le yuv444p10be yuv444p10le yuv422p9be yuv422p9le gbrp gbrp9be gbrp9le gbrp10be gbrp10le gbrp16be gbrp16le yuva422p yuva444p yuva420p9be yuva420p9le yuva422p9be yuva422p9le yuva444p9be yuva444p9le yuva420p10be yuva420p10le yuva422p10be yuva422p10le yuva444p10be yuva444p10le yuva420p16be yuva420p16le yuva422p16be yuva422p16le yuva444p16be yuva444p16le vdpau xyz12le xyz12be nv16 nv20le nv20be rgba64be rgba64le bgra64be bgra64le yvyu422 ya16be ya16le gbrap gbrap16be gbrap16le qsv mmal d3d11va_vld cuda 0rgb rgb0 0bgr bgr0 yuv420p12be yuv420p12le yuv420p14be yuv420p14le yuv422p12be yuv422p12le yuv422p14be yuv422p14le yuv444p12be yuv444p12le yuv444p14be yuv444p14le gbrp12be gbrp12le gbrp14be gbrp14le yuvj411p bayer_bggr8 bayer_rggb8 bayer_gbrg8 bayer_grbg8 bayer_bggr16le bayer_bggr16be bayer_rggb16le bayer_rggb16be bayer_gbrg16le bayer_gbrg16be bayer_grbg16le bayer_grbg16be yuv440p10le yuv440p10be yuv440p12le yuv440p12be ayuv64le ayuv64be videotoolbox_vld p010le p010be gbrap12be gbrap12le gbrap10be gbrap10le mediacodec gray12be gray12le gray10be gray10le p016le p016be d3d11 gray9be gray9le gbrpf32be gbrpf32le gbrapf32be gbrapf32le drm_prime opencl gray14be gray14le grayf32be grayf32le yuva422p12be yuva422p12le yuva444p12be yuva444p12le nv24 nv42 vulkan y210be y210le x2rgb10le x2rgb10be x2bgr10le x2bgr10be p210be p210le p410be p410le p216be p216le p416be p416le vuya rgbaf16be rgbaf16le vuyx p012le p012be y212be y212le xv30be xv30le xv36be xv36le rgbf32be rgbf32le rgbaf32be rgbaf32le p212be p212le p412be p412le gbrap14be gbrap14le d3d12 ayuv uyva vyu444 v30xbe v30xle rgbf16be rgbf16le rgba128be rgba128le rgb96be rgb96le y216be y216le xv48be xv48le gbrpf16be gbrpf16le gbrapf16be gbrapf16le grayf16be grayf16le amf gray32be gray32le yaf32be yaf32le yaf16be yaf16le gbrap32be gbrap32le yuv444p10msbbe yuv444p10msble yuv444p12msbbe yuv444p12msble gbrp10msbbe gbrp10msble gbrp12msbbe gbrp12msble ohcodec
+[AVFilterGraph @ 0x7615b40010c0] query_formats: 4 queried, 9 merged, 0 already done, 0 delayed
+[graph -1 input from stream 0:0 @ 0x7615b40029c0] video frame properties congruent with link at pts_time: 0
+[hevc @ 0x5a5a4c7410c0] Output frame with POC 0/6.
+[hevc @ 0x5a5a4c7410c0] Decoding frame, 1788 bytes, 1 slices
+[hevc @ 0x5a5a4c7410c0] Decoded frame with POC 0/7.
+[hevc @ 0x5a5a4c800580] nal_unit_type: 1(TRAIL_R), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c800580] Output frame with POC 0/7.
+[hevc @ 0x5a5a4c800580] Decoding frame, 4375 bytes, 1 slices
+[hevc @ 0x5a5a4c800580] Decoded frame with POC 0/12.
+[hevc @ 0x5a5a4c34a840] nal_unit_type: 1(TRAIL_R), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c34a840] Output frame with POC 0/8.
+[hevc @ 0x5a5a4c34a840] Decoding frame, 2880 bytes, 1 slices
+[hevc @ 0x5a5a4c34a840] Decoded frame with POC 0/10.
+[hevc @ 0x5a5a4c3337c0] nal_unit_type: 0(TRAIL_N), nuh_layer_id: 0, temporal_id: 0
+Output #0, framemd5, to 'hevc-huc/main-vulkan.md5':
+  Metadata:
+    encoder         : Lavf62.3.100
+  Stream #0:0, 0, 1/30: Video: rawvideo, 1 reference frame (NV12 / 0x3231564E), nv12(tv, progressive, left), 640x384 [SAR 1:1 DAR 5:3], 0/1, q=2-31, 88473 kb/s, 30 fps, 30 tbn
+[hevc @ 0x5a5a4c3337c0] Output frame with POC 0/9.
+    Metadata:
+      encoder         : Lavc62.11.100 rawvideo
+[out#0/framemd5 @ 0x5a5a4c39f900] Starting thread...
+[hevc @ 0x5a5a4c3337c0] Decoding frame, 1733 bytes, 1 slices
+[hevc @ 0x5a5a4c3337c0] Decoded frame with POC 0/9.
+[hevc @ 0x5a5a4c37ea00] nal_unit_type: 0(TRAIL_N), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c37ea00] Output frame with POC 0/10.
+[hevc @ 0x5a5a4c37ea00] Decoding frame, 1808 bytes, 1 slices
+[hevc @ 0x5a5a4c37ea00] Decoded frame with POC 0/11.
+[hevc @ 0x5a5a4c7410c0] nal_unit_type: 1(TRAIL_R), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c7410c0] Output frame with POC 0/11.
+[hevc @ 0x5a5a4c7410c0] Decoding frame, 3568 bytes, 1 slices
+[hevc @ 0x5a5a4c7410c0] Decoded frame with POC 0/16.
+[hevc @ 0x5a5a4c800580] nal_unit_type: 1(TRAIL_R), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c800580] Output frame with POC 0/12.
+[hevc @ 0x5a5a4c800580] Decoding frame, 2742 bytes, 1 slices
+[hevc @ 0x5a5a4c800580] Decoded frame with POC 0/14.
+[hevc @ 0x5a5a4c34a840] nal_unit_type: 0(TRAIL_N), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c34a840] Output frame with POC 0/13.
+[hevc @ 0x5a5a4c34a840] Decoding frame, 1766 bytes, 1 slices
+[hevc @ 0x5a5a4c34a840] Decoded frame with POC 0/13.
+[hevc @ 0x5a5a4c3337c0] nal_unit_type: 0(TRAIL_N), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c3337c0] Output frame with POC 0/14.
+[hevc @ 0x5a5a4c3337c0] Decoding frame, 1791 bytes, 1 slices
+[hevc @ 0x5a5a4c3337c0] Decoded frame with POC 0/15.
+[hevc @ 0x5a5a4c37ea00] nal_unit_type: 32(VPS), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c37ea00] nal_unit_type: 33(SPS), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c37ea00] nal_unit_type: 34(PPS), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c37ea00] nal_unit_type: 39(SEI_PREFIX), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c37ea00] nal_unit_type: 21(CRA_NUT), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c37ea00] Decoding SPS
+[hevc @ 0x5a5a4c37ea00] Main profile bitstream
+[hevc @ 0x5a5a4c37ea00] Decoding VUI
+[hevc @ 0x5a5a4c37ea00] Decoding PPS
+[hevc @ 0x5a5a4c37ea00] Decoding SEI
+[hevc @ 0x5a5a4c37ea00] Output frame with POC 0/15.
+[hevc @ 0x5a5a4c37ea00] Decoding frame, 8874 bytes, 1 slices
+[hevc @ 0x5a5a4c37ea00] Decoded frame with POC 0/18.
+[hevc @ 0x5a5a4c7410c0] nal_unit_type: 8(RASL_N), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c7410c0] Output frame with POC 0/16.
+[hevc @ 0x5a5a4c7410c0] Decoding frame, 1745 bytes, 1 slices
+[hevc @ 0x5a5a4c7410c0] Decoded frame with POC 0/17.
+[hevc @ 0x5a5a4c800580] nal_unit_type: 1(TRAIL_R), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c800580] Output frame with POC 0/17.
+[hevc @ 0x5a5a4c800580] Decoding frame, 4842 bytes, 1 slices
+[hevc @ 0x5a5a4c800580] Decoded frame with POC 0/22.
+[hevc @ 0x5a5a4c34a840] nal_unit_type: 1(TRAIL_R), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c34a840] Output frame with POC 0/18.
+[hevc @ 0x5a5a4c34a840] Decoding frame, 2993 bytes, 1 slices
+[hevc @ 0x5a5a4c34a840] Decoded frame with POC 0/20.
+[hevc @ 0x5a5a4c3337c0] nal_unit_type: 0(TRAIL_N), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c3337c0] Output frame with POC 0/19.
+[hevc @ 0x5a5a4c3337c0] Decoding frame, 1828 bytes, 1 slices
+[hevc @ 0x5a5a4c3337c0] Decoded frame with POC 0/19.
+[hevc @ 0x5a5a4c37ea00] nal_unit_type: 0(TRAIL_N), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c37ea00] Output frame with POC 0/20.
+[hevc @ 0x5a5a4c37ea00] Decoding frame, 1835 bytes, 1 slices
+[hevc @ 0x5a5a4c37ea00] Decoded frame with POC 0/21.
+[hevc @ 0x5a5a4c7410c0] nal_unit_type: 1(TRAIL_R), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c7410c0] Output frame with POC 0/21.
+[hevc @ 0x5a5a4c7410c0] Decoding frame, 4334 bytes, 1 slices
+[hevc @ 0x5a5a4c7410c0] Decoded frame with POC 0/26.
+[hevc @ 0x5a5a4c800580] nal_unit_type: 1(TRAIL_R), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c800580] Output frame with POC 0/22.
+[hevc @ 0x5a5a4c800580] Decoding frame, 2778 bytes, 1 slices
+[hevc @ 0x5a5a4c800580] Decoded frame with POC 0/24.
+[hevc @ 0x5a5a4c34a840] nal_unit_type: 0(TRAIL_N), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c34a840] Output frame with POC 0/23.
+[hevc @ 0x5a5a4c34a840] Decoding frame, 1796 bytes, 1 slices
+[hevc @ 0x5a5a4c34a840] Decoded frame with POC 0/23.
+[hevc @ 0x5a5a4c3337c0] nal_unit_type: 0(TRAIL_N), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c3337c0] Output frame with POC 0/24.
+[hevc @ 0x5a5a4c3337c0] Decoding frame, 1860 bytes, 1 slices
+[hevc @ 0x5a5a4c3337c0] Decoded frame with POC 0/25.
+[in#0/hevc @ 0x5a5a4c2e0d80] EOF while reading input
+[in#0/hevc @ 0x5a5a4c2e0d80] Terminating thread with return code 0 (success)
+[hevc @ 0x5a5a4c37ea00] nal_unit_type: 1(TRAIL_R), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c37ea00] Output frame with POC 0/25.
+[hevc @ 0x5a5a4c37ea00] Decoding frame, 4176 bytes, 1 slices
+[hevc @ 0x5a5a4c37ea00] Decoded frame with POC 0/30.
+[hevc @ 0x5a5a4c7410c0] nal_unit_type: 1(TRAIL_R), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c7410c0] Output frame with POC 0/26.
+[hevc @ 0x5a5a4c7410c0] Decoding frame, 2881 bytes, 1 slices
+[hevc @ 0x5a5a4c7410c0] Decoded frame with POC 0/28.
+[hevc @ 0x5a5a4c800580] nal_unit_type: 0(TRAIL_N), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c800580] Output frame with POC 0/27.
+[hevc @ 0x5a5a4c800580] Decoding frame, 1795 bytes, 1 slices
+[hevc @ 0x5a5a4c800580] Decoded frame with POC 0/27.
+[hevc @ 0x5a5a4c34a840] nal_unit_type: 0(TRAIL_N), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c34a840] Output frame with POC 0/28.
+[hevc @ 0x5a5a4c34a840] Decoding frame, 1723 bytes, 1 slices
+[hevc @ 0x5a5a4c34a840] Decoded frame with POC 0/29.
+[hevc @ 0x5a5a4c3337c0] nal_unit_type: 1(TRAIL_R), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c3337c0] Output frame with POC 0/29.
+[hevc @ 0x5a5a4c3337c0] Decoding frame, 4009 bytes, 1 slices
+[hevc @ 0x5a5a4c3337c0] Decoded frame with POC 0/34.
+[hevc @ 0x5a5a4c37ea00] nal_unit_type: 1(TRAIL_R), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c37ea00] Output frame with POC 0/30.
+[hevc @ 0x5a5a4c37ea00] Decoding frame, 2790 bytes, 1 slices
+[hevc @ 0x5a5a4c37ea00] Decoded frame with POC 0/32.
+[hevc @ 0x5a5a4c7410c0] nal_unit_type: 0(TRAIL_N), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c7410c0] Output frame with POC 0/31.
+[hevc @ 0x5a5a4c7410c0] Decoding frame, 1676 bytes, 1 slices
+[hevc @ 0x5a5a4c7410c0] Decoded frame with POC 0/31.
+[hevc @ 0x5a5a4c800580] nal_unit_type: 0(TRAIL_N), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c800580] Output frame with POC 0/32.
+[hevc @ 0x5a5a4c800580] Decoding frame, 1710 bytes, 1 slices
+[hevc @ 0x5a5a4c800580] Decoded frame with POC 0/33.
+[hevc @ 0x5a5a4c34a840] nal_unit_type: 1(TRAIL_R), nuh_layer_id: 0, temporal_id: 0
+[hevc @ 0x5a5a4c34a840] Output frame with POC 0/33.
+[hevc @ 0x5a5a4c34a840] Decoding frame, 2553 bytes, 1 slices
+[hevc @ 0x5a5a4c34a840] Decoded frame with POC 0/35.
+[vist#0:0/hevc @ 0x5a5a4c2e2cc0] [dec:hevc @ 0x5a5a4c39fb00] Decoder thread received EOF packet
+[hevc @ 0x5a5a4c3337c0] Output frame with POC 0/34.
+[hevc @ 0x5a5a4c3337c0] Output frame with POC 0/35.
+[vist#0:0/hevc @ 0x5a5a4c2e2cc0] [dec:hevc @ 0x5a5a4c39fb00] Decoder returned EOF, finishing
+[vist#0:0/hevc @ 0x5a5a4c2e2cc0] [dec:hevc @ 0x5a5a4c39fb00] Terminating thread with return code 0 (success)
+[out_#0:0 @ 0x7615b4002e00] EOF on sink link out_#0:0:default.
+[vf#0:0 @ 0x5a5a4c303140] Filtergraph returned EOF, finishing
+[vf#0:0 @ 0x5a5a4c303140] All consumers returned EOF
+[vost#0:0/rawvideo @ 0x5a5a4c2e2780] [enc:rawvideo @ 0x5a5a4c2feec0] Encoder thread received EOF
+[vost#0:0/rawvideo @ 0x5a5a4c2e2780] Terminating thread with return code 0 (success)
+[vf#0:0 @ 0x5a5a4c303140] Terminating thread with return code 0 (success)
+[out#0/framemd5 @ 0x5a5a4c39f900] All streams finished
+[out#0/framemd5 @ 0x5a5a4c39f900] Terminating thread with return code 0 (success)
+[AVIOContext @ 0x5a5a4c8ffe80] Statistics: 3094 bytes written, 0 seeks, 1 writeouts
+[out#0/framemd5 @ 0x5a5a4c39f900] Output file #0 (hevc-huc/main-vulkan.md5):
+[out#0/framemd5 @ 0x5a5a4c39f900]   Output stream #0:0 (video): 36 frames encoded; 36 packets muxed (13271040 bytes); 
+[out#0/framemd5 @ 0x5a5a4c39f900]   Total: 36 packets (13271040 bytes) muxed
+[out#0/framemd5 @ 0x5a5a4c39f900] video:12960KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=   36 fps=0.0 q=-0.0 Lsize=       3KiB time=00:00:01.20 bitrate=  20.6kbits/s speed=14.8x elapsed=0:00:00.08    
+[in#0/hevc @ 0x5a5a4c2e0d80] Input file #0 (evidence/hevc-regression/inputs/main.hevc):
+[in#0/hevc @ 0x5a5a4c2e0d80]   Input stream #0:0 (video): 36 packets read (113346 bytes); 36 frames decoded; 0 decode errors; 
+[in#0/hevc @ 0x5a5a4c2e0d80]   Total: 36 packets (113346 bytes) demuxed
+[AVIOContext @ 0x5a5a4c2e97c0] Statistics: 113346 bytes read, 0 seeks
+
+Exiting with exit code 0

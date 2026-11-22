@@ -1,0 +1,6 @@
+round 1 opt=false: load 2319.6 1645.0 pixels=ok | blend2 2149.2 1850.1 pixels=ok
+round 1 opt=true: load 1438.7 1502.1 pixels=ok | blend2 1410.4 1488.7 pixels=ok
+round 2 opt=false: load 2414.2 1544.8 pixels=ok | blend2 2141.1 1712.5 pixels=ok
+round 2 opt=true: load 1481.7 1552.8 pixels=ok | blend2 1714.8 1510.8 pixels=ok
+round 3 opt=false: load 2648.5 1552.5 pixels=ok | blend2 2206.5 1567.4 pixels=ok
+round 3 opt=true: load 1523.4 1512.1 pixels=ok | blend2 1498.8 1653.5 pixels=ok

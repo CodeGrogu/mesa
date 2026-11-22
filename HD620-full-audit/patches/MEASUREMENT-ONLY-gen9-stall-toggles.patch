@@ -1,0 +1,82 @@
+--- a/genX_cmd_buffer.c	2026-11-19 20:29:42.640368230 +0200
++++ b/genX_cmd_buffer.c	2026-11-19 20:29:42.686975161 +0200
+@@ -880,6 +880,23 @@
+    }
+ }
+ 
++
++/* MEASUREMENT ONLY (not for merging): ANV_GEN9_STALL_EXP bitmask disables
++ * Gen9-only flushes so their cost can be measured on hardware.
++ *   1 = null PIPE_CONTROL before VF cache invalidate
++ *   2 = forced push constant reallocation
++ *   4 = MEDIA_VFE_STATE re-emit after GPGPU -> 3D
++ *   8 = state cache invalidate after load_clear_color
++ */
++static UNUSED unsigned
++gfx9_stall_exp(void)
++{
++   static int v = -1;
++   if (v < 0)
++      v = debug_get_num_option("ANV_GEN9_STALL_EXP", 0);
++   return v;
++}
++
+ void
+ genX(cmd_buffer_mark_image_written)(struct anv_cmd_buffer *cmd_buffer,
+                                     const struct anv_image *image,
+@@ -946,6 +963,7 @@
+     *
+     * In testing, SKL doesn't actually seem to need this, but HSW does.
+     */
++   if (!(gfx9_stall_exp() & 8))
+    anv_add_pending_pipe_bits(cmd_buffer,
+                              VK_PIPELINE_STAGE_2_TOP_OF_PIPE_BIT,
+                              VK_PIPELINE_STAGE_2_TOP_OF_PIPE_BIT,
+@@ -3166,7 +3184,8 @@
+     *
+     * This appears to hang Broadwell, so we restrict it to just gfx9.
+     */
+-   if (GFX_VER == 9 && (bits & ANV_PIPE_VF_CACHE_INVALIDATE_BIT))
++   if (GFX_VER == 9 && (bits & ANV_PIPE_VF_CACHE_INVALIDATE_BIT) &&
++       !(gfx9_stall_exp() & 1))
+       anv_batch_emit(batch, GENX(PIPE_CONTROL), pipe);
+ 
+    anv_batch_emit(batch, GENX(PIPE_CONTROL), pipe) {
+@@ -5953,7 +5972,7 @@
+    genX(cmd_buffer_apply_pipe_flushes)(cmd_buffer);
+ 
+ #if GFX_VER == 9
+-   if (pipeline == _3D) {
++   if (pipeline == _3D && !(gfx9_stall_exp() & 4)) {
+       /* There is a mid-object preemption workaround which requires you to
+        * re-emit MEDIA_VFE_STATE after switching from GPGPU to 3D.  However,
+        * even without preemption, we have issues with geometry flickering when
+--- a/genX_cmd_draw.c	2026-11-19 20:29:42.640586389 +0200
++++ b/genX_cmd_draw.c	2026-11-19 20:29:52.985599418 +0200
+@@ -36,6 +36,17 @@
+ 
+ #include "genX_mi_builder.h"
+ 
++
++/* MEASUREMENT ONLY: see gfx9_stall_exp() in genX_cmd_buffer.c. */
++static UNUSED unsigned
++gfx9_stall_exp(void)
++{
++   static int v = -1;
++   if (v < 0)
++      v = debug_get_num_option("ANV_GEN9_STALL_EXP", 0);
++   return v;
++}
++
+ static inline void
+ batch_emit_push_constants_alloc(struct anv_batch *batch,
+                                 struct anv_device *device,
+@@ -501,7 +512,7 @@
+     * Always reallocate on gfx9, gfx11 to fix push constant related flaky tests.
+     * See https://gitlab.freedesktop.org/mesa/mesa/-/issues/11064
+     */
+-   if (GFX_VER < 12)
++   if (GFX_VER < 12 && !(gfx9_stall_exp() & 2))
+       bind_state->push_constants_state = ANV_STATE_NULL;
+ 
+ #if GFX_VERx10 >= 125

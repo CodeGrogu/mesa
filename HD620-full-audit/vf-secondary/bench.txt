@@ -1,0 +1,8 @@
+round 1 old: bench: 1000 vkCmdExecuteCommands, GPU median 13.69 us per execution
+round 1 new: bench: 1000 vkCmdExecuteCommands, GPU median 13.71 us per execution
+round 2 old: bench: 1000 vkCmdExecuteCommands, GPU median 13.48 us per execution
+round 2 new: bench: 1000 vkCmdExecuteCommands, GPU median 13.38 us per execution
+round 3 old: bench: 1000 vkCmdExecuteCommands, GPU median 14.33 us per execution
+round 3 new: bench: 1000 vkCmdExecuteCommands, GPU median 13.27 us per execution
+old: 20000 VF invalidates
+new: 20 VF invalidates

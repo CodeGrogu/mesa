@@ -1,0 +1,8 @@
+h264_vaapi-nv12 frames=60 hardware/software hashes equal
+hevc_vaapi-nv12 frames=60 hardware/software hashes equal
+hevc_vaapi-p010le frames=60 hardware/software hashes equal
+Files /dev/fd/63 and /dev/fd/62 differ
+mpeg2_vaapi-nv12 frames=60 hardware/software hashes differ
+vp8_vaapi-nv12 frames=60 hardware/software hashes equal
+Files /dev/fd/63 and /dev/fd/62 differ
+mjpeg_vaapi-nv12 frames=60 hardware/software hashes differ

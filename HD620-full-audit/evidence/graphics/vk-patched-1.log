@@ -1,0 +1,53 @@
+[Vulkan Loader] DRIVER:         Searching for driver manifest files
+[Vulkan Loader] DRIVER:            In following locations:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/icd.json
+[Vulkan Loader] DRIVER:            Found the following files:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/icd.json
+[Vulkan Loader] DRIVER:         Found ICD manifest file /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/icd.json, version 1.0.1
+[Vulkan Loader] DEBUG | DRIVER: Searching for ICD drivers named /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/libvulkan_intel.so
+[Vulkan Loader] INFO | DRIVER:  linux_read_sorted_physical_devices:
+[Vulkan Loader] INFO | DRIVER:       Original order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan Loader] INFO | DRIVER:       Sorted order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)  
+[Vulkan Loader] INFO | DRIVER:  linux_read_sorted_physical_devices:
+[Vulkan Loader] INFO | DRIVER:       Original order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan Loader] INFO | DRIVER:       Sorted order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)  
+[Vulkan Loader] DEBUG | DRIVER: Copying old device 0 into new device 0
+[Vulkan Loader] INFO | DRIVER:  linux_read_sorted_physical_devices:
+[Vulkan Loader] INFO | DRIVER:       Original order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan Loader] INFO | DRIVER:       Sorted order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)  
+[Vulkan Loader] DEBUG | DRIVER: Copying old device 0 into new device 0
+[Vulkan Loader] INFO | DRIVER:  linux_read_sorted_physical_devices:
+[Vulkan Loader] INFO | DRIVER:       Original order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan Loader] INFO | DRIVER:       Sorted order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)  
+[Vulkan Loader] DEBUG | DRIVER: Copying old device 0 into new device 0
+[Vulkan Loader] DRIVER:         vkCreateDevice layer callstack setup to:
+[Vulkan Loader] DRIVER:            <Application>
+[Vulkan Loader] DRIVER:              ||
+[Vulkan Loader] DRIVER:            <Loader>
+[Vulkan Loader] DRIVER:              ||
+[Vulkan Loader] DRIVER:            <Device>
+[Vulkan Loader] DRIVER:                Using "Intel(R) HD Graphics 620 (KBL GT2)" with driver: "/home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/libvulkan_intel.so"
+=======================================================
+    vkmark 2025.01
+=======================================================
+    Vendor ID:      0x8086
+    Device ID:      0x5916
+    Device Name:    Intel(R) HD Graphics 620 (KBL GT2)
+    Driver Version: 109457507
+    Device UUID:    7b96993cee0773e48a036a70fa469821
+=======================================================
+[vertex] device-local=true:duration=2: FPS: 7540 FrameTime: 0.133 ms
+[vertex] device-local=false:duration=2: FPS: 5985 FrameTime: 0.167 ms
+[shading] shading=phong:duration=2: FPS: 5055 FrameTime: 0.198 ms
+[effect2d] kernel=blur:duration=2: FPS: 1506 FrameTime: 0.664 ms
+=======================================================
+                                   vkmark Score: 5021
+=======================================================

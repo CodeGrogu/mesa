@@ -1,0 +1,45 @@
+Input #0, lavfi, from 'testsrc2=size=640x360:rate=30':
+  Duration: N/A, start: 0.000000, bitrate: N/A
+  Stream #0:0: Video: wrapped_avframe, yuv420p, 640x360 [SAR 1:1 DAR 16:9], 30 fps, 30 tbr, 30 tbn
+[out#0/mjpeg @ 0x619b7fd65b80] Codec AVOption qp (use constant quantizer mode) has not been used for any stream. The most likely reason is either wrong type (e.g. a video option with no video streams) or that it is a private option of some decoder which was not actually used for any stream.
+Stream mapping:
+  Stream #0:0 -> #0:0 (wrapped_avframe (native) -> mjpeg (mjpeg_vaapi))
+[mjpeg_vaapi @ 0x619b7fd66540] No quality level set; using default (80).
+Output #0, mjpeg, to '/home/polarbear/.t3/projects/catchingup/HD620-full-audit/evidence/media/mjpeg_vaapi-nv12.mjpeg':
+  Metadata:
+    encoder         : Lavf62.3.100
+  Stream #0:0: Video: mjpeg (Baseline), vaapi(tv, progressive), 640x360 [SAR 1:1 DAR 16:9], q=2-31, 30 fps, 30 tbn
+    Metadata:
+      encoder         : Lavc62.11.100 mjpeg_vaapi
+[out#0/mjpeg @ 0x619b7fd65b80] video:1080KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.000000%
+frame=   60 fps=0.0 q=-0.0 Lsize=    1080KiB time=00:00:02.00 bitrate=4425.0kbits/s speed=  68x elapsed=0:00:00.02    
+stream|codec_name=mjpeg|profile=Baseline|pix_fmt=yuvj420p
+[mjpeg @ 0x619dff34f0c0] Format mjpeg detected only with low score of 25, misdetection possible!
+Input #0, mjpeg, from '/home/polarbear/.t3/projects/catchingup/HD620-full-audit/evidence/media/mjpeg_vaapi-nv12.mjpeg':
+  Duration: N/A, bitrate: N/A
+  Stream #0:0: Video: mjpeg (Baseline), yuvj420p(pc, bt470bg/unknown/unknown), 640x360, 25 fps, 25 tbr, 1200k tbn
+Stream mapping:
+  Stream #0:0 -> #0:0 (mjpeg (native) -> rawvideo (native))
+Output #0, framemd5, to '/home/polarbear/.t3/projects/catchingup/HD620-full-audit/evidence/media/mjpeg_vaapi-nv12-hw.md5':
+  Metadata:
+    encoder         : Lavf62.3.100
+  Stream #0:0: Video: rawvideo (NV12 / 0x3231564E), nv12(pc, bt470bg/unknown/unknown, progressive), 640x360, q=2-31, 69120 kb/s, 25 fps, 25 tbn
+    Metadata:
+      encoder         : Lavc62.11.100 rawvideo
+[out#0/framemd5 @ 0x619dff35c540] video:20250KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=   60 fps=0.0 q=-0.0 Lsize=       5KiB time=00:00:02.40 bitrate=  16.7kbits/s speed=22.1x elapsed=0:00:00.10    
+[mjpeg @ 0x60aea2b6ef80] Format mjpeg detected only with low score of 25, misdetection possible!
+Input #0, mjpeg, from '/home/polarbear/.t3/projects/catchingup/HD620-full-audit/evidence/media/mjpeg_vaapi-nv12.mjpeg':
+  Duration: N/A, bitrate: N/A
+  Stream #0:0: Video: mjpeg (Baseline), yuvj420p(pc, bt470bg/unknown/unknown), 640x360, 25 fps, 25 tbr, 1200k tbn
+Stream mapping:
+  Stream #0:0 -> #0:0 (mjpeg (native) -> rawvideo (native))
+[swscaler @ 0x7b344802d400] deprecated pixel format used, make sure you did set range correctly
+Output #0, framemd5, to '/home/polarbear/.t3/projects/catchingup/HD620-full-audit/evidence/media/mjpeg_vaapi-nv12-sw.md5':
+  Metadata:
+    encoder         : Lavf62.3.100
+  Stream #0:0: Video: rawvideo (NV12 / 0x3231564E), nv12(pc, bt470bg/unknown/unknown, progressive), 640x360, q=2-31, 69120 kb/s, 25 fps, 25 tbn
+    Metadata:
+      encoder         : Lavc62.11.100 rawvideo
+[out#0/framemd5 @ 0x60aea2b7c480] video:20250KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=   60 fps=0.0 q=-0.0 Lsize=       5KiB time=00:00:02.40 bitrate=  16.7kbits/s speed=57.9x elapsed=0:00:00.04    

@@ -1,0 +1,31 @@
+Mesa Intel(R) HD Graphics 620 (KBL GT2) OpenCL 3.0 
+1048576 exact results, local 32
+  event duration    median   0.000916 ms  samples ns [917, 917, 917, 916, 833, 833, 833, 834, 917]
+  enqueue and wait  median   1.983360 ms  samples ns [2120614, 2040446, 1721808, 1653956, 1989156, 1792123, 1804201, 1983360, 2182655]
+  i915 render busy  median   1.339869 ms  samples ns [1339869, 1334474, 1313143, 1666806, 1372986, 1294800, 1273220, 1356469, 1352236]
+1048576 exact results, local 64
+  event duration    median   0.000917 ms  samples ns [916, 916, 1000, 917, 917, 917, 917, 917, 916]
+  enqueue and wait  median   1.784119 ms  samples ns [1688032, 1796630, 1780446, 1752833, 1784119, 1797911, 1732988, 1968034, 1928326]
+  i915 render busy  median   1.227072 ms  samples ns [1227072, 1220930, 1225412, 1256786, 1234874, 1217195, 1227404, 1249067, 1159261]
+1048576 exact results, local 128
+  event duration    median   0.000917 ms  samples ns [916, 917, 1000, 917, 917, 1000, 916, 917, 917]
+  enqueue and wait  median   1.866742 ms  samples ns [2047819, 1866742, 1989743, 1977822, 1729092, 1693205, 1642825, 1614914, 1885931]
+  i915 render busy  median   1.193706 ms  samples ns [1193706, 1168474, 1200180, 1185489, 1788816, 1148886, 1283346, 1211966, 1162332]
+1048576 exact results, local 256
+  event duration    median   0.000917 ms  samples ns [917, 1000, 917, 1000, 916, 917, 917, 917, 834]
+  enqueue and wait  median   1.999775 ms  samples ns [1632754, 1658226, 1990207, 1999775, 2026412, 2081471, 2112103, 2123166, 1717236]
+  i915 render busy  median   1.192295 ms  samples ns [1192295, 1494083, 1266248, 1214705, 1179430, 1167312, 1160755, 1165652, 1592272]
+1048576 work-items, 16 dependent rounds, stride-1021 output checks
+  event duration    median   0.000500 ms  samples ns [833, 500, 500, 500, 500, 500, 417, 417, 500]
+  enqueue and wait  median   2.506531 ms  samples ns [3573797, 2561939, 2738509, 2506531, 2579187, 2446541, 2350050, 2111925, 2077579]
+  i915 render busy  median   1.760015 ms  samples ns [2628195, 2138578, 1843430, 1886922, 1702662, 1744162, 1589450, 1588122, 1760015]
+1048576 work-items, 256 dependent rounds, stride-1021 output checks
+  event duration    median   0.000250 ms  samples ns [250, 250, 250, 250, 333, 417, 334, 250, 250]
+  enqueue and wait  median  12.111043 ms  samples ns [12111043, 12141348, 12121565, 11887613, 12046651, 11879846, 12099935, 12145029, 12136177]
+  i915 render busy  median  11.102827 ms  samples ns [11150220, 11111791, 11105732, 11100171, 11057841, 11099507, 11100420, 11102827, 11113617]
+Traceback (most recent call last):
+  File "/audit/opencl-smoke.py", line 155, in <module>
+    assert 0 < short_event < long_event / 2, (short_event, long_event)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (500, 250)
+exit status 1

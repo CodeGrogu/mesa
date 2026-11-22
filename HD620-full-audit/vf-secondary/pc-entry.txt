@@ -1,0 +1,145 @@
+MESA-INTEL: info: pc : emit PC=( +dc_flush +rt_flush +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +state_inval +const_inval +tex_inval ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +dc_flush +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +state_inval +const_inval +tex_inval +ic_inval ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +dc_flush +cs_stall ) reason: emission
+MESA-INTEL: info: acc: src: FRAGMENT_SHADER_BIT, dst: TOP_OF_PIPE_BIT, bits: +pb_stall +cs_stall  reason: change pixel hash mode
+MESA-INTEL: info: pc : emit PC=( +pb_stall +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +dc_flush +rt_flush +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +state_inval +const_inval +tex_inval ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +dc_flush +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +state_inval +const_inval +tex_inval +ic_inval ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +dc_flush +cs_stall ) reason: emission
+MESA-INTEL: info: acc: src: COLOR_ATTACHMENT_OUTPUT_BIT, dst:  bits: +rt_flush +cs_stall  reason: aux color change (non fast-clear)
+MESA-INTEL: info: acc: src: TOP_OF_PIPE_BIT, dst: TOP_OF_PIPE_BIT, bits: +depth_flush +hdc_flush +rt_flush +state_inval +const_inval +tex_inval +ic_inval +cs_stall +utdp_flush  reason: flush/invalidate PIPELINE_SELECT 3D
+MESA-INTEL: info: acc: add +cs_stall reason: Ensure flushes done before invalidate
+MESA-INTEL: info: pc : emit PC=( +depth_flush +dc_flush +rt_flush +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +state_inval +const_inval +tex_inval +ic_inval ) reason: emission
+MESA-INTEL: info: acc: src: DRAW_INDIRECT_BIT,VERTEX_INPUT_BIT,VERTEX_SHADER_BIT,TESSELLATION_CONTROL_SHADER_BIT,TESSELLATION_EVALUATION_SHADER_BIT,GEOMETRY_SHADER_BIT,FRAGMENT_SHADER_BIT,EARLY_FRAGMENT_TESTS_BIT,LATE_FRAGMENT_TESTS_BIT,COLOR_ATTACHMENT_OUTPUT_BIT,COMPUTE_SHADER_BIT,TRANSFER_BIT,ALL_GRAPHICS_BIT,ALL_COMMANDS_BIT,COMMAND_PREPROCESS_BIT_NV,CONDITIONAL_RENDERING_BIT_EXT,TASK_SHADER_BIT_NV,MESH_SHADER_BIT_NV,RAY_TRACING_SHADER_BIT_NV,SHADING_RATE_IMAGE_BIT_NV,FRAGMENT_DENSITY_PROCESS_BIT_EXT,TRANSFORM_FEEDBACK_BIT_EXT,ACCELERATION_STRUCTURE_BUILD_BIT_NV,VIDEO_DECODE_BIT_KHR,VIDEO_ENCODE_BIT_KHR,ACCELERATION_STRUCTURE_COPY_BIT_KHR,OPTICAL_FLOW_BIT_NV,MICROMAP_BUILD_BIT_EXT,TOP_OF_PIPE_BIT,DRAW_INDIRECT_BIT,VERTEX_INPUT_BIT,VERTEX_SHADER_BIT,TESSELLATION_CONTROL_SHADER_BIT,TESSELLATION_EVALUATION_SHADER_BIT,GEOMETRY_SHADER_BIT,FRAGMENT_SHADER_BIT,EARLY_FRAGMENT_TESTS_BIT,LATE_FRAGMENT_TESTS_BIT,COLOR_ATTACHMENT_OUTPUT_BIT,TRANSFER_BIT,BOTTOM_OF_PIPE_BIT,HOST_BIT, dst: COLOR_ATTACHMENT_OUTPUT_BIT, bits:  reason: pipe barrier
+MESA-INTEL: info: acc: src: TOP_OF_PIPE_BIT, dst: TOP_OF_PIPE_BIT, bits: +state_inval  reason: after load_clear_color surface state update
+MESA-INTEL: info: acc: src: COLOR_ATTACHMENT_OUTPUT_BIT, dst:  bits: +rt_flush +cs_stall  reason: aux color change (non fast-clear)
+MESA-INTEL: info: acc: src: FRAGMENT_SHADER_BIT, dst: TOP_OF_PIPE_BIT, bits: +pb_stall +cs_stall  reason: change pixel hash mode
+MESA-INTEL: info: acc: add +cs_stall reason: Ensure flushes done before invalidate
+MESA-INTEL: info: pc : emit PC=( +rt_flush +pb_stall +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +state_inval ) reason: emission
+MESA-INTEL: info: acc: src: VERTEX_SHADER_BIT, dst: TOP_OF_PIPE_BIT, bits: +vf_inval +cs_stall  reason: vb > 32b range
+MESA-INTEL: info: acc: src: TOP_OF_PIPE_BIT, dst: TOP_OF_PIPE_BIT, bits: +state_inval  reason: after load_clear_color surface state update
+MESA-INTEL: info: pc : emit PC=( +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +state_inval +vf_inval ) reason: emission
+MESA-INTEL: info: pc : emit PC=( ) reason: emission
+MESA-INTEL: info: acc: src: VERTEX_SHADER_BIT, dst: TOP_OF_PIPE_BIT, bits: +vf_inval +cs_stall  reason: Secondary cmd buffer not tracked in VF cache
+MESA-INTEL: info: pc : emit PC=( +dc_flush +rt_flush +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +state_inval +const_inval +tex_inval ) reason: emission
+MESA-INTEL: info: acc: src: COLOR_ATTACHMENT_OUTPUT_BIT, dst: TOP_OF_PIPE_BIT, bits: +rt_flush +tex_inval  reason: pipe barrier
+MESA-INTEL: info: pc : emit PC=( +dc_flush +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +state_inval +const_inval +tex_inval +ic_inval ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +dc_flush +cs_stall ) reason: emission
+MESA-INTEL: info: acc: src: FRAGMENT_SHADER_BIT, dst: TOP_OF_PIPE_BIT, bits: +pb_stall +cs_stall  reason: change pixel hash mode
+MESA-INTEL: info: acc: add +cs_stall reason: Ensure flushes done before invalidate
+MESA-INTEL: info: pc : emit PC=( +rt_flush +pb_stall +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +vf_inval +tex_inval ) reason: emission
+MESA-INTEL: info: acc: src: COLOR_ATTACHMENT_OUTPUT_BIT, dst: FRAGMENT_SHADER_BIT, bits: +tex_inval  reason: workaround: WaSamplerCacheFlushBetweenRedescribedSurfaceReads
+MESA-INTEL: info: acc: src: COLOR_ATTACHMENT_OUTPUT_BIT, dst: TOP_OF_PIPE_BIT, bits: +depth_flush +rt_flush  reason: end render command buffer L1/L2 flush
+MESA-INTEL: info: acc: src: COLOR_ATTACHMENT_OUTPUT_BIT,COMPUTE_SHADER_BIT, dst: TOP_OF_PIPE_BIT, bits: +hdc_flush +utdp_flush  reason: end render command buffer L1/L2 flush
+MESA-INTEL: info: acc: add +cs_stall reason: Ensure flushes done before invalidate
+MESA-INTEL: info: pc : emit PC=( +depth_flush +dc_flush +rt_flush +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +tex_inval ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +pb_stall +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +cs_stall ) reason: emit_isp_disable
+MESA-INTEL: info: pc : emit PC=( +dc_flush +rt_flush +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +state_inval +const_inval +tex_inval ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +dc_flush +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +state_inval +const_inval +tex_inval +ic_inval ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +dc_flush +cs_stall ) reason: emission
+MESA-INTEL: info: acc: src: FRAGMENT_SHADER_BIT, dst: TOP_OF_PIPE_BIT, bits: +pb_stall +cs_stall  reason: change pixel hash mode
+MESA-INTEL: info: pc : emit PC=( +pb_stall +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +dc_flush +rt_flush +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +state_inval +const_inval +tex_inval ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +dc_flush +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +state_inval +const_inval +tex_inval +ic_inval ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +dc_flush +cs_stall ) reason: emission
+MESA-INTEL: info: acc: src: COLOR_ATTACHMENT_OUTPUT_BIT, dst:  bits: +rt_flush +cs_stall  reason: aux color change (non fast-clear)
+MESA-INTEL: info: acc: src: TOP_OF_PIPE_BIT, dst: TOP_OF_PIPE_BIT, bits: +depth_flush +hdc_flush +rt_flush +state_inval +const_inval +tex_inval +ic_inval +cs_stall +utdp_flush  reason: flush/invalidate PIPELINE_SELECT 3D
+MESA-INTEL: info: acc: add +cs_stall reason: Ensure flushes done before invalidate
+MESA-INTEL: info: pc : emit PC=( +depth_flush +dc_flush +rt_flush +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +state_inval +const_inval +tex_inval +ic_inval ) reason: emission
+MESA-INTEL: info: acc: src: DRAW_INDIRECT_BIT,VERTEX_INPUT_BIT,VERTEX_SHADER_BIT,TESSELLATION_CONTROL_SHADER_BIT,TESSELLATION_EVALUATION_SHADER_BIT,GEOMETRY_SHADER_BIT,FRAGMENT_SHADER_BIT,EARLY_FRAGMENT_TESTS_BIT,LATE_FRAGMENT_TESTS_BIT,COLOR_ATTACHMENT_OUTPUT_BIT,COMPUTE_SHADER_BIT,TRANSFER_BIT,ALL_GRAPHICS_BIT,ALL_COMMANDS_BIT,COMMAND_PREPROCESS_BIT_NV,CONDITIONAL_RENDERING_BIT_EXT,TASK_SHADER_BIT_NV,MESH_SHADER_BIT_NV,RAY_TRACING_SHADER_BIT_NV,SHADING_RATE_IMAGE_BIT_NV,FRAGMENT_DENSITY_PROCESS_BIT_EXT,TRANSFORM_FEEDBACK_BIT_EXT,ACCELERATION_STRUCTURE_BUILD_BIT_NV,VIDEO_DECODE_BIT_KHR,VIDEO_ENCODE_BIT_KHR,ACCELERATION_STRUCTURE_COPY_BIT_KHR,OPTICAL_FLOW_BIT_NV,MICROMAP_BUILD_BIT_EXT,TOP_OF_PIPE_BIT,DRAW_INDIRECT_BIT,VERTEX_INPUT_BIT,VERTEX_SHADER_BIT,TESSELLATION_CONTROL_SHADER_BIT,TESSELLATION_EVALUATION_SHADER_BIT,GEOMETRY_SHADER_BIT,FRAGMENT_SHADER_BIT,EARLY_FRAGMENT_TESTS_BIT,LATE_FRAGMENT_TESTS_BIT,COLOR_ATTACHMENT_OUTPUT_BIT,TRANSFER_BIT,BOTTOM_OF_PIPE_BIT,HOST_BIT, dst: COLOR_ATTACHMENT_OUTPUT_BIT, bits:  reason: pipe barrier
+MESA-INTEL: info: acc: src: TOP_OF_PIPE_BIT, dst: TOP_OF_PIPE_BIT, bits: +state_inval  reason: after load_clear_color surface state update
+MESA-INTEL: info: acc: src: COLOR_ATTACHMENT_OUTPUT_BIT, dst:  bits: +rt_flush +cs_stall  reason: aux color change (non fast-clear)
+MESA-INTEL: info: acc: add +cs_stall reason: Ensure flushes done before invalidate
+MESA-INTEL: info: pc : emit PC=( +rt_flush +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +state_inval ) reason: emission
+MESA-INTEL: info: pc : emit PC=( ) reason: emission
+MESA-INTEL: info: acc: src: VERTEX_SHADER_BIT, dst: TOP_OF_PIPE_BIT, bits: +vf_inval +cs_stall  reason: Secondary cmd buffer not tracked in VF cache
+MESA-INTEL: info: pc : emit PC=( +dc_flush +rt_flush +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +state_inval +const_inval +tex_inval ) reason: emission
+MESA-INTEL: info: acc: src: TOP_OF_PIPE_BIT, dst: TOP_OF_PIPE_BIT, bits: +state_inval  reason: after load_clear_color surface state update
+MESA-INTEL: info: pc : emit PC=( +dc_flush +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +state_inval +const_inval +tex_inval +ic_inval ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +dc_flush +cs_stall ) reason: emission
+MESA-INTEL: info: acc: src: FRAGMENT_SHADER_BIT, dst: TOP_OF_PIPE_BIT, bits: +pb_stall +cs_stall  reason: change pixel hash mode
+MESA-INTEL: info: pc : emit PC=( +pb_stall +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +state_inval +vf_inval ) reason: emission
+MESA-INTEL: info: acc: src: COLOR_ATTACHMENT_OUTPUT_BIT, dst: TOP_OF_PIPE_BIT, bits: +rt_flush +tex_inval  reason: pipe barrier
+MESA-INTEL: info: acc: add +cs_stall reason: Ensure flushes done before invalidate
+MESA-INTEL: info: pc : emit PC=( +rt_flush +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +tex_inval ) reason: emission
+MESA-INTEL: info: acc: src: VERTEX_SHADER_BIT, dst: TOP_OF_PIPE_BIT, bits: +vf_inval +cs_stall  reason: vb > 32b range
+MESA-INTEL: info: pc : emit PC=( +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +vf_inval ) reason: emission
+MESA-INTEL: info: acc: src: COLOR_ATTACHMENT_OUTPUT_BIT, dst: FRAGMENT_SHADER_BIT, bits: +tex_inval  reason: workaround: WaSamplerCacheFlushBetweenRedescribedSurfaceReads
+MESA-INTEL: info: acc: src: COLOR_ATTACHMENT_OUTPUT_BIT, dst: TOP_OF_PIPE_BIT, bits: +depth_flush +rt_flush  reason: end render command buffer L1/L2 flush
+MESA-INTEL: info: acc: src: COLOR_ATTACHMENT_OUTPUT_BIT,COMPUTE_SHADER_BIT, dst: TOP_OF_PIPE_BIT, bits: +hdc_flush +utdp_flush  reason: end render command buffer L1/L2 flush
+MESA-INTEL: info: acc: add +cs_stall reason: Ensure flushes done before invalidate
+MESA-INTEL: info: pc : emit PC=( +depth_flush +dc_flush +rt_flush +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +tex_inval ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +pb_stall +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +cs_stall ) reason: emit_isp_disable
+MESA-INTEL: info: pc : emit PC=( +dc_flush +rt_flush +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +state_inval +const_inval +tex_inval ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +dc_flush +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +state_inval +const_inval +tex_inval +ic_inval ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +dc_flush +cs_stall ) reason: emission
+MESA-INTEL: info: acc: src: FRAGMENT_SHADER_BIT, dst: TOP_OF_PIPE_BIT, bits: +pb_stall +cs_stall  reason: change pixel hash mode
+MESA-INTEL: info: pc : emit PC=( +pb_stall +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +dc_flush +rt_flush +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +state_inval +const_inval +tex_inval ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +dc_flush +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +state_inval +const_inval +tex_inval +ic_inval ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +dc_flush +cs_stall ) reason: emission
+MESA-INTEL: info: acc: src: COLOR_ATTACHMENT_OUTPUT_BIT, dst:  bits: +rt_flush +cs_stall  reason: aux color change (non fast-clear)
+MESA-INTEL: info: acc: src: TOP_OF_PIPE_BIT, dst: TOP_OF_PIPE_BIT, bits: +depth_flush +hdc_flush +rt_flush +state_inval +const_inval +tex_inval +ic_inval +cs_stall +utdp_flush  reason: flush/invalidate PIPELINE_SELECT 3D
+MESA-INTEL: info: acc: add +cs_stall reason: Ensure flushes done before invalidate
+MESA-INTEL: info: pc : emit PC=( +depth_flush +dc_flush +rt_flush +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +state_inval +const_inval +tex_inval +ic_inval ) reason: emission
+MESA-INTEL: info: acc: src: DRAW_INDIRECT_BIT,VERTEX_INPUT_BIT,VERTEX_SHADER_BIT,TESSELLATION_CONTROL_SHADER_BIT,TESSELLATION_EVALUATION_SHADER_BIT,GEOMETRY_SHADER_BIT,FRAGMENT_SHADER_BIT,EARLY_FRAGMENT_TESTS_BIT,LATE_FRAGMENT_TESTS_BIT,COLOR_ATTACHMENT_OUTPUT_BIT,COMPUTE_SHADER_BIT,TRANSFER_BIT,ALL_GRAPHICS_BIT,ALL_COMMANDS_BIT,COMMAND_PREPROCESS_BIT_NV,CONDITIONAL_RENDERING_BIT_EXT,TASK_SHADER_BIT_NV,MESH_SHADER_BIT_NV,RAY_TRACING_SHADER_BIT_NV,SHADING_RATE_IMAGE_BIT_NV,FRAGMENT_DENSITY_PROCESS_BIT_EXT,TRANSFORM_FEEDBACK_BIT_EXT,ACCELERATION_STRUCTURE_BUILD_BIT_NV,VIDEO_DECODE_BIT_KHR,VIDEO_ENCODE_BIT_KHR,ACCELERATION_STRUCTURE_COPY_BIT_KHR,OPTICAL_FLOW_BIT_NV,MICROMAP_BUILD_BIT_EXT,TOP_OF_PIPE_BIT,DRAW_INDIRECT_BIT,VERTEX_INPUT_BIT,VERTEX_SHADER_BIT,TESSELLATION_CONTROL_SHADER_BIT,TESSELLATION_EVALUATION_SHADER_BIT,GEOMETRY_SHADER_BIT,FRAGMENT_SHADER_BIT,EARLY_FRAGMENT_TESTS_BIT,LATE_FRAGMENT_TESTS_BIT,COLOR_ATTACHMENT_OUTPUT_BIT,TRANSFER_BIT,BOTTOM_OF_PIPE_BIT,HOST_BIT, dst: COLOR_ATTACHMENT_OUTPUT_BIT, bits:  reason: pipe barrier
+MESA-INTEL: info: acc: src: TOP_OF_PIPE_BIT, dst: TOP_OF_PIPE_BIT, bits: +state_inval  reason: after load_clear_color surface state update
+MESA-INTEL: info: acc: src: COLOR_ATTACHMENT_OUTPUT_BIT, dst:  bits: +rt_flush +cs_stall  reason: aux color change (non fast-clear)
+MESA-INTEL: info: acc: src: FRAGMENT_SHADER_BIT, dst: TOP_OF_PIPE_BIT, bits: +pb_stall +cs_stall  reason: change pixel hash mode
+MESA-INTEL: info: acc: add +cs_stall reason: Ensure flushes done before invalidate
+MESA-INTEL: info: pc : emit PC=( +rt_flush +pb_stall +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +state_inval ) reason: emission
+MESA-INTEL: info: acc: src: VERTEX_SHADER_BIT, dst: TOP_OF_PIPE_BIT, bits: +vf_inval +cs_stall  reason: vb > 32b range
+MESA-INTEL: info: acc: src: TOP_OF_PIPE_BIT, dst: TOP_OF_PIPE_BIT, bits: +state_inval  reason: after load_clear_color surface state update
+MESA-INTEL: info: pc : emit PC=( +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +state_inval +vf_inval ) reason: emission
+MESA-INTEL: info: acc: src: COLOR_ATTACHMENT_OUTPUT_BIT, dst: TOP_OF_PIPE_BIT, bits: +rt_flush +tex_inval  reason: pipe barrier
+MESA-INTEL: info: acc: add +cs_stall reason: Ensure flushes done before invalidate
+MESA-INTEL: info: pc : emit PC=( +rt_flush +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +tex_inval ) reason: emission
+MESA-INTEL: info: acc: src: VERTEX_SHADER_BIT, dst: TOP_OF_PIPE_BIT, bits: +vf_inval +cs_stall  reason: vb > 32b range
+MESA-INTEL: info: pc : emit PC=( +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +vf_inval ) reason: emission
+MESA-INTEL: info: acc: src: COLOR_ATTACHMENT_OUTPUT_BIT, dst: FRAGMENT_SHADER_BIT, bits: +tex_inval  reason: workaround: WaSamplerCacheFlushBetweenRedescribedSurfaceReads
+MESA-INTEL: info: acc: src: COLOR_ATTACHMENT_OUTPUT_BIT, dst: TOP_OF_PIPE_BIT, bits: +depth_flush +rt_flush  reason: end render command buffer L1/L2 flush
+MESA-INTEL: info: acc: src: COLOR_ATTACHMENT_OUTPUT_BIT,COMPUTE_SHADER_BIT, dst: TOP_OF_PIPE_BIT, bits: +hdc_flush +utdp_flush  reason: end render command buffer L1/L2 flush
+MESA-INTEL: info: acc: add +cs_stall reason: Ensure flushes done before invalidate
+MESA-INTEL: info: pc : emit PC=( +depth_flush +dc_flush +rt_flush +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +tex_inval ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +pb_stall +cs_stall ) reason: emission
+MESA-INTEL: info: pc : emit PC=( +cs_stall ) reason: emit_isp_disable
+A at 0x740000000, B at 0x840000000 (low 32 bits equal)
+entry  (A primary, B secondary): 0/1 stale
+exit   (A secondary, B primary): 0/1 stale
+inline (A and B in primary): 0/1 stale
+PASS

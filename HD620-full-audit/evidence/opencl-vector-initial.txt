@@ -1,0 +1,5 @@
+Mesa Intel(R) HD Graphics 620 (KBL GT2) OpenCL 3.0 
+Local size  32 | 1048576 exact results | median 0.001 ms | range 0.000–0.001 ms
+Local size  64 | 1048576 exact results | median 0.001 ms | range 0.000–0.001 ms
+Local size 128 | 1048576 exact results | median 0.001 ms | range 0.001–0.001 ms
+Local size 256 | 1048576 exact results | median 0.001 ms | range 0.001–0.001 ms

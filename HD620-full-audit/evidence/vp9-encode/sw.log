@@ -1,0 +1,17 @@
+Input #0, lavfi, from 'testsrc2=size=1280x720:rate=30':
+  Duration: N/A, start: 0.000000, bitrate: N/A
+  Stream #0:0: Video: wrapped_avframe, yuv420p, 1280x720 [SAR 1:1 DAR 16:9], 30 fps, 30 tbr, 30 tbn
+Stream mapping:
+  Stream #0:0 -> #0:0 (wrapped_avframe (native) -> vp9 (libvpx-vp9))
+Press [q] to stop, [?] for help
+[libvpx-vp9 @ 0x6129dce4c140] v1.16.0
+Output #0, webm, to 'out-sw.webm':
+  Metadata:
+    encoder         : Lavf62.3.100
+  Stream #0:0: Video: vp9, yuv420p(tv, progressive), 1280x720 [SAR 1:1 DAR 16:9], q=2-31, 2000 kb/s, 30 fps, 1k tbn
+    Metadata:
+      encoder         : Lavc62.11.100 libvpx-vp9
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+frame=    0 fps=0.0 q=0.0 size=       0KiB time=N/A bitrate=N/A speed=N/A elapsed=0:00:00.50    frame=   10 fps= 10 q=46.0 size=       0KiB time=00:00:00.33 bitrate=  11.4kbits/s speed=0.332x elapsed=0:00:01.00    frame=   20 fps= 13 q=46.0 size=       0KiB time=00:00:00.66 bitrate=   5.7kbits/s speed=0.443x elapsed=0:00:01.50    frame=   31 fps= 15 q=23.0 size=       0KiB time=N/A bitrate=N/A speed=N/A elapsed=0:00:02.00    frame=   36 fps= 14 q=46.0 size=       0KiB time=N/A bitrate=N/A speed=N/A elapsed=0:00:02.50    [out#0/webm @ 0x6129dce4b700] video:439KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.206931%
+frame=   60 fps= 21 q=47.0 Lsize=     440KiB time=00:00:02.00 bitrate=1803.4kbits/s speed=0.699x elapsed=0:00:02.86    

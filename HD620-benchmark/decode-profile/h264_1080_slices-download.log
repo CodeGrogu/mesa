@@ -1,0 +1,925 @@
+Splitting the commandline.
+Reading option '-hide_banner' ... matched as option 'hide_banner' (do not show program banner) with argument '1'.
+Reading option '-nostdin' ... matched as option 'stdin' (enable or disable interaction on standard input) with argument 0.
+Reading option '-xerror' ... matched as option 'xerror' (exit on error) with argument '1'.
+Reading option '-v' ... matched as option 'v' (set logging level) with argument 'debug'.
+Reading option '-nostats' ... matched as option 'stats' (print progress report during encoding) with argument 0.
+Reading option '-progress' ... matched as option 'progress' (write program-readable progress information) with argument 'pipe:1'.
+Reading option '-filter_threads' ... matched as option 'filter_threads' (number of non-complex filter threads) with argument '2'.
+Reading option '-init_hw_device' ... matched as option 'init_hw_device' (initialise hardware device) with argument 'vulkan=vk:0'.
+Reading option '-hwaccel' ... matched as option 'hwaccel' (use HW accelerated decoding) with argument 'vulkan'.
+Reading option '-hwaccel_output_format' ... matched as option 'hwaccel_output_format' (select output format used with HW accelerated decoding) with argument 'vulkan'.
+Reading option '-hwaccel_device' ... matched as option 'hwaccel_device' (select a device for HW acceleration) with argument 'vk'.
+Reading option '-threads' ... matched as AVOption 'threads' with argument '2'.
+Reading option '-i' ... matched as input url with argument '/home/polarbear/.t3/projects/catchingup/HD620-benchmark/inputs/h264_1080_slices.mp4'.
+Reading option '-vf' ... matched as option 'vf' (alias for -filter:v (apply filters to video streams)) with argument 'hwdownload,format=nv12'.
+Reading option '-c:v' ... matched as option 'c' (select encoder/decoder ('copy' to copy stream without reencoding)) with argument 'wrapped_avframe'.
+Reading option '-frames:v' ... matched as option 'frames' (set the number of frames to output) with argument '120'.
+Reading option '-an' ... matched as option 'an' (disable audio) with argument '1'.
+Reading option '-f' ... matched as option 'f' (force container format (auto-detected otherwise)) with argument 'null'.
+Reading option '-' ... matched as output url.
+Finished splitting the commandline.
+Parsing a group of options: global .
+Applying option hide_banner (do not show program banner) with argument 1.
+Applying option nostdin (enable or disable interaction on standard input) with argument 0.
+Applying option xerror (exit on error) with argument 1.
+Applying option v (set logging level) with argument debug.
+Applying option nostats (print progress report during encoding) with argument 0.
+Applying option progress (write program-readable progress information) with argument pipe:1.
+[pipe @ 0x560aed2d3f00] Setting default whitelist 'crypto,data'
+Applying option filter_threads (number of non-complex filter threads) with argument 2.
+Applying option init_hw_device (initialise hardware device) with argument vulkan=vk:0.
+[Vulkan @ 0x560aed2dc1c0] Supported layers:
+[Vulkan @ 0x560aed2dc1c0] 	VK_LAYER_MESA_device_select
+[Vulkan @ 0x560aed2dc1c0] 	VK_LAYER_MESA_anti_lag
+[Vulkan @ 0x560aed2dc1c0] 	VK_LAYER_MESA_screenshot
+[Vulkan @ 0x560aed2dc1c0] 	VK_LAYER_INTEL_nullhw
+[Vulkan @ 0x560aed2dc1c0] 	VK_LAYER_MESA_overlay
+[Vulkan Loader] DRIVER:         Searching for driver manifest files
+[Vulkan Loader] DRIVER:            In following locations:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/icd.json
+[Vulkan Loader] DRIVER:            Found the following files:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/icd.json
+[Vulkan Loader] DRIVER:         Found ICD manifest file /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/icd.json, version 1.0.1
+[Vulkan Loader] DEBUG | DRIVER: Searching for ICD drivers named /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/libvulkan_intel.so
+[Vulkan Loader] DRIVER:         Searching for driver manifest files
+[Vulkan Loader] DRIVER:            In following locations:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/icd.json
+[Vulkan Loader] DRIVER:            Found the following files:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/icd.json
+[Vulkan Loader] DRIVER:         Found ICD manifest file /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/icd.json, version 1.0.1
+[Vulkan Loader] DEBUG | DRIVER: Searching for ICD drivers named /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/libvulkan_intel.so
+[Vulkan Loader] DRIVER:         Searching for driver manifest files
+[Vulkan Loader] DRIVER:            In following locations:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/icd.json
+[Vulkan Loader] DRIVER:            Found the following files:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/icd.json
+[Vulkan Loader] DRIVER:         Found ICD manifest file /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/icd.json, version 1.0.1
+[Vulkan Loader] DEBUG | DRIVER: Searching for ICD drivers named /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/libvulkan_intel.so
+[Vulkan @ 0x560aed2dc1c0] Using instance extension VK_EXT_layer_settings
+[Vulkan Loader] DRIVER:         Searching for driver manifest files
+[Vulkan Loader] DRIVER:            In following locations:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/icd.json
+[Vulkan Loader] DRIVER:            Found the following files:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/icd.json
+[Vulkan Loader] DRIVER:         Found ICD manifest file /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/icd.json, version 1.0.1
+[Vulkan Loader] DEBUG | DRIVER: Searching for ICD drivers named /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/libvulkan_intel.so
+[Vulkan Loader] INFO | DRIVER:  linux_read_sorted_physical_devices:
+[Vulkan Loader] INFO | DRIVER:       Original order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan Loader] INFO | DRIVER:       Sorted order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)  
+[Vulkan Loader] INFO | DRIVER:  linux_read_sorted_physical_devices:
+[Vulkan Loader] INFO | DRIVER:       Original order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan Loader] INFO | DRIVER:       Sorted order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)  
+[Vulkan Loader] DEBUG | DRIVER: Copying old device 0 into new device 0
+[Vulkan Loader] INFO | DRIVER:  linux_read_sorted_physical_devices:
+[Vulkan Loader] INFO | DRIVER:       Original order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan Loader] INFO | DRIVER:       Sorted order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)  
+[Vulkan Loader] DEBUG | DRIVER: Copying old device 0 into new device 0
+[Vulkan Loader] INFO | DRIVER:  linux_read_sorted_physical_devices:
+[Vulkan Loader] INFO | DRIVER:       Original order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan Loader] INFO | DRIVER:       Sorted order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)  
+[Vulkan Loader] DEBUG | DRIVER: Copying old device 0 into new device 0
+[Vulkan @ 0x560aed2dc1c0] GPU listing:
+[Vulkan @ 0x560aed2dc1c0]     0: Intel(R) HD Graphics 620 (KBL GT2) (integrated) (0x5916)
+[Vulkan @ 0x560aed2dc1c0] Device 0 selected: Intel(R) HD Graphics 620 (KBL GT2) (integrated) (0x5916)
+[Vulkan @ 0x560aed2dc1c0] Using device extension VK_KHR_push_descriptor
+[Vulkan @ 0x560aed2dc1c0] Using device extension VK_EXT_physical_device_drm
+[Vulkan @ 0x560aed2dc1c0] Using device extension VK_EXT_shader_atomic_float
+[Vulkan @ 0x560aed2dc1c0] Using device extension VK_EXT_shader_object
+[Vulkan @ 0x560aed2dc1c0] Using device extension VK_KHR_shader_subgroup_rotate
+[Vulkan @ 0x560aed2dc1c0] Using device extension VK_KHR_shader_expect_assume
+[Vulkan @ 0x560aed2dc1c0] Using device extension VK_KHR_video_maintenance1
+[Vulkan @ 0x560aed2dc1c0] Using device extension VK_KHR_video_maintenance2
+[Vulkan @ 0x560aed2dc1c0] Using device extension VK_KHR_external_memory_fd
+[Vulkan @ 0x560aed2dc1c0] Using device extension VK_EXT_external_memory_dma_buf
+[Vulkan @ 0x560aed2dc1c0] Using device extension VK_EXT_image_drm_format_modifier
+[Vulkan @ 0x560aed2dc1c0] Using device extension VK_KHR_external_semaphore_fd
+[Vulkan @ 0x560aed2dc1c0] Using device extension VK_EXT_external_memory_host
+[Vulkan @ 0x560aed2dc1c0] Using device extension VK_KHR_video_queue
+[Vulkan @ 0x560aed2dc1c0] Using device extension VK_KHR_video_encode_queue
+[Vulkan @ 0x560aed2dc1c0] Using device extension VK_KHR_video_decode_queue
+[Vulkan @ 0x560aed2dc1c0] Using device extension VK_KHR_video_encode_h264
+[Vulkan @ 0x560aed2dc1c0] Using device extension VK_KHR_video_decode_h264
+[Vulkan @ 0x560aed2dc1c0] Using device extension VK_KHR_video_decode_vp9
+[Vulkan @ 0x560aed2dc1c0] Queue families:
+[Vulkan @ 0x560aed2dc1c0]     0: graphics compute transfer (queues: 1)
+[Vulkan @ 0x560aed2dc1c0]     1: encode decode (queues: 1)
+[Vulkan Loader] DRIVER:         vkCreateDevice layer callstack setup to:
+[Vulkan Loader] DRIVER:            <Application>
+[Vulkan Loader] DRIVER:              ||
+[Vulkan Loader] DRIVER:            <Loader>
+[Vulkan Loader] DRIVER:              ||
+[Vulkan Loader] DRIVER:            <Device>
+[Vulkan Loader] DRIVER:                Using "Intel(R) HD Graphics 620 (KBL GT2)" with driver: "/home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/libvulkan_intel.so"
+[Vulkan @ 0x560aed2dc1c0] Using device: Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan @ 0x560aed2dc1c0] Alignments:
+[Vulkan @ 0x560aed2dc1c0]     optimalBufferCopyRowPitchAlignment: 64
+[Vulkan @ 0x560aed2dc1c0]     minMemoryMapAlignment:              4096
+[Vulkan @ 0x560aed2dc1c0]     nonCoherentAtomSize:                64
+[Vulkan @ 0x560aed2dc1c0]     minImportedHostPointerAlignment:    4096
+[Vulkan @ 0x560aed2dc1c0] Using queue family 0 (queues: 1) for graphics compute transfers
+[Vulkan @ 0x560aed2dc1c0] Using queue family 1 (queues: 1) for encode decode
+Successfully parsed a group of options.
+Parsing a group of options: input url /home/polarbear/.t3/projects/catchingup/HD620-benchmark/inputs/h264_1080_slices.mp4.
+Applying option hwaccel (use HW accelerated decoding) with argument vulkan.
+Applying option hwaccel_output_format (select output format used with HW accelerated decoding) with argument vulkan.
+Applying option hwaccel_device (select a device for HW acceleration) with argument vk.
+Successfully parsed a group of options.
+Opening an input file: /home/polarbear/.t3/projects/catchingup/HD620-benchmark/inputs/h264_1080_slices.mp4.
+[AVFormatContext @ 0x560aed366d80] Opening '/home/polarbear/.t3/projects/catchingup/HD620-benchmark/inputs/h264_1080_slices.mp4' for reading
+[file @ 0x560aed367240] Setting default whitelist 'file,crypto,data'
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x560aed366d80] Format mov,mp4,m4a,3gp,3g2,mj2 probed with size=2048 and score=100
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x560aed366d80] ISO: File Type Major Brand: isom
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x560aed366d80] Unknown dref type 0x206c7275 size 12
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x560aed366d80] Processing st: 0, edit list 0 - media time: 1024, duration: 491520
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x560aed366d80] Offset DTS by 1024 to make first pts zero.
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x560aed366d80] Setting codecpar->delay to 2 for stream st: 0
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x560aed366d80] Before avformat_find_stream_info() pos: 24971976 bytes read:43816 seeks:1 nb_streams:1
+[h264 @ 0x560aed307980] nal_unit_type: 7(SPS), nal_ref_idc: 3
+[h264 @ 0x560aed307980] Decoding VUI
+[h264 @ 0x560aed307980] nal_unit_type: 8(PPS), nal_ref_idc: 3
+[h264 @ 0x560aed307980] nal_unit_type: 7(SPS), nal_ref_idc: 3
+[h264 @ 0x560aed307980] Decoding VUI
+[h264 @ 0x560aed307980] nal_unit_type: 8(PPS), nal_ref_idc: 3
+[h264 @ 0x560aed307980] nal_unit_type: 6(SEI), nal_ref_idc: 0
+[h264 @ 0x560aed307980] nal_unit_type: 5(IDR), nal_ref_idc: 3
+    Last message repeated 3 times
+[h264 @ 0x560aed307980] Format yuv420p chosen by get_format().
+[h264 @ 0x560aed307980] Reinit context to 1920x1088, pix_fmt: yuv420p
+[h264 @ 0x560aed307980] no picture 
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x560aed366d80] All info found
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x560aed366d80] After avformat_find_stream_info() pos: 42612 bytes read:86380 seeks:2 frames:1
+[vist#0:0/h264 @ 0x560aed30ef80] Selecting decoder 'h264' because of requested hwaccel method vulkan
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/polarbear/.t3/projects/catchingup/HD620-benchmark/inputs/h264_1080_slices.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.3.100
+  Duration: 00:00:32.00, start: 0.000000, bitrate: 6242 kb/s
+  Stream #0:0[0x1](und), 1, 1/15360: Video: h264 (High), 1 reference frame (avc1 / 0x31637661), yuv420p(progressive, left), 1920x1080 [SAR 1:1 DAR 16:9], 0/1, 6240 kb/s, 30 fps, 30 tbr, 15360 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      vendor_id       : [0][0][0][0]
+      encoder         : Lavc62.11.100 libx264
+Successfully opened the file.
+Parsing a group of options: output url -.
+Applying option vf (alias for -filter:v (apply filters to video streams)) with argument hwdownload,format=nv12.
+Applying option c:v (select encoder/decoder ('copy' to copy stream without reencoding)) with argument wrapped_avframe.
+Applying option frames:v (set the number of frames to output) with argument 120.
+Applying option an (disable audio) with argument 1.
+Applying option f (force container format (auto-detected otherwise)) with argument null.
+Successfully parsed a group of options.
+Opening an output file: -.
+[out#0/null @ 0x560aed30ad40] No explicit maps, mapping streams automatically...
+[vost#0:0/wrapped_avframe @ 0x560aed3d5800] Created video stream from input stream 0:0
+[AVFilterGraph @ 0x560aed3d6340] Setting 'pix_fmts' to value 'nv12'
+[h264 @ 0x560aed3d3880] nal_unit_type: 7(SPS), nal_ref_idc: 3
+[h264 @ 0x560aed3d3880] Decoding VUI
+[h264 @ 0x560aed3d3880] nal_unit_type: 8(PPS), nal_ref_idc: 3
+Successfully opened the file.
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+[vost#0:0/wrapped_avframe @ 0x560aed3d5800] Starting thread...
+[vf#0:0 @ 0x560aed3d5e80] Starting thread...
+[vist#0:0/h264 @ 0x560aed30ef80] [dec:h264 @ 0x560aed3d4c00] Starting thread...
+[in#0/mov,mp4,m4a,3gp,3g2,mj2 @ 0x560aed366b80] Starting thread...
+[h264 @ 0x560aed3d3880] nal_unit_type: 6(SEI), nal_ref_idc: 0
+[h264 @ 0x560aed3d3880] nal_unit_type: 5(IDR), nal_ref_idc: 3
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Format vulkan chosen by get_format().
+[h264 @ 0x560aed3d3880] Format vulkan requires hwaccel h264_vulkan initialisation.
+[h264 @ 0x560aed3d3880] Decoder capabilities for h264 profile "High":
+[h264 @ 0x560aed3d3880]     Maximum level: 51 (stream 40)
+[h264 @ 0x560aed3d3880]     Width: from 16 to 4096
+[h264 @ 0x560aed3d3880]     Height: from 16 to 4096
+[h264 @ 0x560aed3d3880]     Width alignment: 16
+[h264 @ 0x560aed3d3880]     Height alignment: 16
+[h264 @ 0x560aed3d3880]     Bitstream offset alignment: 32
+[h264 @ 0x560aed3d3880]     Bitstream size alignment: 1
+[h264 @ 0x560aed3d3880]     Maximum references: 17
+[h264 @ 0x560aed3d3880]     Maximum active references: 16
+[h264 @ 0x560aed3d3880]     Codec header name: 'VK_STD_vulkan_video_codec_h264_decode' (driver), 'VK_STD_vulkan_video_codec_h264_decode' (compiled)
+[h264 @ 0x560aed3d3880]     Codec header version: 1.0.0 (driver), 1.0.0 (compiled)
+[h264 @ 0x560aed3d3880]     Decode modes: reuse_dst_dpb
+[h264 @ 0x560aed3d3880]     Capability flags: separate_references
+[h264 @ 0x560aed3d3880] Choosing best pixel format for decoding from 2:
+[h264 @ 0x560aed3d3880]     nv12* (Vulkan ID: 1000156003)
+    Last message repeated 1 times
+[h264 @ 0x560aed3d3880] Chosen frame pixfmt: nv12 (Vulkan ID: 1000156003)
+[h264 @ 0x560aed3d3880] Allocating 16384 bytes in bind index 0 for video session
+[h264 @ 0x560aed3d3880] Allocating 65536 bytes in bind index 1 for video session
+[h264 @ 0x560aed3d3880] Allocating 32768 bytes in bind index 2 for video session
+[h264 @ 0x560aed3d3880] Allocating 32768 bytes in bind index 3 for video session
+[h264 @ 0x560aed3d3880] Vulkan decoder initialization successful
+[h264 @ 0x560aed3d3880] Reinit context to 1920x1088, pix_fmt: vulkan
+[h264 @ 0x560aed3d3880] no picture 
+[h264 @ 0x560aed3d3880] [vk @ 0x7c17f8055040] Creating a buffer of 2097152 bytes, usage: 0x2000, flags: 0x2
+[h264 @ 0x560aed3d3880] Decoding frame, 41875 bytes, 4 slices
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] no picture 
+[h264 @ 0x560aed3d3880] [vk @ 0x7c17f8055040] Creating a buffer of 2097152 bytes, usage: 0x2000, flags: 0x2
+[h264 @ 0x560aed39a940] Decoding frame, 30121 bytes, 4 slices
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] [vk @ 0x7c17f8055040] Creating a buffer of 2097152 bytes, usage: 0x2000, flags: 0x2
+[h264 @ 0x560aed3d3880] Decoding frame, 30073 bytes, 4 slices
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[AVFilterGraph @ 0x7c17fc0010c0] Setting 'pix_fmts' to value 'nv12'
+[graph -1 input from stream 0:0 @ 0x7c17fc002200] w:1920 h:1080 pixfmt:vulkan tb:1/15360 fr:30/1 sar:1/1 csp:unknown range:unknown
+Filter 'Parsed_hwdownload_0' formats:
+  in[0] 'default': vaapi dxva2_vld vdpau qsv mmal d3d11va_vld cuda videotoolbox_vld mediacodec d3d11 drm_prime opencl vulkan d3d12 amf ohcodec
+  out[0] 'default': yuv420p yuyv422 rgb24 bgr24 yuv422p yuv444p yuv410p yuv411p gray monow monob pal8 yuvj420p yuvj422p yuvj444p uyvy422 uyyvyy411 bgr8 bgr4 bgr4_byte rgb8 rgb4 rgb4_byte nv12 nv21 argb rgba abgr bgra gray16be gray16le yuv440p yuvj440p yuva420p rgb48be rgb48le rgb565be rgb565le rgb555be rgb555le bgr565be bgr565le bgr555be bgr555le yuv420p16le yuv420p16be yuv422p16le yuv422p16be yuv444p16le yuv444p16be rgb444le rgb444be bgr444le bgr444be ya8 bgr48be bgr48le yuv420p9be yuv420p9le yuv420p10be yuv420p10le yuv422p10be yuv422p10le yuv444p9be yuv444p9le yuv444p10be yuv444p10le yuv422p9be yuv422p9le gbrp gbrp9be gbrp9le gbrp10be gbrp10le gbrp16be gbrp16le yuva422p yuva444p yuva420p9be yuva420p9le yuva422p9be yuva422p9le yuva444p9be yuva444p9le yuva420p10be yuva420p10le yuva422p10be yuva422p10le yuva444p10be yuva444p10le yuva420p16be yuva420p16le yuva422p16be yuva422p16le yuva444p16be yuva444p16le xyz12le xyz12be nv16 nv20le nv20be rgba64be rgba64le bgra64be bgra64le yvyu422 ya16be ya16le gbrap gbrap16be gbrap16le 0rgb rgb0 0bgr bgr0 yuv420p12be yuv420p12le yuv420p14be yuv420p14le yuv422p12be yuv422p12le yuv422p14be yuv422p14le yuv444p12be yuv444p12le yuv444p14be yuv444p14le gbrp12be gbrp12le gbrp14be gbrp14le yuvj411p bayer_bggr8 bayer_rggb8 bayer_gbrg8 bayer_grbg8 bayer_bggr16le bayer_bggr16be bayer_rggb16le bayer_rggb16be bayer_gbrg16le bayer_gbrg16be bayer_grbg16le bayer_grbg16be yuv440p10le yuv440p10be yuv440p12le yuv440p12be ayuv64le ayuv64be p010le p010be gbrap12be gbrap12le gbrap10be gbrap10le gray12be gray12le gray10be gray10le p016le p016be gray9be gray9le gbrpf32be gbrpf32le gbrapf32be gbrapf32le gray14be gray14le grayf32be grayf32le yuva422p12be yuva422p12le yuva444p12be yuva444p12le nv24 nv42 y210be y210le x2rgb10le x2rgb10be x2bgr10le x2bgr10be p210be p210le p410be p410le p216be p216le p416be p416le vuya rgbaf16be rgbaf16le vuyx p012le p012be y212be y212le xv30be xv30le xv36be xv36le rgbf32be rgbf32le rgbaf32be rgbaf32le p212be p212le p412be p412le gbrap14be gbrap14le ayuv uyva vyu444 v30xbe v30xle rgbf16be rgbf16le rgba128be rgba128le rgb96be rgb96le y216be y216le xv48be xv48le gbrpf16be gbrpf16le gbrapf16be gbrapf16le grayf16be grayf16le gray32be gray32le yaf32be yaf32le yaf16be yaf16le gbrap32be gbrap32le yuv444p10msbbe yuv444p10msble yuv444p12msbbe yuv444p12msble gbrp10msbbe gbrp10msble gbrp12msbbe gbrp12msble
+Filter 'Parsed_format_1' formats:
+  in[0] 'default': nv12
+  out[0] 'default': nv12
+Filter 'graph -1 input from stream 0:0' formats:
+  out[0] 'default': vulkan
+Filter 'out_#0:0' formats:
+  in[0] 'default': yuv420p yuyv422 rgb24 bgr24 yuv422p yuv444p yuv410p yuv411p gray monow monob pal8 yuvj420p yuvj422p yuvj444p uyvy422 uyyvyy411 bgr8 bgr4 bgr4_byte rgb8 rgb4 rgb4_byte nv12 nv21 argb rgba abgr bgra gray16be gray16le yuv440p yuvj440p yuva420p rgb48be rgb48le rgb565be rgb565le rgb555be rgb555le bgr565be bgr565le bgr555be bgr555le vaapi yuv420p16le yuv420p16be yuv422p16le yuv422p16be yuv444p16le yuv444p16be dxva2_vld rgb444le rgb444be bgr444le bgr444be ya8 bgr48be bgr48le yuv420p9be yuv420p9le yuv420p10be yuv420p10le yuv422p10be yuv422p10le yuv444p9be yuv444p9le yuv444p10be yuv444p10le yuv422p9be yuv422p9le gbrp gbrp9be gbrp9le gbrp10be gbrp10le gbrp16be gbrp16le yuva422p yuva444p yuva420p9be yuva420p9le yuva422p9be yuva422p9le yuva444p9be yuva444p9le yuva420p10be yuva420p10le yuva422p10be yuva422p10le yuva444p10be yuva444p10le yuva420p16be yuva420p16le yuva422p16be yuva422p16le yuva444p16be yuva444p16le vdpau xyz12le xyz12be nv16 nv20le nv20be rgba64be rgba64le bgra64be bgra64le yvyu422 ya16be ya16le gbrap gbrap16be gbrap16le qsv mmal d3d11va_vld cuda 0rgb rgb0 0bgr bgr0 yuv420p12be yuv420p12le yuv420p14be yuv420p14le yuv422p12be yuv422p12le yuv422p14be yuv422p14le yuv444p12be yuv444p12le yuv444p14be yuv444p14le gbrp12be gbrp12le gbrp14be gbrp14le yuvj411p bayer_bggr8 bayer_rggb8 bayer_gbrg8 bayer_grbg8 bayer_bggr16le bayer_bggr16be bayer_rggb16le bayer_rggb16be bayer_gbrg16le bayer_gbrg16be bayer_grbg16le bayer_grbg16be yuv440p10le yuv440p10be yuv440p12le yuv440p12be ayuv64le ayuv64be videotoolbox_vld p010le p010be gbrap12be gbrap12le gbrap10be gbrap10le mediacodec gray12be gray12le gray10be gray10le p016le p016be d3d11 gray9be gray9le gbrpf32be gbrpf32le gbrapf32be gbrapf32le drm_prime opencl gray14be gray14le grayf32be grayf32le yuva422p12be yuva422p12le yuva444p12be yuva444p12le nv24 nv42 vulkan y210be y210le x2rgb10le x2rgb10be x2bgr10le x2bgr10be p210be p210le p410be p410le p216be p216le p416be p416le vuya rgbaf16be rgbaf16le vuyx p012le p012be y212be y212le xv30be xv30le xv36be xv36le rgbf32be rgbf32le rgbaf32be rgbaf32le p212be p212le p412be p412le gbrap14be gbrap14le d3d12 ayuv uyva vyu444 v30xbe v30xle rgbf16be rgbf16le rgba128be rgba128le rgb96be rgb96le y216be y216le xv48be xv48le gbrpf16be gbrpf16le gbrapf16be gbrapf16le grayf16be grayf16le amf gray32be gray32le yaf32be yaf32le yaf16be yaf16le gbrap32be gbrap32le yuv444p10msbbe yuv444p10msble yuv444p12msbbe yuv444p12msble gbrp10msbbe gbrp10msble gbrp12msbbe gbrp12msble ohcodec
+[AVFilterGraph @ 0x7c17fc0010c0] query_formats: 4 queried, 9 merged, 0 already done, 0 delayed
+[graph -1 input from stream 0:0 @ 0x7c17fc002200] video frame properties congruent with link at pts_time: 0
+[h264 @ 0x560aed39a940] Decoding frame, 31451 bytes, 4 slices
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.3.100
+  Stream #0:0(und), 0, 1/30: Video: wrapped_avframe, 1 reference frame, nv12(progressive, left), 1920x1080 [SAR 1:1 DAR 16:9], 0/1, q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      handler_name    : VideoHandler
+      vendor_id       : [0][0][0][0]
+[out#0/null @ 0x560aed30ad40] Starting thread...
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 0.0333333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 0.0333333 queue head 0 ts 0.0333333
+[h264 @ 0x560aed3d3880] Decoding frame, 22766 bytes, 4 slices
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 20879 bytes, 4 slices
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 0.0666667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 0.0666667 queue head 0 ts 0.0666667
+[h264 @ 0x560aed3d3880] Decoding frame, 31433 bytes, 4 slices
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 23361 bytes, 4 slices
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 0.1
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 0.1 queue head 0 ts 0.1
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 2 times
+[h264 @ 0x560aed3d3880] Decoding frame, 20791 bytes, 4 slices
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 0.133333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 0.133333 queue head 0 ts 0.133333
+[h264 @ 0x560aed39a940] Decoding frame, 33422 bytes, 4 slices
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 23323 bytes, 4 slices
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 1 times
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 0.166667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 0.166667 queue head 0 ts 0.166667
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 1 times
+[h264 @ 0x560aed39a940] Decoding frame, 21088 bytes, 4 slices
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 32649 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 0.2
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 0.2 queue head 0 ts 0.2
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 24784 bytes, 4 slices
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 0.233333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 0.233333 queue head 0 ts 0.233333
+[h264 @ 0x560aed3d3880] Decoding frame, 20977 bytes, 4 slices
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 21673 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 0.266667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 0.266667 queue head 0 ts 0.266667
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 32951 bytes, 4 slices
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 0.3
+[h264 @ 0x560aed39a940] Decoding frame, 23552 bytes, 4 slices
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 21701 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 0.3 queue head 0 ts 0.3
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 0.333333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 0.333333 queue head 0 ts 0.333333
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 2 times
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 0.366667
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 0.366667 queue head 0 ts 0.366667
+[h264 @ 0x560aed39a940] Decoding frame, 33697 bytes, 4 slices
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 25608 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 0.4
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 0.4 queue head 0 ts 0.4
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 21640 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 0.433333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 0.433333 queue head 0 ts 0.433333
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 22192 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 0.466667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 0.466667 queue head 0 ts 0.466667
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 34390 bytes, 4 slices
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 0.5
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 0.5 queue head 0 ts 0.5
+[h264 @ 0x560aed3d3880] Decoding frame, 26993 bytes, 4 slices
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 21473 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 0.533333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 0.533333 queue head 0 ts 0.533333
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 22414 bytes, 4 slices
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 33701 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 0.566667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 0.566667 queue head 0 ts 0.566667
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 27085 bytes, 4 slices
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 21819 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 0.6
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 0.6 queue head 0 ts 0.6
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 21496 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 0.633333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 0.633333 queue head 0 ts 0.633333
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 32446 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 0.666667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 0.666667 queue head 0 ts 0.666667
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 23507 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 0.7
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 0.7 queue head 0 ts 0.7
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 20839 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 0.733333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 0.733333 queue head 0 ts 0.733333
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 28718 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 0.766667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 0.766667 queue head 0 ts 0.766667
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 30178 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 0.8
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 0.8 queue head 0 ts 0.8
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 23471 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 0.833333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 0.833333 queue head 0 ts 0.833333
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 21305 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 0.866667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 0.866667 queue head 0 ts 0.866667
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 30210 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 0.9
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 0.9 queue head 0 ts 0.9
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 23486 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 0.933333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 0.933333 queue head 0 ts 0.933333
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 21605 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 0.966667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 0.966667 queue head 0 ts 0.966667
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 29805 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1 queue head 0 ts 1
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 26178 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1.033333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1.033333 queue head 0 ts 1.033333
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 21316 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1.066667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1.066667 queue head 0 ts 1.066667
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 21740 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1.1
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1.1 queue head 0 ts 1.1
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 24896 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1.133333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1.133333 queue head 0 ts 1.133333
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 24337 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1.166667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1.166667 queue head 0 ts 1.166667
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 21752 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1.2
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1.2 queue head 0 ts 1.2
+[h264 @ 0x560aed3d3880] nal_unit_type: 6(SEI), nal_ref_idc: 0
+[h264 @ 0x560aed3d3880] nal_unit_type: 5(IDR), nal_ref_idc: 3
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 41875 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1.233333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1.233333 queue head 0 ts 1.233333
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 30121 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1.266667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1.266667 queue head 0 ts 1.266667
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 30073 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1.3
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1.3 queue head 0 ts 1.3
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 31451 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1.333333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1.333333 queue head 0 ts 1.333333
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 22766 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1.366667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1.366667 queue head 0 ts 1.366667
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 20879 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1.4
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1.4 queue head 0 ts 1.4
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 31433 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1.433333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1.433333 queue head 0 ts 1.433333
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 23361 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1.466667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1.466667 queue head 0 ts 1.466667
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 20791 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1.5
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1.5 queue head 0 ts 1.5
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 33422 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1.533333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1.533333 queue head 0 ts 1.533333
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 23323 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1.566667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1.566667 queue head 0 ts 1.566667
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 21088 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1.6
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1.6 queue head 0 ts 1.6
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 32649 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1.633333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1.633333 queue head 0 ts 1.633333
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 24784 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1.666667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1.666667 queue head 0 ts 1.666667
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 20977 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1.7
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1.7 queue head 0 ts 1.7
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 21673 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1.733333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1.733333 queue head 0 ts 1.733333
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 32951 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1.766667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1.766667 queue head 0 ts 1.766667
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 23552 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1.8
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1.8 queue head 0 ts 1.8
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 21701 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1.833333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1.833333 queue head 0 ts 1.833333
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 33697 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1.866667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1.866667 queue head 0 ts 1.866667
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 25608 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1.9
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1.9 queue head 0 ts 1.9
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 21640 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1.933333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1.933333 queue head 0 ts 1.933333
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 22192 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 1.966667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 1.966667 queue head 0 ts 1.966667
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 34390 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2 queue head 0 ts 2
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 26993 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2.033333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2.033333 queue head 0 ts 2.033333
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 21473 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2.066667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2.066667 queue head 0 ts 2.066667
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 22414 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2.1
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2.1 queue head 0 ts 2.1
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 33701 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2.133333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2.133333 queue head 0 ts 2.133333
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 27085 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2.166667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2.166667 queue head 0 ts 2.166667
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 21819 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2.2
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2.2 queue head 0 ts 2.2
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 21496 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2.233333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2.233333 queue head 0 ts 2.233333
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 32446 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2.266667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2.266667 queue head 0 ts 2.266667
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2.3
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2.3 queue head 0 ts 2.3
+[h264 @ 0x560aed3d3880] Decoding frame, 23507 bytes, 4 slices
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 20839 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2.333333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2.333333 queue head 0 ts 2.333333
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 28718 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2.366667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2.366667 queue head 0 ts 2.366667
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 30178 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2.4
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2.4 queue head 0 ts 2.4
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 23471 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2.433333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2.433333 queue head 0 ts 2.433333
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 21305 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2.466667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2.466667 queue head 0 ts 2.466667
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 30210 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2.5
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2.5 queue head 0 ts 2.5
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 23486 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2.533333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2.533333 queue head 0 ts 2.533333
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 21605 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2.566667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2.566667 queue head 0 ts 2.566667
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 29805 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2.6
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2.6 queue head 0 ts 2.6
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 26178 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2.633333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2.633333 queue head 0 ts 2.633333
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 21316 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2.666667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2.666667 queue head 0 ts 2.666667
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 21740 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2.7
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2.7 queue head 0 ts 2.7
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 24896 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2.733333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2.733333 queue head 0 ts 2.733333
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 24337 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2.766667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2.766667 queue head 0 ts 2.766667
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 21752 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2.8
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2.8 queue head 0 ts 2.8
+[h264 @ 0x560aed3d3880] nal_unit_type: 6(SEI), nal_ref_idc: 0
+[h264 @ 0x560aed3d3880] nal_unit_type: 5(IDR), nal_ref_idc: 3
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 41875 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2.833333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2.833333 queue head 0 ts 2.833333
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 30121 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2.866667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2.866667 queue head 0 ts 2.866667
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 30073 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2.9
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2.9 queue head 0 ts 2.9
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 31451 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2.933333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2.933333 queue head 0 ts 2.933333
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 22766 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 2.966667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 2.966667 queue head 0 ts 2.966667
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 20879 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3 queue head 0 ts 3
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 31433 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3.033333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3.033333 queue head 0 ts 3.033333
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 23361 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3.066667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3.066667 queue head 0 ts 3.066667
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 20791 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3.1
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3.1 queue head 0 ts 3.1
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 33422 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3.133333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3.133333 queue head 0 ts 3.133333
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 23323 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3.166667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3.166667 queue head 0 ts 3.166667
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 21088 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3.2
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3.2 queue head 0 ts 3.2
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 32649 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3.233333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3.233333 queue head 0 ts 3.233333
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 24784 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3.266667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3.266667 queue head 0 ts 3.266667
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 20977 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3.3
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3.3 queue head 0 ts 3.3
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 21673 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3.333333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3.333333 queue head 0 ts 3.333333
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 32951 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3.366667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3.366667 queue head 0 ts 3.366667
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 23552 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3.4
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3.4 queue head 0 ts 3.4
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 21701 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3.433333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3.433333 queue head 0 ts 3.433333
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 33697 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3.466667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3.466667 queue head 0 ts 3.466667
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 25608 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3.5
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3.5 queue head 0 ts 3.5
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 21640 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3.533333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3.533333 queue head 0 ts 3.533333
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 22192 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3.566667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3.566667 queue head 0 ts 3.566667
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 34390 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3.6
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3.6 queue head 0 ts 3.6
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 26993 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3.633333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3.633333 queue head 0 ts 3.633333
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 21473 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3.666667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3.666667 queue head 0 ts 3.666667
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 22414 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3.7
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3.7 queue head 0 ts 3.7
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 33701 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3.733333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3.733333 queue head 0 ts 3.733333
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 27085 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3.766667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3.766667 queue head 0 ts 3.766667
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 21819 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3.8
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3.8 queue head 0 ts 3.8
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 21496 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3.833333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3.833333 queue head 0 ts 3.833333
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 32446 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3.866667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3.866667 queue head 0 ts 3.866667
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 23507 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3.9
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3.9 queue head 0 ts 3.9
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 20839 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3.933333
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3.933333 queue head 0 ts 3.933333
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 28718 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 3.966667
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 3.966667 queue head 0 ts 3.966667
+[h264 @ 0x560aed39a940] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed39a940] Decoding frame, 30178 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] sq: send 0 ts 4
+[out#0/null @ 0x560aed30ad40] sq: 0 frames_max 120 reached
+[out#0/null @ 0x560aed30ad40] sq: finish 0; head ts 4
+[out#0/null @ 0x560aed30ad40] sq: finish queue
+[out#0/null @ 0x560aed30ad40] sq: receive 0 ts 4 queue head 0 ts 4
+[vost#0:0/wrapped_avframe @ 0x560aed3d5800] [enc:wrapped_avframe @ 0x560aed327a80] Encoder thread received EOF
+[vost#0:0/wrapped_avframe @ 0x560aed3d5800] Terminating thread with return code 0 (success)
+[h264 @ 0x560aed3d3880] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x560aed3d3880] Decoding frame, 23471 bytes, 4 slices
+[out#0/null @ 0x560aed30ad40] All streams finished
+[out#0/null @ 0x560aed30ad40] Terminating thread with return code 0 (success)
+[vf#0:0 @ 0x560aed3d5e80] All consumers returned EOF
+[out#0/null @ 0x560aed30ad40] sq: 0 EOF
+[out#0/null @ 0x560aed30ad40] sq: finish queue
+[vf#0:0 @ 0x560aed3d5e80] Terminating thread with return code 0 (success)
+[vist#0:0/h264 @ 0x560aed30ef80] [dec:h264 @ 0x560aed3d4c00] Decoder returned EOF, finishing
+[vist#0:0/h264 @ 0x560aed30ef80] [dec:h264 @ 0x560aed3d4c00] Terminating thread with return code 0 (success)
+[vist#0:0/h264 @ 0x560aed30ef80] All consumers of this stream are done
+[in#0/mov,mp4,m4a,3gp,3g2,mj2 @ 0x560aed366b80] All consumers are done
+[in#0/mov,mp4,m4a,3gp,3g2,mj2 @ 0x560aed366b80] Terminating thread with return code 0 (success)
+[out#0/null @ 0x560aed30ad40] Output file #0 (pipe:):
+[out#0/null @ 0x560aed30ad40]   Output stream #0:0 (video): 120 frames encoded; 120 packets muxed (49920 bytes); 
+[out#0/null @ 0x560aed30ad40]   Total: 120 packets (49920 bytes) muxed
+[out#0/null @ 0x560aed30ad40] video:49KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  120 fps=0.0 q=-0.0 Lsize=N/A time=00:00:04.00 bitrate=N/A speed=15.2x elapsed=0:00:00.26    
+[AVIOContext @ 0x560aed2dc080] Statistics: 181 bytes written, 0 seeks, 1 writeouts
+[in#0/mov,mp4,m4a,3gp,3g2,mj2 @ 0x560aed366b80] Input file #0 (/home/polarbear/.t3/projects/catchingup/HD620-benchmark/inputs/h264_1080_slices.mp4):
+[in#0/mov,mp4,m4a,3gp,3g2,mj2 @ 0x560aed366b80]   Input stream #0:0 (video): 142 packets read (3698035 bytes); 130 frames decoded; 0 decode errors; 
+[in#0/mov,mp4,m4a,3gp,3g2,mj2 @ 0x560aed366b80]   Total: 142 packets (3698035 bytes) demuxed
+[AVIOContext @ 0x560aed3673c0] Statistics: 3762116 bytes read, 2 seeks
+
+Exiting with exit code 0

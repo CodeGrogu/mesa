@@ -1,0 +1,7 @@
+Mesa Intel(R) HD Graphics 620 (KBL GT2)
+1048576 work-items, 16 rounds, output checks passed
+  GL timestamp difference median 0.000583 ms, samples ns [750, 750, 667, 666, 500, 583, 416, 333, 250]
+  dispatch and finish median 2.054603 ms, samples ns [2193270, 4077066, 2414291, 2054603, 2249305, 1705632, 1490659, 1116299, 1172244]
+1048576 work-items, 256 rounds, output checks passed
+  GL timestamp difference median 0.000250 ms, samples ns [334, 250, 250, 250, 250, 250, 333, 250, 250]
+  dispatch and finish median 11.531583 ms, samples ns [11531583, 11563791, 11394630, 11331525, 12475962, 11736755, 11543835, 11488353, 11449744]

@@ -1,0 +1,56 @@
+== round 1 fastpath=false
+use-vbo=false: FPS: 3489 FrameTime: 0.287 ms
+use-vbo=true: FPS: 7509 FrameTime: 0.133 ms
+update-fraction=0.5:update-method=map: FPS: 1006 FrameTime: 0.995 ms
+update-fraction=0.5:update-method=subdata: FPS: 813 FrameTime: 1.231 ms
+== round 1 fastpath=true
+use-vbo=false: FPS: 3535 FrameTime: 0.283 ms
+use-vbo=true: FPS: 5961 FrameTime: 0.168 ms
+update-fraction=0.5:update-method=map: FPS: 1013 FrameTime: 0.988 ms
+update-fraction=0.5:update-method=subdata: FPS: 869 FrameTime: 1.152 ms
+== round 2 fastpath=false
+use-vbo=false: FPS: 3656 FrameTime: 0.274 ms
+use-vbo=true: FPS: 6715 FrameTime: 0.149 ms
+update-fraction=0.5:update-method=map: FPS: 1030 FrameTime: 0.971 ms
+update-fraction=0.5:update-method=subdata: FPS: 901 FrameTime: 1.110 ms
+== round 2 fastpath=true
+use-vbo=false: FPS: 3902 FrameTime: 0.256 ms
+use-vbo=true: FPS: 5365 FrameTime: 0.186 ms
+update-fraction=0.5:update-method=map: FPS: 869 FrameTime: 1.151 ms
+update-fraction=0.5:update-method=subdata: FPS: 807 FrameTime: 1.239 ms
+== round 3 fastpath=false
+use-vbo=false: FPS: 3348 FrameTime: 0.299 ms
+use-vbo=true: FPS: 6482 FrameTime: 0.154 ms
+update-fraction=0.5:update-method=map: FPS: 841 FrameTime: 1.189 ms
+update-fraction=0.5:update-method=subdata: FPS: 774 FrameTime: 1.292 ms
+== round 3 fastpath=true
+use-vbo=false: FPS: 3880 FrameTime: 0.258 ms
+use-vbo=true: FPS: 6621 FrameTime: 0.151 ms
+update-fraction=0.5:update-method=map: FPS: 834 FrameTime: 1.199 ms
+update-fraction=0.5:update-method=subdata: FPS: 747 FrameTime: 1.339 ms
+== round 4 fastpath=false
+use-vbo=false: FPS: 3774 FrameTime: 0.265 ms
+use-vbo=true: FPS: 6356 FrameTime: 0.157 ms
+update-fraction=0.5:update-method=map: FPS: 853 FrameTime: 1.173 ms
+update-fraction=0.5:update-method=subdata: FPS: 779 FrameTime: 1.284 ms
+== round 4 fastpath=true
+use-vbo=false: FPS: 2851 FrameTime: 0.351 ms
+use-vbo=true: FPS: 5874 FrameTime: 0.170 ms
+update-fraction=0.5:update-method=map: FPS: 864 FrameTime: 1.158 ms
+update-fraction=0.5:update-method=subdata: FPS: 789 FrameTime: 1.269 ms
+== round 5 fastpath=false
+use-vbo=false: FPS: 2271 FrameTime: 0.441 ms
+use-vbo=true: FPS: 6380 FrameTime: 0.157 ms
+update-fraction=0.5:update-method=map: FPS: 855 FrameTime: 1.170 ms
+update-fraction=0.5:update-method=subdata: FPS: 790 FrameTime: 1.267 ms
+== round 5 fastpath=true
+use-vbo=false: FPS: 3433 FrameTime: 0.291 ms
+use-vbo=true: FPS: 6416 FrameTime: 0.156 ms
+update-fraction=0.5:update-method=map: FPS: 821 FrameTime: 1.219 ms
+update-fraction=0.5:update-method=subdata: FPS: 833 FrameTime: 1.201 ms
+== validate fastpath=true
+[build] use-vbo=false: Validation: Success
+[build] use-vbo=true: Validation: Success
+[buffer] update-method=map: Validation: Success
+[texture] <default>: Validation: Success
+[shading] <default>: Validation: Success

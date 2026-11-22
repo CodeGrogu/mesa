@@ -1,0 +1,58 @@
+diff --git a/src/intel/vulkan/anv_image.c b/src/intel/vulkan/anv_image.c
+index 31cea1f1f35..ee7e8271c48 100644
+--- a/src/intel/vulkan/anv_image.c
++++ b/src/intel/vulkan/anv_image.c
+@@ -1905,6 +1905,34 @@ add_image_view_format(struct anv_image *image, enum isl_format view_format)
+    }
+ }
+ 
++/* Gfx9 HiZ ops on LOD > 0 need a rectangle that covers the whole LOD and is
++ * 8x4 aligned, but the rectangle may not exceed the minified LOD extent (see
++ * blorp_hiz_op()). That is only possible when the minified extent is already
++ * 8x4 aligned. ANV tracks aux usage per image rather than per LOD, so enable
++ * HiZ only when every LOD meets this. The sampler also needs HiZ on every LOD.
++ * Keep the first enablement to the validated case: single-layer,
++ * single-sample, optimally tiled 2D D32_SFLOAT.
++ */
++static bool
++anv_gfx9_multi_lod_hiz_allowed(const struct anv_image *image)
++{
++   if (image->vk.format != VK_FORMAT_D32_SFLOAT ||
++       image->vk.image_type != VK_IMAGE_TYPE_2D ||
++       image->vk.tiling != VK_IMAGE_TILING_OPTIMAL ||
++       image->vk.samples != 1 ||
++       image->vk.array_layers != 1 ||
++       image->vk.extent.depth != 1)
++      return false;
++
++   for (uint32_t level = 1; level < image->vk.mip_levels; level++) {
++      if (u_minify(image->vk.extent.width, level) % 8 != 0 ||
++          u_minify(image->vk.extent.height, level) % 4 != 0)
++         return false;
++   }
++
++   return true;
++}
++
+ VkResult
+ anv_image_init(struct anv_device *device, struct anv_image *image,
+                const struct anv_image_create_info *create_info)
+@@ -2032,12 +2060,15 @@ anv_image_init(struct anv_device *device, struct anv_image *image,
+       isl_extra_usage_flags |= ISL_SURF_USAGE_DISABLE_AUX_BIT;
+    }
+ 
+-   /* TODO: Adjust blorp for multi-LOD HiZ surface on Gen9. */
++   /* Gen9 multi-LOD HiZ is only enabled image-wide, when every LOD can be
++    * covered by a HiZ op rectangle. See anv_gfx9_multi_lod_hiz_allowed().
++    */
+    if (vk_format_has_depth(image->vk.format) &&
+-       image->vk.mip_levels > 1 && device->info->ver == 9) {
++       image->vk.mip_levels > 1 && device->info->ver == 9 &&
++       !anv_gfx9_multi_lod_hiz_allowed(image)) {
+       anv_perf_warn(VK_LOG_OBJS(&image->vk.base),
+                     "Disabling aux: "
+-                    "gen9 multi-LOD depth unsupported");
++                    "gen9 multi-LOD depth outside the aligned HiZ scope");
+       isl_extra_usage_flags |= ISL_SURF_USAGE_DISABLE_AUX_BIT;
+    }
+ 

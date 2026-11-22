@@ -1,0 +1,23 @@
+anv: fix Vulkan Video capability, format and queue reporting
+
+Eight fixes found by an HD 620 audit:
+ - derive queue codec operations from the advertised extensions and
+   overwrite the output instead of OR-ing into caller data;
+ - only expose video queue directions, extensions and NV12 video format
+   features when a usable codec and an engine exist;
+ - correct zero-capacity enumeration and initialise H.264/H.265/AV1
+   encode quality and capability fields;
+ - write identity component swizzles for NV12 and P010 format rows;
+ - emit one shared format for multi-profile queries and reject profiles
+   with incompatible bit depths;
+ - fail generic image-format queries with unsupported video profiles;
+ - reject DPB usage without the required decode or encode direction;
+ - exclude depth/stencil from extended-usage video format matches.
+
+Verified with 809 depth/stencil assertions, video/image/DPB checks, 14
+capability cases, 18 hardware workloads and byte-identical H.264
+transcodes.
+
+Developed with Codex ("Sol") in an earlier session.
+
+Generated-by: LLM

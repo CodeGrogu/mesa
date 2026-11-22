@@ -1,0 +1,19 @@
+#version 450
+// Heavier variant: pseudo-random coordinates over large textures, so the
+// sampler cache keeps refilling with CCS and ASTC lines together.
+layout(local_size_x = 8, local_size_y = 8) in;
+layout(binding = 0) uniform sampler2D ccs_tex;
+layout(binding = 1) uniform sampler2D astc_tex;
+layout(std430, binding = 2) writeonly buffer O { vec4 o[]; };
+void main()
+{
+    uint h = gl_GlobalInvocationID.x * 1973u + gl_GlobalInvocationID.y * 9277u + 1u;
+    vec4 acc = vec4(0.0);
+    for (int k = 0; k < 64; k++) {
+        h = h * 1664525u + 1013904223u;
+        acc += textureLod(ccs_tex, vec2(h & 0xffffu, h >> 16) / 65536.0, 0.0);
+        h = h * 1664525u + 1013904223u;
+        acc += textureLod(astc_tex, vec2(h & 0xffffu, h >> 16) / 65536.0, 0.0);
+    }
+    o[(gl_GlobalInvocationID.y & 255u) * 256u + (gl_GlobalInvocationID.x & 255u)] = acc;
+}

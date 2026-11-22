@@ -1,0 +1,2 @@
+gprs6: /src/src/intel/common/mi_builder.h:301: mi_value mi_new_gpr(mi_builder*): Assertion `gpr < MI_BUILDER_NUM_ALLOC_GPRS' failed.
+Aborted (core dumped)

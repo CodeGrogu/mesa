@@ -1,0 +1,20 @@
+<style>
+  #depth-clear-timing { display: grid; gap: 12px; color: var(--foreground, CanvasText); }
+  #depth-clear-timing h2, #depth-clear-timing p { margin: 0; }
+  #depth-clear-timing .detail { color: var(--muted-foreground, GrayText); }
+  #depth-clear-timing .row { display: grid; grid-template-columns: minmax(9.5rem, auto) 1fr 6ch; gap: 9px; align-items: center; }
+  #depth-clear-timing .track { display: block; height: .7em; background: var(--muted, color-mix(in srgb, currentColor 10%, transparent)); }
+  #depth-clear-timing .mark { display: block; width: var(--pct); height: 100%; background: var(--chart-1, currentColor); }
+  #depth-clear-timing .disabled { background: var(--chart-2, var(--muted-foreground, GrayText)); }
+  #depth-clear-timing .value { text-align: right; font-variant-numeric: tabular-nums; }
+</style>
+<section id="depth-clear-timing" aria-label="Intel HD 620 median GPU time for 32 Vulkan depth clears at 2048 by 2048 pixels, clearing only mip zero">
+  <header>
+    <h2>HD 620 depth-clear timing</h2>
+    <p class="detail">32 clears of mip 0 at 2,048 × 2,048 · median GPU time in ms</p>
+  </header>
+  <div class="row"><span>1 mip · default</span><span class="track" aria-hidden="true"><span class="mark" style="--pct:8.0%"></span></span><span class="value">2.40</span></div>
+  <div class="row"><span>4 mips · default</span><span class="track" aria-hidden="true"><span class="mark" style="--pct:74.6%"></span></span><span class="value">22.39</span></div>
+  <div class="row"><span>1 mip · HiZ off</span><span class="track" aria-hidden="true"><span class="mark disabled" style="--pct:78.0%"></span></span><span class="value">23.40</span></div>
+  <div class="row"><span>4 mips · HiZ off</span><span class="track" aria-hidden="true"><span class="mark disabled" style="--pct:85.0%"></span></span><span class="value">25.49</span></div>
+</section>

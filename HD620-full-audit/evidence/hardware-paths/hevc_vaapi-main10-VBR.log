@@ -1,0 +1,1528 @@
+Splitting the commandline.
+Reading option '-hide_banner' ... matched as option 'hide_banner' (do not show program banner) with argument '1'.
+Reading option '-nostdin' ... matched as option 'stdin' (enable or disable interaction on standard input) with argument 0.
+Reading option '-xerror' ... matched as option 'xerror' (exit on error) with argument '1'.
+Reading option '-loglevel' ... matched as option 'loglevel' (set logging level) with argument 'debug'.
+Reading option '-threads' ... matched as AVOption 'threads' with argument '2'.
+Reading option '-filter_threads' ... matched as option 'filter_threads' (number of non-complex filter threads) with argument '1'.
+Reading option '-vaapi_device' ... matched as option 'vaapi_device' (set VAAPI hardware device (DirectX adapter index, DRM path or X11 display name)) with argument '/dev/dri/renderD128'.
+Reading option '-f' ... matched as option 'f' (force container format (auto-detected otherwise)) with argument 'lavfi'.
+Reading option '-i' ... matched as input url with argument 'testsrc2=size=1280x720:rate=30'.
+Reading option '-vf' ... matched as option 'vf' (alias for -filter:v (apply filters to video streams)) with argument 'format=p010le,hwupload'.
+Reading option '-frames:v' ... matched as option 'frames' (set the number of frames to output) with argument '60'.
+Reading option '-c:v' ... matched as option 'c' (select encoder/decoder ('copy' to copy stream without reencoding)) with argument 'hevc_vaapi'.
+Reading option '-profile:v' ... matched as option 'profile' (set profile) with argument 'main10'.
+Reading option '-rc_mode' ... matched as AVOption 'rc_mode' with argument 'VBR'.
+Reading option '-b:v' ... matched as option 'b' (video bitrate (please use -b:v)) with argument '2M'.
+Reading option '-maxrate' ... matched as AVOption 'maxrate' with argument '3M'.
+Reading option '-bufsize' ... matched as AVOption 'bufsize' with argument '4M'.
+Reading option '/tmp/hd620-va-rc-navyf6fj/hevc_vaapi-main10-VBR.mkv' ... matched as output url.
+Finished splitting the commandline.
+Parsing a group of options: global .
+Applying option hide_banner (do not show program banner) with argument 1.
+Applying option nostdin (enable or disable interaction on standard input) with argument 0.
+Applying option xerror (exit on error) with argument 1.
+Applying option loglevel (set logging level) with argument debug.
+Applying option filter_threads (number of non-complex filter threads) with argument 1.
+Applying option vaapi_device (set VAAPI hardware device (DirectX adapter index, DRM path or X11 display name)) with argument /dev/dri/renderD128.
+[VAAPI @ 0x6114720b0d80] libva: VA-API version 1.23.0
+[VAAPI @ 0x6114720b0d80] libva: User environment variable requested driver 'iHD'
+[VAAPI @ 0x6114720b0d80] libva: Trying to open /usr/lib/x86_64-linux-gnu/dri/iHD_drv_video.so
+[VAAPI @ 0x6114720b0d80] libva: Found init function __vaDriverInit_1_22
+[VAAPI @ 0x6114720b0d80] libva: va_openDriver() returns 0
+[VAAPI @ 0x6114720b0d80] Initialised VAAPI connection: version 1.23
+[VAAPI @ 0x6114720b0d80] Format 0x41524742 -> bgra.
+[VAAPI @ 0x6114720b0d80] Format 0x41424752 -> rgba.
+[VAAPI @ 0x6114720b0d80] Format 0x58524742 -> bgr0.
+[VAAPI @ 0x6114720b0d80] Format 0x58424752 -> rgb0.
+[VAAPI @ 0x6114720b0d80] Format 0x30335241 -> unknown.
+[VAAPI @ 0x6114720b0d80] Format 0x30334241 -> unknown.
+[VAAPI @ 0x6114720b0d80] Format 0x30335258 -> x2rgb10le.
+[VAAPI @ 0x6114720b0d80] Format 0x30334258 -> unknown.
+[VAAPI @ 0x6114720b0d80] Format 0x36314752 -> unknown.
+[VAAPI @ 0x6114720b0d80] Format 0x50424752 -> unknown.
+[VAAPI @ 0x6114720b0d80] Format 0x50524742 -> unknown.
+[VAAPI @ 0x6114720b0d80] Format 0x56555941 -> unknown.
+[VAAPI @ 0x6114720b0d80] Format 0x30303859 -> gray.
+[VAAPI @ 0x6114720b0d80] Format 0x3231564e -> nv12.
+[VAAPI @ 0x6114720b0d80] Format 0x3132564e -> unknown.
+[VAAPI @ 0x6114720b0d80] Format 0x32595559 -> yuyv422.
+[VAAPI @ 0x6114720b0d80] Format 0x59565955 -> uyvy422.
+[VAAPI @ 0x6114720b0d80] Format 0x32315659 -> yuv420p.
+[VAAPI @ 0x6114720b0d80] Format 0x30323449 -> yuv420p.
+[VAAPI @ 0x6114720b0d80] Format 0x50313134 -> yuv411p.
+[VAAPI @ 0x6114720b0d80] Format 0x48323234 -> yuv422p.
+[VAAPI @ 0x6114720b0d80] Format 0x56323234 -> yuv440p.
+[VAAPI @ 0x6114720b0d80] Format 0x50343434 -> yuv444p.
+[VAAPI @ 0x6114720b0d80] Format 0x33434d49 -> unknown.
+[VAAPI @ 0x6114720b0d80] Format 0x30313050 -> p010le.
+[VAAPI @ 0x6114720b0d80] VAAPI driver: Intel iHD driver for Intel(R) Gen Graphics - 26.1.2 ().
+[VAAPI @ 0x6114720b0d80] Driver not found in known nonstandard list, using standard behaviour.
+Successfully parsed a group of options.
+Parsing a group of options: input url testsrc2=size=1280x720:rate=30.
+Applying option f (force container format (auto-detected otherwise)) with argument lavfi.
+Successfully parsed a group of options.
+Opening an input file: testsrc2=size=1280x720:rate=30.
+[AVFilterGraph @ 0x6114720eff80] Setting 'size' to value '1280x720'
+[AVFilterGraph @ 0x6114720eff80] Setting 'rate' to value '30'
+detected 4 logical cores
+[Parsed_testsrc2_0 @ 0x611472112c00] size:1280x720 rate:30/1 duration:-1.000000 sar:1/1
+[lavfi @ 0x6114720efc00] Filter 'Parsed_testsrc2_0' formats:
+[lavfi @ 0x6114720efc00]   out[0] 'default': yuv420p rgb24 bgr24 yuv422p yuv444p yuv410p yuv411p gray yuvj420p yuvj422p yuvj444p nv12 nv21 argb rgba abgr bgra gray16le yuv440p yuvj440p yuva420p rgb48le yuv420p16le yuv422p16le yuv444p16le ya8 bgr48le yuv420p9le yuv420p10le yuv422p10le yuv444p9le yuv444p10le yuv422p9le gbrp gbrp9le gbrp10le gbrp16le yuva422p yuva444p yuva420p9le yuva422p9le yuva444p9le yuva420p10le yuva422p10le yuva444p10le yuva420p16le yuva422p16le yuva444p16le nv16 nv20le ya16le gbrap gbrap16le 0rgb rgb0 0bgr bgr0 yuv420p12le yuv420p14le yuv422p12le yuv422p14le yuv444p12le yuv444p14le gbrp12le gbrp14le yuvj411p yuv440p10le yuv440p12le p010le gbrap12le gbrap10le gray12le gray10le p016le gray9le gray14le yuva422p12le yuva444p12le nv24 nv42 p210le p410le p216le p416le vuya vuyx p012le p212le p412le gbrap14le ayuv uyva vyu444 yuv444p10msble yuv444p12msble gbrp10msble gbrp12msble
+[lavfi @ 0x6114720efc00] Filter 'out' formats:
+[lavfi @ 0x6114720efc00]   in[0] 'default': yuv420p yuyv422 rgb24 bgr24 yuv422p yuv444p yuv410p yuv411p gray monow monob pal8 yuvj420p yuvj422p yuvj444p uyvy422 uyyvyy411 bgr8 bgr4 bgr4_byte rgb8 rgb4 rgb4_byte nv12 nv21 argb rgba abgr bgra gray16be gray16le yuv440p yuvj440p yuva420p rgb48be rgb48le rgb565be rgb565le rgb555be rgb555le bgr565be bgr565le bgr555be bgr555le vaapi yuv420p16le yuv420p16be yuv422p16le yuv422p16be yuv444p16le yuv444p16be dxva2_vld rgb444le rgb444be bgr444le bgr444be ya8 bgr48be bgr48le yuv420p9be yuv420p9le yuv420p10be yuv420p10le yuv422p10be yuv422p10le yuv444p9be yuv444p9le yuv444p10be yuv444p10le yuv422p9be yuv422p9le gbrp gbrp9be gbrp9le gbrp10be gbrp10le gbrp16be gbrp16le yuva422p yuva444p yuva420p9be yuva420p9le yuva422p9be yuva422p9le yuva444p9be yuva444p9le yuva420p10be yuva420p10le yuva422p10be yuva422p10le yuva444p10be yuva444p10le yuva420p16be yuva420p16le yuva422p16be yuva422p16le yuva444p16be yuva444p16le vdpau xyz12le xyz12be nv16 nv20le nv20be rgba64be rgba64le bgra64be bgra64le yvyu422 ya16be ya16le gbrap gbrap16be gbrap16le qsv mmal d3d11va_vld cuda 0rgb rgb0 0bgr bgr0 yuv420p12be yuv420p12le yuv420p14be yuv420p14le yuv422p12be yuv422p12le yuv422p14be yuv422p14le yuv444p12be yuv444p12le yuv444p14be yuv444p14le gbrp12be gbrp12le gbrp14be gbrp14le yuvj411p bayer_bggr8 bayer_rggb8 bayer_gbrg8 bayer_grbg8 bayer_bggr16le bayer_bggr16be bayer_rggb16le bayer_rggb16be bayer_gbrg16le bayer_gbrg16be bayer_grbg16le bayer_grbg16be yuv440p10le yuv440p10be yuv440p12le yuv440p12be ayuv64le ayuv64be videotoolbox_vld p010le p010be gbrap12be gbrap12le gbrap10be gbrap10le mediacodec gray12be gray12le gray10be gray10le p016le p016be d3d11 gray9be gray9le gbrpf32be gbrpf32le gbrapf32be gbrapf32le drm_prime opencl gray14be gray14le grayf32be grayf32le yuva422p12be yuva422p12le yuva444p12be yuva444p12le nv24 nv42 vulkan y210be y210le x2rgb10le x2rgb10be x2bgr10le x2bgr10be p210be p210le p410be p410le p216be p216le p416be p416le vuya rgbaf16be rgbaf16le vuyx p012le p012be y212be y212le xv30be xv30le xv36be xv36le rgbf32be rgbf32le rgbaf32be rgbaf32le p212be p212le p412be p412le gbrap14be gbrap14le d3d12 ayuv uyva vyu444 v30xbe v30xle rgbf16be rgbf16le rgba128be rgba128le rgb96be rgb96le y216be y216le xv48be xv48le gbrpf16be gbrpf16le gbrapf16be gbrapf16le grayf16be grayf16le amf gray32be gray32le yaf32be yaf32le yaf16be yaf16le gbrap32be gbrap32le yuv444p10msbbe yuv444p10msble yuv444p12msbbe yuv444p12msble gbrp10msbbe gbrp10msble gbrp12msbbe gbrp12msble ohcodec
+[AVFilterGraph @ 0x6114720eff80] query_formats: 2 queried, 3 merged, 0 already done, 0 delayed
+[lavfi @ 0x6114720efc00] All info found
+Input #0, lavfi, from 'testsrc2=size=1280x720:rate=30':
+  Duration: N/A, start: 0.000000, bitrate: N/A
+  Stream #0:0, 1, 1/30: Video: wrapped_avframe, 1 reference frame, yuv420p, 1280x720 [SAR 1:1 DAR 16:9], 0/1, 30 fps, 30 tbr, 30 tbn
+Successfully opened the file.
+Parsing a group of options: output url /tmp/hd620-va-rc-navyf6fj/hevc_vaapi-main10-VBR.mkv.
+Applying option vf (alias for -filter:v (apply filters to video streams)) with argument format=p010le,hwupload.
+Applying option frames:v (set the number of frames to output) with argument 60.
+Applying option c:v (select encoder/decoder ('copy' to copy stream without reencoding)) with argument hevc_vaapi.
+Applying option profile:v (set profile) with argument main10.
+Applying option b:v (video bitrate (please use -b:v)) with argument 2M.
+Successfully parsed a group of options.
+Opening an output file: /tmp/hd620-va-rc-navyf6fj/hevc_vaapi-main10-VBR.mkv.
+[out#0/matroska @ 0x611472115a80] No explicit maps, mapping streams automatically...
+[vost#0:0/hevc_vaapi @ 0x611472115e00] Created video stream from input stream 0:0
+[AVFilterGraph @ 0x611472116f40] Setting 'pix_fmts' to value 'p010le'
+[file @ 0x611472119b40] Setting default whitelist 'file,crypto,data'
+Successfully opened the file.
+Stream mapping:
+  Stream #0:0 -> #0:0 (wrapped_avframe (native) -> hevc (hevc_vaapi))
+[vost#0:0/hevc_vaapi @ 0x611472115e00] Starting thread...
+[vf#0:0 @ 0x611472116880] Starting thread...
+[vist#0:0/wrapped_avframe @ 0x611472115880] [dec:wrapped_avframe @ 0x611472118540] Starting thread...
+[in#0/lavfi @ 0x6114720ef280] Starting thread...
+[AVFilterGraph @ 0x7cc74c001080] Setting 'pix_fmts' to value 'p010le'
+[graph -1 input from stream 0:0 @ 0x7cc74c001e40] w:1280 h:720 pixfmt:yuv420p tb:1/30 fr:30/1 sar:1/1 csp:unknown range:unknown
+[format @ 0x7cc74c0024c0] Setting 'pix_fmts' to value 'vaapi'
+[format @ 0x7cc74c0024c0] Setting 'color_ranges' to value 'tv|pc'
+Filter 'Parsed_format_0' formats:
+  in[0] 'default': p010le
+  out[0] 'default': p010le
+Filter 'Parsed_hwupload_1' formats:
+  in[0] 'default': vaapi bgra rgba bgr0 rgb0 x2rgb10le gray nv12 yuyv422 uyvy422 yuv420p yuv411p yuv422p yuv440p yuv444p p010le
+  out[0] 'default': vaapi
+Filter 'graph -1 input from stream 0:0' formats:
+  out[0] 'default': yuv420p
+Filter 'out_#0:0' formats:
+  in[0] 'default': yuv420p yuyv422 rgb24 bgr24 yuv422p yuv444p yuv410p yuv411p gray monow monob pal8 yuvj420p yuvj422p yuvj444p uyvy422 uyyvyy411 bgr8 bgr4 bgr4_byte rgb8 rgb4 rgb4_byte nv12 nv21 argb rgba abgr bgra gray16be gray16le yuv440p yuvj440p yuva420p rgb48be rgb48le rgb565be rgb565le rgb555be rgb555le bgr565be bgr565le bgr555be bgr555le vaapi yuv420p16le yuv420p16be yuv422p16le yuv422p16be yuv444p16le yuv444p16be dxva2_vld rgb444le rgb444be bgr444le bgr444be ya8 bgr48be bgr48le yuv420p9be yuv420p9le yuv420p10be yuv420p10le yuv422p10be yuv422p10le yuv444p9be yuv444p9le yuv444p10be yuv444p10le yuv422p9be yuv422p9le gbrp gbrp9be gbrp9le gbrp10be gbrp10le gbrp16be gbrp16le yuva422p yuva444p yuva420p9be yuva420p9le yuva422p9be yuva422p9le yuva444p9be yuva444p9le yuva420p10be yuva420p10le yuva422p10be yuva422p10le yuva444p10be yuva444p10le yuva420p16be yuva420p16le yuva422p16be yuva422p16le yuva444p16be yuva444p16le vdpau xyz12le xyz12be nv16 nv20le nv20be rgba64be rgba64le bgra64be bgra64le yvyu422 ya16be ya16le gbrap gbrap16be gbrap16le qsv mmal d3d11va_vld cuda 0rgb rgb0 0bgr bgr0 yuv420p12be yuv420p12le yuv420p14be yuv420p14le yuv422p12be yuv422p12le yuv422p14be yuv422p14le yuv444p12be yuv444p12le yuv444p14be yuv444p14le gbrp12be gbrp12le gbrp14be gbrp14le yuvj411p bayer_bggr8 bayer_rggb8 bayer_gbrg8 bayer_grbg8 bayer_bggr16le bayer_bggr16be bayer_rggb16le bayer_rggb16be bayer_gbrg16le bayer_gbrg16be bayer_grbg16le bayer_grbg16be yuv440p10le yuv440p10be yuv440p12le yuv440p12be ayuv64le ayuv64be videotoolbox_vld p010le p010be gbrap12be gbrap12le gbrap10be gbrap10le mediacodec gray12be gray12le gray10be gray10le p016le p016be d3d11 gray9be gray9le gbrpf32be gbrpf32le gbrapf32be gbrapf32le drm_prime opencl gray14be gray14le grayf32be grayf32le yuva422p12be yuva422p12le yuva444p12be yuva444p12le nv24 nv42 vulkan y210be y210le x2rgb10le x2rgb10be x2bgr10le x2bgr10be p210be p210le p410be p410le p216be p216le p416be p416le vuya rgbaf16be rgbaf16le vuyx p012le p012be y212be y212le xv30be xv30le xv36be xv36le rgbf32be rgbf32le rgbaf32be rgbaf32le p212be p212le p412be p412le gbrap14be gbrap14le d3d12 ayuv uyva vyu444 v30xbe v30xle rgbf16be rgbf16le rgba128be rgba128le rgb96be rgb96le y216be y216le xv48be xv48le gbrpf16be gbrpf16le gbrapf16be gbrapf16le grayf16be grayf16le amf gray32be gray32le yaf32be yaf32le yaf16be yaf16le gbrap32be gbrap32le yuv444p10msbbe yuv444p10msble yuv444p12msbbe yuv444p12msble gbrp10msbbe gbrp10msble gbrp12msbbe gbrp12msble ohcodec
+Filter 'format' formats:
+  in[0] 'default': vaapi
+  out[0] 'default': vaapi
+[auto_scale_0 @ 0x7cc74c003780] w:iw h:ih flags:'' interl:0
+[Parsed_format_0 @ 0x7cc74c001500] auto-inserting filter 'auto_scale_0' between the filter 'graph -1 input from stream 0:0' and the filter 'Parsed_format_0'
+[AVFilterGraph @ 0x7cc74c001080] query_formats: 5 queried, 9 merged, 3 already done, 0 delayed
+[auto_scale_0 @ 0x7cc74c003780] w:1280 h:720 fmt:yuv420p csp:unknown range:unknown sar:1/1 -> w:1280 h:720 fmt:p010le csp:unknown range:tv sar:1/1 flags:0x00000004
+[auto_scale_0 @ 0x7cc74c003780] [framesync @ 0x7cc74c003890] Selected 1/30 time base
+[auto_scale_0 @ 0x7cc74c003780] [framesync @ 0x7cc74c003890] Sync level 1
+[hwupload @ 0x7cc74c001840] Surface format is p010le.
+[AVHWFramesContext @ 0x7cc74c003140] Created surface 0.
+[AVHWFramesContext @ 0x7cc74c003140] Direct mapping possible.
+[graph -1 input from stream 0:0 @ 0x7cc74c001e40] video frame properties congruent with link at pts_time: 0
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0.
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0.
+[vost#0:0/hevc_vaapi @ 0x611472115e00] [enc:hevc_vaapi @ 0x611472116380] Using input frames context (format vaapi) with hevc_vaapi encoder.
+[hevc_vaapi @ 0x611472116400] Input surface format is p010le.
+[hevc_vaapi @ 0x611472116400] Using VAAPI profile VAProfileHEVCMain10 (18).
+[hevc_vaapi @ 0x611472116400] Using VAAPI entrypoint VAEntrypointEncSlice (6).
+[hevc_vaapi @ 0x611472116400] Using VAAPI render target format YUV420_10 (0x100).
+[hevc_vaapi @ 0x611472116400] Driver does not advertise encoder features, using guessed defaults.
+[hevc_vaapi @ 0x611472116400] Driver does not advertise encoder block size, using guessed defaults.
+[hevc_vaapi @ 0x611472116400] Using CTU size 32x32, min CB size 16x16.
+[hevc_vaapi @ 0x611472116400] Driver supports RC modes CQP, CBR, VBR, ICQ, QVBR.
+[hevc_vaapi @ 0x611472116400] RC mode: VBR.
+[hevc_vaapi @ 0x611472116400] Block Level bitrate control: OFF.
+[hevc_vaapi @ 0x611472116400] RC target: 66% of 3000000 bps over 1333 ms.
+[hevc_vaapi @ 0x611472116400] RC buffer: 4000000 bits, initial fullness 3000000 bits.
+[hevc_vaapi @ 0x611472116400] RC framerate: 30/1 (30.00 fps).
+[hevc_vaapi @ 0x611472116400] Driver does not report any additional prediction constraints.
+[hevc_vaapi @ 0x611472116400] Using intra, P- and B-frames (supported references: 3 / 1).
+[hevc_vaapi @ 0x611472116400] All wanted packed headers available (wanted 0xd, found 0x1f).
+[hevc_vaapi @ 0x611472116400] Using p010le as format of reconstructed frames.
+[AVHWFramesContext @ 0x7cc74c002d80] Created surface 0x1.
+[AVHWFramesContext @ 0x7cc74c002d80] Direct mapping possible.
+[hevc_vaapi @ 0x611472116400] Using level 3.1.
+[matroska @ 0x611472115b80] get_metadata_duration returned: 0
+Output #0, matroska, to '/tmp/hd620-va-rc-navyf6fj/hevc_vaapi-main10-VBR.mkv':
+  Metadata:
+    encoder         : Lavf62.3.100
+  Stream #0:0, 0, 1/1000: Video: hevc (Main 10), 1 reference frame, vaapi(tv, progressive), 1280x720 [SAR 1:1 DAR 16:9], 0/1, q=2-31, 2000 kb/s, 30 fps, 1k tbn
+    Metadata:
+      encoder         : Lavc62.11.100 hevc_vaapi
+[out#0/matroska @ 0x611472115a80] Starting thread...
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 0.0333333
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 0.0333333 queue head 0 ts 0.0333333
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (0).
+[hevc_vaapi @ 0x611472116400] Pick nothing to encode next - need more input for timestamps.
+[AVHWFramesContext @ 0x7cc74c003140] Created surface 0x2.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x2.
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x2.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 0.0666667
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 0.0666667 queue head 0 ts 0.0666667
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (1).
+[AVHWFramesContext @ 0x7cc74c002d80] Created surface 0x3.
+[hevc_vaapi @ 0x611472116400] Pick forced IDR-picture to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 0/0 as type IDR.
+[hevc_vaapi @ 0x611472116400] No reference pictures.
+[hevc_vaapi @ 0x611472116400] Input surface is 0.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x1.
+[hevc_vaapi @ 0x611472116400] Allocated output buffer 0
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[hevc_vaapi @ 0x611472116400] Param buffer (22) is 0x1.
+[hevc_vaapi @ 0x611472116400] Param buffer (27) is 0x2.
+[hevc_vaapi @ 0x611472116400] Param buffer (27) is 0x3.
+[hevc_vaapi @ 0x611472116400] Param buffer (27) is 0x4.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x5.
+[AVHWFramesContext @ 0x7cc74c003140] Created surface 0x4.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x4.
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x4.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 0.1
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 0.1 queue head 0 ts 0.1
+[AVHWFramesContext @ 0x7cc74c003140] Created surface 0x5.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x5.
+[hevc_vaapi @ 0x611472116400] Packed header buffer (1) is 0x7/0x8 (800 bits).
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x9/0xa (64 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0xb.
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x5.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 0.133333
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 0.133333 queue head 0 ts 0.133333
+[AVHWFramesContext @ 0x7cc74c003140] Created surface 0x6.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x6.
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x6.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 0.166667
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 0.166667 queue head 0 ts 0.166667
+[AVHWFramesContext @ 0x7cc74c003140] Created surface 0x7.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x7.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (2).
+[AVHWFramesContext @ 0x7cc74c002d80] Created surface 0x8.
+[hevc_vaapi @ 0x611472116400] Pick nothing to encode next - need more input for reference pictures.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (3).
+[AVHWFramesContext @ 0x7cc74c002d80] Created surface 0x9.
+[hevc_vaapi @ 0x611472116400] Pick normal P-picture to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 3/1 as type P.
+[hevc_vaapi @ 0x611472116400] L0 refers to 0/0.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x5.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x9.
+[hevc_vaapi @ 0x611472116400] Allocated output buffer 0xb
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0xa.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 3: (0,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x9/0x8 (80 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x7.
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x7.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 0.2
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 0.2 queue head 0 ts 0.2
+[AVHWFramesContext @ 0x7cc74c003140] Created surface 0xa.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0xa.
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0xa.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 0.233333
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 0.233333 queue head 0 ts 0.233333
+[hevc_vaapi @ 0x611472116400] Sync to pic 0/0 (input surface 0).
+[hevc_vaapi @ 0x611472116400] Output buffer: 37175 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 0/0.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 0, dts -1, size 37175 bytes.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (4).
+[matroska @ 0x611472115b80] Starting new cluster with timestamp 0 at offset 671 bytes
+[matroska @ 0x611472115b80] Writing block of size 37175 with pts 0, dts -33, duration 33 at relative offset 9 in cluster at offset 671. TrackNumber 1, keyframe 1
+[AVHWFramesContext @ 0x7cc74c002d80] Created surface 0xb.
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 1/2 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 0/0.
+[hevc_vaapi @ 0x611472116400] L1 refers to 3/1.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x2.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x3.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x8.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 1: (0,1) (3,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x9/0xa (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x6.
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 0.266667
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 0.266667 queue head 0 ts 0.266667
+[AVHWFramesContext @ 0x7cc74c003140] Created surface 0xc.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0xc.
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0xc.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 0.3
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 0.3 queue head 0 ts 0.3
+[hevc_vaapi @ 0x611472116400] Sync to pic 3/1 (input surface 0x5).
+[hevc_vaapi @ 0x611472116400] Output buffer: 13721 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 3/1.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 3, dts 0, size 13721 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (5).
+[matroska @ 0x611472115b80] Writing block of size 13721 with pts 100, dts 0, duration 33 at relative offset 37192 in cluster at offset 671. TrackNumber 1, keyframe 0
+[AVHWFramesContext @ 0x7cc74c002d80] Created surface 0xd.
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 2/3 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 0/0.
+[hevc_vaapi @ 0x611472116400] L1 refers to 3/1.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x4.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x8.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x6.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x5.
+[hevc_vaapi @ 0x611472116400] RPS for POC 2: (0,1) (3,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x9/0x8 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x7.
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x5.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 0.333333
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 0.333333 queue head 0 ts 0.333333
+[AVHWFramesContext @ 0x7cc74c003140] Created surface 0xe.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0xe.
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0xe.
+[hevc_vaapi @ 0x611472116400] Sync to pic 1/2 (input surface 0x2).
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 0.366667
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 0.366667 queue head 0 ts 0.366667
+[hevc_vaapi @ 0x611472116400] Output buffer: 8650 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 1/2.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 1, dts 1, size 8650 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (6).
+[hevc_vaapi @ 0x611472116400] Pick normal P-picture to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 6/4 as type P.
+[hevc_vaapi @ 0x611472116400] L0 refers to 3/1.
+[hevc_vaapi @ 0x611472116400] Input surface is 0xa.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x3.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x7.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 6: (3,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x8/0x9 (80 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x6.
+[matroska @ 0x611472115b80] Writing block of size 8650 with pts 33, dts 33, duration 33 at relative offset 50920 in cluster at offset 671. TrackNumber 1, keyframe 0
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x2.
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x2.
+[hevc_vaapi @ 0x611472116400] Sync to pic 2/3 (input surface 0x4).
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 0.4
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 0.4 queue head 0 ts 0.4
+[hevc_vaapi @ 0x611472116400] Output buffer: 8486 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 2/3.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 2, dts 2, size 8486 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (7).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 4/5 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 3/1.
+[hevc_vaapi @ 0x611472116400] L1 refers to 6/4.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x6.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0xb.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x6.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 4: (3,1) (6,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x9/0x8 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x7.
+[matroska @ 0x611472115b80] Writing block of size 8486 with pts 67, dts 67, duration 33 at relative offset 59577 in cluster at offset 671. TrackNumber 1, keyframe 0
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x4.
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x4.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 0.433333
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 0.433333 queue head 0 ts 0.433333
+[hevc_vaapi @ 0x611472116400] Sync to pic 6/4 (input surface 0xa).
+[hevc_vaapi @ 0x611472116400] Output buffer: 13507 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 6/4.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 6, dts 3, size 13507 bytes.
+[matroska @ 0x611472115b80] Writing block of size 13507 with pts 200, dts 100, duration 33 at relative offset 68070 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (8).
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0xa.
+[AVHWFramesContext @ 0x7cc74c002d80] Created surface 0xf.
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 5/6 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 3/1.
+[hevc_vaapi @ 0x611472116400] L1 refers to 6/4.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x7.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0xd.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x8.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 5: (3,1) (6,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x9/0x6 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0xa.
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0xa.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 0.466667
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 0.466667 queue head 0 ts 0.466667
+[AVHWFramesContext @ 0x7cc74c003140] Created surface 0x10.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x10.
+[hevc_vaapi @ 0x611472116400] Sync to pic 4/5 (input surface 0x6).
+[hevc_vaapi @ 0x611472116400] Output buffer: 8413 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 4/5.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 4, dts 4, size 8413 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (9).
+[hevc_vaapi @ 0x611472116400] Pick normal P-picture to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 9/7 as type P.
+[hevc_vaapi @ 0x611472116400] L0 refers to 6/4.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x5.
+[matroska @ 0x611472115b80] Writing block of size 8413 with pts 133, dts 133, duration 33 at relative offset 81584 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Recon surface is 0xb.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0xa.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 9: (6,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x6/0x9 (80 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x8.
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x10.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 0.5
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 0.5 queue head 0 ts 0.5
+[hevc_vaapi @ 0x611472116400] Sync to pic 5/6 (input surface 0x7).
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x6.
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x6.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 0.533333
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 0.533333 queue head 0 ts 0.533333
+[hevc_vaapi @ 0x611472116400] Output buffer: 8352 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 5/6.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 5, dts 5, size 8352 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (10).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 7/8 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 6/4.
+[hevc_vaapi @ 0x611472116400] L1 refers to 9/7.
+[hevc_vaapi @ 0x611472116400] Input surface is 0.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x8.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x8.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 7: (6,1) (9,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x9/0x6 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0xa.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x7.
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x7.
+[matroska @ 0x611472115b80] Writing block of size 8352 with pts 167, dts 167, duration 33 at relative offset 90004 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Sync to pic 9/7 (input surface 0x5).
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 0.566667
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 0.566667 queue head 0 ts 0.566667
+[AVHWFramesContext @ 0x7cc74c003140] Created surface 0x11.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x11.
+[hevc_vaapi @ 0x611472116400] Output buffer: 13304 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 9/7.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 9, dts 6, size 13304 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (11).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 8/9 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 6/4.
+[hevc_vaapi @ 0x611472116400] L1 refers to 9/7.
+[hevc_vaapi @ 0x611472116400] Input surface is 0xc.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0xf.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x6.
+[matroska @ 0x611472115b80] Writing block of size 13304 with pts 300, dts 200, duration 33 at relative offset 98363 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 8: (6,1) (9,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x9/0x8 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x7.
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x11.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 0.6
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 0.6 queue head 0 ts 0.6
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x5.
+[hevc_vaapi @ 0x611472116400] Sync to pic 7/8 (input surface 0).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x5.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 0.633333
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 0.633333 queue head 0 ts 0.633333
+[hevc_vaapi @ 0x611472116400] Output buffer: 8370 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 7/8.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 7, dts 7, size 8370 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (12).
+[hevc_vaapi @ 0x611472116400] Pick normal P-picture to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 12/10 as type P.
+[hevc_vaapi @ 0x611472116400] L0 refers to 9/7.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x4.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x8.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0xa.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 12: (9,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x7/0x8 (80 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x9.
+[matroska @ 0x611472115b80] Writing block of size 8370 with pts 233, dts 233, duration 33 at relative offset 111674 in cluster at offset 671. TrackNumber 1, keyframe 0
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0.
+[hevc_vaapi @ 0x611472116400] Sync to pic 8/9 (input surface 0xc).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 0.666667
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 0.666667 queue head 0 ts 0.666667
+[AVHWFramesContext @ 0x7cc74c003140] Created surface 0x12.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x12.
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x12.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 0.7
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 0.7 queue head 0 ts 0.7
+[hevc_vaapi @ 0x611472116400] Output buffer: 8208 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 8/9.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 8, dts 8, size 8208 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (13).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 10/11 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 9/7.
+[hevc_vaapi @ 0x611472116400] L1 refers to 12/10.
+[hevc_vaapi @ 0x611472116400] Input surface is 0xe.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0xd.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x6.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 10: (9,1)Writing block of size 8208 with pts 267, dts 267, duration 33 at relative offset 120051 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400]  (12,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x9/0x8 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x7.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0xc.
+[hevc_vaapi @ 0x611472116400] Sync to pic 12/10 (input surface 0x4).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0xc.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 0.733333
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 0.733333 queue head 0 ts 0.733333
+[AVHWFramesContext @ 0x7cc74c003140] Created surface 0x13.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x13.
+[hevc_vaapi @ 0x611472116400] Output buffer: 12856 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 12/10.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 12, dts 9, size 12856 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (14).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 11/12 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 9/7.
+[hevc_vaapi @ 0x611472116400] L1 refers to 12/10.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x2.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x1.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[matroska @ 0x611472115b80] Writing block of size 12856 with pts 400, dts 300, duration 33 at relative offset 128266 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x7.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 11: (9,1) (12,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x8/0x9 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x6.
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x13.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 0.766667
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 0.766667 queue head 0 ts 0.766667
+[hevc_vaapi @ 0x611472116400] Sync to pic 10/11 (input surface 0xe).
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x4.
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x4.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 0.8
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 0.8 queue head 0 ts 0.8
+[hevc_vaapi @ 0x611472116400] Output buffer: 7290 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 10/11.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 10, dts 10, size 7290 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (15).
+[hevc_vaapi @ 0x611472116400] Pick normal P-picture to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 15/13 as type P.
+[hevc_vaapi @ 0x611472116400] L0 refers toWriting block of size 7290 with pts 333, dts 333, duration 33 at relative offset 141129 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400]  12/10.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x6.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0xd.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x6.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 15: (12,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x9/0x8 (80 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x7.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0xe.
+[hevc_vaapi @ 0x611472116400] Sync to pic 11/12 (input surface 0x2).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0xe.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 0.833333
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 0.833333 queue head 0 ts 0.833333
+[hevc_vaapi @ 0x611472116400] Output buffer: 6976 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 11/12.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 11, dts 11, size 6976 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (16).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 13/14 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 12/10.
+[hevc_vaapi @ 0x611472116400] L1 refers to 15/13.
+[hevc_vaapi @ 0x611472116400] Input surface is 0xa.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0xf.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[matroska @ 0x611472115b80] Writing block of size 6976 with pts 367, dts 367, duration 33 at relative offset 148426 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0xa.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 13: (12,1) (15,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x7/0x8 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x9.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x2.
+[hevc_vaapi @ 0x611472116400] Sync to pic 15/13 (input surface 0x6).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x2.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 0.866667
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 0.866667 queue head 0 ts 0.866667
+[hevc_vaapi @ 0x611472116400] Output buffer: 13009 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 15/13.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 15, dts 12, size 13009 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (17).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 14/15 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 12/10.
+[hevc_vaapi @ 0x611472116400] L1 refers to 15/13.
+[matroska @ 0x611472115b80] Writing block of size 13009 with pts 500, dts 400, duration 33 at relative offset 155409 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Input surface is 0x10.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x9.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x6.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 14: (12,1) (15,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x9/0x8 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x7.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x6.
+[hevc_vaapi @ 0x611472116400] Sync to pic 13/14 (input surface 0xa).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x6.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 0.9
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 0.9 queue head 0 ts 0.9
+[hevc_vaapi @ 0x611472116400] Output buffer: 7210 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 13/14.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 13, dts 13, size 7210 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (18).
+[hevc_vaapi @ 0x611472116400] Pick normal P-picture to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 18/16 as type P.
+[hevc_vaapi @ 0x611472116400] L0 refers to 15/13.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x5.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0xf.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0xa.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 18: (15,1)
+[matroska @ 0x611472115b80] Writing block of size 7210 with pts 433, dts 433, duration 33 at relative offset 168425 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x7/0x8 (80 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x9.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0xa.
+[hevc_vaapi @ 0x611472116400] Sync to pic 14/15 (input surface 0x10).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0xa.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 0.933333
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 0.933333 queue head 0 ts 0.933333
+[hevc_vaapi @ 0x611472116400] Output buffer: 7349 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 14/15.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 14, dts 14, size 7349 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (19).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 16/17 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 15/13.
+[hevc_vaapi @ 0x611472116400] L1 refers to 18/16.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x7.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x1.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x6.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 16: (15,1) (18,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x9/0x8 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x7.
+[matroska @ 0x611472115b80] Writing block of size 7349 with pts 467, dts 467, duration 33 at relative offset 175642 in cluster at offset 671. TrackNumber 1, keyframe 0
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x10.
+[hevc_vaapi @ 0x611472116400] Sync to pic 18/16 (input surface 0x5).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x10.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 0.966667
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 0.966667 queue head 0 ts 0.966667
+[hevc_vaapi @ 0x611472116400] Output buffer: 13222 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 18/16.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 18, dts 15, size 13222 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (20).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 17/18 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 15/13.
+[hevc_vaapi @ 0x611472116400] L1 refers to 18/16.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x11.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x3.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0xa.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 17: (15,1) (18,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x7/0x8 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x9.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x5.
+[matroska @ 0x611472115b80] Writing block of size 13222 with pts 600, dts 500, duration 33 at relative offset 182998 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Sync to pic 16/17 (input surface 0x7).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x5.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1 queue head 0 ts 1
+[hevc_vaapi @ 0x611472116400] Output buffer: 7225 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 16/17.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 16, dts 16, size 7225 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (21).
+[hevc_vaapi @ 0x611472116400] Pick normal P-picture to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 21/19 as type P.
+[hevc_vaapi @ 0x611472116400] L0 refers to 18/16.
+[hevc_vaapi @ 0x611472116400] Input surface is 0xc.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x1.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x6.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 21: (18,1)
+[matroska @ 0x611472115b80] Writing block of size 7225 with pts 533, dts 533, duration 33 at relative offset 196227 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x9/0x8 (80 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x7.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x7.
+[hevc_vaapi @ 0x611472116400] Sync to pic 17/18 (input surface 0x11).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x7.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1.033333
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1.033333 queue head 0 ts 1.033333
+[hevc_vaapi @ 0x611472116400] Output buffer: 7644 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 17/18.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 17, dts 17, size 7644 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (22).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 19/20 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 18/16.
+[hevc_vaapi @ 0x611472116400] L1 refers to 21/19.
+[hevc_vaapi @ 0x611472116400] Input surface is 0.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x9.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0xa.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 19: (18,1) (21,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x7/0x8 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x9.
+[matroska @ 0x611472115b80] Writing block of size 7644 with pts 567, dts 567, duration 33 at relative offset 203459 in cluster at offset 671. TrackNumber 1, keyframe 0
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x11.
+[hevc_vaapi @ 0x611472116400] Sync to pic 21/19 (input surface 0xc).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x11.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1.066667
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1.066667 queue head 0 ts 1.066667
+[hevc_vaapi @ 0x611472116400] Output buffer: 11909 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 21/19.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 21, dts 18, size 11909 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (23).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 20/21 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 18/16.
+[hevc_vaapi @ 0x611472116400] L1 refers to 21/19.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x12.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0xb.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x6.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 20: (18,1) (21,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x9/0x8 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x7.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0xc.
+[matroska @ 0x611472115b80] Writing block of size 11909 with pts 700, dts 600, duration 33 at relative offset 211110 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Sync to pic 19/20 (input surface 0).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0xc.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1.1
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1.1 queue head 0 ts 1.1
+[hevc_vaapi @ 0x611472116400] Output buffer: 6219 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 19/20.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 19, dts 19, size 6219 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (24).
+[hevc_vaapi @ 0x611472116400] Pick normal P-picture to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 24/22 as type P.
+[hevc_vaapi @ 0x611472116400] L0 refers to 21/19.
+[hevc_vaapi @ 0x611472116400] Input surface is 0xe.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x9.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0xa.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 24: (21,1)
+[matroska @ 0x611472115b80] Writing block of size 6219 with pts 633, dts 633, duration 33 at relative offset 223026 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x7/0x8 (80 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x9.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0.
+[hevc_vaapi @ 0x611472116400] Sync to pic 20/21 (input surface 0x12).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1.133333
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1.133333 queue head 0 ts 1.133333
+[hevc_vaapi @ 0x611472116400] Output buffer: 6541 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 20/21.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 20, dts 20, size 6541 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (25).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 22/23 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 21/19.
+[hevc_vaapi @ 0x611472116400] L1 refers to 24/22.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x13.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x3.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x6.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 22: (21,1) (24,1)
+[matroska @ 0x611472115b80] Writing block of size 6541 with pts 667, dts 667, duration 33 at relative offset 229252 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x9/0x8 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x7.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x12.
+[hevc_vaapi @ 0x611472116400] Sync to pic 24/22 (input surface 0xe).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x12.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1.166667
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1.166667 queue head 0 ts 1.166667
+[hevc_vaapi @ 0x611472116400] Output buffer: 11748 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 24/22.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 24, dts 21, size 11748 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (26).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 23/24 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 21/19.
+[hevc_vaapi @ 0x611472116400] L1 refers to 24/22.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x4.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x8.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0xa.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 23: (21,1) (24,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x7/0x8 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x9.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0xe.
+[hevc_vaapi @ 0x611472116400] Sync to pic 22/23 (input surface 0x13).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0xe.
+[matroska @ 0x611472115b80] Writing block of size 11748 with pts 800, dts 700, duration 33 at relative offset 235800 in cluster at offset 671. TrackNumber 1, keyframe 0
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1.2
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1.2 queue head 0 ts 1.2
+[hevc_vaapi @ 0x611472116400] Output buffer: 6358 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 22/23.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 22, dts 22, size 6358 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (27).
+[hevc_vaapi @ 0x611472116400] Pick normal P-picture to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 27/25 as type P.
+[hevc_vaapi @ 0x611472116400] L0 refers to 24/22.
+[hevc_vaapi @ 0x611472116400] Input surface is 0xa.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x3.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x6.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[matroska @ 0x611472115b80] Writing block of size 6358 with pts 733, dts 733, duration 33 at relative offset 247555 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] RPS for POC 27: (24,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x9/0x8 (80 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x7.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x13.
+[hevc_vaapi @ 0x611472116400] Sync to pic 23/24 (input surface 0x4).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x13.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1.233333
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1.233333 queue head 0 ts 1.233333
+[hevc_vaapi @ 0x611472116400] Output buffer: 6420 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 23/24.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 23, dts 23, size 6420 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (28).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 25/26 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 24/22.
+[hevc_vaapi @ 0x611472116400] L1 refers to 27/25.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x2.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0xb.
+[matroska @ 0x611472115b80] Writing block of size 6420 with pts 767, dts 767, duration 33 at relative offset 253920 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0xa.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 25: (24,1) (27,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x7/0x8 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x9.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x4.
+[hevc_vaapi @ 0x611472116400] Sync to pic 27/25 (input surface 0xa).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x4.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1.266667
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1.266667 queue head 0 ts 1.266667
+[hevc_vaapi @ 0x611472116400] Output buffer: 11743 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 27/25.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 27, dts 24, size 11743 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (29).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 26/27 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 24/22.
+[hevc_vaapi @ 0x611472116400] L1 refers to 27/25.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x6.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0xd.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x6.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 26: (24,1) (27,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x9/0x8 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x7.
+[matroska @ 0x611472115b80] Writing block of size 11743 with pts 900, dts 800, duration 33 at relative offset 260347 in cluster at offset 671. TrackNumber 1, keyframe 0
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0xa.
+[hevc_vaapi @ 0x611472116400] Sync to pic 25/26 (input surface 0x2).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0xa.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1.3
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1.3 queue head 0 ts 1.3
+[hevc_vaapi @ 0x611472116400] Output buffer: 6429 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 25/26.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 25, dts 25, size 6429 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (30).
+[hevc_vaapi @ 0x611472116400] Pick normal P-picture to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 30/28 as type P.
+[hevc_vaapi @ 0x611472116400] L0 refers to 27/25.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x7.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0xb.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0xa.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 30:Writing block of size 6429 with pts 833, dts 833, duration 33 at relative offset 272097 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400]  (27,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x7/0x8 (80 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x9.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x2.
+[hevc_vaapi @ 0x611472116400] Sync to pic 26/27 (input surface 0x6).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x2.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1.333333
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1.333333 queue head 0 ts 1.333333
+[hevc_vaapi @ 0x611472116400] Output buffer: 6413 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 26/27.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 26, dts 26, size 6413 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (31).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 28/29 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 27/25.
+[hevc_vaapi @ 0x611472116400] L1 refers to 30/28.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x10.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x8.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x6.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 28: (27,1) (30,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x9/0x8 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x7.
+[matroska @ 0x611472115b80] Writing block of size 6413 with pts 867, dts 867, duration 33 at relative offset 278533 in cluster at offset 671. TrackNumber 1, keyframe 0
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x6.
+[hevc_vaapi @ 0x611472116400] Sync to pic 30/28 (input surface 0x7).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x6.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1.366667
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1.366667 queue head 0 ts 1.366667
+[hevc_vaapi @ 0x611472116400] Output buffer: 13069 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 30/28.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 30, dts 27, size 13069 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (32).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 29/30 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 27/25.
+[hevc_vaapi @ 0x611472116400] L1 refers to 30/28.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x5.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0xf.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[matroska @ 0x611472115b80] Writing block of size 13069 with pts 1000, dts 900, duration 33 at relative offset 284953 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0xa.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 29: (27,1) (30,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x7/0x8 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x9.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x7.
+[hevc_vaapi @ 0x611472116400] Sync to pic 28/29 (input surface 0x10).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x7.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1.4
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1.4 queue head 0 ts 1.4
+[hevc_vaapi @ 0x611472116400] Output buffer: 7432 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 28/29.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 28, dts 28, size 7432 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (33).
+[matroska @ 0x611472115b80] Writing block of size 7432 with pts 933, dts 933, duration 33 at relative offset 298029 in cluster at offset 671. TrackNumber 1, keyframe 0
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x10.
+[hevc_vaapi @ 0x611472116400] Pick normal P-picture to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 33/31 as type P.
+[hevc_vaapi @ 0x611472116400] L0 refers to 30/28.
+[hevc_vaapi @ 0x611472116400] Input surface is 0.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x8.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x9.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 33: (30,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x8/0x7 (80 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0xa.
+[hevc_vaapi @ 0x611472116400] Sync to pic 29/30 (input surface 0x5).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x10.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1.433333
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1.433333 queue head 0 ts 1.433333
+[hevc_vaapi @ 0x611472116400] Output buffer: 7459 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 29/30.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 29, dts 29, size 7459 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (34).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 31/32 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 30/28.
+[hevc_vaapi @ 0x611472116400] L1 refers to 33/31.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x11.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0xd.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x6.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 31: (30,1) (33,1)
+[matroska @ 0x611472115b80] Writing block of size 7459 with pts 967, dts 967, duration 33 at relative offset 305468 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0xa/0x7 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x8.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x5.
+[hevc_vaapi @ 0x611472116400] Sync to pic 33/31 (input surface 0).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x5.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1.466667
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1.466667 queue head 0 ts 1.466667
+[hevc_vaapi @ 0x611472116400] Output buffer: 14226 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 33/31.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 33, dts 30, size 14226 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (35).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 32/33 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 30/28.
+[hevc_vaapi @ 0x611472116400] L1 refers to 33/31.
+[hevc_vaapi @ 0x611472116400] Input surface is 0xc.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x1.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x9.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 32: (30,1) (33,1)
+[matroska @ 0x611472115b80] Writing block of size 14226 with pts 1100, dts 1000, duration 33 at relative offset 312934 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x8/0x7 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0xa.
+[hevc_vaapi @ 0x611472116400] Sync to pic 31/32 (input surface 0x11).
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0.
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1.5
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1.5 queue head 0 ts 1.5
+[hevc_vaapi @ 0x611472116400] Output buffer: 8609 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 31/32.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 31, dts 31, size 8609 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (36).
+[hevc_vaapi @ 0x611472116400] Pick normal P-picture to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 36/34 as type P.
+[hevc_vaapi @ 0x611472116400] L0 refers to 33/31.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x13.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0xd.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0xa.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 36: (33,1)
+[matroska @ 0x611472115b80] Writing block of size 8609 with pts 1033, dts 1033, duration 33 at relative offset 327167 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x7/0x8 (80 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x9.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x11.
+[hevc_vaapi @ 0x611472116400] Sync to pic 32/33 (input surface 0xc).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x11.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1.533333
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1.533333 queue head 0 ts 1.533333
+[hevc_vaapi @ 0x611472116400] Output buffer: 8454 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 32/33.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 32, dts 32, size 8454 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (37).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 34/35 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 33/31.
+[hevc_vaapi @ 0x611472116400] L1 refers to 36/34.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x12.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0xf.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x6.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 34: (33,1) (36,1)
+[matroska @ 0x611472115b80] Writing block of size 8454 with pts 1067, dts 1067, duration 33 at relative offset 335783 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x9/0x8 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x7.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0xc.
+[hevc_vaapi @ 0x611472116400] Sync to pic 36/34 (input surface 0x13).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0xc.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1.566667
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1.566667 queue head 0 ts 1.566667
+[hevc_vaapi @ 0x611472116400] Output buffer: 13995 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 36/34.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 36, dts 33, size 13995 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (38).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 35/36 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 33/31.
+[hevc_vaapi @ 0x611472116400] L1 refers to 36/34.
+[hevc_vaapi @ 0x611472116400] Input surface is 0xe.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x9.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0xa.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[matroska @ 0x611472115b80] Writing block of size 13995 with pts 1200, dts 1100, duration 33 at relative offset 344244 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] RPS for POC 35: (33,1) (36,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x7/0x8 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x9.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x13.
+[hevc_vaapi @ 0x611472116400] Sync to pic 34/35 (input surface 0x12).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x13.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1.6
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1.6 queue head 0 ts 1.6
+[hevc_vaapi @ 0x611472116400] Output buffer: 8597 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 34/35.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 34, dts 34, size 8597 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (39).
+[hevc_vaapi @ 0x611472116400] Pick normal P-picture to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 39/37 as type P.
+[hevc_vaapi @ 0x611472116400] L0 refers to 36/34.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x2.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0xf.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x6.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 39: (36,1)
+[matroska @ 0x611472115b80] Writing block of size 8597 with pts 1133, dts 1133, duration 33 at relative offset 358246 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x9/0x8 (80 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x7.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x12.
+[hevc_vaapi @ 0x611472116400] Sync to pic 35/36 (input surface 0xe).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x12.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1.633333
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1.633333 queue head 0 ts 1.633333
+[hevc_vaapi @ 0x611472116400] Output buffer: 8755 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 35/36.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 35, dts 35, size 8755 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (40).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 37/38 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 36/34.
+[hevc_vaapi @ 0x611472116400] L1 refers to 39/37.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x4.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x1.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0xa.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 37: (36,1) (39,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x7/0x8 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x9.
+[matroska @ 0x611472115b80] Writing block of size 8755 with pts 1167, dts 1167, duration 33 at relative offset 366850 in cluster at offset 671. TrackNumber 1, keyframe 0
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0xe.
+[hevc_vaapi @ 0x611472116400] Sync to pic 39/37 (input surface 0x2).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0xe.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1.666667
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1.666667 queue head 0 ts 1.666667
+[hevc_vaapi @ 0x611472116400] Output buffer: 13762 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 39/37.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 39, dts 36, size 13762 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (41).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 38/39 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 36/34.
+[hevc_vaapi @ 0x611472116400] L1 refers to 39/37.
+[hevc_vaapi @ 0x611472116400] Input surface is 0xa.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x3.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x6.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[matroska @ 0x611472115b80] Writing block of size 13762 with pts 1300, dts 1200, duration 33 at relative offset 375612 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] RPS for POC 38: (36,1) (39,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x9/0x8 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x7.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x2.
+[hevc_vaapi @ 0x611472116400] Sync to pic 37/38 (input surface 0x4).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x2.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1.7
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1.7 queue head 0 ts 1.7
+[hevc_vaapi @ 0x611472116400] Output buffer: 8396 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 37/38.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 37, dts 37, size 8396 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (42).
+[hevc_vaapi @ 0x611472116400] Pick normal P-picture to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 42/40 as type P.
+[hevc_vaapi @ 0x611472116400] L0 refers to 39/37.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x10.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x1.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0xa.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 42: (39,1)
+[matroska @ 0x611472115b80] Writing block of size 8396 with pts 1233, dts 1233, duration 33 at relative offset 389381 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x7/0x8 (80 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x9.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x4.
+[hevc_vaapi @ 0x611472116400] Sync to pic 38/39 (input surface 0xa).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x4.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1.733333
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1.733333 queue head 0 ts 1.733333
+[hevc_vaapi @ 0x611472116400] Output buffer: 8455 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 38/39.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 38, dts 38, size 8455 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (43).
+[matroska @ 0x611472115b80] Writing block of size 8455 with pts 1267, dts 1267, duration 33 at relative offset 397784 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 40/41 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 39/37.
+[hevc_vaapi @ 0x611472116400] L1 refers to 42/40.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x6.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x9.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x6.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 40: (39,1) (42,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x9/0x8 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x7.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0xa.
+[hevc_vaapi @ 0x611472116400] Sync to pic 42/40 (input surface 0x10).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0xa.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1.766667
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1.766667 queue head 0 ts 1.766667
+[hevc_vaapi @ 0x611472116400] Output buffer: 13735 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 42/40.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 42, dts 39, size 13735 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (44).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 41/42 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 39/37.
+[hevc_vaapi @ 0x611472116400] L1 refers to 42/40.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x7.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0xb.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[matroska @ 0x611472115b80] Writing block of size 13735 with pts 1400, dts 1300, duration 33 at relative offset 406246 in cluster at offset 671. TrackNumber 1, keyframe 0
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x10.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0xa.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 41: (39,1) (42,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x8/0x9 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x6.
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x10.
+[hevc_vaapi @ 0x611472116400] Sync to pic 40/41 (input surface 0x6).
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1.8
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1.8 queue head 0 ts 1.8
+[hevc_vaapi @ 0x611472116400] Output buffer: 7314 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 40/41.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 40, dts 40, size 7314 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (45).
+[hevc_vaapi @ 0x611472116400] Pick normal P-picture to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 45/43 as type P.
+[hevc_vaapi @ 0x611472116400] L0 refers to 42/40.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x11.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x9.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x7.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 45: (42,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x6/0x9 (80 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x8.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x6.
+[matroska @ 0x611472115b80] Writing block of size 7314 with pts 1333, dts 1333, duration 33 at relative offset 419988 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Sync to pic 41/42 (input surface 0x7).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x6.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1.833333
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1.833333 queue head 0 ts 1.833333
+[hevc_vaapi @ 0x611472116400] Output buffer: 7441 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 41/42.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 41, dts 41, size 7441 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (46).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 43/44 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 42/40.
+[hevc_vaapi @ 0x611472116400] L1 refers to 45/43.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x5.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x3.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0xa.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 43: (42,1) (45,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x8/0x9 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x6.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x7.
+[matroska @ 0x611472115b80] Writing block of size 7441 with pts 1367, dts 1367, duration 33 at relative offset 427309 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Sync to pic 45/43 (input surface 0x11).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x7.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1.866667
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1.866667 queue head 0 ts 1.866667
+[hevc_vaapi @ 0x611472116400] Output buffer: 13587 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 45/43.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 45, dts 42, size 13587 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (47).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 44/45 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 42/40.
+[matroska @ 0x611472115b80] Writing block of size 13587 with pts 1500, dts 1400, duration 33 at relative offset 434757 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] L1 refers to 45/43.
+[hevc_vaapi @ 0x611472116400] Input surface is 0.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x8.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x7.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 44: (42,1) (45,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x6/0x9 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x8.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x11.
+[hevc_vaapi @ 0x611472116400] Sync to pic 43/44 (input surface 0x5).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x11.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1.9
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1.9 queue head 0 ts 1.9
+[hevc_vaapi @ 0x611472116400] Output buffer: 7489 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 43/44.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 43, dts 43, size 7489 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (48).
+[hevc_vaapi @ 0x611472116400] Pick normal P-picture to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 48/46 as type P.
+[hevc_vaapi @ 0x611472116400] L0 refers toWriting block of size 7489 with pts 1433, dts 1433, duration 33 at relative offset 448351 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400]  45/43.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x12.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x3.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0xa.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 48: (45,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x8/0x9 (80 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x6.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x5.
+[hevc_vaapi @ 0x611472116400] Sync to pic 44/45 (input surface 0).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x5.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1.933333
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1.933333 queue head 0 ts 1.933333
+[hevc_vaapi @ 0x611472116400] Output buffer: 7415 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 44/45.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 44, dts 44, size 7415 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (49).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 46/47 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 45/43.
+[hevc_vaapi @ 0x611472116400] L1 refers to 48/46.
+[hevc_vaapi @ 0x611472116400] Input surface is 0xc.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0xb.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x7.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 46: (45,1) (48,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x6/0x9 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x8.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0.
+[matroska @ 0x611472115b80] Writing block of size 7415 with pts 1467, dts 1467, duration 33 at relative offset 455847 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Sync to pic 48/46 (input surface 0x12).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 1.966667
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 1.966667 queue head 0 ts 1.966667
+[hevc_vaapi @ 0x611472116400] Output buffer: 13945 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 48/46.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 48, dts 45, size 13945 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (50).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 47/48 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 45/43.
+[hevc_vaapi @ 0x611472116400] L1 refers to 48/46.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x13.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0xd.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0xa.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 47:Writing block of size 13945 with pts 1600, dts 1500, duration 33 at relative offset 463269 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400]  (45,1) (48,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x8/0x9 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x6.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0x12.
+[hevc_vaapi @ 0x611472116400] Sync to pic 46/47 (input surface 0xc).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0x12.
+[out#0/matroska @ 0x611472115a80] sq: send 0 ts 2
+[out#0/matroska @ 0x611472115a80] sq: 0 frames_max 60 reached
+[out#0/matroska @ 0x611472115a80] sq: finish 0; head ts 2
+[out#0/matroska @ 0x611472115a80] sq: finish queue
+[out#0/matroska @ 0x611472115a80] sq: receive 0 ts 2 queue head 0 ts 2
+[hevc_vaapi @ 0x611472116400] Output buffer: 7676 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 46/47.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 46, dts 46, size 7676 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (51).
+[hevc_vaapi @ 0x611472116400] Pick normal P-picture to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 51/49 as type P.
+[hevc_vaapi @ 0x611472116400] L0 refers to 48/46.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x4.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0xb.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x7.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 51: (48,1)
+[matroska @ 0x611472115b80] Writing block of size 7676 with pts 1533, dts 1533, duration 33 at relative offset 477221 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x6/0x9 (80 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x8.
+[AVHWFramesContext @ 0x7cc74c003140] Map surface 0xc.
+[hevc_vaapi @ 0x611472116400] Sync to pic 47/48 (input surface 0x13).
+[AVHWFramesContext @ 0x7cc74c003140] Unmap surface 0xc.
+[vf#0:0 @ 0x611472116880] All consumers returned EOF
+[out#0/matroska @ 0x611472115a80] sq: 0 EOF
+[out#0/matroska @ 0x611472115a80] sq: finish queue
+[vf#0:0 @ 0x611472116880] Terminating thread with return code 0 (success)
+[vist#0:0/wrapped_avframe @ 0x611472115880] [dec:wrapped_avframe @ 0x611472118540] Decoder returned EOF, finishing
+[vist#0:0/wrapped_avframe @ 0x611472115880] [dec:wrapped_avframe @ 0x611472118540] Terminating thread with return code 0 (success)
+[vist#0:0/wrapped_avframe @ 0x611472115880] All consumers of this stream are done
+[in#0/lavfi @ 0x6114720ef280] All consumers are done
+[in#0/lavfi @ 0x6114720ef280] Terminating thread with return code 0 (success)
+[hevc_vaapi @ 0x611472116400] Output buffer: 7572 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 47/48.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 47, dts 47, size 7572 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (52).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 49/50 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 48/46.
+[hevc_vaapi @ 0x611472116400] L1 refers to 51/49.
+[matroska @ 0x611472115b80] Writing block of size 7572 with pts 1567, dts 1567, duration 33 at relative offset 484904 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Input surface is 0xe.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x8.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0xa.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 49: (48,1) (51,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x8/0x9 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x6.
+[hevc_vaapi @ 0x611472116400] Sync to pic 51/49 (input surface 0x4).
+[hevc_vaapi @ 0x611472116400] Output buffer: 13933 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 51/49.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 51, dts 48, size 13933 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (53).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 50/51 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 48/46.
+[hevc_vaapi @ 0x611472116400] L1 refers to 51/49.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x2.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0xf.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[matroska @ 0x611472115b80] Writing block of size 13933 with pts 1700, dts 1600, duration 33 at relative offset 492483 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x6.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 50: (48,1) (51,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x9/0x8 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0xa.
+[hevc_vaapi @ 0x611472116400] Sync to pic 49/50 (input surface 0xe).
+[hevc_vaapi @ 0x611472116400] Output buffer: 7773 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 49/50.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 49, dts 49, size 7773 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (54).
+[hevc_vaapi @ 0x611472116400] Pick normal P-picture to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 54/52 as type P.
+[hevc_vaapi @ 0x611472116400] L0 refers to 51/49.
+[matroska @ 0x611472115b80] Writing block of size 7773 with pts 1633, dts 1633, duration 33 at relative offset 506423 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Input surface is 0x6.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x8.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0xa.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 54: (51,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x8/0x9 (80 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x6.
+[hevc_vaapi @ 0x611472116400] Sync to pic 50/51 (input surface 0x2).
+[hevc_vaapi @ 0x611472116400] Output buffer: 7973 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 50/51.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 50, dts 50, size 7973 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (55).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 52/53 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 51/49.
+[hevc_vaapi @ 0x611472116400] L1 refers to 54/52.
+[hevc_vaapi @ 0x611472116400] Input surface is 0xa.
+[matroska @ 0x611472115b80] Writing block of size 7973 with pts 1667, dts 1667, duration 33 at relative offset 514203 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Recon surface is 0xd.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x6.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 52: (51,1) (54,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x9/0x8 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0xa.
+[hevc_vaapi @ 0x611472116400] Sync to pic 54/52 (input surface 0x6).
+[hevc_vaapi @ 0x611472116400] Output buffer: 12046 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 54/52.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 54, dts 51, size 12046 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (56).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 53/54 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 51/49.
+[hevc_vaapi @ 0x611472116400] L1 refers to 54/52.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x10.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x1.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0xa.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 53: (51,1) (54,1)
+[matroska @ 0x611472115b80] Writing block of size 12046 with pts 1800, dts 1700, duration 33 at relative offset 522183 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x8/0x9 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x6.
+[hevc_vaapi @ 0x611472116400] Sync to pic 52/53 (input surface 0xa).
+[hevc_vaapi @ 0x611472116400] Output buffer: 6488 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 52/53.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 52, dts 52, size 6488 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (57).
+[hevc_vaapi @ 0x611472116400] Pick normal P-picture to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 57/55 as type P.
+[hevc_vaapi @ 0x611472116400] L0 refers to 54/52.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x5.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0xd.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[matroska @ 0x611472115b80] Writing block of size 6488 with pts 1733, dts 1733, duration 33 at relative offset 534236 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x6.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 57: (54,1)
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x9/0x8 (80 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0xa.
+[hevc_vaapi @ 0x611472116400] Sync to pic 53/54 (input surface 0x10).
+[hevc_vaapi @ 0x611472116400] Output buffer: 6584 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 53/54.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 53, dts 53, size 6584 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (58).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 55/56 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 54/52.
+[hevc_vaapi @ 0x611472116400] L1 refers to 57/55.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x7.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0xf.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0xa.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 55: (54,1) (57,1)
+[matroska @ 0x611472115b80] Writing block of size 6584 with pts 1767, dts 1767, duration 33 at relative offset 540731 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x8/0x9 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x6.
+[hevc_vaapi @ 0x611472116400] Sync to pic 57/55 (input surface 0x5).
+[hevc_vaapi @ 0x611472116400] Output buffer: 12271 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 57/55.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 57, dts 54, size 12271 bytes.
+[hevc_vaapi @ 0x611472116400] Input frame: 1280x720 (59).
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 56/57 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 54/52.
+[hevc_vaapi @ 0x611472116400] L1 refers to 57/55.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x11.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x9.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x6.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 56: (54,1) (57,1)
+[matroska @ 0x611472115b80] Writing block of size 12271 with pts 1900, dts 1800, duration 33 at relative offset 547322 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x9/0x8 (88 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0xa.
+[hevc_vaapi @ 0x611472116400] Sync to pic 55/56 (input surface 0x7).
+[hevc_vaapi @ 0x611472116400] Output buffer: 6647 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 55/56.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 55, dts 55, size 6647 bytes.
+[vost#0:0/hevc_vaapi @ 0x611472115e00] [enc:hevc_vaapi @ 0x611472116380] Encoder thread received EOF
+[hevc_vaapi @ 0x611472116400] Pick normal P-picture to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 59/58 as type P.
+[hevc_vaapi @ 0x611472116400] L0 refers to 57/55.
+[hevc_vaapi @ 0x611472116400] Input surface is 0x12.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x3.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0xa.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 59: (57,1)
+[matroska @ 0x611472115b80] Writing block of size 6647 with pts 1833, dts 1833, duration 33 at relative offset 559600 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x8/0x9 (80 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0x6.
+[hevc_vaapi @ 0x611472116400] Sync to pic 56/57 (input surface 0x11).
+[hevc_vaapi @ 0x611472116400] Output buffer: 6432 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 56/57.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 56, dts 56, size 6432 bytes.
+[hevc_vaapi @ 0x611472116400] Pick B-picture at depth 1 to encode next.
+[hevc_vaapi @ 0x611472116400] Issuing encode for pic 58/59 as type B.
+[hevc_vaapi @ 0x611472116400] L0 refers to 57/55.
+[hevc_vaapi @ 0x611472116400] L1 refers to 59/58.
+[hevc_vaapi @ 0x611472116400] Input surface is 0.
+[hevc_vaapi @ 0x611472116400] Recon surface is 0x1.
+[hevc_vaapi @ 0x611472116400] Output buffer is 0xb.
+[hevc_vaapi @ 0x611472116400] Param buffer (23) is 0x6.
+[hevc_vaapi @ 0x611472116400] Slice 0: 0-22 (23 rows), 0-919 (920 blocks).
+[hevc_vaapi @ 0x611472116400] RPS for POC 58: (57,1) (59,1)
+[matroska @ 0x611472115b80] Writing block of size 6432 with pts 1867, dts 1867, duration 33 at relative offset 566254 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Packed header buffer (3) is 0x9/0x8 (80 bits).
+[hevc_vaapi @ 0x611472116400] Param buffer (24) is 0xa.
+[hevc_vaapi @ 0x611472116400] Sync to pic 59/58 (input surface 0x12).
+[hevc_vaapi @ 0x611472116400] Output buffer: 12551 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 59/58.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 59, dts 57, size 12551 bytes.
+[hevc_vaapi @ 0x611472116400] Sync to pic 58/59 (input surface 0).
+[matroska @ 0x611472115b80] Writing block of size 12551 with pts 1967, dts 1900, duration 33 at relative offset 572693 in cluster at offset 671. TrackNumber 1, keyframe 0
+[hevc_vaapi @ 0x611472116400] Output buffer: 6301 bytes (status 01000000).
+[hevc_vaapi @ 0x611472116400] Output read for pic 58/59.
+[hevc_vaapi @ 0x611472116400] Output packet: pts 58, dts 58, size 6301 bytes.
+[vost#0:0/hevc_vaapi @ 0x611472115e00] Terminating thread with return code 0 (success)
+[matroska @ 0x611472115b80] Writing block of size 6301 with pts 1933, dts 1933, duration 33 at relative offset 585251 in cluster at offset 671. TrackNumber 1, keyframe 0
+[out#0/matroska @ 0x611472115a80] All streams finished
+[out#0/matroska @ 0x611472115a80] Terminating thread with return code 0 (success)
+[matroska @ 0x611472115b80] end duration = 2000
+[matroska @ 0x611472115b80] stream 0 end duration = 2000
+[AVIOContext @ 0x611472119c00] Statistics: 592892 bytes written, 2 seeks, 4 writeouts
+[out#0/matroska @ 0x611472115a80] Output file #0 (/tmp/hd620-va-rc-navyf6fj/hevc_vaapi-main10-VBR.mkv):
+[out#0/matroska @ 0x611472115a80]   Output stream #0:0 (video): 60 frames encoded; 60 packets muxed (591129 bytes); 
+[out#0/matroska @ 0x611472115a80]   Total: 60 packets (591129 bytes) muxed
+[out#0/matroska @ 0x611472115a80] video:577KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.192175%
+frame=   60 fps=0.0 q=-0.0 Lsize=     578KiB time=00:00:01.96 bitrate=2409.2kbits/s speed=4.57x elapsed=0:00:00.43    
+[hevc_vaapi @ 0x611472116400] Freed output buffer 0xb
+[hevc_vaapi @ 0x611472116400] Freed output buffer 0
+[in#0/lavfi @ 0x6114720ef280] Input file #0 (testsrc2=size=1280x720:rate=30):
+[in#0/lavfi @ 0x6114720ef280]   Input stream #0:0 (video): 79 packets read (32864 bytes); 70 frames decoded; 0 decode errors; 
+[in#0/lavfi @ 0x6114720ef280]   Total: 79 packets (32864 bytes) demuxed
+
+Exiting with exit code 0
+{
+    "programs": [
+
+    ],
+    "stream_groups": [
+
+    ],
+    "streams": [
+        {
+            "profile": "Main 10",
+            "pix_fmt": "yuv420p10le",
+            "nb_read_frames": "60"
+        }
+    ]
+}

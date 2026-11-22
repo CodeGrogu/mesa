@@ -1,0 +1,20 @@
+--- a/libavutil/hwcontext_vaapi.c
++++ b/libavutil/hwcontext_vaapi.c
+@@ -1627,9 +1627,16 @@
+     case AV_PIX_FMT_DRM_PRIME:
+         return vaapi_map_to_drm(hwfc, dst, src, flags);
+ #endif
+-    default:
++    default: {
++        const AVPixFmtDescriptor *desc = av_pix_fmt_desc_get(dst->format);
++        /* Other hardware formats are mapped by the destination's map_to()
++         * (for example Vulkan imports VAAPI via DRM PRIME).  Returning
++         * ENOSYS lets av_hwframe_map() try it instead of failing here. */
++        if (desc && (desc->flags & AV_PIX_FMT_FLAG_HWACCEL))
++            return AVERROR(ENOSYS);
+         return vaapi_map_to_memory(hwfc, dst, src, flags);
+     }
++    }
+ }
+ 
+ static void vaapi_device_free(AVHWDeviceContext *ctx)

@@ -1,0 +1,3 @@
+control real-5x5 gfx-both: ASTC 5x5 both: 300 submissions completed | 
+control real-5x5 gfx-alt: ASTC 5x5 alt: 300 submissions completed | 
+control real-5x5 compute: ASTC 5x5: 300 submissions completed | 

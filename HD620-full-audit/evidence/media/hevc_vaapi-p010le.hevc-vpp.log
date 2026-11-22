@@ -1,0 +1,51 @@
+[vist#0:0/hevc @ 0x63563fb6ae00] Selecting decoder 'hevc' because of requested hwaccel method vaapi
+Input #0, hevc, from '/home/polarbear/.t3/projects/catchingup/HD620-full-audit/evidence/media/hevc_vaapi-p010le.hevc':
+  Duration: N/A, bitrate: N/A
+  Stream #0:0: Video: hevc (Main 10), 1 reference frame, yuv420p10le(tv, left), 640x360 [SAR 1:1 DAR 16:9], 25 fps, 30 tbr, 1200k tbn
+[out#0/null @ 0x63563fbce5c0] No explicit maps, mapping streams automatically...
+[vost#0:0/wrapped_avframe @ 0x63563fb9bf80] Created video stream from input stream 0:0
+[VAAPI @ 0x63563fba3780] libva: VA-API version 1.23.0
+[VAAPI @ 0x63563fba3780] libva: User environment variable requested driver 'iHD'
+[VAAPI @ 0x63563fba3780] libva: Trying to open /usr/lib/x86_64-linux-gnu/dri/iHD_drv_video.so
+[VAAPI @ 0x63563fba3780] libva: Found init function __vaDriverInit_1_22
+[VAAPI @ 0x63563fba3780] libva: va_openDriver() returns 0
+[VAAPI @ 0x63563fba3780] Initialised VAAPI connection: version 1.23
+[VAAPI @ 0x63563fba3780] VAAPI driver: Intel iHD driver for Intel(R) Gen Graphics - 26.1.2 ().
+[VAAPI @ 0x63563fba3780] Driver not found in known nonstandard list, using standard behaviour.
+Stream mapping:
+  Stream #0:0 -> #0:0 (hevc (native) -> wrapped_avframe (native))
+[vost#0:0/wrapped_avframe @ 0x63563fb9bf80] Starting thread...
+[vf#0:0 @ 0x63563fb9c780] Starting thread...
+[vist#0:0/hevc @ 0x63563fb6ae00] [dec:hevc @ 0x63563fb9d000] Starting thread...
+[in#0/hevc @ 0x63563fb68e40] Starting thread...
+[graph -1 input from stream 0:0 @ 0x7d41c4002480] w:640 h:360 pixfmt:vaapi tb:1/1200000 fr:30/1 sar:1/1 csp:unknown range:tv
+[graph -1 input from stream 0:0 @ 0x7d41c4002480] video frame properties congruent with link at pts_time: 0
+Output #0, null, to 'pipe:':
+  Metadata:
+    encoder         : Lavf62.3.100
+  Stream #0:0: Video: wrapped_avframe, 1 reference frame, p010le(tv, progressive, left), 320x180 [SAR 1:1 DAR 16:9], q=2-31, 200 kb/s, 30 fps, 30 tbn
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+[out#0/null @ 0x63563fbce5c0] Starting thread...
+[in#0/hevc @ 0x63563fb68e40] EOF while reading input
+[in#0/hevc @ 0x63563fb68e40] Terminating thread with return code 0 (success)
+[vist#0:0/hevc @ 0x63563fb6ae00] [dec:hevc @ 0x63563fb9d000] Decoder thread received EOF packet
+[vist#0:0/hevc @ 0x63563fb6ae00] [dec:hevc @ 0x63563fb9d000] Decoder returned EOF, finishing
+[vist#0:0/hevc @ 0x63563fb6ae00] [dec:hevc @ 0x63563fb9d000] Terminating thread with return code 0 (success)
+[vf#0:0 @ 0x63563fb9c780] All consumers returned EOF
+[vost#0:0/wrapped_avframe @ 0x63563fb9bf80] [enc:wrapped_avframe @ 0x63563fb9c280] Encoder thread received EOF
+[vost#0:0/wrapped_avframe @ 0x63563fb9bf80] Terminating thread with return code 0 (success)
+[out#0/null @ 0x63563fbce5c0] All streams finished
+[out#0/null @ 0x63563fbce5c0] Terminating thread with return code 0 (success)
+[vf#0:0 @ 0x63563fb9c780] Terminating thread with return code 0 (success)
+[out#0/null @ 0x63563fbce5c0] Output file #0 (pipe:):
+[out#0/null @ 0x63563fbce5c0]   Output stream #0:0 (video): 60 frames encoded; 60 packets muxed (24960 bytes); 
+[out#0/null @ 0x63563fbce5c0]   Total: 60 packets (24960 bytes) muxed
+[out#0/null @ 0x63563fbce5c0] video:24KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=   60 fps=0.0 q=-0.0 Lsize=N/A time=00:00:02.00 bitrate=N/A speed=39.1x elapsed=0:00:00.05    
+[in#0/hevc @ 0x63563fb68e40] Input file #0 (/home/polarbear/.t3/projects/catchingup/HD620-full-audit/evidence/media/hevc_vaapi-p010le.hevc):
+[in#0/hevc @ 0x63563fb68e40]   Input stream #0:0 (video): 60 packets read (224463 bytes); 60 frames decoded; 0 decode errors; 
+[in#0/hevc @ 0x63563fb68e40]   Total: 60 packets (224463 bytes) demuxed
+[AVIOContext @ 0x63563fb71880] Statistics: 224463 bytes read, 0 seeks
+
+Exiting with exit code 0

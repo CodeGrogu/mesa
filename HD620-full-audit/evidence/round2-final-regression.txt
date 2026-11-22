@@ -1,0 +1,9 @@
+lanemask: PASS: 0 mismatches across 12 runs
+astc: PASS
+vf-alias: PASS
+scratch: vkCreateComputePipelines = -2 (VK_ERROR_OUT_OF_DEVICE_MEMORY)
+modifier: rowPitch 1000: -1000158000 (VK_ERROR_INVALID_DRM_FORMAT_MODIFIER_PLANE_LAYOUT_EXT)
+compute: compute: 1048576 exact values
+hiz+astc5x5: ASTC 5x5: 50 submissions completed
+opencl:  Max clock frequency 1000MHz / PASS OpenCL event timestamps cover profiled compute
+gl timers: 0 timing check(s) failed

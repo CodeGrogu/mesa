@@ -1,0 +1,124 @@
+2026-11-18T22:32:40+02:00
+7.0.0-43-generic
+00:02.0 VGA compatible controller [0300]: Intel Corporation Kaby Lake-U GT2 [HD Graphics 620] [8086:5916] (rev 02)
+	Subsystem: Acer Incorporated [ALI] Device [1025:1295]
+	Kernel driver in use: i915
+	Kernel modules: i915
+Session wayland
+20eef29b7c8465ac98d7dd6d6f2ac07a8d8056ca
+0e9e1086bb86721e21693763c6bf35415d93fff5
+ffmpeg	7:8.0.1-3ubuntu2
+i965-va-driver:amd64	2.4.1+dfsg1-2build1
+intel-media-va-driver-non-free:amd64	26.1.2+ds1-1
+libdrm2:amd64	2.4.131-1
+libegl-mesa0:amd64	26.0.8-1ubuntu0.3
+libgl1-mesa-dri:amd64	26.0.8-1ubuntu0.3
+libva2:amd64	2.23.0-1ubuntu1
+mesa-vulkan-drivers:amd64	26.0.8-1ubuntu0.3
+ocl-icd-libopencl1:amd64	2.3.4-1
+4
+
+/sys/class/drm/card1-HDMI-A-1/status
+disconnected
+
+/sys/class/drm/card1-eDP-1/status
+connected
+
+/sys/class/drm/card1-HDMI-A-1/enabled
+disabled
+
+/sys/class/drm/card1-eDP-1/enabled
+enabled
+
+/sys/class/drm/card1-HDMI-A-1/modes
+
+/sys/class/drm/card1-eDP-1/modes
+1366x768
+1366x768
+1366x768
+1366x768
+
+/sys/class/drm/card1/gt/gt0/rc6_enable
+1
+
+/sys/class/drm/card1/gt/gt0/rc6_residency_ms
+30943634
+
+/sys/class/drm/card1/gt/gt0/rps_RP0_freq_mhz
+1000
+
+/sys/class/drm/card1/gt/gt0/rps_RP1_freq_mhz
+300
+
+/sys/class/drm/card1/gt/gt0/rps_RPn_freq_mhz
+300
+
+/sys/class/drm/card1/gt/gt0/rps_act_freq_mhz
+300
+
+/sys/class/drm/card1/gt/gt0/rps_boost_freq_mhz
+1000
+
+/sys/class/drm/card1/gt/gt0/rps_cur_freq_mhz
+317
+
+/sys/class/drm/card1/gt/gt0/rps_max_freq_mhz
+1000
+
+/sys/class/drm/card1/gt/gt0/rps_min_freq_mhz
+300
+
+/sys/class/drm/card1/device/power/runtime_status
+active
+
+/sys/class/drm/card1/device/power/runtime_active_time
+32299028
+
+/sys/class/drm/card1/device/power/runtime_suspended_time
+0
+
+/sys/class/drm/card1/device/power/control
+on
+ls: cannot access '/etc/OpenCL/vendors': No such file or directory
+/usr/share/vulkan/icd.d:
+asahi_icd.json
+gfxstream_vk_icd.json
+intel_hasvk_icd.json
+intel_icd.json
+lvp_icd.json
+nouveau_icd.json
+radeon_icd.json
+virtio_icd.json
+actual-frequency
+actual-frequency.unit
+bcs0-busy
+bcs0-busy.unit
+bcs0-sema
+bcs0-sema.unit
+bcs0-wait
+bcs0-wait.unit
+interrupts
+rc6-residency
+rc6-residency.unit
+rcs0-busy
+rcs0-busy.unit
+rcs0-sema
+rcs0-sema.unit
+rcs0-wait
+rcs0-wait.unit
+requested-frequency
+requested-frequency.unit
+software-gt-awake-time
+software-gt-awake-time.unit
+vcs0-busy
+vcs0-busy.unit
+vcs0-sema
+vcs0-sema.unit
+vcs0-wait
+vcs0-wait.unit
+vecs0-busy
+vecs0-busy.unit
+vecs0-sema
+vecs0-sema.unit
+vecs0-wait
+vecs0-wait.unit

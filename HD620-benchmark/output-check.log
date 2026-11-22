@@ -1,0 +1,6 @@
+H.264 decode · 1080p {'original': '5d3774aaa3044015fd30940e7a1d372e86563919c955a48c73dbc8ab3c226d63', 'patched': '5d3774aaa3044015fd30940e7a1d372e86563919c955a48c73dbc8ab3c226d63'}
+VP9 Profile 0 decode · 720p {'original': 'ae9e7733fd9863d37d0874a76abb6cf2aec469b7f389670f79e7b54e84001b03', 'patched': 'ae9e7733fd9863d37d0874a76abb6cf2aec469b7f389670f79e7b54e84001b03'}
+VP9 Profile 2 decode · 720p {'original': 'bbefd57b71e02a49840c76ee1f0730c38aa9e33baad7a1991cdf9fb5bfff7568', 'patched': 'bbefd57b71e02a49840c76ee1f0730c38aa9e33baad7a1991cdf9fb5bfff7568'}
+H.264 encode · 1080p {'original': 'a066196f31cdd19a7e75cc69bbb9d8c53d2f8ccab33c5ce6b8e0736302fd6562', 'patched': 'a066196f31cdd19a7e75cc69bbb9d8c53d2f8ccab33c5ce6b8e0736302fd6562'}
+H.264 transcode · 1080p {'original': '264517a970037ff9c3ee25d7d4a29776089333994e60a09af5ec6be56587daf9', 'patched': '264517a970037ff9c3ee25d7d4a29776089333994e60a09af5ec6be56587daf9'}
+PASS: all five decoded samples or encoded bitstreams match byte for byte.

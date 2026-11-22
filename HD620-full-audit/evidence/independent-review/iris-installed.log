@@ -1,0 +1,19 @@
+Mesa Intel(R) HD Graphics 620 (KBL GT2) 4.6 (Core Profile) Mesa 26.0.8-1ubuntu0.3
+1048576 work-items, 16 rounds, timestamp pair, output checks passed
+  GL query difference median 0.000417 ms, samples ns [583, 584, 583, 500, 417, 417, 333, 333, 333]
+  wall time through finish median 1.589637 ms, samples ns [2103112, 2019444, 1856413, 1889931, 1589637, 1239027, 1102036, 1242520, 1221417]
+1048576 work-items, 16 rounds, time elapsed, output checks passed
+  GL query difference median 0.000083 ms, samples ns [0, 83, 83, 83, 0, 83, 0, 83, 0]
+  wall time through finish median 1.209683 ms, samples ns [1100456, 1209683, 1164680, 1249113, 1097382, 1224468, 1235782, 1051169, 1212401]
+1048576 work-items, 16 rounds, timestamp pair with explicit drains, output checks passed
+  GL query difference median 1.201750 ms, samples ns [1299334, 1220167, 1201750, 1247583, 1201583, 1151916, 1130583, 1132250, 1233000]
+  wall time through finish median 1.261352 ms, samples ns [1361286, 1285543, 1261352, 1309087, 1260619, 1211776, 1191099, 1252842, 1311503]
+1048576 work-items, 256 rounds, timestamp pair, output checks passed
+  GL query difference median 0.000333 ms, samples ns [250, 334, 334, 250, 250, 334, 334, 333, 333]
+  wall time through finish median 11.532386 ms, samples ns [12076492, 11532386, 11359134, 11024734, 11009752, 11013044, 11756713, 12041741, 11979262]
+1048576 work-items, 256 rounds, time elapsed, output checks passed
+  GL query difference median 0.000000 ms, samples ns [83, 0, 0, 83, 0, 0, 83, 0, 0]
+  wall time through finish median 11.488444 ms, samples ns [11488189, 11449101, 11518022, 11906732, 11488444, 11544928, 11543268, 11482653, 11418570]
+1048576 work-items, 256 rounds, timestamp pair with explicit drains, output checks passed
+  GL query difference median 11.611416 ms, samples ns [11583500, 11613666, 11615583, 11611416, 11533083, 11515750, 12046833, 11739917, 11541583]
+  wall time through finish median 11.716933 ms, samples ns [11716933, 11708634, 11744785, 11746880, 11584309, 11584544, 12184962, 11881125, 11676657]

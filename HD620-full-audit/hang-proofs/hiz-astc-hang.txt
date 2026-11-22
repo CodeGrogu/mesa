@@ -1,0 +1,6 @@
+control HiZ + native 5x5: ASTC 5x5 submission 0: VK_ERROR_DEVICE_LOST (-4) | GPU HANG: ecode 9:1:8ed8fff3, in astc-ccs [457719]
+fixed-binary-emulation-off HiZ + native 5x5: ASTC 5x5 submission 0: VK_ERROR_DEVICE_LOST (-4) | GPU HANG: ecode 9:1:8ed8fff3, in astc-ccs [457734]
+ASTC 5x5: 200 submissions completed
+ASTC 5x5: 200 submissions completed
+ASTC 5x5: 200 submissions completed
+GPU HANG lines: 0

@@ -1,0 +1,59 @@
+[  OK  ] mi_builder_test.imm_mem
+[  OK  ] mi_builder_test.mem_mem
+[  OK  ] mi_builder_test.imm_reg
+[  OK  ] mi_builder_test.mem_reg
+[  OK  ] mi_builder_test.memset
+[  OK  ] mi_builder_test.memcpy
+[  OK  ] mi_builder_test.inot
+[  OK  ] mi_builder_test.add_imm
+[  OK  ] mi_builder_test.ult_uge_ieq_ine
+[  OK  ] mi_builder_test.z_nz
+[  OK  ] mi_builder_test.iand
+[  OK  ] mi_builder_test.imm_mem_relocated
+[  OK  ] mi_builder_test.imm_reg_relocated
+[  OK  ] mi_builder_test.imul_imm
+[  OK  ] mi_builder_test.ishl_imm
+[  OK  ] mi_builder_test.ushr32_imm
+[  OK  ] mi_builder_test.udiv32_imm
+[  OK  ] mi_builder_test.udiv64_imm
+[  OK  ] mi_builder_test.umul_udiv64_imm_timebase_scale
+[  OK  ] mi_builder_test.umax2_32
+[  OK  ] mi_builder_test.umax2_64
+[  OK  ] mi_builder_test.store_if
+[  OK  ] mi_builder_test.goto
+[  OK  ] mi_builder_test.goto_if
+[  OK  ] mi_builder_test.loop_simple
+[  OK  ] mi_builder_test.loop_break
+[  OK  ] mi_builder_test.loop_continue
+[  OK  ] mi_builder_test.loop_continue_if
+[  OK  ] mi_builder_test.iris_time_elapsed_expression
+COST f=12000000 old TIMESTAMP         63 dwords, median 8 ticks (0.67 us), min 7 max 13
+COST f=12000000 new TIMESTAMP       2436 dwords, median 56 ticks (4.67 us), min 52 max 62
+COST f=12000000 old TIME_ELAPSED      65 dwords, median 11 ticks (0.92 us), min 10 max 15
+COST f=12000000 new TIME_ELAPSED    2484 dwords, median 67 ticks (5.58 us), min 64 max 68
+COST f=12500000 old TIMESTAMP         55 dwords, median 8 ticks (0.67 us), min 7 max 11
+COST f=12500000 new TIMESTAMP         45 dwords, median 7 ticks (0.58 us), min 6 max 11
+COST f=12500000 old TIME_ELAPSED      57 dwords, median 11 ticks (0.92 us), min 10 max 15
+COST f=12500000 new TIME_ELAPSED      92 dwords, median 18 ticks (1.50 us), min 18 max 54
+COST f=19200000 old TIMESTAMP         55 dwords, median 8 ticks (0.67 us), min 7 max 8
+COST f=19200000 new TIMESTAMP       2444 dwords, median 55 ticks (4.58 us), min 52 max 59
+COST f=19200000 old TIME_ELAPSED      57 dwords, median 11 ticks (0.92 us), min 10 max 14
+COST f=19200000 new TIME_ELAPSED    2492 dwords, median 66 ticks (5.50 us), min 64 max 79
+COST f=38400000 old TIMESTAMP         51 dwords, median 8 ticks (0.67 us), min 7 max 8
+COST f=38400000 new TIMESTAMP       2444 dwords, median 52 ticks (4.33 us), min 51 max 56
+COST f=38400000 old TIME_ELAPSED      53 dwords, median 11 ticks (0.92 us), min 10 max 14
+COST f=38400000 new TIME_ELAPSED    2492 dwords, median 66 ticks (5.50 us), min 63 max 69
+COST f=12333333 old TIMESTAMP         59 dwords, median 8 ticks (0.67 us), min 7 max 8
+COST f=12333333 new TIMESTAMP       7943 dwords, median 169 ticks (14.08 us), min 164 max 317
+COST f=12333333 old TIME_ELAPSED      61 dwords, median 11 ticks (0.92 us), min 10 max 15
+COST f=12333333 new TIME_ELAPSED    7991 dwords, median 179 ticks (14.92 us), min 176 max 181
+COST f=2147483647 old TIMESTAMP          5 dwords, median 1 ticks (0.08 us), min 0 max 1
+COST f=2147483647 new TIMESTAMP      63207 dwords, median 1371 ticks (114.25 us), min 1345 max 1549
+COST f=2147483647 old TIME_ELAPSED      26 dwords, median 10 ticks (0.83 us), min 9 max 15
+COST f=2147483647 new TIME_ELAPSED   63255 dwords, median 1467 ticks (122.25 us), min 1376 max 1791
+COST device timestamp_frequency 12000000
+[  OK  ] mi_builder_test.zz_cost
+[  OK  ] mi_builder_test.iris_query_saturation
+SAT clamp: 45 batch dwords incl. setup and store
+[  OK  ] mi_builder_test.iris_query_saturation_gprs
+32 tests, 0 failed, 4851 checks, 0 failed checks

@@ -1,0 +1,4 @@
+mpeg2_vaapi-nv12.mpeg2video 20736000 samples, full-buffer PSNR 69.764 dB
+absolute pixel differences: [(0, 20597727), (1, 136960), (2, 1285), (3, 28)]
+mjpeg_vaapi-nv12.mjpeg 20736000 samples, full-buffer PSNR 73.713 dB
+absolute pixel differences: [(0, 20678650), (1, 57350)]

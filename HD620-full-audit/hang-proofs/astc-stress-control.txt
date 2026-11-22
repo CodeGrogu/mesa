@@ -1,0 +1,2 @@
+ASTC 5x5: 10 submissions completed
+exit 0 after 82 s

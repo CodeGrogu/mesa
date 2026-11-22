@@ -1,0 +1,406 @@
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/mesonbuild/mesonmain.py", line 193, in run
+    return options.run_func(options)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/msetup.py", line 404, in run
+    app.generate()
+    ~~~~~~~~~~~~^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/msetup.py", line 196, in generate
+    return self._generate(env, capture, vslite_ctx)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/msetup.py", line 255, in _generate
+    intr.run()
+    ~~~~~~~~^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreter/interpreter.py", line 3058, in run
+    super().run()
+    ~~~~~~~~~~~^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/interpreterbase.py", line 178, in run
+    self.evaluate_codeblock(self.ast, start=1)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/interpreterbase.py", line 203, in evaluate_codeblock
+    raise e
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/interpreterbase.py", line 195, in evaluate_codeblock
+    self.evaluate_statement(cur)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/interpreterbase.py", line 209, in evaluate_statement
+    return self.function_call(cur)
+           ~~~~~~~~~~~~~~~~~~^^^^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/interpreterbase.py", line 536, in function_call
+    res = func(node, func_args, kwargs)
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/decorators.py", line 237, in wrapper
+    return f(*nargs, **wrapped_kwargs)
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/decorators.py", line 565, in wrapper
+    return f(*wrapped_args, **wrapped_kwargs)
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreter/interpreter.py", line 2459, in func_subdir
+    elif not self._evaluate_subdir(self.environment.get_source_dir(), subdir):
+             ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/interpreterbase.py", line 727, in _evaluate_subdir
+    self._evaluate_codeblock(codeblock, subdir, visitors)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/interpreterbase.py", line 738, in _evaluate_codeblock
+    self.evaluate_codeblock(codeblock)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/interpreterbase.py", line 203, in evaluate_codeblock
+    raise e
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/interpreterbase.py", line 195, in evaluate_codeblock
+    self.evaluate_statement(cur)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/interpreterbase.py", line 209, in evaluate_statement
+    return self.function_call(cur)
+           ~~~~~~~~~~~~~~~~~~^^^^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/interpreterbase.py", line 536, in function_call
+    res = func(node, func_args, kwargs)
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/decorators.py", line 237, in wrapper
+    return f(*nargs, **wrapped_kwargs)
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/decorators.py", line 565, in wrapper
+    return f(*wrapped_args, **wrapped_kwargs)
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreter/interpreter.py", line 2459, in func_subdir
+    elif not self._evaluate_subdir(self.environment.get_source_dir(), subdir):
+             ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/interpreterbase.py", line 727, in _evaluate_subdir
+    self._evaluate_codeblock(codeblock, subdir, visitors)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/interpreterbase.py", line 738, in _evaluate_codeblock
+    self.evaluate_codeblock(codeblock)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/interpreterbase.py", line 203, in evaluate_codeblock
+    raise e
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/interpreterbase.py", line 195, in evaluate_codeblock
+    self.evaluate_statement(cur)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/interpreterbase.py", line 227, in evaluate_statement
+    return self.evaluate_if(cur)
+           ~~~~~~~~~~~~~~~~^^^^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/interpreterbase.py", line 317, in evaluate_if
+    self.evaluate_codeblock(i.block)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/interpreterbase.py", line 203, in evaluate_codeblock
+    raise e
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/interpreterbase.py", line 195, in evaluate_codeblock
+    self.evaluate_statement(cur)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/interpreterbase.py", line 209, in evaluate_statement
+    return self.function_call(cur)
+           ~~~~~~~~~~~~~~~~~~^^^^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/interpreterbase.py", line 536, in function_call
+    res = func(node, func_args, kwargs)
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/decorators.py", line 237, in wrapper
+    return f(*nargs, **wrapped_kwargs)
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/decorators.py", line 565, in wrapper
+    return f(*wrapped_args, **wrapped_kwargs)
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreter/interpreter.py", line 2459, in func_subdir
+    elif not self._evaluate_subdir(self.environment.get_source_dir(), subdir):
+             ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/interpreterbase.py", line 727, in _evaluate_subdir
+    self._evaluate_codeblock(codeblock, subdir, visitors)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/interpreterbase.py", line 738, in _evaluate_codeblock
+    self.evaluate_codeblock(codeblock)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/interpreterbase.py", line 203, in evaluate_codeblock
+    raise e
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/interpreterbase.py", line 195, in evaluate_codeblock
+    self.evaluate_statement(cur)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/interpreterbase.py", line 213, in evaluate_statement
+    self.assignment(cur)
+    ~~~~~~~~~~~~~~~^^^^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/interpreterbase.py", line 644, in assignment
+    value = self.evaluate_statement(node.value)
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/interpreterbase.py", line 209, in evaluate_statement
+    return self.function_call(cur)
+           ~~~~~~~~~~~~~~~~~~^^^^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/interpreterbase.py", line 536, in function_call
+    res = func(node, func_args, kwargs)
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/decorators.py", line 237, in wrapper
+    return f(*nargs, **wrapped_kwargs)
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/decorators.py", line 565, in wrapper
+    return f(*wrapped_args, **wrapped_kwargs)
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreterbase/decorators.py", line 85, in wrapped
+    ret = f(*wrapped_args, **wrapped_kwargs)
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreter/interpreter.py", line 1783, in func_dependency
+    d = df.lookup(nkwargs)
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreter/dependencyfallbacks.py", line 364, in lookup
+    dep = func(kwargs, name, func_kwargs)
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreter/dependencyfallbacks.py", line 135, in _do_subproject
+    self.interpreter.do_subproject(subp_name, func_kwargs, forced_options=forced_options)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/interpreter/interpreter.py", line 910, in do_subproject
+    subdir, method = r.resolve(subp_name, force_method)
+                     ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/wrap/wrap.py", line 617, in resolve
+    return self._resolve(packagename, force_method)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/wrap/wrap.py", line 585, in _resolve
+    self._get_file(packagename)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/mesonbuild/wrap/wrap.py", line 669, in _get_file
+    path = self._get_file_internal('source', packagename)
+  File "/usr/lib/python3/dist-packages/mesonbuild/wrap/wrap.py", line 910, in _get_file_internal
+    os.makedirs(self.cachedir, exist_ok=True)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen os>", line 236, in makedirs
+OSError: [Errno 30] Read-only file system: '/src/subprojects/packagecache'
+The Meson build system
+Version: 1.10.1
+Source dir: /src
+Build dir: /build/audit-rusticl
+Build type: native build
+Project name: mesa
+Project version: 27.0.0-devel
+C compiler for the host machine: cc (gcc 15.2.0 "cc (Ubuntu 15.2.0-16ubuntu1) 15.2.0")
+C linker for the host machine: cc ld.bfd 2.46
+C++ compiler for the host machine: c++ (gcc 15.2.0 "c++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0")
+C++ linker for the host machine: c++ ld.bfd 2.46
+Host machine cpu family: x86_64
+Host machine cpu: x86_64
+Checking for size of "void*" : 8 
+Checking if define "__ANDROID__" exists: NO 
+Checking if "-mtls-dialect=gnu2" runs: YES
+Checking if "split TLSDESC" links: YES 
+Dependency libglvnd skipped: feature glvnd disabled
+Program glslangValidator found: YES (/usr/bin/glslangValidator)
+Found pkg-config: YES (/usr/bin/pkg-config) 2.5.1
+Run-time dependency libdrm found: YES 2.4.131
+Dependency libva skipped: feature gallium-va disabled
+src/meson.build:943: WARNING: add_languages is missing native:, assuming languages are wanted for both host and build.
+Rust compiler for the host machine: rustc -C linker=cc (rustc 1.93.1 "1.93.1")
+Rust linker for the host machine: cc ld.bfd 2.46
+Program bindgen found: YES (/usr/bin/bindgen)
+Did not find CMake 'cmake'
+Found CMake: NO
+Run-time dependency mesa-libclc found: NO (tried pkgconfig and cmake)
+Message: mesa-libclc not found. Build will fall back to upstream libclc, however this is not recommended for most use cases.
+Run-time dependency libclc found: YES 0.2.0
+Program python3.16 found: NO
+Program python3.15 found: NO
+Program python3.14 found: YES 3.14.4 3.14.4 (/usr/bin/python3.14)
+Fetching value of define "ETIME" : 62 
+Compiler for C supports arguments -gsplit-dwarf: YES 
+Compiler for C supports link arguments -Wl,--gdb-index: NO 
+Checking for function "bswap32" : YES 
+Checking for function "bswap64" : YES 
+Checking for function "clz" : YES 
+Checking for function "clzll" : YES 
+Checking for function "ctz" : YES 
+Checking for function "expect" : YES 
+Checking for function "ffs" : YES 
+Checking for function "ffsll" : YES 
+Checking for function "popcount" : YES 
+Checking for function "popcountll" : YES 
+Checking for function "unreachable" : YES 
+Checking for function "types_compatible_p" : YES 
+Checking for function "__builtin_add_overflow" : YES 
+Checking for function "__builtin_add_overflow_p" : YES 
+Checking for function "__builtin_sub_overflow_p" : YES 
+Checking for function "__builtin_arm_get_fpscr" : NO 
+Checking for function "__builtin_arm_set_fpscr" : NO 
+Checking for function "__builtin_aarch64_get_fpcr" : NO 
+Checking for function "__builtin_aarch64_set_fpcr" : NO 
+Compiler for C supports function attribute const: YES 
+Compiler for C supports function attribute flatten: YES 
+Compiler for C supports function attribute malloc: YES 
+Compiler for C supports function attribute pure: YES 
+Compiler for C supports function attribute unused: YES 
+Compiler for C supports function attribute warn_unused_result: YES 
+Compiler for C supports function attribute weak: YES 
+Compiler for C supports function attribute format: YES 
+Compiler for C supports function attribute packed: YES 
+Compiler for C supports function attribute returns_nonnull: YES 
+Compiler for C supports function attribute alias: YES 
+Compiler for C supports function attribute noreturn: YES 
+Compiler for C supports function attribute optimize: YES 
+Compiler for C supports function attribute cold: YES 
+Compiler for C supports function attribute visibility:hidden: YES 
+Checking if "__uint128_t" compiles: YES 
+Checking for function "fmemopen" : YES 
+Checking for function "mallinfo2" : YES 
+Checking if "gc-sections" links: YES 
+Compiler for C supports arguments -Werror=implicit-function-declaration: YES 
+Compiler for C supports arguments -Werror=missing-prototypes: YES 
+Compiler for C supports arguments -Werror=return-type: YES 
+Compiler for C supports arguments -Werror=empty-body: YES 
+Compiler for C supports arguments -Werror=incompatible-pointer-types: YES 
+Compiler for C supports arguments -Werror=int-conversion: YES 
+Compiler for C supports arguments -Wimplicit-fallthrough: YES 
+Compiler for C supports arguments -Wmisleading-indentation: YES 
+Compiler for C supports arguments -Wno-error=maybe-uninitialized: YES 
+Compiler for C supports arguments -Wno-missing-field-initializers: YES 
+Compiler for C supports arguments -Wno-format-truncation: YES 
+Compiler for C supports arguments -Wno-nonnull-compare: YES 
+Compiler for C supports arguments -fno-math-errno: YES 
+Compiler for C supports arguments -fno-trapping-math: YES 
+Compiler for C supports arguments -Qunused-arguments: NO 
+Compiler for C supports arguments -fno-common: YES 
+Compiler for C supports arguments -Wno-unknown-pragmas: YES 
+Compiler for C supports arguments -Wno-microsoft-enum-value: NO 
+Compiler for C supports arguments -Wno-unused-function: YES 
+Compiler for C supports arguments -Werror=format: YES 
+Compiler for C supports arguments -Wformat-security: YES 
+Compiler for C supports arguments -Werror=thread-safety: NO 
+Compiler for C supports arguments -ffunction-sections: YES 
+Compiler for C supports arguments -fdata-sections: YES 
+Compiler for C supports arguments -Wno-unused-variable: YES 
+Compiler for C supports arguments -Wno-unused-but-set-variable: YES 
+Compiler for C supports arguments /wd4189: NO 
+Compiler for C++ supports arguments -Werror=return-type: YES 
+Compiler for C++ supports arguments -Werror=empty-body: YES 
+Compiler for C++ supports arguments -Wmisleading-indentation: YES 
+Compiler for C++ supports arguments -Wno-error=maybe-uninitialized: YES 
+Compiler for C++ supports arguments -Wno-non-virtual-dtor: YES 
+Compiler for C++ supports arguments -Wno-missing-field-initializers: YES 
+Compiler for C++ supports arguments -Wno-format-truncation: YES 
+Compiler for C++ supports arguments -fno-math-errno: YES 
+Compiler for C++ supports arguments -fno-trapping-math: YES 
+Compiler for C++ supports arguments -Qunused-arguments: NO 
+Compiler for C++ supports arguments -flifetime-dse=1: YES 
+Compiler for C++ supports arguments -Wno-unknown-pragmas: YES 
+Compiler for C++ supports arguments -Wno-microsoft-enum-value: NO 
+Compiler for C++ supports arguments -Werror=format: YES 
+Compiler for C++ supports arguments -Wformat-security: YES 
+Compiler for C++ supports arguments -ffunction-sections: YES 
+Compiler for C++ supports arguments -fdata-sections: YES 
+Compiler for C++ supports arguments -Wno-unused-variable: YES 
+Compiler for C++ supports arguments -Wno-unused-but-set-variable: YES 
+Compiler for C++ supports arguments /wd4189: NO 
+Compiler for C supports arguments -Wno-override-init: YES 
+Compiler for C supports arguments -Wno-initializer-overrides: NO 
+Compiler for C supports arguments -Werror=pointer-arith: YES 
+Compiler for C supports arguments -Werror=vla: YES 
+Compiler for C supports arguments -Werror=gnu-empty-initializer: NO 
+Compiler for C supports arguments -Wgnu-pointer-arith: NO 
+Compiler for C++ supports arguments -Werror=pointer-arith: YES 
+Compiler for C++ supports arguments -Werror=vla: YES 
+Compiler for C++ supports arguments -Werror=gnu-empty-initializer: NO 
+Compiler for C++ supports arguments -Wgnu-pointer-arith: NO 
+Compiler for C supports arguments -Werror=date-time: YES 
+Compiler for C supports arguments -Werror=gnu-alignof-expression: NO 
+Compiler for C supports arguments -Werror=ignored-qualifiers: YES 
+Compiler for C supports arguments -Werror=implicit-fallthrough: YES 
+Compiler for C supports arguments -Werror=int-conversion: YES (cached)
+Compiler for C supports arguments -Werror=missing-prototypes: YES (cached)
+Compiler for C supports arguments -Werror=pragma-pack: NO 
+Compiler for C supports arguments -Werror=pragma-pack-suspicious-include: NO 
+Compiler for C supports arguments -Werror=sizeof-array-div: YES 
+Compiler for C supports arguments -Werror=string-plus-int: NO 
+Compiler for C supports arguments -Werror=unreachable-code-loop-increment: NO 
+Compiler for C++ supports arguments -D_LIBCPP_ENABLE_THREAD_SAFETY_ANNOTATIONS: YES 
+Compiler for C++ supports arguments -Werror=date-time: YES 
+Compiler for C++ supports arguments -Werror=gnu-alignof-expression: NO 
+Compiler for C++ supports arguments -Werror=ignored-qualifiers: YES 
+Compiler for C++ supports arguments -Werror=implicit-fallthrough: YES 
+Compiler for C++ supports arguments -Werror=pragma-pack: NO 
+Compiler for C++ supports arguments -Werror=pragma-pack-suspicious-include: NO 
+Compiler for C++ supports arguments -Werror=sizeof-array-div: YES 
+Compiler for C++ supports arguments -Werror=string-plus-int: NO 
+Compiler for C++ supports arguments -Werror=unreachable-code-loop-increment: NO 
+Compiler for C++ supports arguments -Werror=missing-declarations: YES 
+Checking for function "__builtin_ia32_clflushopt" : YES 
+Checking if "GCC atomic builtins" compiles: YES 
+Checking if "GCC atomic builtins required -latomic" links: YES 
+Checking if "GCC 64bit atomics" with dependency  links: YES 
+Library ws2_32 found: NO
+Header "sys/sysmacros.h" has symbol "major" : YES 
+Header "sys/sysmacros.h" has symbol "minor" : YES 
+Header "sys/sysmacros.h" has symbol "makedev" : YES 
+Header "sys/mkdev.h" has symbol "major" : NO 
+Check usable header "sched.h" : YES 
+Checking for function "sched_getaffinity" : YES 
+Check usable header "xlocale.h" : NO 
+Check usable header "linux/futex.h" : YES 
+Check usable header "endian.h" : YES 
+Check usable header "dlfcn.h" : YES 
+Check usable header "sys/shm.h" : YES 
+Check usable header "cet.h" : YES 
+Check usable header "pthread_np.h" : NO 
+Check usable header "poll.h" : YES 
+Check usable header "sys/inotify.h" : YES 
+Check usable header "linux/udmabuf.h" : YES 
+Check usable header "fenv.h" : YES 
+Checking for function "strtof" : YES 
+Checking for function "mkostemp" : YES 
+Checking for function "memfd_create" : YES 
+Checking for function "random_r" : YES 
+Checking for function "flock" : YES 
+Checking for function "strtok_r" : YES 
+Checking for function "getrandom" : YES 
+Checking for function "qsort_s" : NO 
+Checking for function "posix_fallocate" : YES 
+Checking for function "secure_getenv" : YES 
+Checking for function "sysconf" : YES 
+Header "unistd.h" has symbol "_SC_PHYS_PAGES" : YES 
+Compiler for C++ supports arguments -fno-permissive: YES 
+Checking if "GNU qsort_r" links: YES 
+Header "time.h" has symbol "struct timespec" : YES 
+Checking for function "thrd_create" : YES 
+Header "errno.h" has symbol "program_invocation_name" : YES 
+Header "math.h" has symbol "issignaling" : YES 
+Checking for function "posix_memalign" : YES 
+Checking whether type "struct dirent" has member "d_type" : YES 
+Checking if "strtod has locale support" links: YES 
+Checking if "Bsymbolic" links: YES 
+Checking if "z nodelete" links: YES 
+Checking if "version-script" links: YES 
+Checking if "dynamic-list" links: YES 
+Compiler for C supports link arguments -Wl,--build-id=sha1: YES 
+Checking for function "dlopen" : YES 
+Checking for function "dladdr" with dependency : YES 
+Checking for function "dl_iterate_phdr" : YES 
+Checking for function "clock_gettime" : YES 
+Run-time dependency zlib found: YES 1.3.1
+Run-time dependency libdisplay-info found: NO (tried pkgconfig and cmake)
+Run-time dependency libzstd found: YES 1.5.7
+Run-time dependency threads found: YES
+Checking for function "pthread_setaffinity_np" with dependency threads: YES 
+Run-time dependency expat found: YES 2.7.4
+Library m found: YES
+Run-time dependency libudev found: YES 259
+llvm-config found: YES (/usr/bin/llvm-config) 21.1.8
+Run-time dependency LLVM (modules: bitwriter, core, coverage, engine, executionengine, instcombine, irreader, libdriver, linker, lto, mcdisassembler, mcjit, native, option, scalaropts, target, transformutils, abi(missing but optional), all-targets, coroutines, frontenddriver, frontendhlsl, lto, windowsdriver) found: YES 21.1.8
+Run-time dependency llvmspirvlib found: YES 21.1.0.0
+Run-time dependency spirv-tools found: YES 2026.1.1
+Library clang-cpp found: NO
+Library clangBasic found: YES
+Library clangAST found: YES
+Library clangCodeGen found: YES
+Library clangLex found: YES
+Library clangDriver found: YES
+Library clangFrontend found: YES
+Library clangFrontendTool found: YES
+Library clangHandleCXX found: YES
+Library clangHandleLLVM found: YES
+Library clangSerialization found: YES
+Library clangSema found: YES
+Library clangParse found: YES
+Library clangEdit found: YES
+Library clangAnalysis found: YES
+Library clangSupport found: YES
+Library clangASTMatchers found: YES
+Library clangAPINotes found: YES
+Run-time dependency lua54 found: NO (tried pkgconfig and cmake)
+Run-time dependency lua5.4 found: NO (tried pkgconfig and cmake)
+Run-time dependency lua-5.4 found: NO (tried pkgconfig and cmake)
+Run-time dependency lua53 found: NO (tried pkgconfig and cmake)
+Run-time dependency lua5.3 found: NO (tried pkgconfig and cmake)
+Run-time dependency lua-5.3 found: NO (tried pkgconfig and cmake)
+Run-time dependency lua found: NO (tried pkgconfig and cmake)
+Run-time dependency libelf found: YES 0.194
+Run-time dependency valgrind found: NO (tried pkgconfig)
+Program bison found: YES (/usr/bin/bison)
+Program bison found: YES 3.8.2 3.8.2 (/usr/bin/bison)
+Program flex found: YES (/usr/bin/flex)
+Program ln found: YES (/usr/bin/ln)
+Run-time dependency libunwind found: NO (tried pkgconfig and cmake)
+Run-time dependency OpenMP found: YES 4.5
+Library sensors found: NO
+Program nm found: YES (/usr/bin/nm)
+Program symbols-check.py found: YES (/usr/bin/python3 /src/bin/symbols-check.py)
+Program install_megadrivers.py found: YES (/usr/bin/python3 /src/bin/install_megadrivers.py)
+Checking for size of "void *" : 8 
+Compiler for C supports arguments -Wno-error: YES 
+Program bindgen found: YES (/usr/bin/bindgen)
+Compiler for C supports arguments -Wno-missing-prototypes: YES 
+Run-time dependency syn found: NO (tried pkgconfig and cmake)
+Looking for a fallback subproject for the dependency syn
+
+ERROR: Unhandled python OSError. This is probably not a Meson bug, but an issue with your build environment.

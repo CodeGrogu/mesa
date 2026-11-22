@@ -1,0 +1,30 @@
+1a7dc828e556d0e592343f86cbb165473901817bf4384da11f853aadf467244d  /build/audit-rusticl/src/gallium/targets/rusticl/libRusticlOpenCL.so.1.0.0
+=== Rusticl warning: Patched Mesa libclc not detected. Upstream libclc may contain known bugs or breaking changes and isn't guaranteed to work reliably. Please visit https://gitlab.freedesktop.org/karolherbst/mesa-libclc for more information. ===
+Mesa Intel(R) HD Graphics 620 (KBL GT2) OpenCL 3.1 
+1048576 exact results, local 32
+  event duration    median   1.273334 ms  samples ns [1358083, 1318500, 1299334, 1294584, 1196750, 1103666, 1273334, 1151167, 1234833]
+  enqueue and wait  median   1.680494 ms  samples ns [1710983, 2413832, 1669092, 1577298, 1713911, 1666920, 1746414, 1680494, 1489041]
+  i915 render busy  median   1.230392 ms  samples ns [1475574, 1389337, 1222424, 1355058, 1164241, 1135855, 1230392, 1188311, 1251225]
+1048576 exact results, local 64
+  event duration    median   1.276334 ms  samples ns [1388416, 1338167, 1343250, 1353833, 1276334, 1253833, 1116750, 1211084, 1222084]
+  enqueue and wait  median   1.665365 ms  samples ns [1665365, 1640524, 1803603, 1598547, 1802177, 1718138, 1388046, 1452134, 1757799]
+  i915 render busy  median   1.269402 ms  samples ns [1446856, 1277453, 1318206, 1304345, 1269402, 1244585, 1207899, 1191465, 1148139]
+1048576 exact results, local 128
+  event duration    median   1.214166 ms  samples ns [1368333, 1315834, 1303000, 1231417, 1214166, 1111916, 1184084, 1101083, 1139083]
+  enqueue and wait  median   1.621261 ms  samples ns [1621261, 1578750, 1511075, 1806227, 1500109, 1736465, 1631168, 1508347, 1686396]
+  i915 render busy  median   1.161834 ms  samples ns [1435568, 1342027, 1275461, 1161834, 1253300, 1078170, 1151957, 1093027, 1122243]
+1048576 exact results, local 256
+  event duration    median   1.231416 ms  samples ns [1307416, 1345417, 1269917, 1283000, 1215000, 1231416, 1195833, 1085583, 1058250]
+  enqueue and wait  median   1.690718 ms  samples ns [1830970, 1690718, 1693075, 1738231, 1529802, 1693237, 1617079, 1570952, 1480798]
+  i915 render busy  median   1.218440 ms  samples ns [1261434, 1345347, 1281105, 1276540, 1218274, 1218440, 1196030, 1108216, 1068210]
+1048576 work-items, 16 dependent rounds, stride-1021 output checks
+  event duration    median   1.356833 ms  samples ns [2800334, 1767750, 1329584, 1447000, 1383333, 1330333, 1356833, 1310083, 1337833]
+  enqueue and wait  median   1.729846 ms  samples ns [2999082, 2090325, 1716201, 1729846, 1661529, 1737806, 1596692, 1654506, 1788634]
+  i915 render busy  median   1.353647 ms  samples ns [2842501, 1726317, 1313060, 1406435, 1353647, 1323435, 1367259, 1285255, 1307665]
+1048576 work-items, 256 dependent rounds, stride-1021 output checks
+  event duration    median  11.557250 ms  samples ns [11520834, 11459000, 11612500, 11557250, 11694000, 11559000, 11496500, 11592167, 11446750]
+  enqueue and wait  median  11.875999 ms  samples ns [11875999, 11697016, 11941244, 11860381, 12160534, 11888656, 11858380, 11797130, 11927598]
+  i915 render busy  median  11.175369 ms  samples ns [11175369, 11144078, 11207573, 11189313, 11271068, 11195538, 11168812, 11170887, 11163251]
+PASS OpenCL event timestamps cover profiled compute
+Rusticl library /build/audit-rusticl/src/gallium/targets/rusticl/libRusticlOpenCL.so.1.0.0
+exit status 0

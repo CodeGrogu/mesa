@@ -1,0 +1,12 @@
+driver library: /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/libvulkan_intel.so
+PASS aligned-256x128x6 in-scope levels 6: 611520 exact pixel checks, image allocation 184320 bytes
+SUMMARY 1/1 pixel cases passed
+3DSTATE_DEPTH_BUFFER (format, LOD, LOD0 extent, HiZ enable): count
+   (D32_FLOAT) 0 256x128 false : 7
+   (D32_FLOAT) 1 256x128 false : 7
+   (D32_FLOAT) 2 256x128 false : 7
+   (D32_FLOAT) 3 256x128 false : 7
+   (D32_FLOAT) 4 256x128 false : 7
+   (D32_FLOAT) 5 256x128 false : 7
+3DSTATE_WM_HZ_OP: count
+   end : 1

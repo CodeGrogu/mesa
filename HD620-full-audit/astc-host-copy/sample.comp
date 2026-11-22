@@ -1,0 +1,12 @@
+#version 450
+// Fetch every texel of an ASTC image (one image per dispatch).
+layout(local_size_x = 8, local_size_y = 8) in;
+layout(binding = 0) uniform sampler2D tex;
+layout(std430, binding = 1) writeonly buffer O { vec4 o[]; };
+layout(push_constant) uniform P { uint width; };
+
+void main()
+{
+    ivec2 p = ivec2(gl_GlobalInvocationID.xy);
+    o[p.y * int(width) + p.x] = texelFetch(tex, p, 0);
+}

@@ -1,0 +1,728 @@
+NIR (SSA form) for compute shader:
+shader: MESA_SHADER_COMPUTE
+source_blake3: {0xd0cc0898, 0x0245c427, 0x5170228f, 0xceb9d4bb, 0x78a0b683, 0x915539f5, 0x8555f759, 0x47448ce6}
+name: 
+workgroup_size: 128, 1, 1
+num_ssbos: 7
+system_values_read: 0x00000000'00000000'00018400'00000000
+api_subgroup_size: 8
+max_subgroup_size: 8
+min_subgroup_size: 8
+bit_sizes_float: 0x10
+bit_sizes_int: 0x21
+separate_shader: true
+flrp_lowered: true
+writes_memory: true
+decl_var ssbo INTERP_MODE_NONE restrict readonly C #0 (~0, 0, 2)
+decl_var ssbo INTERP_MODE_NONE restrict readonly M #1 (~0, 0, 3)
+decl_var ssbo INTERP_MODE_NONE restrict readonly A #2 (~0, 0, 0)
+decl_var ssbo INTERP_MODE_NONE restrict readonly B #3 (~0, 0, 1)
+decl_var ssbo INTERP_MODE_NONE restrict writeonly T #4 (~0, 0, 5)
+decl_var ssbo INTERP_MODE_NONE restrict writeonly O #5 (~0, 0, 4)
+decl_var ssbo INTERP_MODE_NONE restrict writeonly S #6 (~0, 0, 6)
+decl_function main () (entrypoint)
+
+impl main {
+    con block b0:       // preds:
+    con 32x3   %0 = @load_workgroup_id
+    con 32     %1 = load_const (0x00000000)
+    con 32     %2 = @load_push_data_intel (%1 (0x0)) (base=20, range=12)
+    con 32     %3 = @load_push_data_intel (%1 (0x0)) (base=368, range=4)
+    con 32     %4 = load_const (0x00000003)
+    con 32     %5 = ishl %3, %4 (0x3)
+    div 32     %6 = @load_subgroup_invocation
+    div 32     %7 = iadd %6, %5
+    con 32     %8 = iadd %0.x, %2
+    con 32     %9 = load_const (0x00000007)
+    con 32    %10 = ishl %8, %9 (0x7)
+    con 32    %11 = load_const (0x0000007f = 127)
+    div 32    %12 = iand %7, %11 (0x7f)
+    div 32    %13 = iadd %10, %12
+    con 32    %14 = load_const (0xdeaddead = -6.264321e+18 = -559030611 = 3735936685)
+    con 32    %15 = @resource_intel (%14 (0xdeaddead), %4 (0x3), %1 (0x0), %1 (0x0)) (desc_set=0, binding=2, resource_intel=0, resource_block_intel=-1)
+    con 32    %16 = load_const (0x00000004 = 0.000000)
+    con 32    %17 = @resource_intel (%14 (0xdeaddead), %16 (0x4), %1 (0x0), %1 (0x0)) (desc_set=0, binding=3, resource_intel=0, resource_block_intel=-1)
+    con 32    %18 = load_const (0x00000002)
+    div 32    %19 = ishl %13, %18 (0x2)
+    div 32    %20 = @load_ssbo (%17, %19) (access=readonly|reorderable, align_mul=4, align_offset=0, offset_shift=0)
+    div 32    %21 = ine32 %20, %1 (0x0)
+    con 32    %22 = load_const (0x00000001)
+    div 32    %23 = ishl %13, %22 (0x1)
+    div 16    %24 = @load_ssbo (%15, %23) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+                    // succs: b1 b2
+    if %21 {
+        div block b1:       // preds: b0
+        con 32    %25 = @resource_intel (%14 (0xdeaddead), %22 (0x1), %1 (0x0), %1 (0x0)) (desc_set=0, binding=0, resource_intel=0, resource_block_intel=-1)
+        con 32    %26 = @resource_intel (%14 (0xdeaddead), %18 (0x2), %1 (0x0), %1 (0x0)) (desc_set=0, binding=1, resource_intel=0, resource_block_intel=-1)
+        div 16    %27 = @load_ssbo (%26, %23) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+        div 16    %28 = @load_ssbo (%25, %23) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+        div 16    %29 = ffma %28, %27, %24
+        div 16    %30 = ffma %29, %27, %28
+        con 32    %31 = load_const (0x00000006 = 0.000000)
+        con 32    %32 = @resource_intel (%14 (0xdeaddead), %31 (0x6), %1 (0x0), %1 (0x0)) (desc_set=0, binding=5, resource_intel=0, resource_block_intel=-1)
+                        @store_ssbo (%22 (0x1), %32, %19) (wrmask=x, access=writeonly, align_mul=4, align_offset=0, offset_shift=0)
+                        // succs: b3
+    } else {
+        div block b2:  // preds: b0, succs: b3
+    }
+    con block b3:       // preds: b1 b2
+    div 16    %33 = phi b1: %30, b2: %24
+    con 32    %34 = load_const (0x00000005 = 0.000000)
+    con 32    %35 = @resource_intel (%14 (0xdeaddead), %34 (0x5), %1 (0x0), %1 (0x0)) (desc_set=0, binding=4, resource_intel=0, resource_block_intel=-1)
+                    @store_ssbo (%33, %35, %23) (wrmask=x, access=writeonly, align_mul=2, align_offset=0, offset_shift=0)
+    div 32    %36 = ieq32 %13, %1 (0x0)
+                    // succs: b4 b5
+    if %36 {
+        div block b4:       // preds: b3
+        con 32    %37 = load_const (0x00000008 = 0.000000)
+        con 32    %38 = @resource_intel (%14 (0xdeaddead), %9 (0x7), %1 (0x0), %1 (0x0)) (desc_set=0, binding=6, resource_intel=0, resource_block_intel=-1)
+                        @store_ssbo (%37 (0x8), %38, %1 (0x0)) (wrmask=x, access=writeonly, align_mul=1073741824, align_offset=0, offset_shift=0)
+                        // succs: b6
+    } else {
+        div block b5:  // preds: b3, succs: b6
+    }
+    con block b6:  // preds: b4 b5, succs: b7
+    block b7:
+}
+
+NIR (final form) for compute shader:
+shader: MESA_SHADER_COMPUTE
+source_blake3: {0xd0cc0898, 0x0245c427, 0x5170228f, 0xceb9d4bb, 0x78a0b683, 0x915539f5, 0x8555f759, 0x47448ce6}
+name: 
+workgroup_size: 128, 1, 1
+num_ssbos: 7
+system_values_read: 0x00000000'00000000'00018400'00000000
+api_subgroup_size: 8
+max_subgroup_size: 8
+min_subgroup_size: 8
+bit_sizes_float: 0x10
+bit_sizes_int: 0x21
+separate_shader: true
+flrp_lowered: true
+writes_memory: true
+decl_var ssbo INTERP_MODE_NONE restrict readonly C #0 (~0, 0, 2)
+decl_var ssbo INTERP_MODE_NONE restrict readonly M #1 (~0, 0, 3)
+decl_var ssbo INTERP_MODE_NONE restrict readonly A #2 (~0, 0, 0)
+decl_var ssbo INTERP_MODE_NONE restrict readonly B #3 (~0, 0, 1)
+decl_var ssbo INTERP_MODE_NONE restrict writeonly T #4 (~0, 0, 5)
+decl_var ssbo INTERP_MODE_NONE restrict writeonly O #5 (~0, 0, 4)
+decl_var ssbo INTERP_MODE_NONE restrict writeonly S #6 (~0, 0, 6)
+decl_function main () (entrypoint)
+
+impl main {
+    con block b0:       // preds:
+    div 32     %0 = @decl_reg (num_components=1, num_array_elems=0, bit_size=16, divergent=1)
+    con 32x3   %1 = @load_workgroup_id
+    con 32     %2 = load_const (0x00000000)
+    con 32     %3 = @load_push_data_intel (%2 (0x0)) (base=20, range=12)
+    con 32     %4 = @load_push_data_intel (%2 (0x0)) (base=368, range=4)
+    con 32     %5 = load_const (0x00000003)
+    con 32     %6 = ishl %4, %5 (0x3)
+    div 32     %7 = @load_subgroup_invocation
+    div 32     %8 = iadd %7, %6
+    con 32     %9 = iadd %1.x, %3
+    con 32    %10 = load_const (0x00000007)
+    con 32    %11 = ishl %9, %10 (0x7)
+    con 32    %12 = load_const (0x0000007f = 127)
+    div 32    %13 = iand %8, %12 (0x7f)
+    div 32    %14 = iadd %11, %13
+    con 32    %15 = load_const (0xdeaddead = -6.264321e+18 = -559030611 = 3735936685)
+    con 32    %16 = @resource_intel (%15 (0xdeaddead), %5 (0x3), %2 (0x0), %2 (0x0)) (desc_set=0, binding=2, resource_intel=0, resource_block_intel=-1)
+    con 32    %17 = load_const (0x00000004 = 0.000000)
+    con 32    %18 = @resource_intel (%15 (0xdeaddead), %17 (0x4), %2 (0x0), %2 (0x0)) (desc_set=0, binding=3, resource_intel=0, resource_block_intel=-1)
+    con 32    %19 = load_const (0x00000002)
+    div 32    %20 = ishl %14, %19 (0x2)
+    div 32    %21 = @load_ssbo (%18, %20) (access=readonly|reorderable, align_mul=4, align_offset=0, offset_shift=0)
+    div 32    %22 = ine32 %21, %2 (0x0)
+    con 32    %23 = load_const (0x00000001)
+    div 32    %24 = ishl %14, %23 (0x1)
+    div 16    %25 = @load_ssbo (%16, %24) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+                    @store_reg (%25, %0) (base=0, wrmask=x, legacy_fsat=0)
+                    // succs: b1 b2
+    if %22 {
+        div block b1:       // preds: b0
+        con 32    %26 = @resource_intel (%15 (0xdeaddead), %23 (0x1), %2 (0x0), %2 (0x0)) (desc_set=0, binding=0, resource_intel=0, resource_block_intel=-1)
+        con 32    %27 = @resource_intel (%15 (0xdeaddead), %19 (0x2), %2 (0x0), %2 (0x0)) (desc_set=0, binding=1, resource_intel=0, resource_block_intel=-1)
+        div 16    %28 = @load_ssbo (%27, %24) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+        div 16    %29 = @load_ssbo (%26, %24) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+        div 16    %30 = @load_reg (%0) (base=0, legacy_fabs=0, legacy_fneg=0)
+        div 16    %31 = ffma %29, %28, %30
+        div 16    %32 = ffma %31, %28, %29
+                        @store_reg (%32, %0) (base=0, wrmask=x, legacy_fsat=0)
+        con 32    %33 = load_const (0x00000006 = 0.000000)
+        con 32    %34 = @resource_intel (%15 (0xdeaddead), %33 (0x6), %2 (0x0), %2 (0x0)) (desc_set=0, binding=5, resource_intel=0, resource_block_intel=-1)
+                        @store_ssbo (%23 (0x1), %34, %20) (wrmask=x, access=writeonly, align_mul=4, align_offset=0, offset_shift=0)
+                        // succs: b3
+    } else {
+        div block b2:  // preds: b0, succs: b3
+    }
+    con block b3:       // preds: b1 b2
+    con 32    %35 = load_const (0x00000005 = 0.000000)
+    con 32    %36 = @resource_intel (%15 (0xdeaddead), %35 (0x5), %2 (0x0), %2 (0x0)) (desc_set=0, binding=4, resource_intel=0, resource_block_intel=-1)
+    div 16    %37 = @load_reg (%0) (base=0, legacy_fabs=0, legacy_fneg=0)
+                    @store_ssbo (%37, %36, %24) (wrmask=x, access=writeonly, align_mul=2, align_offset=0, offset_shift=0)
+    div 32    %38 = ieq32 %14, %2 (0x0)
+                    // succs: b4 b5
+    if %38 {
+        div block b4:       // preds: b3
+        con 32    %39 = load_const (0x00000008 = 0.000000)
+        con 32    %40 = @resource_intel (%15 (0xdeaddead), %10 (0x7), %2 (0x0), %2 (0x0)) (desc_set=0, binding=6, resource_intel=0, resource_block_intel=-1)
+                        @store_ssbo (%39 (0x8), %40, %2 (0x0)) (wrmask=x, access=writeonly, align_mul=1073741824, align_offset=0, offset_shift=0)
+                        // succs: b6
+    } else {
+        div block b5:  // preds: b3, succs: b6
+    }
+    con block b6:  // preds: b4 b5, succs: b7
+    block b7:
+}
+
+Native code for unnamed compute shader  (src_hash 0x0245c427d0cc0898) (blake3 c063555a3f3546c02384869fa18599045023393648456b7a95592d8241b42900)
+SIMD8 shader: 35 instructions. 0 loops. 414 cycles. 0:0 spills:fills, 8 sends, scheduled with mode top-down. Promoted 0 constants. GRF registers: 127. Compacted 560 to 480 bytes (14%)
+
+// 204 cycles
+(W)     mov (8)                   r18           r0.1<0>                           {Compacted}
+(W)     shl (8)                   r13:d         r12.4<0>:d        0x00000003
+(W)     add (8)                   r5:d          r18<0>:d          r1.5<0>:d       {Compacted}
+(W)     mov (8)                   r3:uw         0x76543210:v
+(W)     shl (8)                   r6:d          r5<0>:d           0x00000007
+(W)     mov (8)                   r3            r3:uw
+        add (8)                   r4:d          r3:d              r13<0>:d        {Compacted}
+        and (8)                   r7            r4                0x0000007f      {Compacted}
+        add (8)                   r8:d          r6<0>:d           r7:d            {Compacted}
+        shl (8)                   r9:d          r8:d              0x00000002
+        shl (8)                   r11:d         r8:d              0x00000001
+        sends.hdc1 (8)            r10     r9     null    0x00000000  0x02106E04  // wr:1+0, rd:1; untyped_read:x simd8 (8) bti(4)
+        sends.hdc0 (8)            r12     r11    null    0x00000000  0x02110403  // wr:1+0, rd:1; byte_scattered_read:d16 simd8 (8) bti(3)
+        cmp (8)        (ne)f0.0   null:d        r10:d             0:d             {Compacted}
+        mov (8)                   r1:uw         r12<2>:uw
+(f0.0)  if (8)                                jip:L0              uip:L0
+
+// 144 cycles
+        sends.hdc0 (8)            r14     r11    null    0x00000000  0x02110402  // wr:1+0, rd:1; byte_scattered_read:d16 simd8 (8) bti(2)
+        sends.hdc0 (8)            r16     r11    null    0x00000000  0x02110401  // wr:1+0, rd:1; byte_scattered_read:d16 simd8 (8) bti(1)
+        mov (8)                   r19           0x00000001                        {Compacted}
+        sends.hdc1 (8)            null    r9     r19     0x00000040  0x02026E06  // wr:1+1, rd:0; untyped_write:x simd8 (8) bti(6)
+        mov (8)                   r2:uw         r14<2>:uw
+        mov (8)                   r15:uw        r16<2>:uw
+        mad (8)                   r17:hf        r1:hf             r2:hf             r15:hf {Align16}
+        mad (8)                   r1:hf         r15:hf            r2:hf             r17:hf {Align16}
+
+L0: // 32 cycles
+        endif (8)                             L1
+
+L1:
+        mov (8)                   r20           r1:uw
+        cmp (8)        (eq)f0.0   null:d        r8:d              0:d             {Compacted}
+        sends.hdc0 (8)            null    r11    r20     0x00000040  0x02030405  // wr:1+1, rd:0; byte_scattered_write:d16 simd8 (8) bti(5)
+(f0.0)  if (8)                                jip:L2              uip:L2
+
+// 14 cycles
+        mov (8)                   r21:d         0:d                               {Compacted}
+        mov (8)                   r22           0x00000008                        {Compacted}
+        sends.hdc1 (8)            null    r21    r22     0x00000040  0x02026E07  // wr:1+1, rd:0; untyped_write:x simd8 (8) bti(7)
+
+L2: // 20 cycles
+        endif (8)                             L3
+
+L3:
+(W)     mov (8)                   r126          r0                                {Compacted}
+(W)     sends.ts (8)              null    r126   null    0x00000000  0x02000010   {EOT}
+NIR (SSA form) for compute shader:
+shader: MESA_SHADER_COMPUTE
+source_blake3: {0xd0cc0898, 0x0245c427, 0x5170228f, 0xceb9d4bb, 0x78a0b683, 0x915539f5, 0x8555f759, 0x47448ce6}
+name: 
+workgroup_size: 128, 1, 1
+num_ssbos: 7
+system_values_read: 0x00000000'00000000'00018400'00000000
+api_subgroup_size: 16
+max_subgroup_size: 16
+min_subgroup_size: 16
+bit_sizes_float: 0x10
+bit_sizes_int: 0x21
+separate_shader: true
+flrp_lowered: true
+writes_memory: true
+decl_var ssbo INTERP_MODE_NONE restrict readonly C #0 (~0, 0, 2)
+decl_var ssbo INTERP_MODE_NONE restrict readonly M #1 (~0, 0, 3)
+decl_var ssbo INTERP_MODE_NONE restrict readonly A #2 (~0, 0, 0)
+decl_var ssbo INTERP_MODE_NONE restrict readonly B #3 (~0, 0, 1)
+decl_var ssbo INTERP_MODE_NONE restrict writeonly T #4 (~0, 0, 5)
+decl_var ssbo INTERP_MODE_NONE restrict writeonly O #5 (~0, 0, 4)
+decl_var ssbo INTERP_MODE_NONE restrict writeonly S #6 (~0, 0, 6)
+decl_function main () (entrypoint)
+
+impl main {
+    con block b0:       // preds:
+    con 32x3   %0 = @load_workgroup_id
+    con 32     %1 = load_const (0x00000000)
+    con 32     %2 = @load_push_data_intel (%1 (0x0)) (base=20, range=12)
+    con 32     %3 = @load_push_data_intel (%1 (0x0)) (base=368, range=4)
+    con 32     %4 = load_const (0x00000004)
+    con 32     %5 = ishl %3, %4 (0x4)
+    div 32     %6 = @load_subgroup_invocation
+    div 32     %7 = iadd %6, %5
+    con 32     %8 = iadd %0.x, %2
+    con 32     %9 = load_const (0x00000007)
+    con 32    %10 = ishl %8, %9 (0x7)
+    con 32    %11 = load_const (0x0000007f = 127)
+    div 32    %12 = iand %7, %11 (0x7f)
+    div 32    %13 = iadd %10, %12
+    con 32    %14 = load_const (0x00000003 = 0.000000)
+    con 32    %15 = load_const (0xdeaddead = -6.264321e+18 = -559030611 = 3735936685)
+    con 32    %16 = @resource_intel (%15 (0xdeaddead), %14 (0x3), %1 (0x0), %1 (0x0)) (desc_set=0, binding=2, resource_intel=0, resource_block_intel=-1)
+    con 32    %17 = @resource_intel (%15 (0xdeaddead), %4 (0x4), %1 (0x0), %1 (0x0)) (desc_set=0, binding=3, resource_intel=0, resource_block_intel=-1)
+    con 32    %18 = load_const (0x00000002)
+    div 32    %19 = ishl %13, %18 (0x2)
+    div 32    %20 = @load_ssbo (%17, %19) (access=readonly|reorderable, align_mul=4, align_offset=0, offset_shift=0)
+    div 32    %21 = ine32 %20, %1 (0x0)
+    con 32    %22 = load_const (0x00000001)
+    div 32    %23 = ishl %13, %22 (0x1)
+    div 16    %24 = @load_ssbo (%16, %23) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+                    // succs: b1 b2
+    if %21 {
+        div block b1:       // preds: b0
+        con 32    %25 = @resource_intel (%15 (0xdeaddead), %22 (0x1), %1 (0x0), %1 (0x0)) (desc_set=0, binding=0, resource_intel=0, resource_block_intel=-1)
+        con 32    %26 = @resource_intel (%15 (0xdeaddead), %18 (0x2), %1 (0x0), %1 (0x0)) (desc_set=0, binding=1, resource_intel=0, resource_block_intel=-1)
+        div 16    %27 = @load_ssbo (%26, %23) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+        div 16    %28 = @load_ssbo (%25, %23) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+        div 16    %29 = ffma %28, %27, %24
+        div 16    %30 = ffma %29, %27, %28
+        con 32    %31 = load_const (0x00000006 = 0.000000)
+        con 32    %32 = @resource_intel (%15 (0xdeaddead), %31 (0x6), %1 (0x0), %1 (0x0)) (desc_set=0, binding=5, resource_intel=0, resource_block_intel=-1)
+                        @store_ssbo (%22 (0x1), %32, %19) (wrmask=x, access=writeonly, align_mul=4, align_offset=0, offset_shift=0)
+                        // succs: b3
+    } else {
+        div block b2:  // preds: b0, succs: b3
+    }
+    con block b3:       // preds: b1 b2
+    div 16    %33 = phi b1: %30, b2: %24
+    con 32    %34 = load_const (0x00000005 = 0.000000)
+    con 32    %35 = @resource_intel (%15 (0xdeaddead), %34 (0x5), %1 (0x0), %1 (0x0)) (desc_set=0, binding=4, resource_intel=0, resource_block_intel=-1)
+                    @store_ssbo (%33, %35, %23) (wrmask=x, access=writeonly, align_mul=2, align_offset=0, offset_shift=0)
+    div 32    %36 = ieq32 %13, %1 (0x0)
+                    // succs: b4 b5
+    if %36 {
+        div block b4:       // preds: b3
+        con 32    %37 = load_const (0x00000010 = 0.000000 = 16)
+        con 32    %38 = @resource_intel (%15 (0xdeaddead), %9 (0x7), %1 (0x0), %1 (0x0)) (desc_set=0, binding=6, resource_intel=0, resource_block_intel=-1)
+                        @store_ssbo (%37 (0x10), %38, %1 (0x0)) (wrmask=x, access=writeonly, align_mul=1073741824, align_offset=0, offset_shift=0)
+                        // succs: b6
+    } else {
+        div block b5:  // preds: b3, succs: b6
+    }
+    con block b6:  // preds: b4 b5, succs: b7
+    block b7:
+}
+
+NIR (final form) for compute shader:
+shader: MESA_SHADER_COMPUTE
+source_blake3: {0xd0cc0898, 0x0245c427, 0x5170228f, 0xceb9d4bb, 0x78a0b683, 0x915539f5, 0x8555f759, 0x47448ce6}
+name: 
+workgroup_size: 128, 1, 1
+num_ssbos: 7
+system_values_read: 0x00000000'00000000'00018400'00000000
+api_subgroup_size: 16
+max_subgroup_size: 16
+min_subgroup_size: 16
+bit_sizes_float: 0x10
+bit_sizes_int: 0x21
+separate_shader: true
+flrp_lowered: true
+writes_memory: true
+decl_var ssbo INTERP_MODE_NONE restrict readonly C #0 (~0, 0, 2)
+decl_var ssbo INTERP_MODE_NONE restrict readonly M #1 (~0, 0, 3)
+decl_var ssbo INTERP_MODE_NONE restrict readonly A #2 (~0, 0, 0)
+decl_var ssbo INTERP_MODE_NONE restrict readonly B #3 (~0, 0, 1)
+decl_var ssbo INTERP_MODE_NONE restrict writeonly T #4 (~0, 0, 5)
+decl_var ssbo INTERP_MODE_NONE restrict writeonly O #5 (~0, 0, 4)
+decl_var ssbo INTERP_MODE_NONE restrict writeonly S #6 (~0, 0, 6)
+decl_function main () (entrypoint)
+
+impl main {
+    con block b0:       // preds:
+    div 32     %0 = @decl_reg (num_components=1, num_array_elems=0, bit_size=16, divergent=1)
+    con 32x3   %1 = @load_workgroup_id
+    con 32     %2 = load_const (0x00000000)
+    con 32     %3 = @load_push_data_intel (%2 (0x0)) (base=20, range=12)
+    con 32     %4 = @load_push_data_intel (%2 (0x0)) (base=368, range=4)
+    con 32     %5 = load_const (0x00000004)
+    con 32     %6 = ishl %4, %5 (0x4)
+    div 32     %7 = @load_subgroup_invocation
+    div 32     %8 = iadd %7, %6
+    con 32     %9 = iadd %1.x, %3
+    con 32    %10 = load_const (0x00000007)
+    con 32    %11 = ishl %9, %10 (0x7)
+    con 32    %12 = load_const (0x0000007f = 127)
+    div 32    %13 = iand %8, %12 (0x7f)
+    div 32    %14 = iadd %11, %13
+    con 32    %15 = load_const (0x00000003 = 0.000000)
+    con 32    %16 = load_const (0xdeaddead = -6.264321e+18 = -559030611 = 3735936685)
+    con 32    %17 = @resource_intel (%16 (0xdeaddead), %15 (0x3), %2 (0x0), %2 (0x0)) (desc_set=0, binding=2, resource_intel=0, resource_block_intel=-1)
+    con 32    %18 = @resource_intel (%16 (0xdeaddead), %5 (0x4), %2 (0x0), %2 (0x0)) (desc_set=0, binding=3, resource_intel=0, resource_block_intel=-1)
+    con 32    %19 = load_const (0x00000002)
+    div 32    %20 = ishl %14, %19 (0x2)
+    div 32    %21 = @load_ssbo (%18, %20) (access=readonly|reorderable, align_mul=4, align_offset=0, offset_shift=0)
+    div 32    %22 = ine32 %21, %2 (0x0)
+    con 32    %23 = load_const (0x00000001)
+    div 32    %24 = ishl %14, %23 (0x1)
+    div 16    %25 = @load_ssbo (%17, %24) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+                    @store_reg (%25, %0) (base=0, wrmask=x, legacy_fsat=0)
+                    // succs: b1 b2
+    if %22 {
+        div block b1:       // preds: b0
+        con 32    %26 = @resource_intel (%16 (0xdeaddead), %23 (0x1), %2 (0x0), %2 (0x0)) (desc_set=0, binding=0, resource_intel=0, resource_block_intel=-1)
+        con 32    %27 = @resource_intel (%16 (0xdeaddead), %19 (0x2), %2 (0x0), %2 (0x0)) (desc_set=0, binding=1, resource_intel=0, resource_block_intel=-1)
+        div 16    %28 = @load_ssbo (%27, %24) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+        div 16    %29 = @load_ssbo (%26, %24) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+        div 16    %30 = @load_reg (%0) (base=0, legacy_fabs=0, legacy_fneg=0)
+        div 16    %31 = ffma %29, %28, %30
+        div 16    %32 = ffma %31, %28, %29
+                        @store_reg (%32, %0) (base=0, wrmask=x, legacy_fsat=0)
+        con 32    %33 = load_const (0x00000006 = 0.000000)
+        con 32    %34 = @resource_intel (%16 (0xdeaddead), %33 (0x6), %2 (0x0), %2 (0x0)) (desc_set=0, binding=5, resource_intel=0, resource_block_intel=-1)
+                        @store_ssbo (%23 (0x1), %34, %20) (wrmask=x, access=writeonly, align_mul=4, align_offset=0, offset_shift=0)
+                        // succs: b3
+    } else {
+        div block b2:  // preds: b0, succs: b3
+    }
+    con block b3:       // preds: b1 b2
+    con 32    %35 = load_const (0x00000005 = 0.000000)
+    con 32    %36 = @resource_intel (%16 (0xdeaddead), %35 (0x5), %2 (0x0), %2 (0x0)) (desc_set=0, binding=4, resource_intel=0, resource_block_intel=-1)
+    div 16    %37 = @load_reg (%0) (base=0, legacy_fabs=0, legacy_fneg=0)
+                    @store_ssbo (%37, %36, %24) (wrmask=x, access=writeonly, align_mul=2, align_offset=0, offset_shift=0)
+    div 32    %38 = ieq32 %14, %2 (0x0)
+                    // succs: b4 b5
+    if %38 {
+        div block b4:       // preds: b3
+        con 32    %39 = load_const (0x00000010 = 0.000000 = 16)
+        con 32    %40 = @resource_intel (%16 (0xdeaddead), %10 (0x7), %2 (0x0), %2 (0x0)) (desc_set=0, binding=6, resource_intel=0, resource_block_intel=-1)
+                        @store_ssbo (%39 (0x10), %40, %2 (0x0)) (wrmask=x, access=writeonly, align_mul=1073741824, align_offset=0, offset_shift=0)
+                        // succs: b6
+    } else {
+        div block b5:  // preds: b3, succs: b6
+    }
+    con block b6:  // preds: b4 b5, succs: b7
+    block b7:
+}
+
+Native code for unnamed compute shader  (src_hash 0x0245c427d0cc0898) (blake3 5db24f653ad13170c37ada232dcd6a9430ed55659160438d1c53ad27f6090eff)
+SIMD16 shader: 36 instructions. 0 loops. 490 cycles. 0:0 spills:fills, 8 sends, scheduled with mode top-down. Promoted 0 constants. GRF registers: 127. Compacted 576 to 496 bytes (14%)
+
+// 244 cycles
+(W)     mov (8)                   r25           r0.1<0>                           {Compacted}
+(W)     shl (8)                   r2:d          r12.4<0>:d        0x00000004
+(W)     add (8)                   r20:d         r25<0>:d          r1.5<0>:d       {Compacted}
+(W)     mov (8)                   r5:uw         0x76543210:v
+(W)     shl (8)                   r8:d          r20<0>:d          0x00000007
+(W)     add (8)                   r5.8:uw       r5:uw             8:uw
+        mov (16)                  r3            r5:uw
+        add (16)                  r19:d         r3:d              r2<0>:d         {Compacted}
+        and (16)                  r9            r19               0x0000007f      {Compacted}
+        add (16)                  r11:d         r8<0>:d           r9:d            {Compacted}
+        shl (16)                  r13:d         r11:d             0x00000002
+        shl (16)                  r17:d         r11:d             0x00000001
+        sends.hdc1 (16)           r15     r13    null    0x00000000  0x04205E04  // wr:2+0, rd:2; untyped_read:x simd16 (16) bti(4)
+        sends.hdc0 (16)           r6      r17    null    0x00000000  0x04210503  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(3)
+        cmp (16)       (ne)f0.0   null:d        r15:d             0:d             {Compacted}
+        mov (16)                  r1:uw         r6<2>:uw
+(f0.0)  if (16)                               jip:L0              uip:L0
+
+// 164 cycles
+        sends.hdc0 (16)           r21     r17    null    0x00000000  0x04210502  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(2)
+        sends.hdc0 (16)           r23     r17    null    0x00000000  0x04210501  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(1)
+        mov (16)                  r26           0x00000001                        {Compacted}
+        sends.hdc1 (16)           null    r13    r26     0x00000080  0x04025E06  // wr:2+2, rd:0; untyped_write:x simd16 (16) bti(6)
+        mov (16)                  r7:uw         r21<2>:uw
+        mov (16)                  r22:uw        r23<2>:uw
+        mad (16)                  r24:hf        r1:hf             r7:hf             r22:hf {Align16}
+        mad (16)                  r1:hf         r22:hf            r7:hf             r24:hf {Align16}
+
+L0: // 36 cycles
+        endif (16)                            L1
+
+L1:
+        mov (16)                  r27           r1:uw
+        cmp (16)       (eq)f0.0   null:d        r11:d             0:d             {Compacted}
+        sends.hdc0 (16)           null    r17    r27     0x00000080  0x04030505  // wr:2+2, rd:0; byte_scattered_write:d16 simd16 (16) bti(5)
+(f0.0)  if (16)                               jip:L2              uip:L2
+
+// 26 cycles
+        mov (16)                  r28:d         0:d                               {Compacted}
+        mov (16)                  r30           0x00000010                        {Compacted}
+        sends.hdc1 (16)           null    r28    r30     0x00000080  0x04025E07  // wr:2+2, rd:0; untyped_write:x simd16 (16) bti(7)
+
+L2: // 20 cycles
+        endif (16)                            L3
+
+L3:
+(W)     mov (8)                   r126          r0                                {Compacted}
+(W)     sends.ts (16)             null    r126   null    0x00000000  0x02000010   {EOT}
+NIR (SSA form) for compute shader:
+shader: MESA_SHADER_COMPUTE
+source_blake3: {0xd0cc0898, 0x0245c427, 0x5170228f, 0xceb9d4bb, 0x78a0b683, 0x915539f5, 0x8555f759, 0x47448ce6}
+name: 
+workgroup_size: 128, 1, 1
+num_ssbos: 7
+system_values_read: 0x00000000'00000000'00018400'00000000
+api_subgroup_size: 32
+max_subgroup_size: 32
+min_subgroup_size: 32
+bit_sizes_float: 0x10
+bit_sizes_int: 0x21
+separate_shader: true
+flrp_lowered: true
+writes_memory: true
+decl_var ssbo INTERP_MODE_NONE restrict readonly C #0 (~0, 0, 2)
+decl_var ssbo INTERP_MODE_NONE restrict readonly M #1 (~0, 0, 3)
+decl_var ssbo INTERP_MODE_NONE restrict readonly A #2 (~0, 0, 0)
+decl_var ssbo INTERP_MODE_NONE restrict readonly B #3 (~0, 0, 1)
+decl_var ssbo INTERP_MODE_NONE restrict writeonly T #4 (~0, 0, 5)
+decl_var ssbo INTERP_MODE_NONE restrict writeonly O #5 (~0, 0, 4)
+decl_var ssbo INTERP_MODE_NONE restrict writeonly S #6 (~0, 0, 6)
+decl_function main () (entrypoint)
+
+impl main {
+    con block b0:       // preds:
+    con 32x3   %0 = @load_workgroup_id
+    con 32     %1 = load_const (0x00000000)
+    con 32     %2 = @load_push_data_intel (%1 (0x0)) (base=20, range=12)
+    con 32     %3 = @load_push_data_intel (%1 (0x0)) (base=368, range=4)
+    con 32     %4 = load_const (0x00000005)
+    con 32     %5 = ishl %3, %4 (0x5)
+    div 32     %6 = @load_subgroup_invocation
+    div 32     %7 = iadd %6, %5
+    con 32     %8 = iadd %0.x, %2
+    con 32     %9 = load_const (0x00000007)
+    con 32    %10 = ishl %8, %9 (0x7)
+    con 32    %11 = load_const (0x0000007f = 127)
+    div 32    %12 = iand %7, %11 (0x7f)
+    div 32    %13 = iadd %10, %12
+    con 32    %14 = load_const (0x00000003 = 0.000000)
+    con 32    %15 = load_const (0xdeaddead = -6.264321e+18 = -559030611 = 3735936685)
+    con 32    %16 = @resource_intel (%15 (0xdeaddead), %14 (0x3), %1 (0x0), %1 (0x0)) (desc_set=0, binding=2, resource_intel=0, resource_block_intel=-1)
+    con 32    %17 = load_const (0x00000004 = 0.000000)
+    con 32    %18 = @resource_intel (%15 (0xdeaddead), %17 (0x4), %1 (0x0), %1 (0x0)) (desc_set=0, binding=3, resource_intel=0, resource_block_intel=-1)
+    con 32    %19 = load_const (0x00000002)
+    div 32    %20 = ishl %13, %19 (0x2)
+    div 32    %21 = @load_ssbo (%18, %20) (access=readonly|reorderable, align_mul=4, align_offset=0, offset_shift=0)
+    div 32    %22 = ine32 %21, %1 (0x0)
+    con 32    %23 = load_const (0x00000001)
+    div 32    %24 = ishl %13, %23 (0x1)
+    div 16    %25 = @load_ssbo (%16, %24) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+                    // succs: b1 b2
+    if %22 {
+        div block b1:       // preds: b0
+        con 32    %26 = @resource_intel (%15 (0xdeaddead), %23 (0x1), %1 (0x0), %1 (0x0)) (desc_set=0, binding=0, resource_intel=0, resource_block_intel=-1)
+        con 32    %27 = @resource_intel (%15 (0xdeaddead), %19 (0x2), %1 (0x0), %1 (0x0)) (desc_set=0, binding=1, resource_intel=0, resource_block_intel=-1)
+        div 16    %28 = @load_ssbo (%27, %24) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+        div 16    %29 = @load_ssbo (%26, %24) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+        div 16    %30 = ffma %29, %28, %25
+        div 16    %31 = ffma %30, %28, %29
+        con 32    %32 = load_const (0x00000006 = 0.000000)
+        con 32    %33 = @resource_intel (%15 (0xdeaddead), %32 (0x6), %1 (0x0), %1 (0x0)) (desc_set=0, binding=5, resource_intel=0, resource_block_intel=-1)
+                        @store_ssbo (%23 (0x1), %33, %20) (wrmask=x, access=writeonly, align_mul=4, align_offset=0, offset_shift=0)
+                        // succs: b3
+    } else {
+        div block b2:  // preds: b0, succs: b3
+    }
+    con block b3:       // preds: b1 b2
+    div 16    %34 = phi b1: %31, b2: %25
+    con 32    %35 = @resource_intel (%15 (0xdeaddead), %4 (0x5), %1 (0x0), %1 (0x0)) (desc_set=0, binding=4, resource_intel=0, resource_block_intel=-1)
+                    @store_ssbo (%34, %35, %24) (wrmask=x, access=writeonly, align_mul=2, align_offset=0, offset_shift=0)
+    div 32    %36 = ieq32 %13, %1 (0x0)
+                    // succs: b4 b5
+    if %36 {
+        div block b4:       // preds: b3
+        con 32    %37 = load_const (0x00000020 = 0.000000 = 32)
+        con 32    %38 = @resource_intel (%15 (0xdeaddead), %9 (0x7), %1 (0x0), %1 (0x0)) (desc_set=0, binding=6, resource_intel=0, resource_block_intel=-1)
+                        @store_ssbo (%37 (0x20), %38, %1 (0x0)) (wrmask=x, access=writeonly, align_mul=1073741824, align_offset=0, offset_shift=0)
+                        // succs: b6
+    } else {
+        div block b5:  // preds: b3, succs: b6
+    }
+    con block b6:  // preds: b4 b5, succs: b7
+    block b7:
+}
+
+NIR (final form) for compute shader:
+shader: MESA_SHADER_COMPUTE
+source_blake3: {0xd0cc0898, 0x0245c427, 0x5170228f, 0xceb9d4bb, 0x78a0b683, 0x915539f5, 0x8555f759, 0x47448ce6}
+name: 
+workgroup_size: 128, 1, 1
+num_ssbos: 7
+system_values_read: 0x00000000'00000000'00018400'00000000
+api_subgroup_size: 32
+max_subgroup_size: 32
+min_subgroup_size: 32
+bit_sizes_float: 0x10
+bit_sizes_int: 0x21
+separate_shader: true
+flrp_lowered: true
+writes_memory: true
+decl_var ssbo INTERP_MODE_NONE restrict readonly C #0 (~0, 0, 2)
+decl_var ssbo INTERP_MODE_NONE restrict readonly M #1 (~0, 0, 3)
+decl_var ssbo INTERP_MODE_NONE restrict readonly A #2 (~0, 0, 0)
+decl_var ssbo INTERP_MODE_NONE restrict readonly B #3 (~0, 0, 1)
+decl_var ssbo INTERP_MODE_NONE restrict writeonly T #4 (~0, 0, 5)
+decl_var ssbo INTERP_MODE_NONE restrict writeonly O #5 (~0, 0, 4)
+decl_var ssbo INTERP_MODE_NONE restrict writeonly S #6 (~0, 0, 6)
+decl_function main () (entrypoint)
+
+impl main {
+    con block b0:       // preds:
+    div 32     %0 = @decl_reg (num_components=1, num_array_elems=0, bit_size=16, divergent=1)
+    con 32x3   %1 = @load_workgroup_id
+    con 32     %2 = load_const (0x00000000)
+    con 32     %3 = @load_push_data_intel (%2 (0x0)) (base=20, range=12)
+    con 32     %4 = @load_push_data_intel (%2 (0x0)) (base=368, range=4)
+    con 32     %5 = load_const (0x00000005)
+    con 32     %6 = ishl %4, %5 (0x5)
+    div 32     %7 = @load_subgroup_invocation
+    div 32     %8 = iadd %7, %6
+    con 32     %9 = iadd %1.x, %3
+    con 32    %10 = load_const (0x00000007)
+    con 32    %11 = ishl %9, %10 (0x7)
+    con 32    %12 = load_const (0x0000007f = 127)
+    div 32    %13 = iand %8, %12 (0x7f)
+    div 32    %14 = iadd %11, %13
+    con 32    %15 = load_const (0x00000003 = 0.000000)
+    con 32    %16 = load_const (0xdeaddead = -6.264321e+18 = -559030611 = 3735936685)
+    con 32    %17 = @resource_intel (%16 (0xdeaddead), %15 (0x3), %2 (0x0), %2 (0x0)) (desc_set=0, binding=2, resource_intel=0, resource_block_intel=-1)
+    con 32    %18 = load_const (0x00000004 = 0.000000)
+    con 32    %19 = @resource_intel (%16 (0xdeaddead), %18 (0x4), %2 (0x0), %2 (0x0)) (desc_set=0, binding=3, resource_intel=0, resource_block_intel=-1)
+    con 32    %20 = load_const (0x00000002)
+    div 32    %21 = ishl %14, %20 (0x2)
+    div 32    %22 = @load_ssbo (%19, %21) (access=readonly|reorderable, align_mul=4, align_offset=0, offset_shift=0)
+    div 32    %23 = ine32 %22, %2 (0x0)
+    con 32    %24 = load_const (0x00000001)
+    div 32    %25 = ishl %14, %24 (0x1)
+    div 16    %26 = @load_ssbo (%17, %25) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+                    @store_reg (%26, %0) (base=0, wrmask=x, legacy_fsat=0)
+                    // succs: b1 b2
+    if %23 {
+        div block b1:       // preds: b0
+        con 32    %27 = @resource_intel (%16 (0xdeaddead), %24 (0x1), %2 (0x0), %2 (0x0)) (desc_set=0, binding=0, resource_intel=0, resource_block_intel=-1)
+        con 32    %28 = @resource_intel (%16 (0xdeaddead), %20 (0x2), %2 (0x0), %2 (0x0)) (desc_set=0, binding=1, resource_intel=0, resource_block_intel=-1)
+        div 16    %29 = @load_ssbo (%28, %25) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+        div 16    %30 = @load_ssbo (%27, %25) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+        div 16    %31 = @load_reg (%0) (base=0, legacy_fabs=0, legacy_fneg=0)
+        div 16    %32 = ffma %30, %29, %31
+        div 16    %33 = ffma %32, %29, %30
+                        @store_reg (%33, %0) (base=0, wrmask=x, legacy_fsat=0)
+        con 32    %34 = load_const (0x00000006 = 0.000000)
+        con 32    %35 = @resource_intel (%16 (0xdeaddead), %34 (0x6), %2 (0x0), %2 (0x0)) (desc_set=0, binding=5, resource_intel=0, resource_block_intel=-1)
+                        @store_ssbo (%24 (0x1), %35, %21) (wrmask=x, access=writeonly, align_mul=4, align_offset=0, offset_shift=0)
+                        // succs: b3
+    } else {
+        div block b2:  // preds: b0, succs: b3
+    }
+    con block b3:       // preds: b1 b2
+    con 32    %36 = @resource_intel (%16 (0xdeaddead), %5 (0x5), %2 (0x0), %2 (0x0)) (desc_set=0, binding=4, resource_intel=0, resource_block_intel=-1)
+    div 16    %37 = @load_reg (%0) (base=0, legacy_fabs=0, legacy_fneg=0)
+                    @store_ssbo (%37, %36, %25) (wrmask=x, access=writeonly, align_mul=2, align_offset=0, offset_shift=0)
+    div 32    %38 = ieq32 %14, %2 (0x0)
+                    // succs: b4 b5
+    if %38 {
+        div block b4:       // preds: b3
+        con 32    %39 = load_const (0x00000020 = 0.000000 = 32)
+        con 32    %40 = @resource_intel (%16 (0xdeaddead), %10 (0x7), %2 (0x0), %2 (0x0)) (desc_set=0, binding=6, resource_intel=0, resource_block_intel=-1)
+                        @store_ssbo (%39 (0x20), %40, %2 (0x0)) (wrmask=x, access=writeonly, align_mul=1073741824, align_offset=0, offset_shift=0)
+                        // succs: b6
+    } else {
+        div block b5:  // preds: b3, succs: b6
+    }
+    con block b6:  // preds: b4 b5, succs: b7
+    block b7:
+}
+
+Native code for unnamed compute shader  (src_hash 0x0245c427d0cc0898) (blake3 c990a4dada06b046229dd00aaac4912de5b496c46ba7e5dda1e62963c4711e27)
+SIMD32 shader: 61 instructions. 0 loops. 740 cycles. 0:0 spills:fills, 15 sends, scheduled with mode top-down. Promoted 0 constants. GRF registers: 127. Compacted 976 to 896 bytes (8%)
+
+// 330 cycles
+(W)     mov (8)                   r26           r0.1<0>                           {Compacted}
+(W)     shl (8)                   r2:d          r12.4<0>:d        0x00000005
+(W)     add (8)                   r7:d          r26<0>:d          r1.5<0>:d       {Compacted}
+(W)     mov (8)                   r5:uw         0x76543210:v
+(W)     shl (8)                   r8:d          r7<0>:d           0x00000007
+(W)     add (8)                   r5.8:uw       r5:uw             8:uw
+(W)     add (16)                  r6:uw         r5:uw             16:uw
+        mov (16)                  r38           r5:uw
+        mov (16|M16)              r19           r6:uw
+        add (16)                  r40:d         r38:d             r2<0>:d         {Compacted}
+        add (16|M16)              r6:d          r19:d             r2<0>:d
+        and (16)                  r42           r40               0x0000007f      {Compacted}
+        and (16|M16)              r9            r6                0x0000007f
+        add (16)                  r44:d         r8<0>:d           r42:d           {Compacted}
+        add (16|M16)              r11:d         r8<0>:d           r9:d
+        shl (16)                  r46:d         r44:d             0x00000002
+        shl (16)                  r50:d         r44:d             0x00000001
+        shl (16|M16)              r13:d         r11:d             0x00000002
+        shl (16|M16)              r17:d         r11:d             0x00000001
+        sends.hdc1 (16)           r48     r46    null    0x00000000  0x04205E04  // wr:2+0, rd:2; untyped_read:x simd16 (16) bti(4)
+        sends.hdc0 (16)           r3      r50    null    0x00000000  0x04210503  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(3)
+        sends.hdc1 (16|M16)       r15     r13    null    0x00000000  0x04205E04  // wr:2+0, rd:2; untyped_read:x simd16 (16) bti(4)
+        sends.hdc0 (16|M16)       r52     r17    null    0x00000000  0x04210503  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(3)
+        cmp (16)       (ne)f0.0   null:d        r48:d             0:d             {Compacted}
+        mov (16)                  r37:uw        r3<2>:uw
+        cmp (16|M16)   (ne)f0.0   null:d        r15:d             0:d
+        mov (16|M16)              r1:uw         r52<2>:uw
+(f0.0)  if (32)                               jip:L0              uip:L0
+
+// 244 cycles
+        sends.hdc0 (16)           r54     r50    null    0x00000000  0x04210502  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(2)
+        sends.hdc0 (16|M16)       r21     r17    null    0x00000000  0x04210502  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(2)
+        sends.hdc0 (16)           r56     r50    null    0x00000000  0x04210501  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(1)
+        sends.hdc0 (16|M16)       r23     r17    null    0x00000000  0x04210501  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(1)
+        mov (16)                  r27           0x00000001                        {Compacted}
+        mov (16|M16)              r29           0x00000001
+        sends.hdc1 (16)           null    r46    r27     0x00000080  0x04025E06  // wr:2+2, rd:0; untyped_write:x simd16 (16) bti(6)
+        sends.hdc1 (16|M16)       null    r13    r29     0x00000080  0x04025E06  // wr:2+2, rd:0; untyped_write:x simd16 (16) bti(6)
+        mov (16)                  r4:uw         r54<2>:uw
+        mov (16|M16)              r53:uw        r21<2>:uw
+        mov (16)                  r55:uw        r56<2>:uw
+        mov (16|M16)              r22:uw        r23<2>:uw
+        mad (16)                  r57:hf        r37:hf            r4:hf             r55:hf {Align16}
+        mad (16|M16)              r24:hf        r1:hf             r53:hf            r22:hf {Align16}
+        mad (16)                  r37:hf        r55:hf            r4:hf             r57:hf {Align16}
+        mad (16|M16)              r1:hf         r22:hf            r53:hf            r24:hf {Align16}
+
+L0: // 74 cycles
+        endif (32)                            L1
+
+L1:
+        mov (16)                  r58           r37:uw
+        mov (16|M16)              r25           r1:uw
+        cmp (16)       (eq)f0.0   null:d        r44:d             0:d             {Compacted}
+        cmp (16|M16)   (eq)f0.0   null:d        r11:d             0:d
+        sends.hdc0 (16)           null    r50    r58     0x00000080  0x04030505  // wr:2+2, rd:0; byte_scattered_write:d16 simd16 (16) bti(5)
+        sends.hdc0 (16|M16)       null    r17    r25     0x00000080  0x04030505  // wr:2+2, rd:0; byte_scattered_write:d16 simd16 (16) bti(5)
+(f0.0)  if (32)                               jip:L2              uip:L2
+
+// 72 cycles
+        mov (16)                  r30:d         0:d                               {Compacted}
+        mov (16)                  r32           0x00000020                        {Compacted}
+        mov (16|M16)              r34:d         0:d
+        mov (16|M16)              r36           0x00000020
+        sends.hdc1 (16)           null    r30    r32     0x00000080  0x04025E07  // wr:2+2, rd:0; untyped_write:x simd16 (16) bti(7)
+        sends.hdc1 (16|M16)       null    r34    r36     0x00000080  0x04025E07  // wr:2+2, rd:0; untyped_write:x simd16 (16) bti(7)
+
+L2: // 20 cycles
+        endif (32)                            L3
+
+L3:
+(W)     mov (8)                   r126          r0                                {Compacted}
+(W)     sends.ts (32)             null    r126   null    0x00000000  0x02000010   {EOT}
+device Intel(R) HD Graphics 620 (KBL GT2), driver Intel open-source Mesa driver Mesa 27.0.0-devel
+required  8 (shader saw  8) pattern 0:      0 wrong values, 0 wrong branch flags
+required  8 (shader saw  8) pattern 1:      0 wrong values, 0 wrong branch flags
+required  8 (shader saw  8) pattern 2:      0 wrong values, 0 wrong branch flags
+required  8 (shader saw  8) pattern 3:      0 wrong values, 0 wrong branch flags
+required 16 (shader saw 16) pattern 0:      0 wrong values, 0 wrong branch flags
+required 16 (shader saw 16) pattern 1:      0 wrong values, 0 wrong branch flags
+required 16 (shader saw 16) pattern 2:      0 wrong values, 0 wrong branch flags
+required 16 (shader saw 16) pattern 3:      0 wrong values, 0 wrong branch flags
+required 32 (shader saw 32) pattern 0:      0 wrong values, 0 wrong branch flags
+required 32 (shader saw 32) pattern 1:      0 wrong values, 0 wrong branch flags
+required 32 (shader saw 32) pattern 2:      0 wrong values, 0 wrong branch flags
+required 32 (shader saw 32) pattern 3:      0 wrong values, 0 wrong branch flags
+PASS: 0 mismatches across 12 runs

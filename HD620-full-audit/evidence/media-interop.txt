@@ -1,0 +1,4 @@
+h264_vaapi-nv12.h264 VA scale 320x180 passed
+h264_vaapi-nv12.h264 direct VA→Vulkan mapping failed
+hevc_vaapi-p010le.hevc VA scale 320x180 passed
+hevc_vaapi-p010le.hevc direct VA→Vulkan mapping failed

@@ -1,0 +1,18 @@
+Intel(R) HD Graphics 620 (KBL GT2) driverVersion 109457507 driverName 'Intel open-source Mesa driver' driverInfo 'Mesa 27.0.0-devel (git-0e9e1086bb)' mode timing
+driver library: /home/polarbear/.local/state/catchingup/hd620-hiz-multimip/icd/candidate/libvulkan_intel.so
+timing aligned-2048x2048x4 lod 0 2048x2048 loadOp-clear: best 70.69 us mean 73.26 us per op (64 reps x 6 runs)
+timing aligned-2048x2048x4 lod 0 2048x2048 clear+16-draw frame: best 1335.18 us mean 1348.69 us per op (64 reps x 6 runs)
+timing aligned-2048x2048x4 lod 1 1024x1024 loadOp-clear: best 17.74 us mean 18.13 us per op (64 reps x 6 runs)
+timing aligned-2048x2048x4 lod 1 1024x1024 clear+16-draw frame: best 289.95 us mean 291.75 us per op (64 reps x 6 runs)
+timing aligned-2048x2048x4 lod 2 512x512 loadOp-clear: best 5.41 us mean 5.55 us per op (64 reps x 6 runs)
+timing aligned-2048x2048x4 lod 2 512x512 clear+16-draw frame: best 74.31 us mean 74.79 us per op (64 reps x 6 runs)
+timing aligned-2048x2048x4 lod 3 256x256 loadOp-clear: best 2.11 us mean 2.29 us per op (64 reps x 6 runs)
+timing aligned-2048x2048x4 lod 3 256x256 clear+16-draw frame: best 20.14 us mean 20.49 us per op (64 reps x 6 runs)
+timing aligned-704x288x4 lod 0 704x288 loadOp-clear: best 4.46 us mean 4.51 us per op (64 reps x 6 runs)
+timing aligned-704x288x4 lod 0 704x288 clear+16-draw frame: best 58.28 us mean 59.41 us per op (64 reps x 6 runs)
+timing aligned-704x288x4 lod 1 352x144 loadOp-clear: best 1.90 us mean 2.02 us per op (64 reps x 6 runs)
+timing aligned-704x288x4 lod 1 352x144 clear+16-draw frame: best 16.01 us mean 16.68 us per op (64 reps x 6 runs)
+timing aligned-704x288x4 lod 2 176x72 loadOp-clear: best 1.10 us mean 1.24 us per op (64 reps x 6 runs)
+timing aligned-704x288x4 lod 2 176x72 clear+16-draw frame: best 5.36 us mean 5.42 us per op (64 reps x 6 runs)
+timing aligned-704x288x4 lod 3 88x36 loadOp-clear: best 0.86 us mean 0.97 us per op (64 reps x 6 runs)
+timing aligned-704x288x4 lod 3 88x36 clear+16-draw frame: best 3.58 us mean 3.74 us per op (64 reps x 6 runs)

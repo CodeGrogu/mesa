@@ -1,0 +1,10 @@
+Display-related boot parameters
+drm.edid_firmware=eDP-1:edid/custom_edid.bin
+i915.enable_psr=0
+initcall_blacklist=acpi_battery_init
+
+Boot and display messages
+Nov 18 13:34:57 iced kernel: i915 0000:00:02.0: [drm] Finished loading DMC firmware i915/kbl_dmc_ver1_04.bin (v1.4)
+Nov 18 20:33:14 iced kernel: i915 0000:00:02.0: [drm] *ERROR* Atomic update failure on pipe A (start=2256922 end=2256923) time 129 us, min 760, max 767, scanline start 758, end 768
+c4dd6cb0cdd9c25beb9d2828d37c397325e3c007b5b629866f7d461e26dbb12b  /lib/firmware/edid/custom_edid.bin
+c4dd6cb0cdd9c25beb9d2828d37c397325e3c007b5b629866f7d461e26dbb12b  /sys/class/drm/card1-eDP-1/edid

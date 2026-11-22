@@ -1,0 +1,6 @@
+== control
+vkCreateComputePipelines = 0 (VK_SUCCESS)
+scratch dispatch: 0/4096 wrong
+== fixed
+vkCreateComputePipelines = 0 (VK_SUCCESS)
+scratch dispatch: 0/4096 wrong

@@ -1,0 +1,34 @@
+device Intel(R) HD Graphics 620 (KBL GT2), driver Intel open-source Mesa driver Mesa 26.0.8-1ubuntu0.3
+required  8 (shader saw  8) pattern 0:      0 wrong values, 0 wrong branch flags
+required  8 (shader saw  8) pattern 1:      0 wrong values, 0 wrong branch flags
+required  8 (shader saw  8) pattern 2:      0 wrong values, 0 wrong branch flags
+required  8 (shader saw  8) pattern 3:      0 wrong values, 0 wrong branch flags
+required 16 (shader saw 16) pattern 0:      0 wrong values, 0 wrong branch flags
+required 16 (shader saw 16) pattern 1:      0 wrong values, 0 wrong branch flags
+required 16 (shader saw 16) pattern 2:      0 wrong values, 0 wrong branch flags
+required 16 (shader saw 16) pattern 3:      0 wrong values, 0 wrong branch flags
+    i=18 lane=18 active=1 got 2 want -1
+    i=21 lane=21 active=1 got -1 want -5
+    i=28 lane=28 active=1 got 2 want 6.5
+    i=30 lane=30 active=1 got 2 want 8
+required 32 (shader saw 32) pattern 0:   9378 wrong values, 0 wrong branch flags
+    wrong values by lane mod 32: 16:575 17:563 18:601 19:573 20:629 21:631 22:559 23:549 24:594 25:584 26:588 27:604 28:563 29:612 30:578 31:575
+    i=58 lane=26 active=1 got -2 want 2.5
+    i=60 lane=28 active=1 got 2 want 3
+    i=61 lane=29 active=1 got -2 want -3
+    i=62 lane=30 active=1 got -3 want -12
+required 32 (shader saw 32) pattern 1:  18844 wrong values, 0 wrong branch flags
+    wrong values by lane mod 32: 16:1000 17:992 18:995 19:1007 20:1018 21:999 22:989 23:1000 24:1350 25:1358 26:1346 27:1346 28:1353 29:1373 30:1363 31:1355
+    i=21 lane=21 active=1 got 2 want 6
+    i=29 lane=29 active=0 got 0 want -8
+    i=53 lane=21 active=1 got 2 want 1
+    i=61 lane=29 active=0 got 0 want 2
+required 32 (shader saw 32) pattern 2:   2376 wrong values, 0 wrong branch flags
+    wrong values by lane mod 32: 21:1394 29:982
+    i=21 lane=21 active=1 got 2 want -12.75
+    i=85 lane=21 active=1 got -3 want -5.25
+    i=117 lane=21 active=1 got -2 want -6.75
+    i=149 lane=21 active=1 got -5 want -10.75
+required 32 (shader saw 32) pattern 3:   1333 wrong values, 0 wrong branch flags
+    wrong values by lane mod 32: 21:1333
+FAIL: 31931 mismatches across 12 runs

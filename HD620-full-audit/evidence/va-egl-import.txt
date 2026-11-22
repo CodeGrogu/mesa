@@ -1,0 +1,8 @@
+libva info: VA-API version 1.23.0
+libva info: User environment variable requested driver 'iHD'
+libva info: Trying to open /usr/lib/x86_64-linux-gnu/dri/iHD_drv_video.so
+libva info: Found init function __vaDriverInit_1_22
+libva info: va_openDriver() returns 0
+Intel iHD driver for Intel(R) Gen Graphics - 26.1.2 ()
+NV12 640x360, 2 planes, ['0x100000000000002'] imported
+P010 640x360, 2 planes, ['0x100000000000002'] imported

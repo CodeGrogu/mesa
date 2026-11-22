@@ -1,0 +1,6 @@
+H.264 decode · 1080p: 8 pairs complete
+VP9 Profile 0 decode · 720p: 8 pairs complete
+VP9 Profile 2 decode · 720p: 8 pairs complete
+H.264 encode · 1080p: 8 pairs complete
+H.264 transcode · 1080p: 8 pairs complete
+All runs verified

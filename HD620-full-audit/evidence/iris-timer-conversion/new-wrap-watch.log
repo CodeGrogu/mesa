@@ -1,0 +1,13 @@
+ioctl=0 raw=0x77df26920 bits_above_36=0x0 freq=12000000 now=1795078779 seconds_to_wrap=3045.1
+sleeping 2955 s
+ioctl=0 raw=0xfbfa05add bits_above_36=0x0 freq=12000000 now=1795081734 seconds_to_wrap=90.0
+58d2d6874bf90207daa03f4426f89181333ccce37b653bed8a3fa1b9d376a440  /build/audit-iris/src/gallium/targets/dri/libgallium-27.0.0-devel.so
+Mesa Intel(R) HD Graphics 620 (KBL GT2) 4.6 (Core Profile) Mesa 27.0.0-devel (git-0e9e1086bb)
+Mapped driver library /build/audit-iris/src/egl/libEGL.so.1.0.0
+Mapped driver library /build/audit-iris/src/gallium/targets/dri/libgallium-27.0.0-devel.so
+wrap watch: 73376 samples, 0 crossed the rollover, 0 mismatches, last timestamp 150411380500 ns
+PASS wrap watch: every buffer result equals the client result: 0 mismatches
+NOTE wrap watch did not observe a rollover in this window
+0 check(s) failed
+exit status 0
+ioctl=0 raw=0x6ba4d86f bits_above_36=0x0 freq=12000000 now=1795081975 seconds_to_wrap=5576.1

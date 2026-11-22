@@ -1,0 +1,532 @@
+From 92cc9f6f15eaa03e47c98dc775d5cdce26c14dc2 Mon Sep 17 00:00:00 2001
+From: swsammy <g.0gn15@passmail.com>
+Date: Thu, 8 Oct 2026 20:51:04 +1100
+Subject: [PATCH 1/2] brw: Prevent late cmod propagation into SIMD32
+ three-source instructions
+
+Before Gfx12, SIMD32 three-source instructions must not have condition
+modifiers. Width lowering already enforces this restriction, but the cmod
+propagation passes after scheduling can add a condition modifier after
+width lowering has run. No later pass splits the resulting instruction.
+
+This produces mad.l.f0.0(32) with FP16 operands and Align16 encoding in
+ncnn shaders requiring subgroup size 32. On Comet Lake and Whiskey Lake,
+these shaders hang the GPU and cause VK_ERROR_DEVICE_LOST.
+
+Reject propagation into three-source instructions wider than SIMD16 before
+Gfx12 once the shader reaches AFTER_EARLY_LOWERING. Earlier propagation
+remains allowed so width lowering can handle it. Add regression tests and
+an instruction-validator check for the forbidden combination.
+
+No shader-db changes on Skylake or Ice Lake.
+
+Fixes: b967942b642 ("brw: Do cmod prop again after scheduling")
+Fixes: 09450faf6a1 ("brw: Do cmod prop again after post-RA scheduling")
+Closes: https://gitlab.freedesktop.org/mesa/mesa/-/issues/16526
+Generated-by: LLM
+---
+ .../compiler/brw/brw_opt_cmod_propagation.cpp |  39 +++-
+ .../brw/test_opt_cmod_propagation.cpp         | 172 ++++++++++++++++++
+ src/intel/compiler/gen/gen_validate.cpp       |   5 +
+ src/intel/compiler/gen/gen_validate_test.cpp  |   8 +
+ 4 files changed, 217 insertions(+), 7 deletions(-)
+
+diff --git a/src/intel/compiler/brw/brw_opt_cmod_propagation.cpp b/src/intel/compiler/brw/brw_opt_cmod_propagation.cpp
+index c4446f338123..e462a2484c1b 100644
+--- a/src/intel/compiler/brw/brw_opt_cmod_propagation.cpp
++++ b/src/intel/compiler/brw/brw_opt_cmod_propagation.cpp
+@@ -73,8 +73,32 @@ implicit_accumulator_conflict(const intel_device_info *devinfo,
+ }
+ 
+ static bool
+-cmod_propagate_cmp_to_add(const intel_device_info *devinfo, brw_inst *inst)
++can_do_cmod(const brw_shader &s, const brw_inst *inst,
++            enum brw_conditional_mod cond)
+ {
++   /* get_fpu_lowered_simd_width() in brw_lower_simd_width.cpp enforces the
++    * Broadwell PRM restriction on SIMD32 three-source instructions with
++    * condition modifiers before Gfx12.  This pass runs again after width
++    * lowering, and no later pass re-splits an instruction that gains a
++    * condition modifier here, so reject that propagation.
++    *
++    * The phase check relies on no cmod propagation running between the first
++    * width-lowering pass and the update to
++    * BRW_SHADER_PHASE_AFTER_EARLY_LOWERING; it does not record whether width
++    * lowering actually happened.
++    */
++   if (s.phase >= BRW_SHADER_PHASE_AFTER_EARLY_LOWERING &&
++       s.devinfo->ver < 12 && inst->exec_size > 16 &&
++       inst->is_3src(s.compiler))
++      return false;
++
++   return inst->can_do_cmod(cond);
++}
++
++static bool
++cmod_propagate_cmp_to_add(const brw_shader &s, brw_inst *inst)
++{
++   const intel_device_info *devinfo = s.devinfo;
+    bool read_flag = false;
+    const unsigned flags_written = inst->flags_written(devinfo);
+ 
+@@ -232,7 +256,7 @@ cmod_propagate_cmp_to_add(const intel_device_info *devinfo, brw_inst *inst)
+          }
+ 
+          /* Otherwise, try propagating the conditional. */
+-         if (scan_inst->can_do_cmod(cond) &&
++         if (can_do_cmod(s, scan_inst, cond) &&
+              ((!read_flag && scan_inst->conditional_mod == BRW_CONDITIONAL_NONE) ||
+               scan_inst->conditional_mod == cond)) {
+             scan_inst->conditional_mod = cond;
+@@ -292,8 +316,9 @@ regs_are_same(const brw_reg a, const brw_reg b)
+ }
+ 
+ static bool
+-opt_cmod_propagation_local(const intel_device_info *devinfo, bblock_t *block)
++opt_cmod_propagation_local(const brw_shader &s, bblock_t *block)
+ {
++   const intel_device_info *devinfo = s.devinfo;
+    bool progress = false;
+ 
+    foreach_inst_in_block_reverse_safe(brw_inst, inst, block) {
+@@ -334,7 +359,7 @@ opt_cmod_propagation_local(const intel_device_info *devinfo, bblock_t *block)
+        * instruction.
+        */
+       if (inst->opcode == BRW_OPCODE_CMP && !inst->src[1].is_zero()) {
+-         if (cmod_propagate_cmp_to_add(devinfo, inst))
++         if (cmod_propagate_cmp_to_add(s, inst))
+             progress = true;
+ 
+          continue;
+@@ -533,7 +558,7 @@ opt_cmod_propagation_local(const intel_device_info *devinfo, bblock_t *block)
+                   progress = true;
+                   break;
+                } else if (!read_flag &&
+-                          scan_inst->can_do_cmod(inst->conditional_mod)) {
++                          can_do_cmod(s, scan_inst, inst->conditional_mod)) {
+                   scan_inst->conditional_mod = inst->conditional_mod;
+                   scan_inst->flag_subreg = inst->flag_subreg;
+                   inst->remove();
+@@ -603,7 +628,7 @@ opt_cmod_propagation_local(const intel_device_info *devinfo, bblock_t *block)
+              */
+ 
+             /* Otherwise, try propagating the conditional. */
+-            if (scan_inst->can_do_cmod(cond) &&
++            if (can_do_cmod(s, scan_inst, cond) &&
+                 ((!read_flag && scan_inst->conditional_mod == BRW_CONDITIONAL_NONE) ||
+                  scan_inst->conditional_mod == cond)) {
+                scan_inst->conditional_mod = cond;
+@@ -673,7 +698,7 @@ brw_opt_cmod_propagation(brw_shader &s)
+    bool progress = false;
+ 
+    foreach_block_reverse(block, s.cfg) {
+-      progress = opt_cmod_propagation_local(s.devinfo, block) || progress;
++      progress = opt_cmod_propagation_local(s, block) || progress;
+    }
+ 
+    if (progress) {
+diff --git a/src/intel/compiler/brw/test_opt_cmod_propagation.cpp b/src/intel/compiler/brw/test_opt_cmod_propagation.cpp
+index d63d95314d25..37bfe2d77cff 100644
+--- a/src/intel/compiler/brw/test_opt_cmod_propagation.cpp
++++ b/src/intel/compiler/brw/test_opt_cmod_propagation.cpp
+@@ -2929,3 +2929,175 @@ TEST_F(cmod_propagation_test, add_implict_accumulator_write)
+ 
+    EXPECT_NO_PROGRESS(brw_opt_cmod_propagation, bld);
+ }
++
++static brw_inst *
++emit_hf_mad_cmp(const brw_builder &bld, const brw_reg &dest, const brw_reg &src0,
++                const brw_reg &src1, const brw_reg &src2)
++{
++   brw_inst *mad = bld.MAD(dest, src0, src1, src2);
++   bld.CMP(retype(bld.null_reg_f(), BRW_TYPE_HF), dest,
++           retype(brw_imm_uw(0), BRW_TYPE_HF), BRW_CONDITIONAL_L);
++   return mad;
++}
++
++TEST_F(cmod_propagation_test, simd32_mad_before_simd_lowering)
++{
++   for (unsigned verx10 : { 90, 110 }) {
++      SCOPED_TRACE(verx10);
++      set_gfx_verx10(verx10);
++
++      brw_builder bld = make_shader(MESA_SHADER_COMPUTE, 32);
++      brw_builder exp = make_shader(MESA_SHADER_COMPUTE, 32);
++
++      brw_reg dest = vgrf(bld, exp, BRW_TYPE_HF);
++      brw_reg src0 = vgrf(bld, exp, BRW_TYPE_HF);
++      brw_reg src1 = vgrf(bld, exp, BRW_TYPE_HF);
++      brw_reg src2 = vgrf(bld, exp, BRW_TYPE_HF);
++
++      emit_hf_mad_cmp(bld, dest, src0, src1, src2);
++
++      bld.shader->phase = BRW_SHADER_PHASE_AFTER_OPT_LOOP;
++      exp.shader->phase = BRW_SHADER_PHASE_AFTER_OPT_LOOP;
++
++      EXPECT_PROGRESS(brw_opt_cmod_propagation, bld);
++
++      exp.MAD(dest, src0, src1, src2)->conditional_mod = BRW_CONDITIONAL_L;
++
++      EXPECT_SHADERS_MATCH(bld, exp);
++   }
++}
++
++TEST_F(cmod_propagation_test, simd32_mad_after_simd_lowering)
++{
++   for (unsigned verx10 : { 90, 110 }) {
++      for (enum brw_shader_phase phase : { BRW_SHADER_PHASE_AFTER_EARLY_LOWERING,
++                                           BRW_SHADER_PHASE_AFTER_MIDDLE_LOWERING,
++                                           BRW_SHADER_PHASE_AFTER_LATE_LOWERING,
++                                           BRW_SHADER_PHASE_AFTER_REGALLOC }) {
++         SCOPED_TRACE(verx10);
++         SCOPED_TRACE(phase);
++         set_gfx_verx10(verx10);
++
++         brw_builder bld = make_shader(MESA_SHADER_COMPUTE, 32);
++
++         brw_reg dest = vgrf(bld, BRW_TYPE_HF);
++         brw_reg src0 = vgrf(bld, BRW_TYPE_HF);
++         brw_reg src1 = vgrf(bld, BRW_TYPE_HF);
++         brw_reg src2 = vgrf(bld, BRW_TYPE_HF);
++
++         emit_hf_mad_cmp(bld, dest, src0, src1, src2);
++
++         bld.shader->phase = phase;
++
++         EXPECT_NO_PROGRESS(brw_opt_cmod_propagation, bld);
++      }
++   }
++}
++
++TEST_F(cmod_propagation_test, simd32_mad_after_regalloc)
++{
++   brw_builder bld = make_shader(MESA_SHADER_COMPUTE, 32);
++
++   brw_reg dest = retype(brw_vec16_grf(10, 0), BRW_TYPE_HF);
++   brw_reg src0 = retype(brw_vec16_grf(12, 0), BRW_TYPE_HF);
++   brw_reg src1 = retype(brw_vec16_grf(14, 0), BRW_TYPE_HF);
++   brw_reg src2 = retype(brw_vec16_grf(16, 0), BRW_TYPE_HF);
++
++   emit_hf_mad_cmp(bld, dest, src0, src1, src2);
++
++   bld.shader->phase = BRW_SHADER_PHASE_AFTER_LATE_LOWERING;
++
++   EXPECT_NO_PROGRESS(brw_opt_cmod_propagation, bld);
++}
++
++TEST_F(cmod_propagation_test, simd32_mad_lowered_then_late_cmod)
++{
++   for (const char *platform : { "skl", "icl" }) {
++      SCOPED_TRACE(platform);
++      set_gfx_platform(platform);
++
++      brw_builder bld = make_shader(MESA_SHADER_COMPUTE, 32);
++
++      brw_reg dest = vgrf(bld, BRW_TYPE_HF);
++      brw_reg src0 = vgrf(bld, BRW_TYPE_HF);
++      brw_reg src1 = vgrf(bld, BRW_TYPE_HF);
++      brw_reg src2 = vgrf(bld, BRW_TYPE_HF);
++
++      emit_hf_mad_cmp(bld, dest, src0, src1, src2);
++
++      brw_calculate_cfg(*bld.shader);
++      brw_lower_simd_width(*bld.shader);
++      bld.shader->phase = BRW_SHADER_PHASE_AFTER_EARLY_LOWERING;
++
++      EXPECT_NO_PROGRESS(brw_opt_cmod_propagation, bld);
++   }
++}
++
++TEST_F(cmod_propagation_test, simd32_mad_after_simd_lowering_gfx12)
++{
++   set_gfx_verx10(120);
++
++   brw_builder bld = make_shader(MESA_SHADER_COMPUTE, 32);
++   brw_builder exp = make_shader(MESA_SHADER_COMPUTE, 32);
++
++   brw_reg dest = vgrf(bld, exp, BRW_TYPE_HF);
++   brw_reg src0 = vgrf(bld, exp, BRW_TYPE_HF);
++   brw_reg src1 = vgrf(bld, exp, BRW_TYPE_HF);
++   brw_reg src2 = vgrf(bld, exp, BRW_TYPE_HF);
++
++   emit_hf_mad_cmp(bld, dest, src0, src1, src2);
++
++   bld.shader->phase = BRW_SHADER_PHASE_AFTER_LATE_LOWERING;
++   exp.shader->phase = BRW_SHADER_PHASE_AFTER_LATE_LOWERING;
++
++   EXPECT_PROGRESS(brw_opt_cmod_propagation, bld);
++
++   exp.MAD(dest, src0, src1, src2)->conditional_mod = BRW_CONDITIONAL_L;
++
++   EXPECT_SHADERS_MATCH(bld, exp);
++}
++
++TEST_F(cmod_propagation_test, simd16_mad_after_simd_lowering)
++{
++   brw_builder bld = make_shader(MESA_SHADER_COMPUTE, 16);
++   brw_builder exp = make_shader(MESA_SHADER_COMPUTE, 16);
++
++   brw_reg dest = vgrf(bld, exp, BRW_TYPE_HF);
++   brw_reg src0 = vgrf(bld, exp, BRW_TYPE_HF);
++   brw_reg src1 = vgrf(bld, exp, BRW_TYPE_HF);
++   brw_reg src2 = vgrf(bld, exp, BRW_TYPE_HF);
++
++   emit_hf_mad_cmp(bld, dest, src0, src1, src2);
++
++   bld.shader->phase = BRW_SHADER_PHASE_AFTER_LATE_LOWERING;
++   exp.shader->phase = BRW_SHADER_PHASE_AFTER_LATE_LOWERING;
++
++   EXPECT_PROGRESS(brw_opt_cmod_propagation, bld);
++
++   exp.MAD(dest, src0, src1, src2)->conditional_mod = BRW_CONDITIONAL_L;
++
++   EXPECT_SHADERS_MATCH(bld, exp);
++}
++
++TEST_F(cmod_propagation_test, simd32_add_after_simd_lowering)
++{
++   brw_builder bld = make_shader(MESA_SHADER_COMPUTE, 32);
++   brw_builder exp = make_shader(MESA_SHADER_COMPUTE, 32);
++
++   brw_reg dest = vgrf(bld, exp, BRW_TYPE_HF);
++   brw_reg src0 = vgrf(bld, exp, BRW_TYPE_HF);
++   brw_reg src1 = vgrf(bld, exp, BRW_TYPE_HF);
++
++   bld.ADD(dest, src0, src1);
++   bld.CMP(retype(bld.null_reg_f(), BRW_TYPE_HF), dest,
++           retype(brw_imm_uw(0), BRW_TYPE_HF), BRW_CONDITIONAL_L);
++
++   bld.shader->phase = BRW_SHADER_PHASE_AFTER_LATE_LOWERING;
++   exp.shader->phase = BRW_SHADER_PHASE_AFTER_LATE_LOWERING;
++
++   EXPECT_PROGRESS(brw_opt_cmod_propagation, bld);
++
++   exp.ADD(dest, src0, src1)->conditional_mod = BRW_CONDITIONAL_L;
++
++   EXPECT_SHADERS_MATCH(bld, exp);
++}
+diff --git a/src/intel/compiler/gen/gen_validate.cpp b/src/intel/compiler/gen/gen_validate.cpp
+index 654247e903e4..8d7bb2184142 100644
+--- a/src/intel/compiler/gen/gen_validate.cpp
++++ b/src/intel/compiler/gen/gen_validate.cpp
+@@ -548,6 +548,11 @@ private:
+          }
+       }
+ 
++      ERROR_IF(num_sources == 3 && devinfo->ver < 12 &&
++               inst->cmod != GEN_CONDITION_NONE && inst->exec_size == 32,
++               "Pre-Gfx12 3-source instructions with a conditional modifier "
++               "cannot use SIMD32.");
++
+       if (devinfo->ver >= 20) {
+          ERROR_IF(inst->acc_wr_control,
+                   "AccWrControl is not present on Gfx20+.");
+diff --git a/src/intel/compiler/gen/gen_validate_test.cpp b/src/intel/compiler/gen/gen_validate_test.cpp
+index d0580ff87981..bfae3c66a25d 100644
+--- a/src/intel/compiler/gen/gen_validate_test.cpp
++++ b/src/intel/compiler/gen/gen_validate_test.cpp
+@@ -204,6 +204,14 @@ static const struct {
+    { "mad (8) r0.:d r1:d r2:d r3:d {Align16}", "Align16 mode doesn't exist on Gfx11+.", { .ge = 110 } },
+ 
+ 
++   { "mad (32) (lt)f0.0 r0.:hf r2:hf r4:hf r6:hf {Align16}",
++     "Pre-Gfx12 3-source instructions with a conditional modifier cannot use SIMD32.", { .eq = 90 }
++   },
++   { "mad (32) (lt)f0.0 r0:hf r2:hf r4:hf r6:hf", SAME_ERROR, { .eq = 110 } },
++   { "mad (32) (lt)f0.0 r0:hf r2:hf r4:hf r6:hf", VALID,      { .ge = 120 } },
++   { "mad (16) (lt)f0.0 r0.:hf r2:hf r4:hf r6:hf {Align16}", VALID, { .eq = 90 } },
++   { "mad (32) r0.:hf r2:hf r4:hf r6:hf {Align16}",          VALID, { .eq = 90 } },
++
+    { "mad (8) r0.:f r1:f 0x0:f r3:f {Align16}",
+      "3-source instructions cannot use an immediate src1.", { .eq = 90 }
+    },
+-- 
+GitLab
+
+
+From f9d7a5b88c3cb0ef85b30d301414add9f607c635 Mon Sep 17 00:00:00 2001
+From: swsammy <g.0gn15@passmail.com>
+Date: Thu, 8 Oct 2026 20:51:04 +1100
+Subject: [PATCH 2/2] brw: Limit Gfx9 three-source instructions to SIMD16
+
+On Comet Lake and Whiskey Lake, SIMD32 Align16 FP16 three-source
+instructions use the execution-mask bit of lane L - 8 for lanes 16..31.
+Under non-uniform control flow, this leaves some active lanes unwritten
+and writes some inactive lanes, producing incorrect ncnn inference
+results. The behaviour is reproducible on Mesa 25.3.6 as well as main.
+
+This is measured hardware behaviour rather than a documented restriction.
+The pre-Gfx8 workaround in elk_fs.cpp describes a related eight-channel
+shift per compressed half. Intel's Windows driver emits paired SIMD16
+MAD instructions for the tested shader even at required subgroup size 32.
+
+Cap three-source instructions at SIMD16 on Gfx9, the only platform using
+Align16 three-source encoding in brw. Add width-lowering regression tests
+and reject SIMD32 Gfx9 three-source instructions in the validator. The
+standalone reproducer passes at subgroup sizes 16 and 32 with the fix.
+
+Although the measurements cover only fp16 on two Gfx9 parts, deliberately
+cap all three-source instructions at SIMD16 on all Gfx9 devices,
+including NoMask instructions. With the hardware behaviour undocumented,
+conservatively applying the restriction to the whole instruction class
+and generation is the safer choice. The practical impact is limited to
+16-bit types: fp32 and fp64 three-source instructions are already split
+by the two-register rule.
+
+No shader-db changes on Skylake or Ice Lake.
+
+Backport-to: 26.1
+Closes: https://gitlab.freedesktop.org/mesa/mesa/-/issues/16528
+Generated-by: LLM
+---
+ .../compiler/brw/brw_lower_simd_width.cpp     | 11 +++
+ .../compiler/brw/test_lower_simd_width.cpp    | 82 +++++++++++++++++++
+ src/intel/compiler/gen/gen_validate.cpp       |  3 +
+ src/intel/compiler/gen/gen_validate_test.cpp  |  5 +-
+ 4 files changed, 100 insertions(+), 1 deletion(-)
+
+diff --git a/src/intel/compiler/brw/brw_lower_simd_width.cpp b/src/intel/compiler/brw/brw_lower_simd_width.cpp
+index ce5785a5dc1f..7741744f5d9b 100644
+--- a/src/intel/compiler/brw/brw_lower_simd_width.cpp
++++ b/src/intel/compiler/brw/brw_lower_simd_width.cpp
+@@ -102,6 +102,17 @@ get_fpu_lowered_simd_width(const brw_shader *shader,
+    if (inst->conditional_mod && inst->is_3src(compiler) && devinfo->ver < 12)
+       max_width = MIN2(max_width, 16);
+ 
++   /* On tested Gfx9 hardware, SIMD32 Align16 FP16 three-source instructions
++    * use the execution-mask bit of lane L - 8 for lanes L = 16..31, producing
++    * incorrect results under non-uniform control flow.  This is measured
++    * hardware behaviour, not a documented restriction.  See the related
++    * workaround in elk_fs.cpp: "shifts exactly 8 channels per compressed
++    * half".  Among the platforms supported by brw, only Gfx9 uses Align16
++    * three-source encoding, hence the version check below.
++    */
++   if (inst->is_3src(compiler) && devinfo->ver == 9)
++      max_width = MIN2(max_width, 16);
++
+    /* From the IVB PRMs (applies to other devices that don't have the
+     * intel_device_info::supports_simd16_3src flag set):
+     *  "In Align16 access mode, SIMD16 is not allowed for DW operations and
+diff --git a/src/intel/compiler/brw/test_lower_simd_width.cpp b/src/intel/compiler/brw/test_lower_simd_width.cpp
+index 6cfcce6817c0..38e8ef7b8dad 100644
+--- a/src/intel/compiler/brw/test_lower_simd_width.cpp
++++ b/src/intel/compiler/brw/test_lower_simd_width.cpp
+@@ -41,3 +41,85 @@ TEST_F(lower_simd_width_test, neg_abs_src)
+ 
+    EXPECT_SHADERS_MATCH(bld, exp);
+ }
++
++TEST_F(lower_simd_width_test, gfx9_simd32_hf_mad)
++{
++   set_gfx_platform("skl");
++
++   brw_builder bld = make_shader(MESA_SHADER_COMPUTE, 32);
++   brw_builder exp = make_shader(MESA_SHADER_COMPUTE, 32);
++
++   brw_reg dst  = vgrf(bld, exp, BRW_TYPE_HF);
++   brw_reg src0 = vgrf(bld, exp, BRW_TYPE_HF);
++   brw_reg src1 = vgrf(bld, exp, BRW_TYPE_HF);
++   brw_reg src2 = vgrf(bld, exp, BRW_TYPE_HF);
++
++   bld.MAD(dst, src0, src1, src2);
++
++   EXPECT_PROGRESS(brw_lower_simd_width, bld);
++
++   exp.group(16, 0).MAD(dst, src0, src1, src2);
++   exp.group(16, 1).MAD(byte_offset(dst, 16 * 2),
++                        byte_offset(src0, 16 * 2),
++                        byte_offset(src1, 16 * 2),
++                        byte_offset(src2, 16 * 2));
++
++   EXPECT_SHADERS_MATCH(bld, exp);
++}
++
++TEST_F(lower_simd_width_test, gfx9_simd32_hf_mad_nomask)
++{
++   set_gfx_platform("skl");
++
++   brw_builder bld = make_shader(MESA_SHADER_COMPUTE, 32);
++   brw_builder exp = make_shader(MESA_SHADER_COMPUTE, 32);
++
++   brw_reg dst  = vgrf(bld, exp, BRW_TYPE_HF);
++   brw_reg src0 = vgrf(bld, exp, BRW_TYPE_HF);
++   brw_reg src1 = vgrf(bld, exp, BRW_TYPE_HF);
++   brw_reg src2 = vgrf(bld, exp, BRW_TYPE_HF);
++
++   bld.exec_all().MAD(dst, src0, src1, src2);
++
++   EXPECT_PROGRESS(brw_lower_simd_width, bld);
++
++   exp.exec_all().group(16, 0).MAD(dst, src0, src1, src2);
++   exp.exec_all().group(16, 1).MAD(byte_offset(dst, 16 * 2),
++                                   byte_offset(src0, 16 * 2),
++                                   byte_offset(src1, 16 * 2),
++                                   byte_offset(src2, 16 * 2));
++
++   EXPECT_SHADERS_MATCH(bld, exp);
++}
++
++TEST_F(lower_simd_width_test, gfx9_simd16_hf_mad)
++{
++   set_gfx_platform("skl");
++
++   brw_builder bld = make_shader(MESA_SHADER_COMPUTE, 16);
++
++   brw_reg dst  = vgrf(bld, BRW_TYPE_HF);
++   brw_reg src0 = vgrf(bld, BRW_TYPE_HF);
++   brw_reg src1 = vgrf(bld, BRW_TYPE_HF);
++   brw_reg src2 = vgrf(bld, BRW_TYPE_HF);
++
++   bld.MAD(dst, src0, src1, src2);
++
++   EXPECT_NO_PROGRESS(brw_lower_simd_width, bld);
++}
++
++TEST_F(lower_simd_width_test, gfx11_simd32_hf_mad)
++{
++   set_gfx_platform("icl");
++
++   brw_builder bld = make_shader(MESA_SHADER_COMPUTE, 32);
++
++   brw_reg dst  = vgrf(bld, BRW_TYPE_HF);
++   brw_reg src0 = vgrf(bld, BRW_TYPE_HF);
++   brw_reg src1 = vgrf(bld, BRW_TYPE_HF);
++   brw_reg src2 = vgrf(bld, BRW_TYPE_HF);
++
++   bld.MAD(dst, src0, src1, src2);
++
++   EXPECT_NO_PROGRESS(brw_lower_simd_width, bld);
++}
+diff --git a/src/intel/compiler/gen/gen_validate.cpp b/src/intel/compiler/gen/gen_validate.cpp
+index 8d7bb2184142..b848f9c58909 100644
+--- a/src/intel/compiler/gen/gen_validate.cpp
++++ b/src/intel/compiler/gen/gen_validate.cpp
+@@ -553,6 +553,9 @@ private:
+                "Pre-Gfx12 3-source instructions with a conditional modifier "
+                "cannot use SIMD32.");
+ 
++      ERROR_IF(num_sources == 3 && devinfo->ver == 9 && inst->exec_size == 32,
++               "Gfx9 3-source instructions cannot use SIMD32.");
++
+       if (devinfo->ver >= 20) {
+          ERROR_IF(inst->acc_wr_control,
+                   "AccWrControl is not present on Gfx20+.");
+diff --git a/src/intel/compiler/gen/gen_validate_test.cpp b/src/intel/compiler/gen/gen_validate_test.cpp
+index bfae3c66a25d..c95f11c6b420 100644
+--- a/src/intel/compiler/gen/gen_validate_test.cpp
++++ b/src/intel/compiler/gen/gen_validate_test.cpp
+@@ -210,7 +210,10 @@ static const struct {
+    { "mad (32) (lt)f0.0 r0:hf r2:hf r4:hf r6:hf", SAME_ERROR, { .eq = 110 } },
+    { "mad (32) (lt)f0.0 r0:hf r2:hf r4:hf r6:hf", VALID,      { .ge = 120 } },
+    { "mad (16) (lt)f0.0 r0.:hf r2:hf r4:hf r6:hf {Align16}", VALID, { .eq = 90 } },
+-   { "mad (32) r0.:hf r2:hf r4:hf r6:hf {Align16}",          VALID, { .eq = 90 } },
++   { "mad (32) r0.:hf r2:hf r4:hf r6:hf {Align16}",
++     "Gfx9 3-source instructions cannot use SIMD32.", { .eq = 90 }
++   },
++   { "mad (32) r0:hf r2:hf r4:hf r6:hf",                     VALID, { .eq = 110 } },
+ 
+    { "mad (8) r0.:f r1:f 0x0:f r3:f {Align16}",
+      "3-source instructions cannot use an immediate src1.", { .eq = 90 }
+-- 
+GitLab
+

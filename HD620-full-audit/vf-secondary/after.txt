@@ -1,0 +1,7 @@
+A at 0x740000000, B at 0x840000000 (low 32 bits equal)
+entry  (A primary, B secondary): 0/20 stale
+    exit   (A secondary, B primary) rep 0: centre ff0000ff (expected green ff00ff00)
+    exit   (A secondary, B primary) rep 1: centre ff0000ff (expected green ff00ff00)
+exit   (A secondary, B primary): 20/20 stale
+inline (A and B in primary): 0/20 stale
+FAIL

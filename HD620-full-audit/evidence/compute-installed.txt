@@ -1,0 +1,44 @@
+[Vulkan Loader] DRIVER:         Searching for driver manifest files
+[Vulkan Loader] DRIVER:            In following locations:
+[Vulkan Loader] DRIVER:               /usr/share/vulkan/icd.d/intel_icd.json
+[Vulkan Loader] DRIVER:            Found the following files:
+[Vulkan Loader] DRIVER:               /usr/share/vulkan/icd.d/intel_icd.json
+[Vulkan Loader] DRIVER:         Found ICD manifest file /usr/share/vulkan/icd.d/intel_icd.json, version 1.0.1
+[Vulkan Loader] DEBUG | DRIVER: Searching for ICD drivers named libvulkan_intel.so
+[Vulkan Loader] INFO | DRIVER:  linux_read_sorted_physical_devices:
+[Vulkan Loader] INFO | DRIVER:       Original order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan Loader] INFO | DRIVER:       Sorted order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)  
+[Vulkan Loader] INFO | DRIVER:  linux_read_sorted_physical_devices:
+[Vulkan Loader] INFO | DRIVER:       Original order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan Loader] INFO | DRIVER:       Sorted order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)  
+[Vulkan Loader] DEBUG | DRIVER: Copying old device 0 into new device 0
+[Vulkan Loader] DRIVER:         vkCreateDevice layer callstack setup to:
+[Vulkan Loader] DRIVER:            <Application>
+[Vulkan Loader] DRIVER:              ||
+[Vulkan Loader] DRIVER:            <Loader>
+[Vulkan Loader] DRIVER:              ||
+[Vulkan Loader] DRIVER:            <Device>
+[Vulkan Loader] DRIVER:                Using "Intel(R) HD Graphics 620 (KBL GT2)" with driver: "/usr/lib/x86_64-linux-gnu/libvulkan_intel.so"
+Intel(R) HD Graphics 620 (KBL GT2) driverVersion 109051912
+Using family 0 flags=0x7
+fill,1,1,5.0675
+fill,1,64,0.9927
+fill,2,64,1.1196
+fill,2,1,4.7870
+fill,3,1,5.0094
+fill,3,64,1.1211
+fill,4,64,1.2444
+fill,4,1,5.0752
+fill,5,1,5.0960
+fill,5,64,1.0400
+fill,6,64,1.0889
+fill,6,1,5.6395
+fill,7,1,4.8963
+fill,7,64,1.0006
+fill,8,64,1.1476
+fill,8,1,5.1276
+compute: 1048576 exact values

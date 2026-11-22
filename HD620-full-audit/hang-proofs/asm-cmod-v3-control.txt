@@ -1,0 +1,386 @@
+NIR (SSA form) for compute shader:
+shader: MESA_SHADER_COMPUTE
+source_blake3: {0x8817a442, 0xf35fea3e, 0xc9288e74, 0x2fb74f8f, 0xe732d643, 0x1d7879aa, 0x59826bcf, 0x73ffca64}
+name: 
+workgroup_size: 128, 1, 1
+num_ssbos: 4
+system_values_read: 0x00000000'00000000'00018400'00000000
+api_subgroup_size: 32
+max_subgroup_size: 32
+min_subgroup_size: 32
+bit_sizes_float: 0x10
+bit_sizes_int: 0x31
+separate_shader: true
+flrp_lowered: true
+writes_memory: true
+decl_var ssbo INTERP_MODE_NONE restrict readonly C #0 (~0, 0, 2)
+decl_var ssbo INTERP_MODE_NONE restrict readonly A #1 (~0, 0, 0)
+decl_var ssbo INTERP_MODE_NONE restrict readonly B #2 (~0, 0, 1)
+decl_var ssbo INTERP_MODE_NONE restrict writeonly O #3 (~0, 0, 3)
+decl_function main () (entrypoint)
+
+impl main {
+    con block b0:        // preds:
+    con 32x3    %0 = @load_workgroup_id
+    con 32      %1 = load_const (0x00000000)
+    con 32      %2 = @load_push_data_intel (%1 (0x0)) (base=20, range=12)
+    con 32      %3 = @load_push_data_intel (%1 (0x0)) (base=368, range=4)
+    con 32      %4 = load_const (0x00000005)
+    con 32      %5 = ishl %3, %4 (0x5)
+    div 32      %6 = @load_subgroup_invocation
+    div 32      %7 = iadd %6, %5
+    con 32      %8 = iadd %0.x, %2
+    con 32      %9 = load_const (0x00000007)
+    con 32     %10 = ishl %8, %9 (0x7)
+    con 32     %11 = load_const (0x0000007f = 127)
+    div 32     %12 = iand %7, %11 (0x7f)
+    div 32     %13 = iadd %10, %12
+    con 32     %14 = load_const (0x00000003)
+    con 32     %15 = load_const (0xdeaddead = -6.264321e+18 = -559030611 = 3735936685)
+    con 32     %16 = @resource_intel (%15 (0xdeaddead), %14 (0x3), %1 (0x0), %1 (0x0)) (desc_set=0, binding=2, resource_intel=0, resource_block_intel=-1)
+    div 32     %17 = ishl %13, %14 (0x3)
+    div 32x2   %18 = @load_ssbo (%16, %17) (access=readonly|reorderable, align_mul=8, align_offset=0, offset_shift=0)
+    div 16     %19 = unpack_32_2x16_split_x %18.x
+    div 16     %20 = unpack_32_2x16_split_y %18.x
+    div 16     %21 = unpack_32_2x16_split_x %18.y
+    div 16     %22 = unpack_32_2x16_split_y %18.y
+    con 32     %23 = load_const (0x00000001 = 0.000000)
+    con 32     %24 = @resource_intel (%15 (0xdeaddead), %23 (0x1), %1 (0x0), %1 (0x0)) (desc_set=0, binding=0, resource_intel=0, resource_block_intel=-1)
+    div 32     %25 = ishl %13, %4 (0x5)
+    div 32x4   %26 = @load_ssbo (%24, %25) (access=readonly|reorderable, align_mul=32, align_offset=0, offset_shift=0)
+    div 16     %27 = unpack_32_2x16_split_x %26.x
+    div 16     %28 = unpack_32_2x16_split_y %26.x
+    div 16     %29 = unpack_32_2x16_split_x %26.y
+    div 16     %30 = unpack_32_2x16_split_y %26.y
+    div 16     %31 = unpack_32_2x16_split_x %26.z
+    div 16     %32 = unpack_32_2x16_split_y %26.z
+    div 16     %33 = unpack_32_2x16_split_x %26.w
+    div 16     %34 = unpack_32_2x16_split_y %26.w
+    con 32     %35 = load_const (0x00000002 = 0.000000)
+    con 32     %36 = @resource_intel (%15 (0xdeaddead), %35 (0x2), %1 (0x0), %1 (0x0)) (desc_set=0, binding=1, resource_intel=0, resource_block_intel=-1)
+    con 32x8   %37 = @load_ssbo_uniform_block_intel (%36, %1 (0x0)) (access=readonly|reorderable, align_mul=1073741824, align_offset=0, base=0)
+    con 16     %38 = unpack_32_2x16_split_x %37.a
+    con 16     %39 = unpack_32_2x16_split_y %37.a
+    con 16     %40 = unpack_32_2x16_split_x %37.b
+    con 16     %41 = unpack_32_2x16_split_y %37.b
+    con 16     %42 = unpack_32_2x16_split_x %37.c
+    con 16     %43 = unpack_32_2x16_split_y %37.c
+    con 16     %44 = unpack_32_2x16_split_x %37.d
+    con 16     %45 = unpack_32_2x16_split_y %37.d
+    div 16     %46 = ffma %27, %38, %19
+    div 16     %47 = ffma %28, %39, %20
+    div 16     %48 = ffma %29, %40, %21
+    div 16     %49 = ffma %30, %41, %22
+    div 16     %50 = ffma %31, %42, %46
+    div 16     %51 = ffma %32, %43, %47
+    div 16     %52 = ffma %33, %44, %48
+    div 16     %53 = ffma %34, %45, %49
+    con 32     %54 = load_const (0x00000010 = 16)
+    div 32     %55 = iadd %25, %54 (0x10)
+    div 32x4   %56 = @load_ssbo (%24, %55) (access=readonly|reorderable, align_mul=32, align_offset=16, offset_shift=0)
+    div 16     %57 = unpack_32_2x16_split_x %56.x
+    div 16     %58 = unpack_32_2x16_split_y %56.x
+    div 16     %59 = unpack_32_2x16_split_x %56.y
+    div 16     %60 = unpack_32_2x16_split_y %56.y
+    div 16     %61 = unpack_32_2x16_split_x %56.z
+    div 16     %62 = unpack_32_2x16_split_y %56.z
+    div 16     %63 = unpack_32_2x16_split_x %56.w
+    div 16     %64 = unpack_32_2x16_split_y %56.w
+    con 16     %65 = unpack_32_2x16_split_x %37.e
+    con 16     %66 = unpack_32_2x16_split_y %37.e
+    con 16     %67 = unpack_32_2x16_split_x %37.f
+    con 16     %68 = unpack_32_2x16_split_y %37.f
+    con 16     %69 = unpack_32_2x16_split_x %37.g
+    con 16     %70 = unpack_32_2x16_split_y %37.g
+    con 16     %71 = unpack_32_2x16_split_x %37.h
+    con 16     %72 = unpack_32_2x16_split_y %37.h
+    div 16     %73 = ffma %57, %65, %50
+    div 16     %74 = ffma %58, %66, %51
+    div 16     %75 = ffma %59, %67, %52
+    div 16     %76 = ffma %60, %68, %53
+    div 16     %77 = ffma %61, %69, %73
+    div 16     %78 = ffma %62, %70, %74
+    div 16     %79 = ffma %63, %71, %75
+    div 16     %80 = ffma %64, %72, %76
+    con 16     %81 = load_const (0x0000 = 0.000000)
+    div 32     %82 = flt32 %77, %81 (0.000000) // preserve:inf,nan
+    con 16     %83 = load_const (0x2e66 = 0.099976)
+    div 16     %84 = fmul %77, %83 (0.099976)
+    div 16     %85 = b32csel %82, %84, %77
+    div 16     %86 = fmul %78, %83 (0.099976)
+    div 32     %87 = flt32 %78, %81 (0.000000) // preserve:inf,nan
+    div 16     %88 = b32csel %87, %86, %78
+    div 16     %89 = fmul %79, %83 (0.099976)
+    div 32     %90 = flt32 %79, %81 (0.000000) // preserve:inf,nan
+    div 16     %91 = b32csel %90, %89, %79
+    div 16     %92 = fmul %80, %83 (0.099976)
+    div 32     %93 = flt32 %80, %81 (0.000000) // preserve:inf,nan
+    div 16     %94 = b32csel %93, %92, %80
+    con 32     %95 = load_const (0x00000004 = 0.000000)
+    con 32     %96 = @resource_intel (%15 (0xdeaddead), %95 (0x4), %1 (0x0), %1 (0x0)) (desc_set=0, binding=3, resource_intel=0, resource_block_intel=-1)
+    div 32     %97 = pack_32_2x16_split %85, %88
+    div 32     %98 = pack_32_2x16_split %91, %94
+    div 32x2   %99 = vec2 %97, %98
+                     @store_ssbo (%99, %96, %17) (wrmask=xy, access=writeonly, align_mul=8, align_offset=0, offset_shift=0)
+                     // succs: b1
+    block b1:
+}
+
+NIR (final form) for compute shader:
+shader: MESA_SHADER_COMPUTE
+source_blake3: {0x8817a442, 0xf35fea3e, 0xc9288e74, 0x2fb74f8f, 0xe732d643, 0x1d7879aa, 0x59826bcf, 0x73ffca64}
+name: 
+workgroup_size: 128, 1, 1
+num_ssbos: 4
+system_values_read: 0x00000000'00000000'00018400'00000000
+api_subgroup_size: 32
+max_subgroup_size: 32
+min_subgroup_size: 32
+bit_sizes_float: 0x10
+bit_sizes_int: 0x31
+separate_shader: true
+flrp_lowered: true
+writes_memory: true
+decl_var ssbo INTERP_MODE_NONE restrict readonly C #0 (~0, 0, 2)
+decl_var ssbo INTERP_MODE_NONE restrict readonly A #1 (~0, 0, 0)
+decl_var ssbo INTERP_MODE_NONE restrict readonly B #2 (~0, 0, 1)
+decl_var ssbo INTERP_MODE_NONE restrict writeonly O #3 (~0, 0, 3)
+decl_function main () (entrypoint)
+
+impl main {
+    con block b0:        // preds:
+    con 32x3    %0 = @load_workgroup_id
+    con 32      %1 = load_const (0x00000000)
+    con 32      %2 = @load_push_data_intel (%1 (0x0)) (base=20, range=12)
+    con 32      %3 = @load_push_data_intel (%1 (0x0)) (base=368, range=4)
+    con 32      %4 = load_const (0x00000005)
+    con 32      %5 = ishl %3, %4 (0x5)
+    div 32      %6 = @load_subgroup_invocation
+    div 32      %7 = iadd %6, %5
+    con 32      %8 = iadd %0.x, %2
+    con 32      %9 = load_const (0x00000007)
+    con 32     %10 = ishl %8, %9 (0x7)
+    con 32     %11 = load_const (0x0000007f = 127)
+    div 32     %12 = iand %7, %11 (0x7f)
+    div 32     %13 = iadd %10, %12
+    con 32     %14 = load_const (0x00000003)
+    con 32     %15 = load_const (0xdeaddead = -6.264321e+18 = -559030611 = 3735936685)
+    con 32     %16 = @resource_intel (%15 (0xdeaddead), %14 (0x3), %1 (0x0), %1 (0x0)) (desc_set=0, binding=2, resource_intel=0, resource_block_intel=-1)
+    div 32     %17 = ishl %13, %14 (0x3)
+    div 32x2   %18 = @load_ssbo (%16, %17) (access=readonly|reorderable, align_mul=8, align_offset=0, offset_shift=0)
+    div 16     %19 = unpack_32_2x16_split_x %18.x
+    div 16     %20 = unpack_32_2x16_split_y %18.x
+    div 16     %21 = unpack_32_2x16_split_x %18.y
+    div 16     %22 = unpack_32_2x16_split_y %18.y
+    con 32     %23 = load_const (0x00000001 = 0.000000)
+    con 32     %24 = @resource_intel (%15 (0xdeaddead), %23 (0x1), %1 (0x0), %1 (0x0)) (desc_set=0, binding=0, resource_intel=0, resource_block_intel=-1)
+    div 32     %25 = ishl %13, %4 (0x5)
+    div 32x4   %26 = @load_ssbo (%24, %25) (access=readonly|reorderable, align_mul=32, align_offset=0, offset_shift=0)
+    div 16     %27 = unpack_32_2x16_split_x %26.x
+    div 16     %28 = unpack_32_2x16_split_y %26.x
+    div 16     %29 = unpack_32_2x16_split_x %26.y
+    div 16     %30 = unpack_32_2x16_split_y %26.y
+    div 16     %31 = unpack_32_2x16_split_x %26.z
+    div 16     %32 = unpack_32_2x16_split_y %26.z
+    div 16     %33 = unpack_32_2x16_split_x %26.w
+    div 16     %34 = unpack_32_2x16_split_y %26.w
+    con 32     %35 = load_const (0x00000002 = 0.000000)
+    con 32     %36 = @resource_intel (%15 (0xdeaddead), %35 (0x2), %1 (0x0), %1 (0x0)) (desc_set=0, binding=1, resource_intel=0, resource_block_intel=-1)
+    con 32x8   %37 = @load_ssbo_uniform_block_intel (%36, %1 (0x0)) (access=readonly|reorderable, align_mul=1073741824, align_offset=0, base=0)
+    con 16     %38 = unpack_32_2x16_split_x %37.a
+    con 16     %39 = unpack_32_2x16_split_y %37.a
+    con 16     %40 = unpack_32_2x16_split_x %37.b
+    con 16     %41 = unpack_32_2x16_split_y %37.b
+    con 16     %42 = unpack_32_2x16_split_x %37.c
+    con 16     %43 = unpack_32_2x16_split_y %37.c
+    con 16     %44 = unpack_32_2x16_split_x %37.d
+    con 16     %45 = unpack_32_2x16_split_y %37.d
+    div 16     %46 = ffma %27, %38, %19
+    div 16     %47 = ffma %28, %39, %20
+    div 16     %48 = ffma %29, %40, %21
+    div 16     %49 = ffma %30, %41, %22
+    div 16     %50 = ffma %31, %42, %46
+    div 16     %51 = ffma %32, %43, %47
+    div 16     %52 = ffma %33, %44, %48
+    div 16     %53 = ffma %34, %45, %49
+    con 32     %54 = load_const (0x00000010 = 16)
+    div 32     %55 = iadd %25, %54 (0x10)
+    div 32x4   %56 = @load_ssbo (%24, %55) (access=readonly|reorderable, align_mul=32, align_offset=16, offset_shift=0)
+    div 16     %57 = unpack_32_2x16_split_x %56.x
+    div 16     %58 = unpack_32_2x16_split_y %56.x
+    div 16     %59 = unpack_32_2x16_split_x %56.y
+    div 16     %60 = unpack_32_2x16_split_y %56.y
+    div 16     %61 = unpack_32_2x16_split_x %56.z
+    div 16     %62 = unpack_32_2x16_split_y %56.z
+    div 16     %63 = unpack_32_2x16_split_x %56.w
+    div 16     %64 = unpack_32_2x16_split_y %56.w
+    con 16     %65 = unpack_32_2x16_split_x %37.e
+    con 16     %66 = unpack_32_2x16_split_y %37.e
+    con 16     %67 = unpack_32_2x16_split_x %37.f
+    con 16     %68 = unpack_32_2x16_split_y %37.f
+    con 16     %69 = unpack_32_2x16_split_x %37.g
+    con 16     %70 = unpack_32_2x16_split_y %37.g
+    con 16     %71 = unpack_32_2x16_split_x %37.h
+    con 16     %72 = unpack_32_2x16_split_y %37.h
+    div 16     %73 = ffma %57, %65, %50
+    div 16     %74 = ffma %58, %66, %51
+    div 16     %75 = ffma %59, %67, %52
+    div 16     %76 = ffma %60, %68, %53
+    div 16     %77 = ffma %61, %69, %73
+    div 16     %78 = ffma %62, %70, %74
+    div 16     %79 = ffma %63, %71, %75
+    div 16     %80 = ffma %64, %72, %76
+    con 16     %81 = load_const (0x0000 = 0.000000)
+    div 32     %82 = flt32 %77, %81 (0.000000) // preserve:inf,nan
+    con 16     %83 = load_const (0x2e66 = 0.099976)
+    div 16     %84 = fmul %77, %83 (0.099976)
+    div 16     %85 = b32csel %82, %84, %77
+    div 16     %86 = fmul %78, %83 (0.099976)
+    div 32     %87 = flt32 %78, %81 (0.000000) // preserve:inf,nan
+    div 16     %88 = b32csel %87, %86, %78
+    div 16     %89 = fmul %79, %83 (0.099976)
+    div 32     %90 = flt32 %79, %81 (0.000000) // preserve:inf,nan
+    div 16     %91 = b32csel %90, %89, %79
+    div 16     %92 = fmul %80, %83 (0.099976)
+    div 32     %93 = flt32 %80, %81 (0.000000) // preserve:inf,nan
+    div 16     %94 = b32csel %93, %92, %80
+    con 32     %95 = load_const (0x00000004 = 0.000000)
+    con 32     %96 = @resource_intel (%15 (0xdeaddead), %95 (0x4), %1 (0x0), %1 (0x0)) (desc_set=0, binding=3, resource_intel=0, resource_block_intel=-1)
+    div 32     %97 = pack_32_2x16_split %85, %88
+    div 32     %98 = pack_32_2x16_split %91, %94
+    div 32x2   %99 = vec2 %97, %98
+                     @store_ssbo (%99, %96, %17) (wrmask=xy, access=writeonly, align_mul=8, align_offset=0, offset_shift=0)
+                     // succs: b1
+    block b1:
+}
+
+Native code for unnamed compute shader  (src_hash 0xf35fea3e8817a442) (blake3 67e30edc25141a89477f265b8e5e4ffa974207ebd4cb27548acaf7fb73e2a02f)
+SIMD32 shader: 125 instructions. 0 loops. 672 cycles. 0:0 spills:fills, 10 sends, scheduled with mode top-down. Promoted 0 constants. GRF registers: 127. Compacted 2000 to 1936 bytes (3%)
+
+// 672 cycles
+(W)     mov (8)                   r50           r0.1<0>                           {Compacted}
+(W)     shl (8)                   r103:d        r12.4<0>:d        0x00000005
+(W)     mov (8)                   r51           0x00000000                        {Compacted}
+(W)     mov (8)                   r126          r0                                {Compacted}
+(W)     add (8)                   r108:d        r50<0>:d          r1.5<0>:d       {Compacted}
+(W)     mov (8)                   r106:uw       0x76543210:v
+(W)     mov (1)                   r51.2         0:d
+(W)     shl (8)                   r109:d        r108<0>:d         0x00000007
+(W)     add (8)                   r106.8:uw     r106:uw           8:uw
+(W)     sends.hdc0 (8)            r115    r51    null    0x00000000  0x02184202  // wr:1h+0, rd:1; oword_unaligned_block_read:owords2 (8) bti(2)
+(W)     add (16)                  r107:uw       r106:uw           16:uw
+        mov (16)                  r52           r106:uw
+        mov (16|M16)              r104          r107:uw
+        add (16)                  r54:d         r52:d             r103<0>:d       {Compacted}
+        add (16|M16)              r107:d        r104:d            r103<0>:d
+        and (16)                  r56           r54               0x0000007f      {Compacted}
+        and (16|M16)              r110          r107              0x0000007f
+        add (16)                  r58:d         r109<0>:d         r56:d           {Compacted}
+        add (16|M16)              r112:d        r109<0>:d         r110:d
+        shl (16)                  r65:d         r58:d             0x00000003
+        shl (16)                  r60:d         r58:d             0x00000005
+        shl (16|M16)              r82:d         r112:d            0x00000003
+        sends.hdc1 (16)           r4      r65    null    0x00000000  0x04405C03  // wr:2+0, rd:4; untyped_read:xy simd16 (16) bti(3)
+        sends.hdc1 (16)           r16     r60    null    0x00000000  0x04805001  // wr:2+0, rd:8; untyped_read:xyzw simd16 (16) bti(1)
+        add (16)                  r102:d        r60:d             16:d            {Compacted}
+        sends.hdc1 (16|M16)       r0      r82    null    0x00000000  0x04405C03  // wr:2+0, rd:4; untyped_read:xy simd16 (16) bti(3)
+        sends.hdc1 (16)           r25     r102   null    0x00000000  0x04805001  // wr:2+0, rd:8; untyped_read:xyzw simd16 (16) bti(1)
+(W)     mov (8)                   r94:uw        r115<0>:uw
+(W)     mov (8)                   r70:uw        r115.1<0>:uw
+(W)     mov (8)                   r71:uw        r115.2<0>:uw
+(W)     mov (8)                   r72:uw        r115.3<0>:uw
+(W)     mov (8)                   r73:uw        r115.4<0>:uw
+(W)     mov (8)                   r74:uw        r115.5<0>:uw
+(W)     mov (8)                   r75:uw        r115.6<0>:uw
+(W)     mov (8)                   r76:uw        r115.7<0>:uw
+(W)     mov (8)                   r69:uw        r115.8<0>:uw
+(W)     mov (8)                   r95:uw        r115.9<0>:uw
+(W)     mov (8)                   r96:uw        r115.10<0>:uw
+(W)     mov (8)                   r97:uw        r115.11<0>:uw
+(W)     mov (8)                   r98:uw        r115.12<0>:uw
+(W)     mov (8)                   r99:uw        r115.13<0>:uw
+(W)     mov (8)                   r100:uw       r115.14<0>:uw
+(W)     mov (8)                   r101:uw       r115.15<0>:uw
+        shl (16|M16)              r114:d        r112:d            0x00000005
+        sends.hdc1 (16|M16)       r8      r114   null    0x00000000  0x04805001  // wr:2+0, rd:8; untyped_read:xyzw simd16 (16) bti(1)
+        add (16|M16)              r77:d         r114:d            16:d
+        mov (16)                  r86:uw        r4<2>:uw
+        mov (16)                  r90:uw        r4.1<2>:uw
+        mov (16)                  r49:uw        r6<2>:uw
+        mov (16)                  r51:uw        r6.1<2>:uw
+        mov (16)                  r61:uw        r20<2>:uw
+        mov (16)                  r53:uw        r16<2>:uw
+        mov (16)                  r55:uw        r16.1<2>:uw
+        mov (16)                  r57:uw        r18<2>:uw
+        mov (16)                  r59:uw        r18.1<2>:uw
+        mov (16)                  r63:uw        r20.1<2>:uw
+        mov (16)                  r41:uw        r22<2>:uw
+        mov (16)                  r67:uw        r22.1<2>:uw
+        mov (16|M16)              r87:uw        r0<2>:uw
+        mov (16|M16)              r91:uw        r0.1<2>:uw
+        mov (16|M16)              r50:uw        r2<2>:uw
+        mov (16|M16)              r52:uw        r2.1<2>:uw
+        mov (16)                  r80:uw        r25.1<2>:uw
+        mov (16)                  r43:uw        r27<2>:uw
+        mov (16)                  r84:uw        r27.1<2>:uw
+        mov (16)                  r45:uw        r29<2>:uw
+        mov (16)                  r88:uw        r29.1<2>:uw
+        mov (16)                  r47:uw        r31<2>:uw
+        mov (16)                  r92:uw        r31.1<2>:uw
+        sends.hdc1 (16|M16)       r17     r77    null    0x00000000  0x04805001  // wr:2+0, rd:8; untyped_read:xyzw simd16 (16) bti(1)
+        mov (16)                  r78:uw        r25<2>:uw
+        mov (16|M16)              r54:uw        r8<2>:uw
+        mov (16|M16)              r56:uw        r8.1<2>:uw
+        mov (16|M16)              r58:uw        r10<2>:uw
+        mov (16|M16)              r60:uw        r10.1<2>:uw
+        mov (16|M16)              r62:uw        r12<2>:uw
+        mov (16|M16)              r64:uw        r12.1<2>:uw
+        mov (16|M16)              r42:uw        r14<2>:uw
+        mov (16|M16)              r68:uw        r14.1<2>:uw
+        mad (32)                  r116:hf       r86:hf            r94<0>.r:hf       r53:hf {Align16}
+        mad (32)                  r118:hf       r90:hf            r70<0>.r:hf       r55:hf {Align16}
+        mad (32)                  r120:hf       r49:hf            r71<0>.r:hf       r57:hf {Align16}
+        mad (32)                  r122:hf       r51:hf            r72<0>.r:hf       r59:hf {Align16}
+        mad (32)                  r124:hf       r116:hf           r73<0>.r:hf       r61:hf {Align16}
+        mad (32)                  r0:hf         r118:hf           r74<0>.r:hf       r63:hf {Align16}
+        mad (32)                  r2:hf         r120:hf           r75<0>.r:hf       r41:hf {Align16}
+        mad (32)                  r4:hf         r122:hf           r76<0>.r:hf       r67:hf {Align16}
+        mov (16|M16)              r79:uw        r17<2>:uw
+        mov (16|M16)              r81:uw        r17.1<2>:uw
+        mov (16|M16)              r44:uw        r19<2>:uw
+        mov (16|M16)              r85:uw        r19.1<2>:uw
+        mov (16|M16)              r46:uw        r21<2>:uw
+        mov (16|M16)              r89:uw        r21.1<2>:uw
+        mov (16|M16)              r48:uw        r23<2>:uw
+        mov (16|M16)              r93:uw        r23.1<2>:uw
+        mad (32)                  r6:hf         r124:hf           r69<0>.r:hf       r78:hf {Align16}
+        mad (32)                  r8:hf         r0:hf             r95<0>.r:hf       r80:hf {Align16}
+        mad (32)                  r10:hf        r2:hf             r96<0>.r:hf       r43:hf {Align16}
+        mad (32)                  r12:hf        r4:hf             r97<0>.r:hf       r84:hf {Align16}
+        mad (32)       (lt)f0.0   r14:hf        r6:hf             r98<0>.r:hf       r45:hf {Align16}
+        mad (32)                  r16:hf        r8:hf             r99<0>.r:hf       r88:hf {Align16}
+        mad (32)                  r18:hf        r10:hf            r100<0>.r:hf      r47:hf {Align16}
+        mad (32)                  r20:hf        r12:hf            r101<0>.r:hf      r92:hf {Align16}
+        mul (32)                  r22:hf        r14:hf            0x2e66:hf
+        mul (32)                  r26:hf        r16:hf            0x2e66:hf
+        mul (32)                  r30:hf        r18:hf            0x2e66:hf
+        mul (32)                  r90:hf        r20:hf            0x2e66:hf
+(f0.0)  sel (32)                  r24:uw        r22:uw            r14:uw
+        mov (16)                  r33<2>:uw     r24:uw
+        mov (16|M16)              r37<2>:uw     r25:uw
+        cmp (32)       (lt)f0.0   null:hf       r16:hf            0x0000:hf
+(f0.0)  sel (32)                  r28:uw        r26:uw            r16:uw
+        mov (16)                  r33.1<2>:uw   r28:uw
+        mov (16|M16)              r37.1<2>:uw   r29:uw
+        cmp (32)       (lt)f0.0   null:hf       r18:hf            0x0000:hf
+(f0.0)  sel (32)                  r86:uw        r30:uw            r18:uw
+        mov (16)                  r35<2>:uw     r86:uw
+        mov (16|M16)              r39<2>:uw     r87:uw
+        cmp (32)       (lt)f0.0   null:hf       r20:hf            0x0000:hf
+(f0.0)  sel (32)                  r49:uw        r90:uw            r20:uw
+        mov (16)                  r35.1<2>:uw   r49:uw
+        mov (16|M16)              r39.1<2>:uw   r50:uw
+        sends.hdc1 (16)           null    r65    r33     0x00000100  0x04025C04  // wr:2+4, rd:0; untyped_write:xy simd16 (16) bti(4)
+        sends.hdc1 (16|M16)       null    r82    r37     0x00000100  0x04025C04  // wr:2+4, rd:0; untyped_write:xy simd16 (16) bti(4)
+(W)     sends.ts (32)             null    r126   null    0x00000000  0x02000010   {EOT}
+pipeline created at subgroup size 32

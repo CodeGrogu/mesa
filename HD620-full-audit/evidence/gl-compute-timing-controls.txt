@@ -1,0 +1,19 @@
+Mesa Intel(R) HD Graphics 620 (KBL GT2)
+1048576 work-items, 16 rounds, timestamp pair, output checks passed
+  GL query difference median 0.000333 ms, samples ns [833, 667, 500, 333, 333, 250, 250, 250, 250]
+  wall time through finish median 1.204747 ms, samples ns [2610687, 2115987, 1913514, 1386822, 1204747, 1012616, 1086189, 1149192, 1179656]
+1048576 work-items, 16 rounds, time elapsed, output checks passed
+  GL query difference median 0.000000 ms, samples ns [0, 0, 83, 0, 83, 83, 0, 0, 83]
+  wall time through finish median 1.199369 ms, samples ns [1101343, 1187019, 1199369, 1204861, 1173367, 1199756, 1248120, 1219681, 1047849]
+1048576 work-items, 16 rounds, timestamp pair with explicit drains, output checks passed
+  GL query difference median 1.317500 ms, samples ns [1308917, 1393417, 1326416, 1105583, 1317500, 1252167, 1393250, 1283250, 1342083]
+  wall time through finish median 1.440780 ms, samples ns [1440780, 1510085, 1443421, 1254300, 1378189, 1393443, 1484366, 1344864, 1458302]
+1048576 work-items, 256 rounds, timestamp pair, output checks passed
+  GL query difference median 0.000250 ms, samples ns [333, 250, 334, 250, 250, 250, 250, 250, 250]
+  wall time through finish median 11.511092 ms, samples ns [11508239, 11654495, 11390336, 11538515, 11387760, 11519025, 11460941, 11635120, 11511092]
+1048576 work-items, 256 rounds, time elapsed, output checks passed
+  GL query difference median 0.000000 ms, samples ns [0, 0, 0, 0, 83, 0, 83, 83, 0]
+  wall time through finish median 11.530667 ms, samples ns [11456388, 11526008, 11468470, 11791962, 11530667, 11554862, 11605549, 11484675, 11538401]
+1048576 work-items, 256 rounds, timestamp pair with explicit drains, output checks passed
+  GL query difference median 11.585417 ms, samples ns [11654917, 11684583, 11703500, 11495083, 11553334, 11585417, 11667000, 11375584, 11372583]
+  wall time through finish median 11.692192 ms, samples ns [11717428, 11831675, 11767391, 11626437, 11692192, 11639836, 11811300, 11510498, 11431167]

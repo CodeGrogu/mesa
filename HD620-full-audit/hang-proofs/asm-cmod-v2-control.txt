@@ -1,0 +1,522 @@
+NIR (SSA form) for compute shader:
+shader: MESA_SHADER_COMPUTE
+source_blake3: {0x936621d9, 0x0e299513, 0x802dbf77, 0xd74cbfcd, 0x9d8d182a, 0x632a0360, 0x40f1a455, 0x08cdce99}
+name: 
+workgroup_size: 128, 1, 1
+num_ssbos: 4
+system_values_read: 0x00000000'00000000'00018400'00000000
+api_subgroup_size: 32
+max_subgroup_size: 32
+min_subgroup_size: 32
+bit_sizes_float: 0x10
+bit_sizes_int: 0x31
+separate_shader: true
+flrp_lowered: true
+writes_memory: true
+decl_var ssbo INTERP_MODE_NONE restrict readonly C #0 (~0, 0, 2)
+decl_var ssbo INTERP_MODE_NONE restrict readonly A #1 (~0, 0, 0)
+decl_var ssbo INTERP_MODE_NONE restrict readonly B #2 (~0, 0, 1)
+decl_var ssbo INTERP_MODE_NONE restrict writeonly O #3 (~0, 0, 3)
+decl_function main () (entrypoint)
+
+impl main {
+    con block b0:        // preds:
+    con 32x3    %0 = @load_workgroup_id
+    con 32      %1 = load_const (0x00000000)
+    con 32      %2 = @load_push_data_intel (%1 (0x0)) (base=20, range=12)
+    con 32      %3 = @load_push_data_intel (%1 (0x0)) (base=368, range=4)
+    con 32      %4 = load_const (0x00000005)
+    con 32      %5 = ishl %3, %4 (0x5)
+    div 32      %6 = @load_subgroup_invocation
+    div 32      %7 = iadd %6, %5
+    con 32      %8 = iadd %0.x, %2
+    con 32      %9 = load_const (0x00000007)
+    con 32     %10 = ishl %8, %9 (0x7)
+    con 32     %11 = load_const (0x0000007f = 127)
+    div 32     %12 = iand %7, %11 (0x7f)
+    div 32     %13 = iadd %10, %12
+    con 32     %14 = load_const (0x00000003 = 0.000000)
+    con 32     %15 = load_const (0xdeaddead = -6.264321e+18 = -559030611 = 3735936685)
+    con 32     %16 = @resource_intel (%15 (0xdeaddead), %14 (0x3), %1 (0x0), %1 (0x0)) (desc_set=0, binding=2, resource_intel=0, resource_block_intel=-1)
+    con 32     %17 = load_const (0x00000001)
+    con 32     %18 = @resource_intel (%15 (0xdeaddead), %17 (0x1), %1 (0x0), %1 (0x0)) (desc_set=0, binding=0, resource_intel=0, resource_block_intel=-1)
+    con 32     %19 = load_const (0x00000002)
+    con 32     %20 = @resource_intel (%15 (0xdeaddead), %19 (0x2), %1 (0x0), %1 (0x0)) (desc_set=0, binding=1, resource_intel=0, resource_block_intel=-1)
+    div 32     %21 = ishl %13, %17 (0x1)
+    div 16     %22 = @load_ssbo (%20, %21) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %23 = @load_ssbo (%16, %21) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %24 = @load_ssbo (%18, %21) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %25 = ffma %24, %22, %23
+    con 16     %26 = load_const (0x2e66 = 0.099976)
+    div 16     %27 = fmul %25, %26 (0.099976)
+    con 16     %28 = load_const (0x0000 = 0.000000)
+    div 32     %29 = flt32 %25, %28 (0.000000) // preserve:inf,nan
+    div 16     %30 = b32csel %29, %27, %25
+    con 16     %31 = load_const (0x4000 = 2.000000)
+    div 16     %32 = fmul %30, %31 (2.000000)
+    div 32     %33 = iadd %21, %19 (0x2)
+    div 16     %34 = @load_ssbo (%18, %33) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %35 = @load_ssbo (%20, %33) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %36 = ffma %34, %35, %32
+    con 32     %37 = load_const (0x00000004)
+    div 32     %38 = iadd %21, %37 (0x4)
+    div 16     %39 = @load_ssbo (%18, %38) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %40 = ffma %35, %39, %32
+    div 16     %41 = fmul %36, %26 (0.099976)
+    div 32     %42 = flt32 %36, %28 (0.000000) // preserve:inf,nan
+    div 16     %43 = b32csel %42, %41, %36
+    div 16     %44 = fmul %40, %26 (0.099976)
+    div 32     %45 = flt32 %40, %28 (0.000000) // preserve:inf,nan
+    div 16     %46 = b32csel %45, %44, %40
+    div 16     %47 = fadd %43, %46
+    div 16     %48 = @load_ssbo (%20, %38) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %49 = ffma %39, %48, %47
+    con 32     %50 = load_const (0x00000008)
+    div 32     %51 = iadd %21, %50 (0x8)
+    div 16     %52 = @load_ssbo (%18, %51) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %53 = ffma %48, %52, %47
+    div 16     %54 = fmul %49, %26 (0.099976)
+    div 32     %55 = flt32 %49, %28 (0.000000) // preserve:inf,nan
+    div 16     %56 = b32csel %55, %54, %49
+    div 16     %57 = fmul %53, %26 (0.099976)
+    div 32     %58 = flt32 %53, %28 (0.000000) // preserve:inf,nan
+    div 16     %59 = b32csel %58, %57, %53
+    div 16     %60 = fadd %56, %59
+    con 32     %61 = load_const (0x00000006)
+    div 32     %62 = iadd %21, %61 (0x6)
+    div 16     %63 = @load_ssbo (%18, %62) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %64 = @load_ssbo (%20, %62) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %65 = ffma %63, %64, %60
+    con 32     %66 = load_const (0x0000000c = 12)
+    div 32     %67 = iadd %66 (0xc), %21
+    div 16     %68 = @load_ssbo (%18, %67) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %69 = ffma %64, %68, %60
+    div 16     %70 = fmul %65, %26 (0.099976)
+    div 32     %71 = flt32 %65, %28 (0.000000) // preserve:inf,nan
+    div 16     %72 = b32csel %71, %70, %65
+    div 16     %73 = fmul %69, %26 (0.099976)
+    div 32     %74 = flt32 %69, %28 (0.000000) // preserve:inf,nan
+    div 16     %75 = b32csel %74, %73, %69
+    div 16     %76 = fadd %72, %75
+    div 16     %77 = @load_ssbo (%20, %51) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %78 = ffma %52, %77, %76
+    con 32     %79 = load_const (0x00000010 = 16)
+    div 32     %80 = iadd %21, %79 (0x10)
+    div 16     %81 = @load_ssbo (%18, %80) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %82 = ffma %77, %81, %76
+    div 16     %83 = fmul %78, %26 (0.099976)
+    div 32     %84 = flt32 %78, %28 (0.000000) // preserve:inf,nan
+    div 16     %85 = b32csel %84, %83, %78
+    div 16     %86 = fmul %82, %26 (0.099976)
+    div 32     %87 = flt32 %82, %28 (0.000000) // preserve:inf,nan
+    div 16     %88 = b32csel %87, %86, %82
+    div 16     %89 = fadd %85, %88
+    con 32     %90 = load_const (0x0000000a = 10)
+    div 32     %91 = iadd %90 (0xa), %21
+    div 16     %92 = @load_ssbo (%18, %91) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %93 = @load_ssbo (%20, %91) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %94 = ffma %92, %93, %89
+    con 32     %95 = load_const (0x00000014 = 20)
+    div 32     %96 = iadd %95 (0x14), %21
+    div 16     %97 = @load_ssbo (%18, %96) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %98 = ffma %93, %97, %89
+    div 16     %99 = fmul %94, %26 (0.099976)
+    div 32    %100 = flt32 %94, %28 (0.000000) // preserve:inf,nan
+    div 16    %101 = b32csel %100, %99, %94
+    div 16    %102 = fmul %98, %26 (0.099976)
+    div 32    %103 = flt32 %98, %28 (0.000000) // preserve:inf,nan
+    div 16    %104 = b32csel %103, %102, %98
+    div 16    %105 = fadd %101, %104
+    div 16    %106 = @load_ssbo (%20, %67) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16    %107 = ffma %68, %106, %105
+    con 32    %108 = load_const (0x00000018 = 24)
+    div 32    %109 = iadd %21, %108 (0x18)
+    div 16    %110 = @load_ssbo (%18, %109) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16    %111 = ffma %106, %110, %105
+    div 16    %112 = fmul %107, %26 (0.099976)
+    div 32    %113 = flt32 %107, %28 (0.000000) // preserve:inf,nan
+    div 16    %114 = b32csel %113, %112, %107
+    div 16    %115 = fmul %111, %26 (0.099976)
+    div 32    %116 = flt32 %111, %28 (0.000000) // preserve:inf,nan
+    div 16    %117 = b32csel %116, %115, %111
+    div 16    %118 = fadd %114, %117
+    con 32    %119 = load_const (0x0000000e = 14)
+    div 32    %120 = iadd %119 (0xe), %21
+    div 16    %121 = @load_ssbo (%18, %120) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16    %122 = @load_ssbo (%20, %120) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16    %123 = ffma %121, %122, %118
+    con 32    %124 = load_const (0x0000001c = 28)
+    div 32    %125 = iadd %124 (0x1c), %21
+    div 16    %126 = @load_ssbo (%18, %125) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16    %127 = ffma %122, %126, %118
+    div 16    %128 = fmul %123, %26 (0.099976)
+    div 32    %129 = flt32 %123, %28 (0.000000) // preserve:inf,nan
+    div 16    %130 = b32csel %129, %128, %123
+    div 16    %131 = fmul %127, %26 (0.099976)
+    div 32    %132 = flt32 %127, %28 (0.000000) // preserve:inf,nan
+    div 16    %133 = b32csel %132, %131, %127
+    div 16    %134 = fadd %130, %133
+    con 32    %135 = @resource_intel (%15 (0xdeaddead), %37 (0x4), %1 (0x0), %1 (0x0)) (desc_set=0, binding=3, resource_intel=0, resource_block_intel=-1)
+                     @store_ssbo (%134, %135, %21) (wrmask=x, access=writeonly, align_mul=2, align_offset=0, offset_shift=0)
+                     // succs: b1
+    block b1:
+}
+
+NIR (final form) for compute shader:
+shader: MESA_SHADER_COMPUTE
+source_blake3: {0x936621d9, 0x0e299513, 0x802dbf77, 0xd74cbfcd, 0x9d8d182a, 0x632a0360, 0x40f1a455, 0x08cdce99}
+name: 
+workgroup_size: 128, 1, 1
+num_ssbos: 4
+system_values_read: 0x00000000'00000000'00018400'00000000
+api_subgroup_size: 32
+max_subgroup_size: 32
+min_subgroup_size: 32
+bit_sizes_float: 0x10
+bit_sizes_int: 0x31
+separate_shader: true
+flrp_lowered: true
+writes_memory: true
+decl_var ssbo INTERP_MODE_NONE restrict readonly C #0 (~0, 0, 2)
+decl_var ssbo INTERP_MODE_NONE restrict readonly A #1 (~0, 0, 0)
+decl_var ssbo INTERP_MODE_NONE restrict readonly B #2 (~0, 0, 1)
+decl_var ssbo INTERP_MODE_NONE restrict writeonly O #3 (~0, 0, 3)
+decl_function main () (entrypoint)
+
+impl main {
+    con block b0:        // preds:
+    con 32x3    %0 = @load_workgroup_id
+    con 32      %1 = load_const (0x00000000)
+    con 32      %2 = @load_push_data_intel (%1 (0x0)) (base=20, range=12)
+    con 32      %3 = @load_push_data_intel (%1 (0x0)) (base=368, range=4)
+    con 32      %4 = load_const (0x00000005)
+    con 32      %5 = ishl %3, %4 (0x5)
+    div 32      %6 = @load_subgroup_invocation
+    div 32      %7 = iadd %6, %5
+    con 32      %8 = iadd %0.x, %2
+    con 32      %9 = load_const (0x00000007)
+    con 32     %10 = ishl %8, %9 (0x7)
+    con 32     %11 = load_const (0x0000007f = 127)
+    div 32     %12 = iand %7, %11 (0x7f)
+    div 32     %13 = iadd %10, %12
+    con 32     %14 = load_const (0x00000003 = 0.000000)
+    con 32     %15 = load_const (0xdeaddead = -6.264321e+18 = -559030611 = 3735936685)
+    con 32     %16 = @resource_intel (%15 (0xdeaddead), %14 (0x3), %1 (0x0), %1 (0x0)) (desc_set=0, binding=2, resource_intel=0, resource_block_intel=-1)
+    con 32     %17 = load_const (0x00000001)
+    con 32     %18 = @resource_intel (%15 (0xdeaddead), %17 (0x1), %1 (0x0), %1 (0x0)) (desc_set=0, binding=0, resource_intel=0, resource_block_intel=-1)
+    con 32     %19 = load_const (0x00000002)
+    con 32     %20 = @resource_intel (%15 (0xdeaddead), %19 (0x2), %1 (0x0), %1 (0x0)) (desc_set=0, binding=1, resource_intel=0, resource_block_intel=-1)
+    div 32     %21 = ishl %13, %17 (0x1)
+    div 16     %22 = @load_ssbo (%20, %21) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %23 = @load_ssbo (%16, %21) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %24 = @load_ssbo (%18, %21) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %25 = ffma %24, %22, %23
+    con 16     %26 = load_const (0x2e66 = 0.099976)
+    div 16     %27 = fmul %25, %26 (0.099976)
+    con 16     %28 = load_const (0x0000 = 0.000000)
+    div 32     %29 = flt32 %25, %28 (0.000000) // preserve:inf,nan
+    div 16     %30 = b32csel %29, %27, %25
+    con 16     %31 = load_const (0x4000 = 2.000000)
+    div 16     %32 = fmul %30, %31 (2.000000)
+    div 32     %33 = iadd %21, %19 (0x2)
+    div 16     %34 = @load_ssbo (%18, %33) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %35 = @load_ssbo (%20, %33) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %36 = ffma %34, %35, %32
+    con 32     %37 = load_const (0x00000004)
+    div 32     %38 = iadd %21, %37 (0x4)
+    div 16     %39 = @load_ssbo (%18, %38) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %40 = ffma %35, %39, %32
+    div 16     %41 = fmul %36, %26 (0.099976)
+    div 32     %42 = flt32 %36, %28 (0.000000) // preserve:inf,nan
+    div 16     %43 = b32csel %42, %41, %36
+    div 16     %44 = fmul %40, %26 (0.099976)
+    div 32     %45 = flt32 %40, %28 (0.000000) // preserve:inf,nan
+    div 16     %46 = b32csel %45, %44, %40
+    div 16     %47 = fadd %43, %46
+    div 16     %48 = @load_ssbo (%20, %38) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %49 = ffma %39, %48, %47
+    con 32     %50 = load_const (0x00000008)
+    div 32     %51 = iadd %21, %50 (0x8)
+    div 16     %52 = @load_ssbo (%18, %51) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %53 = ffma %48, %52, %47
+    div 16     %54 = fmul %49, %26 (0.099976)
+    div 32     %55 = flt32 %49, %28 (0.000000) // preserve:inf,nan
+    div 16     %56 = b32csel %55, %54, %49
+    div 16     %57 = fmul %53, %26 (0.099976)
+    div 32     %58 = flt32 %53, %28 (0.000000) // preserve:inf,nan
+    div 16     %59 = b32csel %58, %57, %53
+    div 16     %60 = fadd %56, %59
+    con 32     %61 = load_const (0x00000006)
+    div 32     %62 = iadd %21, %61 (0x6)
+    div 16     %63 = @load_ssbo (%18, %62) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %64 = @load_ssbo (%20, %62) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %65 = ffma %63, %64, %60
+    con 32     %66 = load_const (0x0000000c = 12)
+    div 32     %67 = iadd %66 (0xc), %21
+    div 16     %68 = @load_ssbo (%18, %67) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %69 = ffma %64, %68, %60
+    div 16     %70 = fmul %65, %26 (0.099976)
+    div 32     %71 = flt32 %65, %28 (0.000000) // preserve:inf,nan
+    div 16     %72 = b32csel %71, %70, %65
+    div 16     %73 = fmul %69, %26 (0.099976)
+    div 32     %74 = flt32 %69, %28 (0.000000) // preserve:inf,nan
+    div 16     %75 = b32csel %74, %73, %69
+    div 16     %76 = fadd %72, %75
+    div 16     %77 = @load_ssbo (%20, %51) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %78 = ffma %52, %77, %76
+    con 32     %79 = load_const (0x00000010 = 16)
+    div 32     %80 = iadd %21, %79 (0x10)
+    div 16     %81 = @load_ssbo (%18, %80) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %82 = ffma %77, %81, %76
+    div 16     %83 = fmul %78, %26 (0.099976)
+    div 32     %84 = flt32 %78, %28 (0.000000) // preserve:inf,nan
+    div 16     %85 = b32csel %84, %83, %78
+    div 16     %86 = fmul %82, %26 (0.099976)
+    div 32     %87 = flt32 %82, %28 (0.000000) // preserve:inf,nan
+    div 16     %88 = b32csel %87, %86, %82
+    div 16     %89 = fadd %85, %88
+    con 32     %90 = load_const (0x0000000a = 10)
+    div 32     %91 = iadd %90 (0xa), %21
+    div 16     %92 = @load_ssbo (%18, %91) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %93 = @load_ssbo (%20, %91) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %94 = ffma %92, %93, %89
+    con 32     %95 = load_const (0x00000014 = 20)
+    div 32     %96 = iadd %95 (0x14), %21
+    div 16     %97 = @load_ssbo (%18, %96) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16     %98 = ffma %93, %97, %89
+    div 16     %99 = fmul %94, %26 (0.099976)
+    div 32    %100 = flt32 %94, %28 (0.000000) // preserve:inf,nan
+    div 16    %101 = b32csel %100, %99, %94
+    div 16    %102 = fmul %98, %26 (0.099976)
+    div 32    %103 = flt32 %98, %28 (0.000000) // preserve:inf,nan
+    div 16    %104 = b32csel %103, %102, %98
+    div 16    %105 = fadd %101, %104
+    div 16    %106 = @load_ssbo (%20, %67) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16    %107 = ffma %68, %106, %105
+    con 32    %108 = load_const (0x00000018 = 24)
+    div 32    %109 = iadd %21, %108 (0x18)
+    div 16    %110 = @load_ssbo (%18, %109) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16    %111 = ffma %106, %110, %105
+    div 16    %112 = fmul %107, %26 (0.099976)
+    div 32    %113 = flt32 %107, %28 (0.000000) // preserve:inf,nan
+    div 16    %114 = b32csel %113, %112, %107
+    div 16    %115 = fmul %111, %26 (0.099976)
+    div 32    %116 = flt32 %111, %28 (0.000000) // preserve:inf,nan
+    div 16    %117 = b32csel %116, %115, %111
+    div 16    %118 = fadd %114, %117
+    con 32    %119 = load_const (0x0000000e = 14)
+    div 32    %120 = iadd %119 (0xe), %21
+    div 16    %121 = @load_ssbo (%18, %120) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16    %122 = @load_ssbo (%20, %120) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16    %123 = ffma %121, %122, %118
+    con 32    %124 = load_const (0x0000001c = 28)
+    div 32    %125 = iadd %124 (0x1c), %21
+    div 16    %126 = @load_ssbo (%18, %125) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16    %127 = ffma %122, %126, %118
+    div 16    %128 = fmul %123, %26 (0.099976)
+    div 32    %129 = flt32 %123, %28 (0.000000) // preserve:inf,nan
+    div 16    %130 = b32csel %129, %128, %123
+    div 16    %131 = fmul %127, %26 (0.099976)
+    div 32    %132 = flt32 %127, %28 (0.000000) // preserve:inf,nan
+    div 16    %133 = b32csel %132, %131, %127
+    div 16    %134 = fadd %130, %133
+    con 32    %135 = @resource_intel (%15 (0xdeaddead), %37 (0x4), %1 (0x0), %1 (0x0)) (desc_set=0, binding=3, resource_intel=0, resource_block_intel=-1)
+                     @store_ssbo (%134, %135, %21) (wrmask=x, access=writeonly, align_mul=2, align_offset=0, offset_shift=0)
+                     // succs: b1
+    block b1:
+}
+
+Native code for unnamed compute shader  (src_hash 0x0e299513936621d9) (blake3 fcd425c3b0c5498e1fa331b110ff49f25089a0d73cd1135820ebea2a4cb655c6)
+SIMD32 shader: 189 instructions. 0 loops. 2416 cycles. 0:0 spills:fills, 45 sends, scheduled with mode top-down. Promoted 0 constants. GRF registers: 127. Compacted 3024 to 2896 bytes (4%)
+
+// 2416 cycles
+(W)     mov (8)                   r107          r0.1<0>                           {Compacted}
+(W)     shl (8)                   r37:d         r12.4<0>:d        0x00000005
+(W)     mov (8)                   r126          r0                                {Compacted}
+(W)     add (8)                   r42:d         r107<0>:d         r1.5<0>:d       {Compacted}
+(W)     mov (8)                   r40:uw        0x76543210:v
+(W)     shl (8)                   r43:d         r42<0>:d          0x00000007
+(W)     add (8)                   r40.8:uw      r40:uw            8:uw
+(W)     add (16)                  r41:uw        r40:uw            16:uw
+        mov (16)                  r108          r40:uw
+        mov (16|M16)              r38           r41:uw
+        add (16)                  r110:d        r108:d            r37<0>:d        {Compacted}
+        add (16|M16)              r41:d         r38:d             r37<0>:d
+        and (16)                  r8            r110              0x0000007f      {Compacted}
+        and (16|M16)              r82           r41               0x0000007f
+        add (16)                  r114:d        r43<0>:d          r8:d            {Compacted}
+        add (16|M16)              r46:d         r43<0>:d          r82:d
+        shl (16)                  r94:d         r114:d            0x00000001
+        shl (16|M16)              r42:d         r46:d             0x00000001
+        sends.hdc0 (16)           r115    r94    null    0x00000000  0x04210502  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(2)
+        sends.hdc0 (16)           r98     r94    null    0x00000000  0x04210503  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(3)
+        sends.hdc0 (16)           r112    r94    null    0x00000000  0x04210501  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(1)
+        add (16)                  r70:d         r94:d             2:d             {Compacted}
+        add (16)                  r14:d         r94:d             4:d             {Compacted}
+        add (16)                  r16:d         r94:d             8:d             {Compacted}
+        add (16)                  r20:d         r94:d             6:d             {Compacted}
+        add (16)                  r24:d         r94:d             12:d            {Compacted}
+        add (16)                  r26:d         r94:d             16:d            {Compacted}
+        add (16)                  r30:d         r94:d             10:d            {Compacted}
+        add (16)                  r34:d         r94:d             20:d            {Compacted}
+        add (16)                  r36:d         r94:d             24:d            {Compacted}
+        add (16)                  r117:d        r94:d             14:d            {Compacted}
+        add (16)                  r119:d        r94:d             28:d            {Compacted}
+        sends.hdc0 (16|M16)       r121    r42    null    0x00000000  0x04210502  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(2)
+        sends.hdc0 (16|M16)       r123    r42    null    0x00000000  0x04210503  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(3)
+        sends.hdc0 (16|M16)       r50     r42    null    0x00000000  0x04210501  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(1)
+        add (16|M16)              r54:d         r42:d             2:d
+        add (16|M16)              r105:d        r42:d             4:d
+        add (16|M16)              r107:d        r42:d             8:d
+        add (16|M16)              r109:d        r42:d             6:d
+        add (16|M16)              r101:d        r42:d             12:d
+        add (16|M16)              r103:d        r42:d             16:d
+        add (16|M16)              r10:d         r42:d             10:d
+        add (16|M16)              r76:d         r42:d             20:d
+        add (16|M16)              r2:d          r42:d             24:d
+        add (16|M16)              r0:d          r42:d             14:d
+        add (16|M16)              r44:d         r42:d             28:d
+        sends.hdc0 (16)           r12     r14    null    0x00000000  0x04210502  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(2)
+        sends.hdc0 (16)           r22     r16    null    0x00000000  0x04210502  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(2)
+        sends.hdc0 (16)           r18     r20    null    0x00000000  0x04210502  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(2)
+        sends.hdc0 (16)           r32     r24    null    0x00000000  0x04210502  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(2)
+        sends.hdc0 (16)           r28     r30    null    0x00000000  0x04210502  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(2)
+        sends.hdc0 (16)           r38     r117   null    0x00000000  0x04210502  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(2)
+        sends.hdc0 (16)           r40     r119   null    0x00000000  0x04210501  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(1)
+        sends.hdc0 (16|M16)       r52     r54    null    0x00000000  0x04210502  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(2)
+        sends.hdc0 (16|M16)       r56     r105   null    0x00000000  0x04210502  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(2)
+        sends.hdc0 (16|M16)       r58     r107   null    0x00000000  0x04210501  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(1)
+        sends.hdc0 (16|M16)       r66     r107   null    0x00000000  0x04210502  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(2)
+        sends.hdc0 (16|M16)       r60     r109   null    0x00000000  0x04210501  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(1)
+        sends.hdc0 (16|M16)       r62     r109   null    0x00000000  0x04210502  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(2)
+        sends.hdc0 (16|M16)       r64     r101   null    0x00000000  0x04210501  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(1)
+        sends.hdc0 (16|M16)       r80     r101   null    0x00000000  0x04210502  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(2)
+        sends.hdc0 (16|M16)       r68     r103   null    0x00000000  0x04210501  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(1)
+        sends.hdc0 (16|M16)       r72     r10    null    0x00000000  0x04210501  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(1)
+        sends.hdc0 (16|M16)       r74     r10    null    0x00000000  0x04210502  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(2)
+        sends.hdc0 (16|M16)       r78     r76    null    0x00000000  0x04210501  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(1)
+        sends.hdc0 (16|M16)       r84     r2     null    0x00000000  0x04210501  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(1)
+        sends.hdc0 (16|M16)       r86     r0     null    0x00000000  0x04210501  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(1)
+        sends.hdc0 (16|M16)       r88     r0     null    0x00000000  0x04210502  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(2)
+        sends.hdc0 (16|M16)       r90     r44    null    0x00000000  0x04210501  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(1)
+        mov (16)                  r82:uw        r115<2>:uw
+        mov (16)                  r46:uw        r98<2>:uw
+        sends.hdc0 (16)           r98     r70    null    0x00000000  0x04210501  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(1)
+        mov (16)                  r48:uw        r112<2>:uw
+        sends.hdc0 (16)           r112    r70    null    0x00000000  0x04210502  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(2)
+        sends.hdc0 (16)           r70     r14    null    0x00000000  0x04210501  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(1)
+        sends.hdc0 (16)           r14     r16    null    0x00000000  0x04210501  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(1)
+        sends.hdc0 (16)           r16     r20    null    0x00000000  0x04210501  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(1)
+        sends.hdc0 (16)           r20     r24    null    0x00000000  0x04210501  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(1)
+        sends.hdc0 (16)           r24     r26    null    0x00000000  0x04210501  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(1)
+        sends.hdc0 (16)           r26     r30    null    0x00000000  0x04210501  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(1)
+        sends.hdc0 (16)           r30     r34    null    0x00000000  0x04210501  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(1)
+        sends.hdc0 (16)           r34     r36    null    0x00000000  0x04210501  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(1)
+        sends.hdc0 (16)           r36     r117   null    0x00000000  0x04210501  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(1)
+        mov (16|M16)              r83:uw        r121<2>:uw
+        mov (16|M16)              r47:uw        r123<2>:uw
+        mov (16|M16)              r49:uw        r50<2>:uw
+        sends.hdc0 (16|M16)       r50     r54    null    0x00000000  0x04210501  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(1)
+        sends.hdc0 (16|M16)       r54     r105   null    0x00000000  0x04210501  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(1)
+        mad (32)       (lt)f0.0   r122:hf       r46:hf            r82:hf            r48:hf {Align16}
+        mul (32)                  r124:hf       r122:hf           0x2e66:hf
+        mov (16)                  r6:uw         r12<2>:uw
+        mov (16)                  r102:uw       r22<2>:uw
+(f0.0)  sel (32)                  r0:uw         r124:uw           r122:uw
+        mov (16)                  r8:uw         r18<2>:uw
+        mov (16)                  r116:uw       r32<2>:uw
+        mov (16)                  r2:uw         r28<2>:uw
+        mov (16)                  r118:uw       r38<2>:uw
+        mul (32)                  r44:hf        r0:hf             0x4000:hf
+        mov (16)                  r120:uw       r40<2>:uw
+        mov (16|M16)              r5:uw         r52<2>:uw
+        mov (16|M16)              r7:uw         r56<2>:uw
+        mov (16|M16)              r101:uw       r58<2>:uw
+        mov (16|M16)              r103:uw       r66<2>:uw
+        mov (16|M16)              r111:uw       r60<2>:uw
+        mov (16|M16)              r9:uw         r62<2>:uw
+        mov (16|M16)              r115:uw       r64<2>:uw
+        mov (16|M16)              r117:uw       r80<2>:uw
+        mov (16|M16)              r11:uw        r68<2>:uw
+        mov (16|M16)              r77:uw        r72<2>:uw
+        mov (16|M16)              r3:uw         r74<2>:uw
+        mov (16|M16)              r105:uw       r78<2>:uw
+        mov (16|M16)              r107:uw       r84<2>:uw
+        mov (16|M16)              r109:uw       r86<2>:uw
+        mov (16|M16)              r119:uw       r88<2>:uw
+        mov (16|M16)              r121:uw       r90<2>:uw
+        mov (16)                  r92:uw        r98<2>:uw
+        mov (16)                  r4:uw         r112<2>:uw
+        mov (16)                  r96:uw        r70<2>:uw
+        mov (16)                  r100:uw       r14<2>:uw
+        mov (16)                  r110:uw       r16<2>:uw
+        mov (16)                  r114:uw       r20<2>:uw
+        mov (16)                  r10:uw        r24<2>:uw
+        mov (16)                  r76:uw        r26<2>:uw
+        mov (16)                  r104:uw       r30<2>:uw
+        mov (16)                  r106:uw       r34<2>:uw
+        mov (16)                  r108:uw       r36<2>:uw
+        mov (16|M16)              r93:uw        r50<2>:uw
+        mov (16|M16)              r97:uw        r54<2>:uw
+        mad (32)       (lt)f0.0   r98:hf        r44:hf            r4:hf             r92:hf {Align16}
+        mad (32)                  r112:hf       r44:hf            r96:hf            r4:hf {Align16}
+        mul (32)                  r70:hf        r98:hf            0x2e66:hf
+        mul (32)                  r14:hf        r112:hf           0x2e66:hf
+(f0.0)  sel (32)                  r12:uw        r70:uw            r98:uw
+        cmp (32)       (lt)f0.0   null:hf       r112:hf           0x0000:hf
+(f0.0)  sel (32)                  r16:uw        r14:uw            r112:uw
+        add (32)                  r18:hf        r12:hf            r16:hf
+        mad (32)       (lt)f0.0   r20:hf        r18:hf            r6:hf             r96:hf {Align16}
+        mad (32)                  r22:hf        r18:hf            r100:hf           r6:hf {Align16}
+        mul (32)                  r24:hf        r20:hf            0x2e66:hf
+        mul (32)                  r28:hf        r22:hf            0x2e66:hf
+(f0.0)  sel (32)                  r26:uw        r24:uw            r20:uw
+        cmp (32)       (lt)f0.0   null:hf       r22:hf            0x0000:hf
+(f0.0)  sel (32)                  r30:uw        r28:uw            r22:uw
+        add (32)                  r32:hf        r26:hf            r30:hf
+        mad (32)       (lt)f0.0   r34:hf        r32:hf            r8:hf             r110:hf {Align16}
+        mad (32)                  r36:hf        r32:hf            r114:hf           r8:hf {Align16}
+        mul (32)                  r38:hf        r34:hf            0x2e66:hf
+        mul (32)                  r82:hf        r36:hf            0x2e66:hf
+(f0.0)  sel (32)                  r40:uw        r38:uw            r34:uw
+        cmp (32)       (lt)f0.0   null:hf       r36:hf            0x0000:hf
+(f0.0)  sel (32)                  r46:uw        r82:uw            r36:uw
+        add (32)                  r48:hf        r40:hf            r46:hf
+        mad (32)       (lt)f0.0   r50:hf        r48:hf            r102:hf           r100:hf {Align16}
+        mad (32)                  r52:hf        r48:hf            r10:hf            r102:hf {Align16}
+        mul (32)                  r54:hf        r50:hf            0x2e66:hf
+        mul (32)                  r58:hf        r52:hf            0x2e66:hf
+(f0.0)  sel (32)                  r56:uw        r54:uw            r50:uw
+        cmp (32)       (lt)f0.0   null:hf       r52:hf            0x0000:hf
+(f0.0)  sel (32)                  r60:uw        r58:uw            r52:uw
+        add (32)                  r62:hf        r56:hf            r60:hf
+        mad (32)       (lt)f0.0   r64:hf        r62:hf            r2:hf             r76:hf {Align16}
+        mad (32)                  r66:hf        r62:hf            r104:hf           r2:hf {Align16}
+        mul (32)                  r68:hf        r64:hf            0x2e66:hf
+        mul (32)                  r72:hf        r66:hf            0x2e66:hf
+(f0.0)  sel (32)                  r10:uw        r68:uw            r64:uw
+        cmp (32)       (lt)f0.0   null:hf       r66:hf            0x0000:hf
+(f0.0)  sel (32)                  r74:uw        r72:uw            r66:uw
+        add (32)                  r76:hf        r10:hf            r74:hf
+        mad (32)       (lt)f0.0   r78:hf        r76:hf            r116:hf           r114:hf {Align16}
+        mad (32)                  r80:hf        r76:hf            r106:hf           r116:hf {Align16}
+        mul (32)                  r2:hf         r78:hf            0x2e66:hf
+        mul (32)                  r86:hf        r80:hf            0x2e66:hf
+(f0.0)  sel (32)                  r84:uw        r2:uw             r78:uw
+        cmp (32)       (lt)f0.0   null:hf       r80:hf            0x0000:hf
+(f0.0)  sel (32)                  r88:uw        r86:uw            r80:uw
+        add (32)                  r90:hf        r84:hf            r88:hf
+        mad (32)       (lt)f0.0   r92:hf        r90:hf            r118:hf           r108:hf {Align16}
+        mad (32)                  r4:hf         r90:hf            r120:hf           r118:hf {Align16}
+        mul (32)                  r96:hf        r92:hf            0x2e66:hf
+        mul (32)                  r100:hf       r4:hf             0x2e66:hf
+(f0.0)  sel (32)                  r6:uw         r96:uw            r92:uw
+        cmp (32)       (lt)f0.0   null:hf       r4:hf             0x0000:hf
+(f0.0)  sel (32)                  r102:uw       r100:uw           r4:uw
+        add (32)                  r104:hf       r6:hf             r102:hf
+        mov (16)                  r21           r104:uw
+        mov (16|M16)              r106          r105:uw
+        sends.hdc0 (16)           null    r94    r21     0x00000080  0x04030504  // wr:2+2, rd:0; byte_scattered_write:d16 simd16 (16) bti(4)
+        sends.hdc0 (16|M16)       null    r42    r106    0x00000080  0x04030504  // wr:2+2, rd:0; byte_scattered_write:d16 simd16 (16) bti(4)
+(W)     sends.ts (32)             null    r126   null    0x00000000  0x02000010   {EOT}
+pipeline created at subgroup size 32

@@ -1,0 +1,48 @@
+<style>
+#hd620-result-charts{display:grid;gap:1.25rem;max-width:48rem;margin-inline:auto;color:var(--foreground,CanvasText);font-family:var(--font-sans,system-ui)}
+#hd620-result-charts section{display:grid;gap:.45rem;min-width:0}
+#hd620-result-charts h2,#hd620-result-charts h3,#hd620-result-charts p{margin:0}
+#hd620-result-charts h2,#hd620-result-charts h3{font-weight:500}
+#hd620-result-charts .muted{color:var(--muted-foreground,GrayText)}
+#hd620-result-charts .range-row{display:grid;grid-template-columns:minmax(6.7rem,26%) 1fr 4.1rem;gap:.5rem;align-items:center}
+#hd620-result-charts .plot{position:relative;height:1.25em;min-width:0}
+#hd620-result-charts .plot::before{content:"";position:absolute;left:30%;top:0;bottom:0;border-left:1px solid var(--border,GrayText)}
+#hd620-result-charts .range{position:absolute;left:var(--left);width:calc(var(--right) - var(--left));height:.3em;top:50%;transform:translateY(-50%);background:var(--muted-foreground,GrayText)}
+#hd620-result-charts .point{position:absolute;left:var(--point);top:50%;transform:translate(-50%,-50%);width:.66em;height:.66em;border-radius:50%;background:var(--chart-1,var(--primary,currentColor))}
+#hd620-result-charts .axis{position:relative;height:1.2em}
+#hd620-result-charts .tick{position:absolute;transform:translateX(-50%);white-space:nowrap}
+#hd620-result-charts .number{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+#hd620-result-charts table{width:100%;border-collapse:collapse;table-layout:fixed}
+#hd620-result-charts th,#hd620-result-charts td{padding:.4rem .3rem;text-align:left;border-bottom:1px solid var(--border,color-mix(in srgb,currentColor 20%,transparent));overflow-wrap:anywhere;vertical-align:top}
+#hd620-result-charts th{font-weight:500}
+#hd620-result-charts .tested{background:color-mix(in srgb,var(--chart-1,var(--green,currentColor)) 13%,transparent)}
+#hd620-result-charts .advertised{background:color-mix(in srgb,var(--chart-2,var(--blue,currentColor)) 10%,transparent)}
+@media(max-width:420px){#hd620-result-charts .optional-tick{display:none}#hd620-result-charts th,#hd620-result-charts td{padding:.3rem .2rem}}
+</style>
+<div id="hd620-result-charts">
+  <section aria-labelledby="hd620-throughput-range">
+    <h3 id="hd620-throughput-range">Did the eight ANV patches change video speed?</h3>
+    <p class="muted">Patched versus unmodified · eight paired runs per workload · dot is median and line is observed range</p>
+    <div class="range-row"><span>H.264 decode</span><span class="plot" aria-hidden="true"><span class="range" style="--left:20.7668%;--right:65.3944%"></span><span class="point" style="--point:29.3136%"></span></span><span class="number" aria-label="Paired median -0.14 percent, observed range -1.85 to 7.08 percent">−0.14%</span></div>
+    <div class="range-row"><span>VP9 8-bit decode</span><span class="plot" aria-hidden="true"><span class="range" style="--left:1.1828%;--right:99.9303%"></span><span class="point" style="--point:30.4172%"></span></span><span class="number" aria-label="Paired median 0.08 percent, observed range -5.76 to 13.99 percent">+0.08%</span></div>
+    <div class="range-row"><span>VP9 10-bit decode</span><span class="plot" aria-hidden="true"><span class="range" style="--left:14.1705%;--right:33.6303%"></span><span class="point" style="--point:30.9888%"></span></span><span class="number" aria-label="Paired median 0.20 percent, observed range -3.17 to 0.73 percent">+0.20%</span></div>
+    <div class="range-row"><span>H.264 encode</span><span class="plot" aria-hidden="true"><span class="range" style="--left:25.0313%;--right:49.2979%"></span><span class="point" style="--point:30.1261%"></span></span><span class="number" aria-label="Paired median 0.03 percent, observed range -0.99 to 3.86 percent">+0.03%</span></div>
+    <div class="range-row"><span>H.264 transcode</span><span class="plot" aria-hidden="true"><span class="range" style="--left:27.4027%;--right:42.6162%"></span><span class="point" style="--point:31.7041%"></span></span><span class="number" aria-label="Paired median 0.34 percent, observed range -0.52 to 2.52 percent">+0.34%</span></div>
+    <div aria-hidden="true" class="range-row muted"><span></span><div class="axis"><span class="tick" style="left:0%">−6%</span><span class="tick" style="left:30%">0%</span><span class="tick optional-tick" style="left:65%">+7%</span><span class="tick" style="left:100%">+14%</span></div><span></span></div>
+  </section>
+  <section aria-labelledby="hd620-codec-coverage">
+    <h3 id="hd620-codec-coverage">Codec paths available on the tested GPU</h3>
+    <p class="muted">iHD versus the patched full ANV build with video flags enabled</p>
+    <table>
+      <thead><tr><th scope="col">Codec</th><th scope="col">VA-API (iHD)</th><th scope="col">Vulkan Video (ANV)</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">H.264</th><td class="tested">Decode + encode tested</td><td class="tested">Decode + encode tested</td></tr>
+        <tr><th scope="row">HEVC Main / Main10</th><td class="tested">Decode + encode tested</td><td class="muted">Neither exposed</td></tr>
+        <tr><th scope="row">VP9 profiles 0 / 2</th><td class="advertised">Decode advertised</td><td class="tested">Decode tested</td></tr>
+        <tr><th scope="row">VP8, MPEG-2, JPEG</th><td class="tested">Decode + encode exercised</td><td class="muted">No codec extensions exposed</td></tr>
+        <tr><th scope="row">VC-1</th><td class="advertised">Decode advertised</td><td class="muted">No codec extension exposed</td></tr>
+        <tr><th scope="row">AV1</th><td class="muted">Neither exposed</td><td class="muted">Neither exposed</td></tr>
+      </tbody>
+    </table>
+  </section>
+</div>

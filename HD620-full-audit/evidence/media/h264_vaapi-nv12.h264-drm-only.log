@@ -1,0 +1,74 @@
+[Vulkan @ 0x653c99d0adc0] Supported layers:
+[Vulkan @ 0x653c99d0adc0] 	VK_LAYER_MESA_device_select
+[Vulkan @ 0x653c99d0adc0] 	VK_LAYER_MESA_anti_lag
+[Vulkan @ 0x653c99d0adc0] 	VK_LAYER_MESA_screenshot
+[Vulkan @ 0x653c99d0adc0] 	VK_LAYER_INTEL_nullhw
+[Vulkan @ 0x653c99d0adc0] 	VK_LAYER_MESA_overlay
+[Vulkan @ 0x653c99d0adc0] Using instance extension VK_EXT_layer_settings
+[Vulkan @ 0x653c99d0adc0] GPU listing:
+[Vulkan @ 0x653c99d0adc0]     0: Intel(R) HD Graphics 620 (KBL GT2) (integrated) (0x5916)
+[Vulkan @ 0x653c99d0adc0] Device 0 selected: Intel(R) HD Graphics 620 (KBL GT2) (integrated) (0x5916)
+[Vulkan @ 0x653c99d0adc0] Using device extension VK_KHR_push_descriptor
+[Vulkan @ 0x653c99d0adc0] Using device extension VK_EXT_physical_device_drm
+[Vulkan @ 0x653c99d0adc0] Using device extension VK_EXT_shader_atomic_float
+[Vulkan @ 0x653c99d0adc0] Using device extension VK_EXT_shader_object
+[Vulkan @ 0x653c99d0adc0] Using device extension VK_KHR_shader_subgroup_rotate
+[Vulkan @ 0x653c99d0adc0] Using device extension VK_KHR_shader_expect_assume
+[Vulkan @ 0x653c99d0adc0] Using device extension VK_KHR_external_memory_fd
+[Vulkan @ 0x653c99d0adc0] Using device extension VK_EXT_external_memory_dma_buf
+[Vulkan @ 0x653c99d0adc0] Using device extension VK_EXT_image_drm_format_modifier
+[Vulkan @ 0x653c99d0adc0] Using device extension VK_KHR_external_semaphore_fd
+[Vulkan @ 0x653c99d0adc0] Using device extension VK_EXT_external_memory_host
+[Vulkan @ 0x653c99d0adc0] Queue families:
+[Vulkan @ 0x653c99d0adc0]     0: graphics compute transfer (queues: 1)
+[Vulkan @ 0x653c99d0adc0] Using device: Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan @ 0x653c99d0adc0] Alignments:
+[Vulkan @ 0x653c99d0adc0]     optimalBufferCopyRowPitchAlignment: 64
+[Vulkan @ 0x653c99d0adc0]     minMemoryMapAlignment:              4096
+[Vulkan @ 0x653c99d0adc0]     nonCoherentAtomSize:                64
+[Vulkan @ 0x653c99d0adc0]     minImportedHostPointerAlignment:    4096
+[Vulkan @ 0x653c99d0adc0] Using queue family 0 (queues: 1) for graphics compute transfers
+[h264 @ 0x653c99d36840] Reinit context to 640x368, pix_fmt: yuv420p
+[vist#0:0/h264 @ 0x653c99d37c80] Selecting decoder 'h264' because of requested hwaccel method vaapi
+Input #0, h264, from 'evidence/media/h264_vaapi-nv12.h264':
+  Duration: N/A, bitrate: N/A
+  Stream #0:0: Video: h264 (High), 1 reference frame, yuv420p(tv, progressive, left), 640x360 [SAR 1:1 DAR 16:9], 25 fps, 60 tbr, 1200k tbn
+[out#0/null @ 0x653c99d57d80] No explicit maps, mapping streams automatically...
+[vost#0:0/wrapped_avframe @ 0x653c99d58100] Created video stream from input stream 0:0
+[VAAPI @ 0x653c99e08d40] libva: VA-API version 1.23.0
+[VAAPI @ 0x653c99e08d40] libva: User environment variable requested driver 'iHD'
+[VAAPI @ 0x653c99e08d40] libva: Trying to open /usr/lib/x86_64-linux-gnu/dri/iHD_drv_video.so
+[VAAPI @ 0x653c99e08d40] libva: Found init function __vaDriverInit_1_22
+[VAAPI @ 0x653c99e08d40] libva: va_openDriver() returns 0
+[VAAPI @ 0x653c99e08d40] Initialised VAAPI connection: version 1.23
+[VAAPI @ 0x653c99e08d40] VAAPI driver: Intel iHD driver for Intel(R) Gen Graphics - 26.1.2 ().
+[VAAPI @ 0x653c99e08d40] Driver not found in known nonstandard list, using standard behaviour.
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+[vost#0:0/wrapped_avframe @ 0x653c99d58100] Starting thread...
+[vf#0:0 @ 0x653c99e07c80] Starting thread...
+[vist#0:0/h264 @ 0x653c99d37c80] [dec:h264 @ 0x653c99e08840] Starting thread...
+[in#0/h264 @ 0x653c99d94f00] Starting thread...
+[h264 @ 0x653c99e3cf00] Reinit context to 640x368, pix_fmt: vaapi
+[graph -1 input from stream 0:0 @ 0x7d00800019c0] w:640 h:360 pixfmt:vaapi tb:1/1200000 fr:30/1 sar:1/1 csp:unknown range:tv
+[Parsed_hwmap_0 @ 0x7d0080001540] Failed to created derived device context: -38.
+[Parsed_hwmap_0 @ 0x7d0080001540] Failed to configure output pad on Parsed_hwmap_0
+[vf#0:0 @ 0x653c99e07c80] Error reinitializing filters!
+[vf#0:0 @ 0x653c99e07c80] Task finished with error code: -38 (Function not implemented)
+[vf#0:0 @ 0x653c99e07c80] Terminating thread with return code -38 (Function not implemented)
+[vost#0:0/wrapped_avframe @ 0x653c99d58100] [enc:wrapped_avframe @ 0x653c99d58400] Encoder thread received EOF
+[vost#0:0/wrapped_avframe @ 0x653c99d58100] [enc:wrapped_avframe @ 0x653c99d58400] Could not open encoder before EOF
+[vost#0:0/wrapped_avframe @ 0x653c99d58100] Task finished with error code: -22 (Invalid argument)
+[vost#0:0/wrapped_avframe @ 0x653c99d58100] Terminating thread with return code -22 (Invalid argument)
+[in#0/h264 @ 0x653c99d94f00] Terminating thread with return code 0 (success)
+[vist#0:0/h264 @ 0x653c99d37c80] [dec:h264 @ 0x653c99e08840] Decoder returned EOF, finishing
+[vist#0:0/h264 @ 0x653c99d37c80] [dec:h264 @ 0x653c99e08840] Terminating thread with return code 0 (success)
+[out#0/null @ 0x653c99d57d80] Nothing was written into output file, because at least one of its streams received no packets.
+frame=    0 fps=0.0 q=0.0 Lsize=       0KiB time=N/A bitrate=N/A speed=N/A elapsed=0:00:00.00    
+[in#0/h264 @ 0x653c99d94f00] Input file #0 (evidence/media/h264_vaapi-nv12.h264):
+[in#0/h264 @ 0x653c99d94f00]   Input stream #0:0 (video): 13 packets read (53362 bytes); 2 frames decoded; 0 decode errors; 
+[in#0/h264 @ 0x653c99d94f00]   Total: 13 packets (53362 bytes) demuxed
+[AVIOContext @ 0x653c99d3e340] Statistics: 196608 bytes read, 0 seeks
+Conversion failed!
+
+Exiting with exit code -38

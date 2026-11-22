@@ -1,0 +1,13 @@
+src/intel diff: 27fa38e6fae8b7de02ff3f525d7f653b3e5aec55cbe52e27927d5622e78534c3  -
+expected:       27fa38e6fae8b7de02ff3f525d7f653b3e5aec55cbe52e27927d5622e78534c3
+src/intel/vulkan minus anv_image.c: 6ebf1574258ef0597fdbde616f34e23ddf674fec4329a27cdfc1c6c6eeaf22df  - (patch8 6ebf1574...)
+3f01be273c745da04295f8d3ca5ebbe15c6bf5bf55c7099f9ea3c99b0ebbe0c1  /home/polarbear/.local/state/catchingup/hd620-hiz-multimip/icd/candidate/libvulkan_intel.so
+3f01be273c745da04295f8d3ca5ebbe15c6bf5bf55c7099f9ea3c99b0ebbe0c1  /build/hiz-all/src/intel/vulkan/libvulkan_intel.so
+0e9e108 zink: only attempt to resolve when nr_samples > 1
+e850031 Initial commit
+icd/patch8-all/libvulkan_intel.so: OK
+icd/patch8-free/libvulkan_intel.so: OK
+icd/patch8-all/IDENTITY: OK
+icd/patch8-free/IDENTITY: OK
+icd/patch8-all/icd.json: OK
+icd/patch8-free/icd.json: OK

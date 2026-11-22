@@ -1,0 +1,23 @@
+Intel(R) HD Graphics 620 (KBL GT2) driverVersion 109457507 driverName 'Intel open-source Mesa driver' driverInfo 'Mesa 27.0.0-devel (git-0e9e1086bb)' mode sizes
+driver library: /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/libvulkan_intel.so
+size aligned-2048x2048x4 in-scope 24641536
+size aligned-704x288x4 in-scope 1216512
+size aligned-256x128x6 in-scope 184320
+size aligned-64x32x4 in-scope 16384
+size oddlod0-2049x1025x3 in-scope 13893632
+size oddlod0-17x9x2 in-scope 4096
+size unaligned-696x288x4 out-of-scope 1216512
+size unaligned-704x280x4 out-of-scope 1216512
+size unaligned-32x32x5 out-of-scope 8192
+size unaligned-2049x1026x2 out-of-scope 12910592
+size fullchain-64x32x7 out-of-scope 16384
+size d16-64x32x4 out-of-scope 8192
+size x8d24-64x32x4 out-of-scope 16384
+size d24s8-64x32x4 out-of-scope 20480
+size d32s8-64x32x4 out-of-scope 20480
+size d32-2layer-64x32x4 out-of-scope 24576
+size single-64x32x1 in-scope 8192
+size resolve-704x288x4 in-scope 1216512
+size resolve-256x128x6 in-scope 184320
+size resolve-17x9x2 in-scope 4096
+size resolve-unaligned-696x288x4 out-of-scope 1216512

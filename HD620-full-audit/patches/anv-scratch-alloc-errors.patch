@@ -1,0 +1,186 @@
+anv: report scratch BO allocation failure at shader creation
+
+anv_scratch_pool_alloc() returns NULL when the scratch BO cannot be
+allocated (a TODO since the pool was written).  Shader state emission
+ignored that: on Gfx9-12 the NULL BO became ScratchSpaceBasePointer 0, so
+vkCreate*Pipelines returned VK_SUCCESS and the shader's scratch accesses
+went to address 0.  On Gfx12.5+, anv_scratch_pool_get_surf() and
+anv_shader_get_scratch_surf() dereferenced or relocated the NULL BO.
+
+Scratch BOs are cached per size bucket and stage for the lifetime of the
+device, so reserve them in anv_shader_create() and fail creation with
+VK_ERROR_OUT_OF_DEVICE_MEMORY.  The lookups made while emitting state then
+cannot fail.  Command-time paths and internal simple shaders mark the batch
+as failed instead of programming a NULL BO.
+
+Tested on HD 620 (KBL GT2) with an LD_PRELOAD shim that fails the 42 MiB
+scratch GEM_CREATE: pipeline creation now returns
+VK_ERROR_OUT_OF_DEVICE_MEMORY instead of VK_SUCCESS, and the same shader
+still dispatches correctly when the allocation succeeds.
+
+Generated-by: LLM
+---
+diff --git a/src/intel/vulkan/anv_allocator.c b/src/intel/vulkan/anv_allocator.c
+index 00b61f7..a3db6db 100644
+--- a/src/intel/vulkan/anv_allocator.c
++++ b/src/intel/vulkan/anv_allocator.c
+@@ -1432,8 +1432,12 @@ anv_scratch_pool_alloc(struct anv_device *device, struct anv_scratch_pool *pool,
+                                          pool->alloc_flags,
+                                          0 /* explicit_address */,
+                                          &bo);
++   /* Shader creation reserves scratch through anv_scratch_pool_reserve(),
++    * so callers that emit state only see NULL when that was skipped.  They
++    * must not program a NULL BO.
++    */
+    if (result != VK_SUCCESS)
+-      return NULL; /* TODO */
++      return NULL;
+ 
+    struct anv_bo *current_bo =
+       p_atomic_cmpxchg(&pool->bos[bucket][stage], NULL, bo);
+@@ -1467,6 +1471,8 @@ anv_scratch_pool_get_surf(struct anv_device *device,
+    struct anv_bo *bo =
+       anv_scratch_pool_alloc(device, pool, MESA_SHADER_COMPUTE,
+                              1u << scratch_size_log2);
++   if (bo == NULL)
++      return 0;
+    struct anv_address addr = { .bo = bo };
+ 
+    struct anv_state state =
+@@ -1497,6 +1503,35 @@ anv_scratch_pool_get_surf(struct anv_device *device,
+    }
+ }
+ 
++/* Allocate the scratch BOs a shader will use, so that allocation failure is
++ * reported when the shader is created.  Scratch BOs are cached per size
++ * bucket and stage for the lifetime of the device, which makes the lookups
++ * done while emitting the shader's state infallible afterwards.
++ */
++VkResult
++anv_scratch_pool_reserve(struct anv_device *device,
++                         mesa_shader_stage stage,
++                         uint32_t total_scratch)
++{
++   if (total_scratch == 0)
++      return VK_SUCCESS;
++
++   if (anv_scratch_pool_alloc(device, &device->scratch_pool, stage,
++                              total_scratch) == NULL)
++      return vk_error(device, VK_ERROR_OUT_OF_DEVICE_MEMORY);
++
++   /* Only the surface-based scratch model (Gfx12.5+) uses a separate pool
++    * for protected shader state.
++    */
++   if (device->info->verx10 >= 125 &&
++       device->vk.enabled_features.protectedMemory &&
++       anv_scratch_pool_alloc(device, &device->protected_scratch_pool, stage,
++                              total_scratch) == NULL)
++      return vk_error(device, VK_ERROR_OUT_OF_DEVICE_MEMORY);
++
++   return VK_SUCCESS;
++}
++
+ uint32_t
+ anv_shader_get_scratch_surf(struct anv_batch *batch,
+                             struct anv_device *device,
+@@ -1511,6 +1546,11 @@ anv_shader_get_scratch_surf(struct anv_batch *batch,
+       &device->protected_scratch_pool : &device->scratch_pool;
+    struct anv_bo *bo =
+       anv_scratch_pool_alloc(device, pool, stage, total_scratch);
++   if (bo == NULL) {
++      if (batch != NULL)
++         anv_batch_set_error(batch, VK_ERROR_OUT_OF_DEVICE_MEMORY);
++      return 0;
++   }
+    if (batch != NULL)
+       anv_reloc_list_add_bo(batch->relocs, bo);
+    uint32_t ret = anv_scratch_pool_get_surf(device, pool, total_scratch);
+diff --git a/src/intel/vulkan/anv_shader.c b/src/intel/vulkan/anv_shader.c
+index b89da73..d473440 100644
+--- a/src/intel/vulkan/anv_shader.c
++++ b/src/intel/vulkan/anv_shader.c
+@@ -909,6 +909,14 @@ anv_shader_create(struct anv_device *device,
+ 
+    shader->instance_multiplier = shader_data->instance_multiplier;
+ 
++   /* Relocation (efficient 64-bit mode) and shader_emit() below look up the
++    * scratch BOs and cannot fail, so allocate them now.
++    */
++   result = anv_scratch_pool_reserve(device, shader->vk.stage,
++                                     shader->prog_data->total_scratch);
++   if (result != VK_SUCCESS)
++      goto error_state;
++
+    struct anv_shader_reloc reloc;
+    result = anv_shader_reloc_begin(&reloc, device, shader_data->code,
+                                    shader, pAllocator);
+diff --git a/src/intel/vulkan/genX_shader.c b/src/intel/vulkan/genX_shader.c
+index 868f6b1..edfc69d 100644
+--- a/src/intel/vulkan/genX_shader.c
++++ b/src/intel/vulkan/genX_shader.c
+@@ -67,12 +67,13 @@ get_sampler_count(const struct anv_device *device,
+ static UNUSED struct anv_address
+ get_scratch_address(struct anv_device *device, struct anv_shader *shader)
+ {
+-   return (struct anv_address) {
+-      .bo = anv_scratch_pool_alloc(device, &device->scratch_pool,
+-                                   shader->vk.stage,
+-                                   shader->prog_data->total_scratch),
+-      .offset = 0,
+-   };
++   struct anv_bo *bo =
++      anv_scratch_pool_alloc(device, &device->scratch_pool,
++                             shader->vk.stage,
++                             shader->prog_data->total_scratch);
++   /* Reserved by anv_scratch_pool_reserve() when the shader was created. */
++   assert(bo != NULL || shader->prog_data->total_scratch == 0);
++   return (struct anv_address) { .bo = bo, .offset = 0 };
+ }
+ 
+ static UNUSED uint32_t
+diff --git a/src/intel/vulkan/genX_simple_shader.c b/src/intel/vulkan/genX_simple_shader.c
+index 1be5f6b..6641e61 100644
+--- a/src/intel/vulkan/genX_simple_shader.c
++++ b/src/intel/vulkan/genX_simple_shader.c
+@@ -762,19 +762,20 @@ genX(emit_simple_shader_dispatch)(struct anv_simple_shader *state,
+             vfe.CURBEAllocationSize    = vfe_curbe_allocation;
+ 
+             if (prog_data->base.total_scratch) {
++               struct anv_bo *scratch_bo =
++                  anv_scratch_pool_alloc(device, &device->scratch_pool,
++                                         MESA_SHADER_COMPUTE,
++                                         prog_data->base.total_scratch);
++               /* Never point the hardware at a NULL scratch BO. */
++               if (scratch_bo == NULL)
++                  anv_batch_set_error(batch, VK_ERROR_OUT_OF_DEVICE_MEMORY);
+                /* Broadwell's Per Thread Scratch Space is in the range [0, 11]
+                 * where 0 = 1k, 1 = 2k, 2 = 4k, ..., 11 = 2M.
+                 */
+                vfe.PerThreadScratchSpace =
+                   ffs(prog_data->base.total_scratch) - 11;
+                vfe.ScratchSpaceBasePointer =
+-                  (struct anv_address) {
+-                  .bo = anv_scratch_pool_alloc(device,
+-                                               &device->scratch_pool,
+-                                               MESA_SHADER_COMPUTE,
+-                                               prog_data->base.total_scratch),
+-                  .offset = 0,
+-               };
++                  (struct anv_address) { .bo = scratch_bo, .offset = 0 };
+             }
+          }
+          struct anv_state iface_desc_state =
+diff --git a/src/intel/vulkan/anv_private.h b/src/intel/vulkan/anv_private.h
+index c153f62..4054faa 100644
+--- a/src/intel/vulkan/anv_private.h
++++ b/src/intel/vulkan/anv_private.h
+@@ -963,6 +963,9 @@ struct anv_bo *anv_scratch_pool_alloc(struct anv_device *device,
+                                       struct anv_scratch_pool *pool,
+                                       mesa_shader_stage stage,
+                                       unsigned per_thread_scratch);
++VkResult anv_scratch_pool_reserve(struct anv_device *device,
++                                  mesa_shader_stage stage,
++                                  uint32_t total_scratch);
+ uint32_t anv_scratch_pool_get_surf(struct anv_device *device,
+                                    struct anv_scratch_pool *pool,
+                                    unsigned per_thread_scratch);

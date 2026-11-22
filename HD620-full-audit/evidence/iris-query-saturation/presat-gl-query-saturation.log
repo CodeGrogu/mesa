@@ -1,0 +1,16 @@
+58d2d6874bf90207daa03f4426f89181333ccce37b653bed8a3fa1b9d376a440  /build/iris-presat/src/gallium/targets/dri/libgallium-27.0.0-devel.so
+Mesa Intel(R) HD Graphics 620 (KBL GT2) 4.6 (Core Profile) Mesa 27.0.0-devel (git-0e9e1086bb)
+Mapped driver library /build/iris-presat/src/egl/libEGL.so.1.0.0
+Mapped driver library /build/iris-presat/src/gallium/targets/dri/libgallium-27.0.0-devel.so
+FAIL timestamp > UINT32_MAX, GPU path: 5/5 runs in range, 5 with errors; (u64, u32, i32) [(1901448086000, '0xb72341f0', '0xb72341f0'), (1901459811500, '0xb7d62cac', '0xb7d62cac'), (1901471558416, '0xb8896b10', '0xb8896b10')]; first errors ['u32 RESULT 0xb72341f0 != 0xffffffff', 'i32 RESULT 0xb72341f0 != 0x7fffffff', 'u32 NO_WAIT 0xb72341f0 != 0xffffffff', 'i32 NO_WAIT 0xb72341f0 != 0x7fffffff']
+FAIL timestamp > UINT32_MAX, CPU path: 5/5 runs in range, 5 with errors; (u64, u32, i32) [(1901506218916, '0xba9a4ba4', '0xba9a4ba4'), (1901517360083, '0xbb444bd3', '0xbb444bd3'), (1901528557416, '0xbbef2768', '0xbbef2768')]; first errors ['u32 RESULT 0xba9a4ba4 != 0xffffffff', 'i32 RESULT 0xba9a4ba4 != 0x7fffffff', 'u32 NO_WAIT 0xba9a4ba4 != 0xffffffff', 'i32 NO_WAIT 0xba9a4ba4 != 0x7fffffff']
+FAIL time elapsed of 3 s idle gap, INT32_MAX < v <= UINT32_MAX, GPU path: 2/2 runs in range, 2 with errors; (u64, u32, i32) [(3018702916, '0xb3edc044', '0xb3edc044'), (3018064416, '0xb3e40220', '0xb3e40220')]; first errors ['i32 RESULT 0xb3edc044 != 0x7fffffff', 'i32 NO_WAIT 0xb3edc044 != 0x7fffffff']
+FAIL time elapsed of 3 s idle gap, INT32_MAX < v <= UINT32_MAX, CPU path: 2/2 runs in range, 2 with errors; (u64, u32, i32) [(3018174500, '0xb3e5b024', '0xb3e5b024'), (3016468833, '0xb3cba961', '0xb3cba961')]; first errors ['i32 RESULT 0xb3e5b024 != 0x7fffffff', 'i32 NO_WAIT 0xb3e5b024 != 0x7fffffff']
+PASS time elapsed of draw, in range, GPU path: 5/5 runs in range, 0 with errors; (u64, u32, i32) [(11138750, '0xa9f6be', '0xa9f6be'), (11117500, '0xa9a3bc', '0xa9a3bc'), (11165083, '0xaa5d9b', '0xaa5d9b')]
+PASS time elapsed of draw, in range, CPU path: 5/5 runs in range, 0 with errors; (u64, u32, i32) [(11180666, '0xaa9a7a', '0xaa9a7a'), (11385250, '0xadb9a2', '0xadb9a2'), (11218166, '0xab2cf6', '0xab2cf6')]
+PASS samples passed of 1024x1024 draw, in range, GPU path: 5/5 runs in range, 0 with errors; (u64, u32, i32) [(1048576, '0x100000', '0x100000'), (1048576, '0x100000', '0x100000'), (1048576, '0x100000', '0x100000')]
+PASS samples passed of 1024x1024 draw, in range, CPU path: 5/5 runs in range, 0 with errors; (u64, u32, i32) [(1048576, '0x100000', '0x100000'), (1048576, '0x100000', '0x100000'), (1048576, '0x100000', '0x100000')]
+PASS any samples passed, boolean, GPU path: 5/5 runs in range, 0 with errors; (u64, u32, i32) [(1, '0x1', '0x1'), (1, '0x1', '0x1'), (1, '0x1', '0x1')]
+PASS any samples passed, boolean, CPU path: 5/5 runs in range, 0 with errors; (u64, u32, i32) [(1, '0x1', '0x1'), (1, '0x1', '0x1'), (1, '0x1', '0x1')]
+4 check(s) failed: ['timestamp > UINT32_MAX, GPU path', 'timestamp > UINT32_MAX, CPU path', 'time elapsed of 3 s idle gap, INT32_MAX < v <= UINT32_MAX, GPU path', 'time elapsed of 3 s idle gap, INT32_MAX < v <= UINT32_MAX, CPU path']
+exit status 1

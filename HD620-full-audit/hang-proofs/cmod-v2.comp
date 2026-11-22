@@ -1,0 +1,24 @@
+#version 450
+// Two interleaved leaky ReLUs: the first select reads the flag between the
+// second multiply-add and its compare until scheduling reorders them.
+#extension GL_EXT_shader_explicit_arithmetic_types_float16 : require
+#extension GL_EXT_shader_16bit_storage : require
+layout(local_size_x = 128) in;
+layout(std430, binding = 0) readonly buffer A { float16_t a[]; };
+layout(std430, binding = 1) readonly buffer B { float16_t b[]; };
+layout(std430, binding = 2) readonly buffer C { float16_t c[]; };
+layout(std430, binding = 3) writeonly buffer O { float16_t o[]; };
+void main()
+{
+    uint i = gl_GlobalInvocationID.x;
+    float16_t s = float16_t(0.1);
+    float16_t acc = c[i];
+    for (int k = 0; k < 8; k++) {
+        float16_t x = fma(a[i + k], b[i + k], acc);
+        float16_t y = fma(b[i + k], a[i + 2 * k], acc);
+        x = x < float16_t(0) ? x * s : x;
+        y = y < float16_t(0) ? y * s : y;
+        acc = x + y;
+    }
+    o[i] = acc;
+}

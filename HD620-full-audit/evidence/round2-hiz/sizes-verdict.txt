@@ -1,0 +1,22 @@
+ok  aligned-2048x2048x4      in-scope     candidate  27754496 nohiz  24641536 -> HiZ yes | control  24641536 nohiz  24641536 -> HiZ no
+ok  aligned-704x288x4        in-scope     candidate   1380352 nohiz   1216512 -> HiZ yes | control   1216512 nohiz   1216512 -> HiZ no
+ok  aligned-256x128x6        in-scope     candidate    208896 nohiz    184320 -> HiZ yes | control    184320 nohiz    184320 -> HiZ no
+ok  aligned-64x32x4          in-scope     candidate     20480 nohiz     16384 -> HiZ yes | control     16384 nohiz     16384 -> HiZ no
+ok  oddlod0-2049x1025x3      in-scope     candidate  15597568 nohiz  13893632 -> HiZ yes | control  13893632 nohiz  13893632 -> HiZ no
+ok  oddlod0-17x9x2           in-scope     candidate      8192 nohiz      4096 -> HiZ yes | control      4096 nohiz      4096 -> HiZ no
+ok  unaligned-696x288x4      out-of-scope candidate   1216512 nohiz   1216512 -> HiZ no  | control   1216512 nohiz   1216512 -> HiZ no
+ok  unaligned-704x280x4      out-of-scope candidate   1216512 nohiz   1216512 -> HiZ no  | control   1216512 nohiz   1216512 -> HiZ no
+ok  unaligned-32x32x5        out-of-scope candidate      8192 nohiz      8192 -> HiZ no  | control      8192 nohiz      8192 -> HiZ no
+ok  unaligned-2049x1026x2    out-of-scope candidate  12910592 nohiz  12910592 -> HiZ no  | control  12910592 nohiz  12910592 -> HiZ no
+ok  fullchain-64x32x7        out-of-scope candidate     16384 nohiz     16384 -> HiZ no  | control     16384 nohiz     16384 -> HiZ no
+ok  d16-64x32x4              out-of-scope candidate      8192 nohiz      8192 -> HiZ no  | control      8192 nohiz      8192 -> HiZ no
+ok  x8d24-64x32x4            out-of-scope candidate     16384 nohiz     16384 -> HiZ no  | control     16384 nohiz     16384 -> HiZ no
+ok  d24s8-64x32x4            out-of-scope candidate     20480 nohiz     20480 -> HiZ no  | control     20480 nohiz     20480 -> HiZ no
+ok  d32s8-64x32x4            out-of-scope candidate     20480 nohiz     20480 -> HiZ no  | control     20480 nohiz     20480 -> HiZ no
+ok  d32-2layer-64x32x4       out-of-scope candidate     24576 nohiz     24576 -> HiZ no  | control     24576 nohiz     24576 -> HiZ no
+ok  single-64x32x1           in-scope     candidate     12288 nohiz      8192 -> HiZ yes | control     12288 nohiz      8192 -> HiZ yes
+ok  resolve-704x288x4        in-scope     candidate   1380352 nohiz   1216512 -> HiZ yes | control   1216512 nohiz   1216512 -> HiZ no
+ok  resolve-256x128x6        in-scope     candidate    208896 nohiz    184320 -> HiZ yes | control    184320 nohiz    184320 -> HiZ no
+ok  resolve-17x9x2           in-scope     candidate      8192 nohiz      4096 -> HiZ yes | control      4096 nohiz      4096 -> HiZ no
+ok  resolve-unaligned-696x288x4 out-of-scope candidate   1216512 nohiz   1216512 -> HiZ no  | control   1216512 nohiz   1216512 -> HiZ no
+SIZES VERDICT PASS

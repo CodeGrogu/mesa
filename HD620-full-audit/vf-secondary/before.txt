@@ -1,0 +1,21 @@
+== installed
+A at 0x540000000, B at 0x640000000 (low 32 bits equal)
+entry  (A primary, B secondary): 0/20 stale
+exit   (A secondary, B primary): 0/20 stale
+inline (A and B in primary): 0/20 stale
+PASS
+exit 0
+== control
+A at 0x740000000, B at 0x840000000 (low 32 bits equal)
+entry  (A primary, B secondary): 0/20 stale
+exit   (A secondary, B primary): 0/20 stale
+inline (A and B in primary): 0/20 stale
+PASS
+exit 0
+== round2-before-fix
+A at 0x740000000, B at 0x840000000 (low 32 bits equal)
+entry  (A primary, B secondary): 0/20 stale
+exit   (A secondary, B primary): 0/20 stale
+inline (A and B in primary): 0/20 stale
+PASS
+exit 0

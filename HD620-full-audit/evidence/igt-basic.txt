@@ -1,0 +1,191 @@
+IGT-Version: 2.3-NO-GIT (x86_64) (Linux: 7.0.0-43-generic x86_64)
+Using IGT_SRANDOM=1795069685 for randomisation
+Opened device: /dev/dri/card1
+(gem_basic:266182) igt_debugfs-CRITICAL: Test assertion failure function igt_debugfs_path, file ../lib/igt_debugfs.c:121:
+(gem_basic:266182) igt_debugfs-CRITICAL: Failed assertion: debugfs_root
+(gem_basic:266182) igt_debugfs-CRITICAL: Last errno: 1, Operation not permitted
+gem_basic:create-close rc=124
+IGT-Version: 2.3-NO-GIT (x86_64) (Linux: 7.0.0-43-generic x86_64)
+Using IGT_SRANDOM=1795069706 for randomisation
+Opened device: /dev/dri/card1
+(gem_basic:266377) igt_debugfs-CRITICAL: Test assertion failure function igt_debugfs_path, file ../lib/igt_debugfs.c:121:
+(gem_basic:266377) igt_debugfs-CRITICAL: Failed assertion: debugfs_root
+(gem_basic:266377) igt_debugfs-CRITICAL: Last errno: 1, Operation not permitted
+Test gem_basic failed.
+**** DEBUG ****
+(gem_basic:266377) igt_core-DEBUG: Notice: using --device filters:
+(gem_basic:266377) igt_core-DEBUG: [sys:/sys/devices/pci0000:00/0000:00:02.0]
+(gem_basic:266377) igt_core-INFO: IGT-Version: 2.3-NO-GIT (x86_64) (Linux: 7.0.0-43-generic x86_64)
+(gem_basic:266377) igt_core-INFO: Using IGT_SRANDOM=1795069706 for randomisation
+(gem_basic:266377) drmtest-DEBUG: Looking for devices to open using filter 0: sys:/sys/devices/pci0000:00/0000:00:02.0
+(gem_basic:266377) drmtest-DEBUG: Filter matched /dev/dri/card1 | /dev/dri/renderD128
+(gem_basic:266377) drmtest-INFO: Opened device: /dev/dri/card1
+(gem_basic:266377) drmtest-DEBUG: Test requirement passed: !(fd<0)
+(gem_basic:266377) igt_debugfs-CRITICAL: Test assertion failure function igt_debugfs_path, file ../lib/igt_debugfs.c:121:
+(gem_basic:266377) igt_debugfs-CRITICAL: Failed assertion: debugfs_root
+(gem_basic:266377) igt_debugfs-CRITICAL: Last errno: 1, Operation not permitted
+(gem_basic:266377) igt_core-INFO: Stack trace:
+(gem_basic:266377) igt_core-INFO:   #0 ../lib/igt_core.c:2075 __igt_fail_assert()
+(gem_basic:266377) igt_core-INFO:   #1 ../lib/igt_debugfs.c:172 igt_debugfs_path()
+(gem_basic:266377) igt_core-INFO:   #2 ../lib/igt_debugfs.c:189 igt_debugfs_dir()
+(gem_basic:266377) igt_core-INFO:   #3 ../lib/igt_params.c:144 igt_params_open()
+(gem_basic:266377) igt_core-INFO:   #4 ../lib/igt_params.c:192 igt_params_set()
+(gem_basic:266377) igt_core-INFO:   #5 ../lib/drmtest.c:705 drm_open_driver()
+(gem_basic:266377) igt_core-INFO:   #6 ../tests/intel/gem_basic.c:114 __igt_unique____real_main108()
+(gem_basic:266377) igt_core-INFO:   #7 ../tests/intel/gem_basic.c:108 main()
+(gem_basic:266377) igt_core-INFO:   #8 ../sysdeps/nptl/libc_start_call_main.h:83 __libc_start_call_main()
+(gem_basic:266377) igt_core-INFO:   #9 ../csu/libc-start.c:128 __libc_start_main@@GLIBC_2.34()
+(gem_basic:266377) igt_core-INFO:   #10 [<unknown>+0x257c73d5]
+****  END  ****
+Stack trace:
+  #0 ../lib/igt_core.c:2075 __igt_fail_assert()
+  #1 ../lib/igt_debugfs.c:172 igt_debugfs_path()
+  #2 ../lib/igt_debugfs.c:189 igt_debugfs_dir()
+  #3 ../lib/igt_params.c:144 igt_params_open()
+  #4 ../lib/igt_params.c:192 igt_params_set()
+  #5 ../lib/drmtest.c:705 drm_open_driver()
+  #6 ../tests/intel/gem_basic.c:114 __igt_unique____real_main108()
+  #7 ../tests/intel/gem_basic.c:108 main()
+  #8 ../sysdeps/nptl/libc_start_call_main.h:83 __libc_start_call_main()
+  #9 ../csu/libc-start.c:128 __libc_start_main@@GLIBC_2.34()
+  #10 [<unknown>+0x257c73d5]
+Subtest create-fd-close: FAIL (0.000s)
+gem_basic:create-fd-close rc=98
+IGT-Version: 2.3-NO-GIT (x86_64) (Linux: 7.0.0-43-generic x86_64)
+Using IGT_SRANDOM=1795069717 for randomisation
+Opened device: /dev/dri/card1
+(gem_exec_basic:266521) igt_debugfs-CRITICAL: Test assertion failure function igt_debugfs_path, file ../lib/igt_debugfs.c:121:
+(gem_exec_basic:266521) igt_debugfs-CRITICAL: Failed assertion: debugfs_root
+(gem_exec_basic:266521) igt_debugfs-CRITICAL: Last errno: 1, Operation not permitted
+Test gem_exec_basic failed.
+**** DEBUG ****
+(gem_exec_basic:266521) igt_core-DEBUG: Notice: using --device filters:
+(gem_exec_basic:266521) igt_core-DEBUG: [sys:/sys/devices/pci0000:00/0000:00:02.0]
+(gem_exec_basic:266521) igt_core-INFO: IGT-Version: 2.3-NO-GIT (x86_64) (Linux: 7.0.0-43-generic x86_64)
+(gem_exec_basic:266521) igt_core-INFO: Using IGT_SRANDOM=1795069717 for randomisation
+(gem_exec_basic:266521) drmtest-DEBUG: Looking for devices to open using filter 0: sys:/sys/devices/pci0000:00/0000:00:02.0
+(gem_exec_basic:266521) drmtest-DEBUG: Filter matched /dev/dri/card1 | /dev/dri/renderD128
+(gem_exec_basic:266521) drmtest-INFO: Opened device: /dev/dri/card1
+(gem_exec_basic:266521) drmtest-DEBUG: Test requirement passed: !(fd<0)
+(gem_exec_basic:266521) igt_debugfs-CRITICAL: Test assertion failure function igt_debugfs_path, file ../lib/igt_debugfs.c:121:
+(gem_exec_basic:266521) igt_debugfs-CRITICAL: Failed assertion: debugfs_root
+(gem_exec_basic:266521) igt_debugfs-CRITICAL: Last errno: 1, Operation not permitted
+(gem_exec_basic:266521) igt_core-INFO: Stack trace:
+(gem_exec_basic:266521) igt_core-INFO:   #0 ../lib/igt_core.c:2075 __igt_fail_assert()
+(gem_exec_basic:266521) igt_core-INFO:   #1 ../lib/igt_debugfs.c:172 igt_debugfs_path()
+(gem_exec_basic:266521) igt_core-INFO:   #2 ../lib/igt_debugfs.c:189 igt_debugfs_dir()
+(gem_exec_basic:266521) igt_core-INFO:   #3 ../lib/igt_params.c:144 igt_params_open()
+(gem_exec_basic:266521) igt_core-INFO:   #4 ../lib/igt_params.c:192 igt_params_set()
+(gem_exec_basic:266521) igt_core-INFO:   #5 ../lib/drmtest.c:705 drm_open_driver()
+(gem_exec_basic:266521) igt_core-INFO:   #6 ../tests/intel/gem_exec_basic.c:66 __igt_unique____real_main56()
+(gem_exec_basic:266521) igt_core-INFO:   #7 ../tests/intel/gem_exec_basic.c:56 main()
+(gem_exec_basic:266521) igt_core-INFO:   #8 ../sysdeps/nptl/libc_start_call_main.h:83 __libc_start_call_main()
+(gem_exec_basic:266521) igt_core-INFO:   #9 ../csu/libc-start.c:128 __libc_start_main@@GLIBC_2.34()
+(gem_exec_basic:266521) igt_core-INFO:   #10 [<unknown>+0x340604f5]
+****  END  ****
+Stack trace:
+  #0 ../lib/igt_core.c:2075 __igt_fail_assert()
+  #1 ../lib/igt_debugfs.c:172 igt_debugfs_path()
+  #2 ../lib/igt_debugfs.c:189 igt_debugfs_dir()
+  #3 ../lib/igt_params.c:144 igt_params_open()
+  #4 ../lib/igt_params.c:192 igt_params_set()
+  #5 ../lib/drmtest.c:705 drm_open_driver()
+  #6 ../tests/intel/gem_exec_basic.c:66 __igt_unique____real_main56()
+  #7 ../tests/intel/gem_exec_basic.c:56 main()
+  #8 ../sysdeps/nptl/libc_start_call_main.h:83 __libc_start_call_main()
+  #9 ../csu/libc-start.c:128 __libc_start_main@@GLIBC_2.34()
+  #10 [<unknown>+0x340604f5]
+Subtest basic: FAIL (0.000s)
+gem_exec_basic:basic rc=98
+IGT-Version: 2.3-NO-GIT (x86_64) (Linux: 7.0.0-43-generic x86_64)
+Using IGT_SRANDOM=1795069725 for randomisation
+Opened device: /dev/dri/card1
+(syncobj_basic:266558) igt_debugfs-CRITICAL: Test assertion failure function igt_debugfs_path, file ../lib/igt_debugfs.c:121:
+(syncobj_basic:266558) igt_debugfs-CRITICAL: Failed assertion: debugfs_root
+(syncobj_basic:266558) igt_debugfs-CRITICAL: Last errno: 1, Operation not permitted
+Test syncobj_basic failed.
+**** DEBUG ****
+(syncobj_basic:266558) igt_core-DEBUG: Notice: using --device filters:
+(syncobj_basic:266558) igt_core-DEBUG: [sys:/sys/devices/pci0000:00/0000:00:02.0]
+(syncobj_basic:266558) igt_core-INFO: IGT-Version: 2.3-NO-GIT (x86_64) (Linux: 7.0.0-43-generic x86_64)
+(syncobj_basic:266558) igt_core-INFO: Using IGT_SRANDOM=1795069725 for randomisation
+(syncobj_basic:266558) drmtest-DEBUG: Looking for devices to open using filter 0: sys:/sys/devices/pci0000:00/0000:00:02.0
+(syncobj_basic:266558) drmtest-DEBUG: Filter matched /dev/dri/card1 | /dev/dri/renderD128
+(syncobj_basic:266558) drmtest-INFO: Opened device: /dev/dri/card1
+(syncobj_basic:266558) drmtest-DEBUG: Test requirement passed: !(fd<0)
+(syncobj_basic:266558) igt_debugfs-CRITICAL: Test assertion failure function igt_debugfs_path, file ../lib/igt_debugfs.c:121:
+(syncobj_basic:266558) igt_debugfs-CRITICAL: Failed assertion: debugfs_root
+(syncobj_basic:266558) igt_debugfs-CRITICAL: Last errno: 1, Operation not permitted
+(syncobj_basic:266558) igt_core-INFO: Stack trace:
+(syncobj_basic:266558) igt_core-INFO:   #0 ../lib/igt_core.c:2075 __igt_fail_assert()
+(syncobj_basic:266558) igt_core-INFO:   #1 ../lib/igt_debugfs.c:172 igt_debugfs_path()
+(syncobj_basic:266558) igt_core-INFO:   #2 ../lib/igt_debugfs.c:189 igt_debugfs_dir()
+(syncobj_basic:266558) igt_core-INFO:   #3 ../lib/igt_params.c:144 igt_params_open()
+(syncobj_basic:266558) igt_core-INFO:   #4 ../lib/igt_params.c:192 igt_params_set()
+(syncobj_basic:266558) igt_core-INFO:   #5 ../lib/drmtest.c:705 drm_open_driver()
+(syncobj_basic:266558) igt_core-INFO:   #6 ../tests/syncobj_basic.c:217 __igt_unique____real_main222()
+(syncobj_basic:266558) igt_core-INFO:   #7 ../tests/syncobj_basic.c:222 main()
+(syncobj_basic:266558) igt_core-INFO:   #8 ../sysdeps/nptl/libc_start_call_main.h:83 __libc_start_call_main()
+(syncobj_basic:266558) igt_core-INFO:   #9 ../csu/libc-start.c:128 __libc_start_main@@GLIBC_2.34()
+(syncobj_basic:266558) igt_core-INFO:   #10 [<unknown>+0xa236c395]
+****  END  ****
+Stack trace:
+  #0 ../lib/igt_core.c:2075 __igt_fail_assert()
+  #1 ../lib/igt_debugfs.c:172 igt_debugfs_path()
+  #2 ../lib/igt_debugfs.c:189 igt_debugfs_dir()
+  #3 ../lib/igt_params.c:144 igt_params_open()
+  #4 ../lib/igt_params.c:192 igt_params_set()
+  #5 ../lib/drmtest.c:705 drm_open_driver()
+  #6 ../tests/syncobj_basic.c:217 __igt_unique____real_main222()
+  #7 ../tests/syncobj_basic.c:222 main()
+  #8 ../sysdeps/nptl/libc_start_call_main.h:83 __libc_start_call_main()
+  #9 ../csu/libc-start.c:128 __libc_start_main@@GLIBC_2.34()
+  #10 [<unknown>+0xa236c395]
+Subtest test-valid-cycle: FAIL (0.000s)
+syncobj_basic:test-valid-cycle rc=98
+IGT-Version: 2.3-NO-GIT (x86_64) (Linux: 7.0.0-43-generic x86_64)
+Using IGT_SRANDOM=1795069733 for randomisation
+Opened device: /dev/dri/card1
+(syncobj_basic:266616) igt_debugfs-CRITICAL: Test assertion failure function igt_debugfs_path, file ../lib/igt_debugfs.c:121:
+(syncobj_basic:266616) igt_debugfs-CRITICAL: Failed assertion: debugfs_root
+(syncobj_basic:266616) igt_debugfs-CRITICAL: Last errno: 1, Operation not permitted
+Test syncobj_basic failed.
+**** DEBUG ****
+(syncobj_basic:266616) igt_core-DEBUG: Notice: using --device filters:
+(syncobj_basic:266616) igt_core-DEBUG: [sys:/sys/devices/pci0000:00/0000:00:02.0]
+(syncobj_basic:266616) igt_core-INFO: IGT-Version: 2.3-NO-GIT (x86_64) (Linux: 7.0.0-43-generic x86_64)
+(syncobj_basic:266616) igt_core-INFO: Using IGT_SRANDOM=1795069733 for randomisation
+(syncobj_basic:266616) drmtest-DEBUG: Looking for devices to open using filter 0: sys:/sys/devices/pci0000:00/0000:00:02.0
+(syncobj_basic:266616) drmtest-DEBUG: Filter matched /dev/dri/card1 | /dev/dri/renderD128
+(syncobj_basic:266616) drmtest-INFO: Opened device: /dev/dri/card1
+(syncobj_basic:266616) drmtest-DEBUG: Test requirement passed: !(fd<0)
+(syncobj_basic:266616) igt_debugfs-CRITICAL: Test assertion failure function igt_debugfs_path, file ../lib/igt_debugfs.c:121:
+(syncobj_basic:266616) igt_debugfs-CRITICAL: Failed assertion: debugfs_root
+(syncobj_basic:266616) igt_debugfs-CRITICAL: Last errno: 1, Operation not permitted
+(syncobj_basic:266616) igt_core-INFO: Stack trace:
+(syncobj_basic:266616) igt_core-INFO:   #0 ../lib/igt_core.c:2075 __igt_fail_assert()
+(syncobj_basic:266616) igt_core-INFO:   #1 ../lib/igt_debugfs.c:172 igt_debugfs_path()
+(syncobj_basic:266616) igt_core-INFO:   #2 ../lib/igt_debugfs.c:189 igt_debugfs_dir()
+(syncobj_basic:266616) igt_core-INFO:   #3 ../lib/igt_params.c:144 igt_params_open()
+(syncobj_basic:266616) igt_core-INFO:   #4 ../lib/igt_params.c:192 igt_params_set()
+(syncobj_basic:266616) igt_core-INFO:   #5 ../lib/drmtest.c:705 drm_open_driver()
+(syncobj_basic:266616) igt_core-INFO:   #6 ../tests/syncobj_basic.c:217 __igt_unique____real_main222()
+(syncobj_basic:266616) igt_core-INFO:   #7 ../tests/syncobj_basic.c:222 main()
+(syncobj_basic:266616) igt_core-INFO:   #8 ../sysdeps/nptl/libc_start_call_main.h:83 __libc_start_call_main()
+(syncobj_basic:266616) igt_core-INFO:   #9 ../csu/libc-start.c:128 __libc_start_main@@GLIBC_2.34()
+(syncobj_basic:266616) igt_core-INFO:   #10 [<unknown>+0x1fc30395]
+****  END  ****
+Stack trace:
+  #0 ../lib/igt_core.c:2075 __igt_fail_assert()
+  #1 ../lib/igt_debugfs.c:172 igt_debugfs_path()
+  #2 ../lib/igt_debugfs.c:189 igt_debugfs_dir()
+  #3 ../lib/igt_params.c:144 igt_params_open()
+  #4 ../lib/igt_params.c:192 igt_params_set()
+  #5 ../lib/drmtest.c:705 drm_open_driver()
+  #6 ../tests/syncobj_basic.c:217 __igt_unique____real_main222()
+  #7 ../tests/syncobj_basic.c:222 main()
+  #8 ../sysdeps/nptl/libc_start_call_main.h:83 __libc_start_call_main()
+  #9 ../csu/libc-start.c:128 __libc_start_main@@GLIBC_2.34()
+  #10 [<unknown>+0x1fc30395]
+Subtest create-signaled: FAIL (0.000s)
+syncobj_basic:create-signaled rc=98

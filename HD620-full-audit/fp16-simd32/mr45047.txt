@@ -1,0 +1,14 @@
+device Intel(R) HD Graphics 620 (KBL GT2), driver Intel open-source Mesa driver Mesa 27.0.0-devel
+required  8 (shader saw  8) pattern 0:      0 wrong values, 0 wrong branch flags
+required  8 (shader saw  8) pattern 1:      0 wrong values, 0 wrong branch flags
+required  8 (shader saw  8) pattern 2:      0 wrong values, 0 wrong branch flags
+required  8 (shader saw  8) pattern 3:      0 wrong values, 0 wrong branch flags
+required 16 (shader saw 16) pattern 0:      0 wrong values, 0 wrong branch flags
+required 16 (shader saw 16) pattern 1:      0 wrong values, 0 wrong branch flags
+required 16 (shader saw 16) pattern 2:      0 wrong values, 0 wrong branch flags
+required 16 (shader saw 16) pattern 3:      0 wrong values, 0 wrong branch flags
+required 32 (shader saw 32) pattern 0:      0 wrong values, 0 wrong branch flags
+required 32 (shader saw 32) pattern 1:      0 wrong values, 0 wrong branch flags
+required 32 (shader saw 32) pattern 2:      0 wrong values, 0 wrong branch flags
+required 32 (shader saw 32) pattern 3:      0 wrong values, 0 wrong branch flags
+PASS: 0 mismatches across 12 runs

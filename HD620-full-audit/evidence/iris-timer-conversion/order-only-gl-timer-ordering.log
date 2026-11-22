@@ -1,0 +1,32 @@
+d3d988845f65694362b0294d8e30e5b8fb0472e3742c2f83491e8255b1f89b0b  /build/iris-timer-order-only/src/gallium/targets/dri/libgallium-27.0.0-devel.so
+Mesa Intel(R) HD Graphics 620 (KBL GT2) 4.6 (Core Profile) Mesa 27.0.0-devel (git-0e9e1086bb)
+Mapped driver library /build/iris-timer-order-only/src/egl/libEGL.so.1.0.0
+Mapped driver library /build/iris-timer-order-only/src/gallium/targets/dri/libgallium-27.0.0-devel.so
+drained references: compute 11.514 ms, draw 11.520 ms, compute+draw 22.728 ms
+PASS time elapsed covers compute: 11.284 ms (want >= 9.211 ms)
+PASS time elapsed covers draw: 11.035 ms (want >= 9.216 ms)
+PASS time elapsed covers compute then draw: 22.231 ms (want >= 18.182 ms)
+PASS time elapsed covers draw then compute: 22.602 ms (want >= 18.182 ms)
+PASS timestamp pair covers compute: 11.259 ms (want >= 9.211 ms)
+PASS timestamp pair covers draw: 11.127 ms (want >= 9.216 ms)
+PASS query-buffer-resolved timestamp pair covers compute (CPU readback): 11.282 ms (want >= 9.211 ms)
+KNOWN-DEFECT query-buffer GL_TIMESTAMP values equal glGetQueryObjectui64v values in 0/9 runs; query-buffer deltas ns [-2552881560140, -2552881609580, -2552881806921, -2552881750602, -2552881824910, -2552881791890, -2552881917292, -2552881937460, -2552882063295]
+PASS time elapsed excludes earlier compute: 0.000 ms (want <= 1.151 ms)
+PASS time elapsed excludes later compute: 0.000 ms (want <= 1.151 ms)
+PASS time elapsed excludes earlier draw: 0.000 ms (want <= 1.152 ms)
+PASS time elapsed excludes later draw: 0.000 ms (want <= 1.152 ms)
+PASS timestamp pair excludes earlier compute: 0.000 ms (want <= 1.151 ms)
+PASS timestamp pair excludes later compute: 0.000 ms (want <= 1.151 ms)
+PASS query-buffer-resolved pair excludes later compute (CPU readback): 0.000 ms (want <= 1.151 ms)
+PASS timestamp chain interval 1 covers compute: 11.277 ms (want >= 9.211 <= 17.270 ms)
+PASS timestamp chain interval 2 covers draw: 11.132 ms (want >= 9.216 <= 17.280 ms)
+PASS timestamp chain interval 3 covers second compute: 11.334 ms (want >= 9.211 <= 17.270 ms)
+compute buffer and rendered pixel checks passed
+overhead small dispatch, no query: median 11.3 us per iteration, samples us [12.3, 11.3, 12.0, 11.3, 10.9]
+overhead small dispatch inside time elapsed: median 74.2 us per iteration, samples us [75.4, 74.1, 74.3, 74.2, 73.6]
+overhead small draw, no query: median 184.1 us per iteration, samples us [185.2, 184.1, 185.0, 182.1, 180.2]
+overhead small draw inside time elapsed: median 188.0 us per iteration, samples us [185.8, 192.0, 188.2, 186.9, 188.0]
+overhead small draw+dispatch, no query: median 200.6 us per iteration, samples us [200.8, 205.1, 200.6, 199.6, 198.7]
+overhead small draw+dispatch inside time elapsed: median 264.7 us per iteration, samples us [274.4, 263.3, 289.0, 264.7, 252.7]
+0 timing check(s) failed
+exit status 0

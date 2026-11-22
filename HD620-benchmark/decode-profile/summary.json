@@ -1,0 +1,20 @@
+[
+  {
+    "workload": "H.264 1080p",
+    "gpu": 644.5579864984508,
+    "download": 495.5888748835784,
+    "median_ms_per_frame": 0.4685103437509497,
+    "median_throughput_gain_pct": 30.24933861540213,
+    "min_throughput_gain_pct": 23.398935370173923,
+    "max_throughput_gain_pct": 39.68672235780761
+  },
+  {
+    "workload": "VP9 10-bit 720p",
+    "gpu": 669.7827632131098,
+    "download": 485.6237948489338,
+    "median_ms_per_frame": 0.5646026437527023,
+    "median_throughput_gain_pct": 37.69918029482902,
+    "min_throughput_gain_pct": 36.213413100823864,
+    "max_throughput_gain_pct": 43.35608675076244
+  }
+]

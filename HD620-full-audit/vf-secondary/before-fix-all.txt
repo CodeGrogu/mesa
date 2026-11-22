@@ -1,0 +1,8 @@
+A at 0x740000000, B at 0x840000000 (low 32 bits equal)
+entry  (A primary, B secondary): 0/50 stale
+exit   (A secondary, B primary): 0/50 stale
+inline (A and B in primary): 0/50 stale
+    clean  (A then B, one scope, no transition in batch) rep 0: centre ff0000ff (expected green ff00ff00)
+    clean  (A then B, one scope, no transition in batch) rep 1: centre ff0000ff (expected green ff00ff00)
+clean  (A then B, one scope, no transition in batch): 50/50 stale
+FAIL

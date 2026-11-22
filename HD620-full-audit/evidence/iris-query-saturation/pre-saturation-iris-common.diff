@@ -1,0 +1,346 @@
+diff --git a/src/gallium/drivers/iris/iris_context.h b/src/gallium/drivers/iris/iris_context.h
+index 7ac6ee1..1c5fee4 100644
+--- a/src/gallium/drivers/iris/iris_context.h
++++ b/src/gallium/drivers/iris/iris_context.h
+@@ -1134,6 +1134,12 @@ struct iris_context {
+        */
+       struct iris_address compute_predicate;
+ 
++      /**
++       * A timer query snapshot was written to the render batch.  The next
++       * compute dispatch must not start until that snapshot has executed.
++       */
++      bool compute_after_timer_snapshot;
++
+       /** Is a PIPE_QUERY_PRIMITIVES_GENERATED query active? */
+       bool prims_generated_query_active;
+ 
+diff --git a/src/gallium/drivers/iris/iris_draw.c b/src/gallium/drivers/iris/iris_draw.c
+index f2859ae..5504635 100644
+--- a/src/gallium/drivers/iris/iris_draw.c
++++ b/src/gallium/drivers/iris/iris_draw.c
+@@ -404,6 +404,12 @@ iris_launch_grid(struct pipe_context *ctx, const struct pipe_grid_info *grid)
+    if (ice->state.predicate == IRIS_PREDICATE_STATE_DONT_RENDER)
+       return;
+ 
++   if (ice->state.compute_after_timer_snapshot) {
++      /* Keep this dispatch out of a preceding timer query interval. */
++      iris_batch_wait_for_batch(batch, &ice->batches[IRIS_BATCH_RENDER]);
++      ice->state.compute_after_timer_snapshot = false;
++   }
++
+    if (INTEL_DEBUG(DEBUG_REEMIT)) {
+       ice->state.dirty |= IRIS_ALL_DIRTY_FOR_COMPUTE;
+       ice->state.stage_dirty |= IRIS_ALL_STAGE_DIRTY_FOR_COMPUTE;
+diff --git a/src/gallium/drivers/iris/iris_fence.c b/src/gallium/drivers/iris/iris_fence.c
+index 5732e18..5b0acc2 100644
+--- a/src/gallium/drivers/iris/iris_fence.c
++++ b/src/gallium/drivers/iris/iris_fence.c
+@@ -108,6 +108,32 @@ iris_batch_add_syncobj(struct iris_batch *batch,
+    iris_syncobj_reference(batch->screen->bufmgr, store, syncobj);
+ }
+ 
++/**
++ * Make the next submission of \p batch wait until all work recorded so far
++ * in \p other has completed.
++ *
++ * \p other is flushed if it has queued commands, so the syncobj we wait on
++ * has been submitted.  Nothing is added when \p other has no outstanding
++ * work.  Batches on one i915 context execute in order, so waiting for the
++ * last submission covers all earlier submissions of \p other.
++ */
++void
++iris_batch_wait_for_batch(struct iris_batch *batch, struct iris_batch *other)
++{
++   iris_batch_flush(other);
++
++   struct iris_fine_fence *last = other->last_fence;
++   if (iris_fine_fence_signaled(last))
++      return;
++
++   util_dynarray_foreach(&batch->syncobjs, struct iris_syncobj *, s) {
++      if (*s == last->syncobj)
++         return;
++   }
++
++   iris_batch_add_syncobj(batch, last->syncobj, IRIS_BATCH_FENCE_WAIT);
++}
++
+ /**
+  * Walk through a batch's dependencies (any IRIS_BATCH_FENCE_WAIT syncobjs)
+  * and unreference any which have already passed.
+diff --git a/src/gallium/drivers/iris/iris_fence.h b/src/gallium/drivers/iris/iris_fence.h
+index 74c2302..f5c6176 100644
+--- a/src/gallium/drivers/iris/iris_fence.h
++++ b/src/gallium/drivers/iris/iris_fence.h
+@@ -27,6 +27,8 @@ void iris_syncobj_signal(struct iris_bufmgr *, struct iris_syncobj *);
+ void iris_batch_add_syncobj(struct iris_batch *batch,
+                             struct iris_syncobj *syncobj,
+                             uint32_t flags);
++void iris_batch_wait_for_batch(struct iris_batch *batch,
++                               struct iris_batch *other);
+ bool iris_wait_syncobj(struct iris_bufmgr *bufmgr,
+                        struct iris_syncobj *syncobj,
+                        int64_t timeout_nsec);
+diff --git a/src/gallium/drivers/iris/iris_query.c b/src/gallium/drivers/iris/iris_query.c
+index c366970..4ac09aa 100644
+--- a/src/gallium/drivers/iris/iris_query.c
++++ b/src/gallium/drivers/iris/iris_query.c
+@@ -196,6 +196,14 @@ write_value(struct iris_context *ice, struct iris_query *q, unsigned offset)
+    case PIPE_QUERY_TIMESTAMP:
+    case PIPE_QUERY_TIMESTAMP_DISJOINT:
+    case PIPE_QUERY_TIMESTAMP_RAW:
++      /* Timer snapshots go in the render batch, while dispatches go in the
++       * compute batch, which is a separate hardware context.  Order the
++       * snapshot after previously submitted compute work, and make the next
++       * dispatch wait for the snapshot (see iris_launch_grid).
++       */
++      iris_batch_wait_for_batch(&ice->batches[IRIS_BATCH_RENDER],
++                                &ice->batches[IRIS_BATCH_COMPUTE]);
++      ice->state.compute_after_timer_snapshot = true;
+       iris_pipelined_write(&ice->batches[IRIS_BATCH_RENDER], q,
+                            PIPE_CONTROL_WRITE_TIMESTAMP,
+                            offset);
+@@ -400,20 +408,22 @@ calculate_result_on_gpu(const struct intel_device_info *devinfo,
+    case PIPE_QUERY_TIMESTAMP_RAW:
+       result = start_val;
+       break;
+-   case PIPE_QUERY_TIMESTAMP: {
+-      /* TODO: This discards any fractional bits of the timebase scale.
+-       * We would need to do a bit of fixed point math on the CS ALU, or
+-       * launch an actual shader to calculate this with full precision.
++   case PIPE_QUERY_TIMESTAMP:
++      /* Same value as calculate_result_on_cpu(), so a query buffer and
++       * glGetQueryObject agree whichever path resolves the query.
+        */
+-      uint32_t scale = 1000000000ull / devinfo->timestamp_frequency;
+-      result = mi_iand(b, mi_imm((1ull << 36) - 1),
+-                          mi_imul_imm(b, start_val, scale));
++      result = mi_umul_udiv64_imm(b, start_val, 1000000000,
++                                  devinfo->timestamp_frequency);
+       break;
+-   }
+    case PIPE_QUERY_TIME_ELAPSED: {
+-      /* TODO: This discards fractional bits (see above). */
+-      uint32_t scale = 1000000000ull / devinfo->timestamp_frequency;
+-      result = mi_imul_imm(b, mi_isub(b, end_val, start_val), scale);
++      /* iris_raw_timestamp_delta(): end - start, plus 2^36 if the 36-bit
++       * counter wrapped (end < start), then scaled as on the CPU.
++       */
++      struct mi_value wrap =
++         mi_iand(b, mi_ult(b, end_val, start_val), mi_imm(1ull << 36));
++      result = mi_iadd(b, mi_isub(b, end_val, start_val), wrap);
++      result = mi_umul_udiv64_imm(b, result, 1000000000,
++                                  devinfo->timestamp_frequency);
+       break;
+    }
+    default:
+diff --git a/src/intel/common/mi_builder.h b/src/intel/common/mi_builder.h
+index 527e649..2066fb8 100644
+--- a/src/intel/common/mi_builder.h
++++ b/src/intel/common/mi_builder.h
+@@ -1301,6 +1301,100 @@ mi_udiv32_imm(struct mi_builder *b, struct mi_value N, uint32_t D)
+    }
+ }
+ 
++/**
++ * Divide a 64-bit value by an immediate.
++ *
++ * Returns floor(N / D) and, if rem_out is not NULL, N % D.  N must be less
++ * than 2^bits, and D must be in [1, 2^31].
++ *
++ * The CS ALU has no divide and mi_udiv32_imm() needs a 32-bit numerator, so
++ * this is schoolbook long division in base 2^k.  k is the largest power of
++ * two up to 16 with D * 2^k <= 2^32, so every partial dividend
++ * rem * 2^k + digit < D * 2^k fits mi_udiv32_imm().
++ */
++static inline struct mi_value
++mi_udiv64_imm(struct mi_builder *b, struct mi_value N, uint32_t D,
++              unsigned bits, struct mi_value *rem_out)
++{
++   assert(D >= 1 && D <= (1u << 31));
++   assert(bits >= 1 && bits <= 64);
++
++   if (N.type == MI_VALUE_TYPE_IMM) {
++      uint64_t n = mi_value_to_u64(N);
++      if (rem_out)
++         *rem_out = mi_imm(n % D);
++      return mi_imm(n / D);
++   }
++
++   unsigned k = 16;
++   while (k > 1 && ((uint64_t)D << k) > (1ull << 32))
++      k /= 2;
++
++   N = mi_value_to_gpr(b, N);
++
++   struct mi_value Q = mi_imm(0), R = mi_imm(0);
++   for (int d = DIV_ROUND_UP(bits, k) - 1; d >= 0; d--) {
++      struct mi_value digit =
++         mi_iand(b, mi_ushr32_imm(b, mi_value_ref(b, N), d * k),
++                    mi_imm((1u << k) - 1));
++      struct mi_value P = mi_iadd(b, mi_ishl_imm(b, R, k), digit);
++      struct mi_value q = mi_udiv32_imm(b, mi_value_ref(b, P), D);
++      R = mi_isub(b, P, mi_imul_imm(b, mi_value_ref(b, q), D));
++      Q = mi_iadd(b, mi_ishl_imm(b, Q, k), q);
++   }
++   mi_value_unref(b, N);
++
++   if (rem_out)
++      *rem_out = R;
++   else
++      mi_value_unref(b, R);
++
++   return Q;
++}
++
++/**
++ * Compute floor(N * num / den) mod 2^64 exactly, for every 64-bit N.
++ *
++ * This gives the same value as intel_device_info_timebase_scale() on the
++ * CPU when num is 1000000000 and den is the timestamp frequency.  After
++ * reducing num / den, den must be at most 2^31.
++ */
++static inline struct mi_value
++mi_umul_udiv64_imm(struct mi_builder *b, struct mi_value N,
++                   uint32_t num, uint32_t den)
++{
++   assert(den > 0);
++
++   if (num == 0) {
++      mi_value_unref(b, N);
++      return mi_imm(0);
++   }
++
++   uint32_t g = num, r = den;
++   while (r) {
++      uint32_t t = g % r;
++      g = r;
++      r = t;
++   }
++   num /= g;
++   den /= g;
++
++   if (den == 1)
++      return mi_imul_imm(b, N, num);
++
++   /* With N = q * den + rem and rem < den,
++    * floor(N * num / den) = q * num + floor(rem * num / den), and
++    * rem * num < den * num < 2^63 cannot overflow.
++    */
++   struct mi_value rem;
++   struct mi_value q = mi_udiv64_imm(b, N, den, 64, &rem);
++   struct mi_value frac =
++      mi_udiv64_imm(b, mi_imul_imm(b, rem, num), den,
++                    util_last_bit64((uint64_t)(den - 1) * num), NULL);
++
++   return mi_iadd(b, mi_imul_imm(b, q, num), frac);
++}
++
+ /* Finds the maximum between the two specified unsigned numbers. */
+ static inline struct mi_value
+ mi_umax2(struct mi_builder *b, struct mi_value val1, struct mi_value val2)
+diff --git a/src/intel/common/tests/mi_builder_test.cpp b/src/intel/common/tests/mi_builder_test.cpp
+index a2d50ec..c87eb6c 100644
+--- a/src/intel/common/tests/mi_builder_test.cpp
++++ b/src/intel/common/tests/mi_builder_test.cpp
+@@ -1252,6 +1252,99 @@ TEST_F(mi_builder_test, udiv32_imm)
+    }
+ }
+ 
++static const uint64_t udiv64_values[] = {
++   0,
++   1,
++   0xfffffffffull,          /* largest 36-bit timestamp */
++   0x1000000000ull,
++   0x0123456789abcdefull,
++   0x8000000000000000ull,
++   0xfffffffffffffffeull,
++   0xffffffffffffffffull,
++};
++
++TEST_F(mi_builder_test, udiv64_imm)
++{
++   /* Divisors covering every digit size: 16-bit digits up to 2^16, then
++    * 8-, 4-, 2- and 1-bit digits.
++    */
++   const uint32_t divisors[] = {
++      1, 2, 3, 12, 24, 65521, 65536, 65537, 16777259, 0x7fffffff, 0x80000000,
++   };
++   memcpy(input, udiv64_values, sizeof(udiv64_values));
++
++   for (unsigned j = 0; j < ARRAY_SIZE(divisors); j++) {
++      batch_offset = 0;
++      mi_builder_init(&b, &devinfo, this);
++
++      for (unsigned i = 0; i < ARRAY_SIZE(udiv64_values); i++) {
++         struct mi_value rem;
++         struct mi_value q =
++            mi_udiv64_imm(&b, in_mem64(i * 8), divisors[j], 64, &rem);
++         mi_store(&b, out_mem64(i * 16), q);
++         mi_store(&b, out_mem64(i * 16 + 8), rem);
++      }
++
++      submit_batch();
++
++      for (unsigned i = 0; i < ARRAY_SIZE(udiv64_values); i++) {
++         EXPECT_EQ(*(uint64_t *)(output + i * 16),
++                   udiv64_values[i] / divisors[j]) << "D=" << divisors[j];
++         EXPECT_EQ(*(uint64_t *)(output + i * 16 + 8),
++                   udiv64_values[i] % divisors[j]) << "D=" << divisors[j];
++      }
++   }
++}
++
++/* CS timestamp frequencies that i915 and Xe can report: fixed Gen8-9
++ * values, crystal clocks shifted by the CTC shift parameter, divide-logic
++ * values such as 12 + 1/3 MHz, and extreme divisors.
++ */
++static const uint32_t timestamp_frequencies[] = {
++   12500000, 12000000, 19200000, 24000000, 25000000, 38400000,
++   3000000, 6000000, 2400000, 4800000, 9600000, 3125000, 6250000,
++   12333333, 1000000000, 1, 0x7fffffff,
++};
++
++static uint64_t
++cpu_timebase_scale(uint32_t frequency, uint64_t ticks)
++{
++   struct intel_device_info info = {};
++   info.timestamp_frequency = frequency;
++   return intel_device_info_timebase_scale(&info, ticks);
++}
++
++TEST_F(mi_builder_test, umul_udiv64_imm_timebase_scale)
++{
++   memcpy(input, udiv64_values, sizeof(udiv64_values));
++
++   /* One batch per value: a divisor near 2^31 needs 1-bit digits, which
++    * makes a single conversion several hundred kilobytes of MI_MATH.
++    */
++   for (unsigned j = 0; j < ARRAY_SIZE(timestamp_frequencies); j++) {
++      for (unsigned i = 0; i < ARRAY_SIZE(udiv64_values); i++) {
++         batch_offset = 0;
++         mi_builder_init(&b, &devinfo, this);
++
++         struct mi_value ns =
++            mi_umul_udiv64_imm(&b, in_mem64(i * 8), 1000000000,
++                               timestamp_frequencies[j]);
++         mi_store(&b, out_mem64(0), mi_value_ref(&b, ns));
++         mi_store(&b, out_mem32(8), ns);
++
++         submit_batch();
++
++         uint64_t expected =
++            cpu_timebase_scale(timestamp_frequencies[j], udiv64_values[i]);
++         EXPECT_EQ(*(uint64_t *)(output + 0), expected)
++            << "f=" << timestamp_frequencies[j] << " i=" << i;
++         EXPECT_EQ(*(uint32_t *)(output + 8), (uint32_t)expected)
++            << "f=" << timestamp_frequencies[j] << " i=" << i;
++         EXPECT_EQ(*(uint32_t *)(output + 12), (uint32_t)canary);
++      }
++   }
++}
++
+ TEST_F(mi_builder_test, umax2_32)
+ {
+    const uint32_t values[] = {

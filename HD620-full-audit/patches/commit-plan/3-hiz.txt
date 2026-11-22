@@ -1,0 +1,15 @@
+anv: enable HiZ for aligned multi-LOD D32 depth images on Gfx9
+
+Gfx9 HiZ ops on LOD > 0 need an 8x4-aligned rectangle that covers the LOD
+without exceeding the minified extent, and ANV tracks aux usage per image,
+so multi-LOD depth images had HiZ disabled entirely.  Allow it when every
+LOD's minified extent is already 8x4 aligned, for single-layer,
+single-sample, optimally tiled 2D D32_SFLOAT images.
+
+On HD 620 a mip-0 clear group took 2.40 ms with one mip and 22.39 ms with
+four before this change.  Exact per-pixel tests, batch decoding and size
+checks pass for in-scope and out-of-scope images.
+
+Developed with Codex ("Sol") in an earlier session.
+
+Generated-by: LLM

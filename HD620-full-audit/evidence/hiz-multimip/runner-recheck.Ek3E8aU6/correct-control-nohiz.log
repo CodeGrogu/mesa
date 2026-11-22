@@ -1,0 +1,20 @@
+Intel(R) HD Graphics 620 (KBL GT2) driverVersion 109457507 driverName 'Intel open-source Mesa driver' driverInfo 'Mesa 27.0.0-devel (git-0e9e1086bb)' mode correct
+driver library: /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/libvulkan_intel.so
+PASS aligned-2048x2048x4 in-scope levels 4: 55705600 exact pixel checks, image allocation 24641536 bytes
+PASS aligned-704x288x4 in-scope levels 4: 2692800 exact pixel checks, image allocation 1216512 bytes
+PASS aligned-256x128x6 in-scope levels 6: 611520 exact pixel checks, image allocation 184320 bytes
+PASS aligned-64x32x4 in-scope levels 4: 27200 exact pixel checks, image allocation 16384 bytes
+PASS oddlod0-2049x1025x3 in-scope levels 3: 22044680 exact pixel checks, image allocation 13893632 bytes
+PASS oddlod0-17x9x2 in-scope levels 2: 1110 exact pixel checks, image allocation 4096 bytes
+PASS unaligned-696x288x4 out-of-scope levels 4: 2662200 exact pixel checks, image allocation 1216512 bytes
+PASS unaligned-704x280x4 out-of-scope levels 4: 2618000 exact pixel checks, image allocation 1216512 bytes
+PASS unaligned-32x32x5 out-of-scope levels 5: 16368 exact pixel checks, image allocation 8192 bytes
+PASS unaligned-2049x1026x2 out-of-scope levels 2: 15765516 exact pixel checks, image allocation 12910592 bytes
+PASS fullchain-64x32x7 out-of-scope levels 7: 43696 exact pixel checks, image allocation 16384 bytes
+PASS single-64x32x1 in-scope levels 1: 8192 exact pixel checks, image allocation 8192 bytes
+PASS resolve-704x288x4 in-scope levels 4: 4039200 exact pixel checks, image allocation 1216512 bytes
+PASS resolve-256x128x6 in-scope levels 6: 917280 exact pixel checks, image allocation 184320 bytes
+PASS resolve-17x9x2 in-scope levels 2: 1665 exact pixel checks, image allocation 4096 bytes
+PASS resolve-unaligned-696x288x4 out-of-scope levels 4: 3993300 exact pixel checks, image allocation 1216512 bytes
+SUMMARY 16/16 pixel cases passed
+rc=0

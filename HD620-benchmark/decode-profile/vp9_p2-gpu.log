@@ -1,0 +1,751 @@
+Splitting the commandline.
+Reading option '-hide_banner' ... matched as option 'hide_banner' (do not show program banner) with argument '1'.
+Reading option '-nostdin' ... matched as option 'stdin' (enable or disable interaction on standard input) with argument 0.
+Reading option '-xerror' ... matched as option 'xerror' (exit on error) with argument '1'.
+Reading option '-v' ... matched as option 'v' (set logging level) with argument 'debug'.
+Reading option '-nostats' ... matched as option 'stats' (print progress report during encoding) with argument 0.
+Reading option '-progress' ... matched as option 'progress' (write program-readable progress information) with argument 'pipe:1'.
+Reading option '-filter_threads' ... matched as option 'filter_threads' (number of non-complex filter threads) with argument '2'.
+Reading option '-init_hw_device' ... matched as option 'init_hw_device' (initialise hardware device) with argument 'vulkan=vk:0'.
+Reading option '-hwaccel' ... matched as option 'hwaccel' (use HW accelerated decoding) with argument 'vulkan'.
+Reading option '-hwaccel_output_format' ... matched as option 'hwaccel_output_format' (select output format used with HW accelerated decoding) with argument 'vulkan'.
+Reading option '-hwaccel_device' ... matched as option 'hwaccel_device' (select a device for HW acceleration) with argument 'vk'.
+Reading option '-threads' ... matched as AVOption 'threads' with argument '2'.
+Reading option '-i' ... matched as input url with argument '/home/polarbear/.t3/projects/catchingup/HD620-benchmark/inputs/vp9_p2.webm'.
+Reading option '-pix_fmt' ... matched as option 'pix_fmt' (set pixel format) with argument '+vulkan'.
+Reading option '-noauto_conversion_filters' ... matched as option 'auto_conversion_filters' (enable automatic conversion filters globally) with argument 0.
+Reading option '-c:v' ... matched as option 'c' (select encoder/decoder ('copy' to copy stream without reencoding)) with argument 'wrapped_avframe'.
+Reading option '-frames:v' ... matched as option 'frames' (set the number of frames to output) with argument '120'.
+Reading option '-an' ... matched as option 'an' (disable audio) with argument '1'.
+Reading option '-f' ... matched as option 'f' (force container format (auto-detected otherwise)) with argument 'null'.
+Reading option '-' ... matched as output url.
+Finished splitting the commandline.
+Parsing a group of options: global .
+Applying option hide_banner (do not show program banner) with argument 1.
+Applying option nostdin (enable or disable interaction on standard input) with argument 0.
+Applying option xerror (exit on error) with argument 1.
+Applying option v (set logging level) with argument debug.
+Applying option nostats (print progress report during encoding) with argument 0.
+Applying option progress (write program-readable progress information) with argument pipe:1.
+[pipe @ 0x56ece8294f40] Setting default whitelist 'crypto,data'
+Applying option filter_threads (number of non-complex filter threads) with argument 2.
+Applying option init_hw_device (initialise hardware device) with argument vulkan=vk:0.
+[Vulkan @ 0x56ece829d200] Supported layers:
+[Vulkan @ 0x56ece829d200] 	VK_LAYER_MESA_device_select
+[Vulkan @ 0x56ece829d200] 	VK_LAYER_MESA_anti_lag
+[Vulkan @ 0x56ece829d200] 	VK_LAYER_MESA_screenshot
+[Vulkan @ 0x56ece829d200] 	VK_LAYER_INTEL_nullhw
+[Vulkan @ 0x56ece829d200] 	VK_LAYER_MESA_overlay
+[Vulkan Loader] DRIVER:         Searching for driver manifest files
+[Vulkan Loader] DRIVER:            In following locations:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/icd.json
+[Vulkan Loader] DRIVER:            Found the following files:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/icd.json
+[Vulkan Loader] DRIVER:         Found ICD manifest file /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/icd.json, version 1.0.1
+[Vulkan Loader] DEBUG | DRIVER: Searching for ICD drivers named /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/libvulkan_intel.so
+[Vulkan Loader] DRIVER:         Searching for driver manifest files
+[Vulkan Loader] DRIVER:            In following locations:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/icd.json
+[Vulkan Loader] DRIVER:            Found the following files:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/icd.json
+[Vulkan Loader] DRIVER:         Found ICD manifest file /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/icd.json, version 1.0.1
+[Vulkan Loader] DEBUG | DRIVER: Searching for ICD drivers named /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/libvulkan_intel.so
+[Vulkan Loader] DRIVER:         Searching for driver manifest files
+[Vulkan Loader] DRIVER:            In following locations:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/icd.json
+[Vulkan Loader] DRIVER:            Found the following files:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/icd.json
+[Vulkan Loader] DRIVER:         Found ICD manifest file /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/icd.json, version 1.0.1
+[Vulkan Loader] DEBUG | DRIVER: Searching for ICD drivers named /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/libvulkan_intel.so
+[Vulkan @ 0x56ece829d200] Using instance extension VK_EXT_layer_settings
+[Vulkan Loader] DRIVER:         Searching for driver manifest files
+[Vulkan Loader] DRIVER:            In following locations:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/icd.json
+[Vulkan Loader] DRIVER:            Found the following files:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/icd.json
+[Vulkan Loader] DRIVER:         Found ICD manifest file /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/icd.json, version 1.0.1
+[Vulkan Loader] DEBUG | DRIVER: Searching for ICD drivers named /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/libvulkan_intel.so
+[Vulkan Loader] INFO | DRIVER:  linux_read_sorted_physical_devices:
+[Vulkan Loader] INFO | DRIVER:       Original order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan Loader] INFO | DRIVER:       Sorted order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)  
+[Vulkan Loader] INFO | DRIVER:  linux_read_sorted_physical_devices:
+[Vulkan Loader] INFO | DRIVER:       Original order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan Loader] INFO | DRIVER:       Sorted order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)  
+[Vulkan Loader] DEBUG | DRIVER: Copying old device 0 into new device 0
+[Vulkan Loader] INFO | DRIVER:  linux_read_sorted_physical_devices:
+[Vulkan Loader] INFO | DRIVER:       Original order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan Loader] INFO | DRIVER:       Sorted order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)  
+[Vulkan Loader] DEBUG | DRIVER: Copying old device 0 into new device 0
+[Vulkan Loader] INFO | DRIVER:  linux_read_sorted_physical_devices:
+[Vulkan Loader] INFO | DRIVER:       Original order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan Loader] INFO | DRIVER:       Sorted order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)  
+[Vulkan Loader] DEBUG | DRIVER: Copying old device 0 into new device 0
+[Vulkan @ 0x56ece829d200] GPU listing:
+[Vulkan @ 0x56ece829d200]     0: Intel(R) HD Graphics 620 (KBL GT2) (integrated) (0x5916)
+[Vulkan @ 0x56ece829d200] Device 0 selected: Intel(R) HD Graphics 620 (KBL GT2) (integrated) (0x5916)
+[Vulkan @ 0x56ece829d200] Using device extension VK_KHR_push_descriptor
+[Vulkan @ 0x56ece829d200] Using device extension VK_EXT_physical_device_drm
+[Vulkan @ 0x56ece829d200] Using device extension VK_EXT_shader_atomic_float
+[Vulkan @ 0x56ece829d200] Using device extension VK_EXT_shader_object
+[Vulkan @ 0x56ece829d200] Using device extension VK_KHR_shader_subgroup_rotate
+[Vulkan @ 0x56ece829d200] Using device extension VK_KHR_shader_expect_assume
+[Vulkan @ 0x56ece829d200] Using device extension VK_KHR_video_maintenance1
+[Vulkan @ 0x56ece829d200] Using device extension VK_KHR_video_maintenance2
+[Vulkan @ 0x56ece829d200] Using device extension VK_KHR_external_memory_fd
+[Vulkan @ 0x56ece829d200] Using device extension VK_EXT_external_memory_dma_buf
+[Vulkan @ 0x56ece829d200] Using device extension VK_EXT_image_drm_format_modifier
+[Vulkan @ 0x56ece829d200] Using device extension VK_KHR_external_semaphore_fd
+[Vulkan @ 0x56ece829d200] Using device extension VK_EXT_external_memory_host
+[Vulkan @ 0x56ece829d200] Using device extension VK_KHR_video_queue
+[Vulkan @ 0x56ece829d200] Using device extension VK_KHR_video_encode_queue
+[Vulkan @ 0x56ece829d200] Using device extension VK_KHR_video_decode_queue
+[Vulkan @ 0x56ece829d200] Using device extension VK_KHR_video_encode_h264
+[Vulkan @ 0x56ece829d200] Using device extension VK_KHR_video_decode_h264
+[Vulkan @ 0x56ece829d200] Using device extension VK_KHR_video_decode_vp9
+[Vulkan @ 0x56ece829d200] Queue families:
+[Vulkan @ 0x56ece829d200]     0: graphics compute transfer (queues: 1)
+[Vulkan @ 0x56ece829d200]     1: encode decode (queues: 1)
+[Vulkan Loader] DRIVER:         vkCreateDevice layer callstack setup to:
+[Vulkan Loader] DRIVER:            <Application>
+[Vulkan Loader] DRIVER:              ||
+[Vulkan Loader] DRIVER:            <Loader>
+[Vulkan Loader] DRIVER:              ||
+[Vulkan Loader] DRIVER:            <Device>
+[Vulkan Loader] DRIVER:                Using "Intel(R) HD Graphics 620 (KBL GT2)" with driver: "/home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/libvulkan_intel.so"
+[Vulkan @ 0x56ece829d200] Using device: Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan @ 0x56ece829d200] Alignments:
+[Vulkan @ 0x56ece829d200]     optimalBufferCopyRowPitchAlignment: 64
+[Vulkan @ 0x56ece829d200]     minMemoryMapAlignment:              4096
+[Vulkan @ 0x56ece829d200]     nonCoherentAtomSize:                64
+[Vulkan @ 0x56ece829d200]     minImportedHostPointerAlignment:    4096
+[Vulkan @ 0x56ece829d200] Using queue family 0 (queues: 1) for graphics compute transfers
+[Vulkan @ 0x56ece829d200] Using queue family 1 (queues: 1) for encode decode
+Applying option noauto_conversion_filters (enable automatic conversion filters globally) with argument 0.
+Successfully parsed a group of options.
+Parsing a group of options: input url /home/polarbear/.t3/projects/catchingup/HD620-benchmark/inputs/vp9_p2.webm.
+Applying option hwaccel (use HW accelerated decoding) with argument vulkan.
+Applying option hwaccel_output_format (select output format used with HW accelerated decoding) with argument vulkan.
+Applying option hwaccel_device (select a device for HW acceleration) with argument vk.
+Successfully parsed a group of options.
+Opening an input file: /home/polarbear/.t3/projects/catchingup/HD620-benchmark/inputs/vp9_p2.webm.
+[AVFormatContext @ 0x56ece82c8a00] Opening '/home/polarbear/.t3/projects/catchingup/HD620-benchmark/inputs/vp9_p2.webm' for reading
+[file @ 0x56ece82c8ec0] Setting default whitelist 'file,crypto,data'
+[matroska,webm @ 0x56ece82c8a00] Format matroska,webm probed with size=2048 and score=100
+st:0 removing common factor 1000000 from timebase
+[matroska,webm @ 0x56ece82c8a00] Before avformat_find_stream_info() pos: 478 bytes read:32768 seeks:0 nb_streams:1
+[vp9 @ 0x56ece82d28c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[vp9 @ 0x56ece82d28c0] Format yuv420p10le chosen by get_format().
+[matroska,webm @ 0x56ece82c8a00] All info found
+[matroska,webm @ 0x56ece82c8a00] After avformat_find_stream_info() pos: 34633 bytes read:65536 seeks:0 frames:1
+[vist#0:0/vp9 @ 0x56ece82e8d80] Selecting decoder 'vp9' because of requested hwaccel method vulkan
+Input #0, matroska,webm, from '/home/polarbear/.t3/projects/catchingup/HD620-benchmark/inputs/vp9_p2.webm':
+  Metadata:
+    ENCODER         : Lavf62.3.100
+  Duration: 00:00:32.00, start: 0.000000, bitrate: 1525 kb/s
+  Stream #0:0, 1, 1/1000: Video: vp9 (Profile 2), 1 reference frame, yuv420p10le(tv, progressive), 1280x720, 0/1, SAR 1:1 DAR 16:9, 30 fps, 30 tbr, 1k tbn
+    Metadata:
+      ENCODER         : Lavc62.11.100 libvpx-vp9
+      DURATION        : 00:00:32.000000000
+Successfully opened the file.
+Parsing a group of options: output url -.
+Applying option pix_fmt (set pixel format) with argument +vulkan.
+Applying option c:v (select encoder/decoder ('copy' to copy stream without reencoding)) with argument wrapped_avframe.
+Applying option frames:v (set the number of frames to output) with argument 120.
+Applying option an (disable audio) with argument 1.
+Applying option f (force container format (auto-detected otherwise)) with argument null.
+Successfully parsed a group of options.
+Opening an output file: -.
+[out#0/null @ 0x56ece82e8f80] No explicit maps, mapping streams automatically...
+[vost#0:0/wrapped_avframe @ 0x56ece82e9300] Created video stream from input stream 0:0
+Successfully opened the file.
+Stream mapping:
+  Stream #0:0 -> #0:0 (vp9 (native) -> wrapped_avframe (native))
+[vost#0:0/wrapped_avframe @ 0x56ece82e9300] Starting thread...
+[vf#0:0 @ 0x56ece82e9b40] Starting thread...
+[vist#0:0/vp9 @ 0x56ece82e8d80] [dec:vp9 @ 0x56ece82d8600] Starting thread...
+[in#0/matroska,webm @ 0x56ece82c69c0] Starting thread...
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[vp9 @ 0x56ece82cf3c0] Format vulkan chosen by get_format().
+[vp9 @ 0x56ece82cf3c0] Format vulkan requires hwaccel vp9_vulkan initialisation.
+[vp9 @ 0x56ece82cf3c0] Decoder capabilities for vp9 profile "Profile 2":
+[vp9 @ 0x56ece82cf3c0]     Maximum level: 4 (stream -99)
+[vp9 @ 0x56ece82cf3c0]     Width: from 8 to 4096
+[vp9 @ 0x56ece82cf3c0]     Height: from 8 to 4096
+[vp9 @ 0x56ece82cf3c0]     Width alignment: 8
+[vp9 @ 0x56ece82cf3c0]     Height alignment: 8
+[vp9 @ 0x56ece82cf3c0]     Bitstream offset alignment: 32
+[vp9 @ 0x56ece82cf3c0]     Bitstream size alignment: 1
+[vp9 @ 0x56ece82cf3c0]     Maximum references: 12
+[vp9 @ 0x56ece82cf3c0]     Maximum active references: 3
+[vp9 @ 0x56ece82cf3c0]     Codec header name: 'VK_STD_vulkan_video_codec_vp9_decode' (driver), 'VK_STD_vulkan_video_codec_vp9_decode' (compiled)
+[vp9 @ 0x56ece82cf3c0]     Codec header version: 1.0.0 (driver), 1.0.0 (compiled)
+[vp9 @ 0x56ece82cf3c0]     Decode modes: reuse_dst_dpb
+[vp9 @ 0x56ece82cf3c0]     Capability flags: separate_references
+[vp9 @ 0x56ece82cf3c0] Choosing best pixel format for decoding from 2:
+[vp9 @ 0x56ece82cf3c0]     p010le* (Vulkan ID: 1000156013)
+    Last message repeated 1 times
+[vp9 @ 0x56ece82cf3c0] Chosen frame pixfmt: p010le (Vulkan ID: 1000156013)
+[vp9 @ 0x56ece82cf3c0] Allocating 147456 bytes in bind index 0 for video session
+[vp9 @ 0x56ece82cf3c0] Allocating 147456 bytes in bind index 1 for video session
+[vp9 @ 0x56ece82cf3c0] Allocating 139264 bytes in bind index 2 for video session
+[vp9 @ 0x56ece82cf3c0] Allocating 20480 bytes in bind index 3 for video session
+[vp9 @ 0x56ece82cf3c0] Allocating 20480 bytes in bind index 4 for video session
+[vp9 @ 0x56ece82cf3c0] Allocating 20480 bytes in bind index 5 for video session
+[vp9 @ 0x56ece82cf3c0] Allocating 4096 bytes in bind index 6 for video session
+[vp9 @ 0x56ece82cf3c0] Allocating 4096 bytes in bind index 7 for video session
+[vp9 @ 0x56ece82cf3c0] Allocating 4096 bytes in bind index 8 for video session
+[vp9 @ 0x56ece82cf3c0] Allocating 4096 bytes in bind index 9 for video session
+[vp9 @ 0x56ece82cf3c0] Allocating 262144 bytes in bind index 10 for video session
+[vp9 @ 0x56ece82cf3c0] Allocating 4096 bytes in bind index 11 for video session
+[vp9 @ 0x56ece82cf3c0] Allocating 4096 bytes in bind index 12 for video session
+[vp9 @ 0x56ece82cf3c0] Allocating 2359296 bytes in bind index 13 for video session
+[vp9 @ 0x56ece82cf3c0] Allocating 2359296 bytes in bind index 14 for video session
+[vp9 @ 0x56ece82cf3c0] Allocating 262144 bytes in bind index 15 for video session
+[vp9 @ 0x56ece82cf3c0] Allocating 4096 bytes in bind index 16 for video session
+[vp9 @ 0x56ece82cf3c0] Allocating 2359296 bytes in bind index 17 for video session
+[vp9 @ 0x56ece82cf3c0] Allocating 4096 bytes in bind index 18 for video session
+[vp9 @ 0x56ece82cf3c0] Vulkan decoder initialization successful
+[vp9 @ 0x56ece82cf3c0] [vk @ 0x74d7fc0011c0] Creating a buffer of 2097152 bytes, usage: 0x2000, flags: 0x2
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 34141 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[graph -1 input from stream 0:0 @ 0x74d804001c80] w:1280 h:720 pixfmt:vulkan tb:1/1000 fr:30/1 sar:1/1 csp:unknown range:tv
+[format @ 0x74d804002340] Setting 'pix_fmts' to value 'vulkan'
+Filter 'Parsed_null_0' formats:
+  in[0] 'default': yuv420p yuyv422 rgb24 bgr24 yuv422p yuv444p yuv410p yuv411p gray monow monob pal8 yuvj420p yuvj422p yuvj444p uyvy422 uyyvyy411 bgr8 bgr4 bgr4_byte rgb8 rgb4 rgb4_byte nv12 nv21 argb rgba abgr bgra gray16be gray16le yuv440p yuvj440p yuva420p rgb48be rgb48le rgb565be rgb565le rgb555be rgb555le bgr565be bgr565le bgr555be bgr555le vaapi yuv420p16le yuv420p16be yuv422p16le yuv422p16be yuv444p16le yuv444p16be dxva2_vld rgb444le rgb444be bgr444le bgr444be ya8 bgr48be bgr48le yuv420p9be yuv420p9le yuv420p10be yuv420p10le yuv422p10be yuv422p10le yuv444p9be yuv444p9le yuv444p10be yuv444p10le yuv422p9be yuv422p9le gbrp gbrp9be gbrp9le gbrp10be gbrp10le gbrp16be gbrp16le yuva422p yuva444p yuva420p9be yuva420p9le yuva422p9be yuva422p9le yuva444p9be yuva444p9le yuva420p10be yuva420p10le yuva422p10be yuva422p10le yuva444p10be yuva444p10le yuva420p16be yuva420p16le yuva422p16be yuva422p16le yuva444p16be yuva444p16le vdpau xyz12le xyz12be nv16 nv20le nv20be rgba64be rgba64le bgra64be bgra64le yvyu422 ya16be ya16le gbrap gbrap16be gbrap16le qsv mmal d3d11va_vld cuda 0rgb rgb0 0bgr bgr0 yuv420p12be yuv420p12le yuv420p14be yuv420p14le yuv422p12be yuv422p12le yuv422p14be yuv422p14le yuv444p12be yuv444p12le yuv444p14be yuv444p14le gbrp12be gbrp12le gbrp14be gbrp14le yuvj411p bayer_bggr8 bayer_rggb8 bayer_gbrg8 bayer_grbg8 bayer_bggr16le bayer_bggr16be bayer_rggb16le bayer_rggb16be bayer_gbrg16le bayer_gbrg16be bayer_grbg16le bayer_grbg16be yuv440p10le yuv440p10be yuv440p12le yuv440p12be ayuv64le ayuv64be videotoolbox_vld p010le p010be gbrap12be gbrap12le gbrap10be gbrap10le mediacodec gray12be gray12le gray10be gray10le p016le p016be d3d11 gray9be gray9le gbrpf32be gbrpf32le gbrapf32be gbrapf32le drm_prime opencl gray14be gray14le grayf32be grayf32le yuva422p12be yuva422p12le yuva444p12be yuva444p12le nv24 nv42 vulkan y210be y210le x2rgb10le x2rgb10be x2bgr10le x2bgr10be p210be p210le p410be p410le p216be p216le p416be p416le vuya rgbaf16be rgbaf16le vuyx p012le p012be y212be y212le xv30be xv30le xv36be xv36le rgbf32be rgbf32le rgbaf32be rgbaf32le p212be p212le p412be p412le gbrap14be gbrap14le d3d12 ayuv uyva vyu444 v30xbe v30xle rgbf16be rgbf16le rgba128be rgba128le rgb96be rgb96le y216be y216le xv48be xv48le gbrpf16be gbrpf16le gbrapf16be gbrapf16le grayf16be grayf16le amf gray32be gray32le yaf32be yaf32le yaf16be yaf16le gbrap32be gbrap32le yuv444p10msbbe yuv444p10msble yuv444p12msbbe yuv444p12msble gbrp10msbbe gbrp10msble gbrp12msbbe gbrp12msble ohcodec
+  out[0] 'default': yuv420p yuyv422 rgb24 bgr24 yuv422p yuv444p yuv410p yuv411p gray monow monob pal8 yuvj420p yuvj422p yuvj444p uyvy422 uyyvyy411 bgr8 bgr4 bgr4_byte rgb8 rgb4 rgb4_byte nv12 nv21 argb rgba abgr bgra gray16be gray16le yuv440p yuvj440p yuva420p rgb48be rgb48le rgb565be rgb565le rgb555be rgb555le bgr565be bgr565le bgr555be bgr555le vaapi yuv420p16le yuv420p16be yuv422p16le yuv422p16be yuv444p16le yuv444p16be dxva2_vld rgb444le rgb444be bgr444le bgr444be ya8 bgr48be bgr48le yuv420p9be yuv420p9le yuv420p10be yuv420p10le yuv422p10be yuv422p10le yuv444p9be yuv444p9le yuv444p10be yuv444p10le yuv422p9be yuv422p9le gbrp gbrp9be gbrp9le gbrp10be gbrp10le gbrp16be gbrp16le yuva422p yuva444p yuva420p9be yuva420p9le yuva422p9be yuva422p9le yuva444p9be yuva444p9le yuva420p10be yuva420p10le yuva422p10be yuva422p10le yuva444p10be yuva444p10le yuva420p16be yuva420p16le yuva422p16be yuva422p16le yuva444p16be yuva444p16le vdpau xyz12le xyz12be nv16 nv20le nv20be rgba64be rgba64le bgra64be bgra64le yvyu422 ya16be ya16le gbrap gbrap16be gbrap16le qsv mmal d3d11va_vld cuda 0rgb rgb0 0bgr bgr0 yuv420p12be yuv420p12le yuv420p14be yuv420p14le yuv422p12be yuv422p12le yuv422p14be yuv422p14le yuv444p12be yuv444p12le yuv444p14be yuv444p14le gbrp12be gbrp12le gbrp14be gbrp14le yuvj411p bayer_bggr8 bayer_rggb8 bayer_gbrg8 bayer_grbg8 bayer_bggr16le bayer_bggr16be bayer_rggb16le bayer_rggb16be bayer_gbrg16le bayer_gbrg16be bayer_grbg16le bayer_grbg16be yuv440p10le yuv440p10be yuv440p12le yuv440p12be ayuv64le ayuv64be videotoolbox_vld p010le p010be gbrap12be gbrap12le gbrap10be gbrap10le mediacodec gray12be gray12le gray10be gray10le p016le p016be d3d11 gray9be gray9le gbrpf32be gbrpf32le gbrapf32be gbrapf32le drm_prime opencl gray14be gray14le grayf32be grayf32le yuva422p12be yuva422p12le yuva444p12be yuva444p12le nv24 nv42 vulkan y210be y210le x2rgb10le x2rgb10be x2bgr10le x2bgr10be p210be p210le p410be p410le p216be p216le p416be p416le vuya rgbaf16be rgbaf16le vuyx p012le p012be y212be y212le xv30be xv30le xv36be xv36le rgbf32be rgbf32le rgbaf32be rgbaf32le p212be p212le p412be p412le gbrap14be gbrap14le d3d12 ayuv uyva vyu444 v30xbe v30xle rgbf16be rgbf16le rgba128be rgba128le rgb96be rgb96le y216be y216le xv48be xv48le gbrpf16be gbrpf16le gbrapf16be gbrapf16le grayf16be grayf16le amf gray32be gray32le yaf32be yaf32le yaf16be yaf16le gbrap32be gbrap32le yuv444p10msbbe yuv444p10msble yuv444p12msbbe yuv444p12msble gbrp10msbbe gbrp10msble gbrp12msbbe gbrp12msble ohcodec
+Filter 'graph -1 input from stream 0:0' formats:
+  out[0] 'default': vulkan
+Filter 'out_#0:0' formats:
+  in[0] 'default': yuv420p yuyv422 rgb24 bgr24 yuv422p yuv444p yuv410p yuv411p gray monow monob pal8 yuvj420p yuvj422p yuvj444p uyvy422 uyyvyy411 bgr8 bgr4 bgr4_byte rgb8 rgb4 rgb4_byte nv12 nv21 argb rgba abgr bgra gray16be gray16le yuv440p yuvj440p yuva420p rgb48be rgb48le rgb565be rgb565le rgb555be rgb555le bgr565be bgr565le bgr555be bgr555le vaapi yuv420p16le yuv420p16be yuv422p16le yuv422p16be yuv444p16le yuv444p16be dxva2_vld rgb444le rgb444be bgr444le bgr444be ya8 bgr48be bgr48le yuv420p9be yuv420p9le yuv420p10be yuv420p10le yuv422p10be yuv422p10le yuv444p9be yuv444p9le yuv444p10be yuv444p10le yuv422p9be yuv422p9le gbrp gbrp9be gbrp9le gbrp10be gbrp10le gbrp16be gbrp16le yuva422p yuva444p yuva420p9be yuva420p9le yuva422p9be yuva422p9le yuva444p9be yuva444p9le yuva420p10be yuva420p10le yuva422p10be yuva422p10le yuva444p10be yuva444p10le yuva420p16be yuva420p16le yuva422p16be yuva422p16le yuva444p16be yuva444p16le vdpau xyz12le xyz12be nv16 nv20le nv20be rgba64be rgba64le bgra64be bgra64le yvyu422 ya16be ya16le gbrap gbrap16be gbrap16le qsv mmal d3d11va_vld cuda 0rgb rgb0 0bgr bgr0 yuv420p12be yuv420p12le yuv420p14be yuv420p14le yuv422p12be yuv422p12le yuv422p14be yuv422p14le yuv444p12be yuv444p12le yuv444p14be yuv444p14le gbrp12be gbrp12le gbrp14be gbrp14le yuvj411p bayer_bggr8 bayer_rggb8 bayer_gbrg8 bayer_grbg8 bayer_bggr16le bayer_bggr16be bayer_rggb16le bayer_rggb16be bayer_gbrg16le bayer_gbrg16be bayer_grbg16le bayer_grbg16be yuv440p10le yuv440p10be yuv440p12le yuv440p12be ayuv64le ayuv64be videotoolbox_vld p010le p010be gbrap12be gbrap12le gbrap10be gbrap10le mediacodec gray12be gray12le gray10be gray10le p016le p016be d3d11 gray9be gray9le gbrpf32be gbrpf32le gbrapf32be gbrapf32le drm_prime opencl gray14be gray14le grayf32be grayf32le yuva422p12be yuva422p12le yuva444p12be yuva444p12le nv24 nv42 vulkan y210be y210le x2rgb10le x2rgb10be x2bgr10le x2bgr10be p210be p210le p410be p410le p216be p216le p416be p416le vuya rgbaf16be rgbaf16le vuyx p012le p012be y212be y212le xv30be xv30le xv36be xv36le rgbf32be rgbf32le rgbaf32be rgbaf32le p212be p212le p412be p412le gbrap14be gbrap14le d3d12 ayuv uyva vyu444 v30xbe v30xle rgbf16be rgbf16le rgba128be rgba128le rgb96be rgb96le y216be y216le xv48be xv48le gbrpf16be gbrpf16le gbrapf16be gbrapf16le grayf16be grayf16le amf gray32be gray32le yaf32be yaf32le yaf16be yaf16le gbrap32be gbrap32le yuv444p10msbbe yuv444p10msble yuv444p12msbbe yuv444p12msble gbrp10msbbe gbrp10msble gbrp12msbbe gbrp12msble ohcodec
+Filter 'format' formats:
+  in[0] 'default': vulkan
+  out[0] 'default': vulkan
+[AVFilterGraph @ 0x74d8040010c0] query_formats: 4 queried, 9 merged, 0 already done, 0 delayed
+[graph -1 input from stream 0:0 @ 0x74d804001c80] video frame properties congruent with link at pts_time: 0
+Output #0, null, to 'pipe:':
+  Metadata:
+    encoder         : Lavf62.3.100
+  Stream #0:0, 0, 1/30: Video: wrapped_avframe, 1 reference frame, vulkan(tv, progressive), 1280x720 [SAR 1:1 DAR 16:9], 0/1, q=2-31, 200 kb/s, 30 fps, 30 tbn
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      DURATION        : 00:00:32.000000000
+[out#0/null @ 0x56ece82e8f80] Starting thread...
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 0.0333333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 0.0333333 queue head 0 ts 0.0333333
+[vp9 @ 0x56ece82cf3c0] [vk @ 0x74d7fc0011c0] Creating a buffer of 2097152 bytes, usage: 0x2000, flags: 0x2
+[vp9 @ 0x56ece82e75c0] Decoding frame, 16279 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 0.0666667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 0.0666667 queue head 0 ts 0.0666667
+[vp9 @ 0x56ece82cf3c0] [vk @ 0x74d7fc0011c0] Creating a buffer of 2097152 bytes, usage: 0x2000, flags: 0x2
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 3429 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 0.1
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 0.1 queue head 0 ts 0.1
+[vp9 @ 0x56ece82e75c0] Decoding frame, 1782 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 0.133333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 0.133333 queue head 0 ts 0.133333
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 2683 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 0.166667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 0.166667 queue head 0 ts 0.166667
+[vp9 @ 0x56ece82e75c0] Decoding frame, 3398 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 0.2
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 0.2 queue head 0 ts 0.2
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 3912 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 0.233333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 0.233333 queue head 0 ts 0.233333
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4415 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 0.266667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 0.266667 queue head 0 ts 0.266667
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4195 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 0.3
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 0.3 queue head 0 ts 0.3
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4367 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 0.333333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 0.333333 queue head 0 ts 0.333333
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 14047 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 0.366667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 0.366667 queue head 0 ts 0.366667
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4473 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 0.4
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 0.4 queue head 0 ts 0.4
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4398 bytes
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 0.433333
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 0.433333 queue head 0 ts 0.433333
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4423 bytes
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 0.466667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 0.466667 queue head 0 ts 0.466667
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4635 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4565 bytes
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 0.5
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 0.5 queue head 0 ts 0.5
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 0.533333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 0.533333 queue head 0 ts 0.533333
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4495 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4813 bytes
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 0.566667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 0.566667 queue head 0 ts 0.566667
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 0.6
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 0.6 queue head 0 ts 0.6
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4294 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4221 bytes
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 0.633333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 0.633333 queue head 0 ts 0.633333
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 0.666667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 0.666667 queue head 0 ts 0.666667
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 19467 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4986 bytes
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 0.7
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 0.7 queue head 0 ts 0.7
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 0.733333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 0.733333 queue head 0 ts 0.733333
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4633 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 0.766667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 0.766667 queue head 0 ts 0.766667
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4272 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 0.8
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 0.8 queue head 0 ts 0.8
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4368 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 0.833333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 0.833333 queue head 0 ts 0.833333
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4620 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 0.866667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 0.866667 queue head 0 ts 0.866667
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4138 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 0.9
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 0.9 queue head 0 ts 0.9
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4323 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 0.933333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 0.933333 queue head 0 ts 0.933333
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4403 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 0.966667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 0.966667 queue head 0 ts 0.966667
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4502 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1 queue head 0 ts 1
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 20797 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1.033333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1.033333 queue head 0 ts 1.033333
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4551 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1.066667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1.066667 queue head 0 ts 1.066667
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4621 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1.1
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1.1 queue head 0 ts 1.1
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4332 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1.133333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1.133333 queue head 0 ts 1.133333
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4128 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1.166667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1.166667 queue head 0 ts 1.166667
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4219 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1.2
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1.2 queue head 0 ts 1.2
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4628 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1.233333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1.233333 queue head 0 ts 1.233333
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4357 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1.266667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1.266667 queue head 0 ts 1.266667
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4382 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1.3
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1.3 queue head 0 ts 1.3
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4345 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1.333333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1.333333 queue head 0 ts 1.333333
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 17792 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1.366667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1.366667 queue head 0 ts 1.366667
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4933 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1.4
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1.4 queue head 0 ts 1.4
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4809 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1.433333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1.433333 queue head 0 ts 1.433333
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4835 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1.466667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1.466667 queue head 0 ts 1.466667
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4998 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1.5
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1.5 queue head 0 ts 1.5
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4658 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1.533333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1.533333 queue head 0 ts 1.533333
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4602 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1.566667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1.566667 queue head 0 ts 1.566667
+[vp9 @ 0x56ece82e75c0] Decoding frame, 5096 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1.6
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1.6 queue head 0 ts 1.6
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 34141 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1.633333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1.633333 queue head 0 ts 1.633333
+[vp9 @ 0x56ece82e75c0] Decoding frame, 16279 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1.666667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1.666667 queue head 0 ts 1.666667
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 3429 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1.7
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1.7 queue head 0 ts 1.7
+[vp9 @ 0x56ece82e75c0] Decoding frame, 1782 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1.733333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1.733333 queue head 0 ts 1.733333
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 2683 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1.766667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1.766667 queue head 0 ts 1.766667
+[vp9 @ 0x56ece82e75c0] Decoding frame, 3398 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1.8
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1.8 queue head 0 ts 1.8
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 3912 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1.833333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1.833333 queue head 0 ts 1.833333
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4415 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1.866667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1.866667 queue head 0 ts 1.866667
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4195 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1.9
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1.9 queue head 0 ts 1.9
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4367 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1.933333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1.933333 queue head 0 ts 1.933333
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 14047 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 1.966667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 1.966667 queue head 0 ts 1.966667
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4473 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2 queue head 0 ts 2
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4398 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4423 bytes
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2.033333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2.033333 queue head 0 ts 2.033333
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2.066667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2.066667 queue head 0 ts 2.066667
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4635 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2.1
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2.1 queue head 0 ts 2.1
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4565 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2.133333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2.133333 queue head 0 ts 2.133333
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4495 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2.166667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2.166667 queue head 0 ts 2.166667
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4813 bytes
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2.2
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2.2 queue head 0 ts 2.2
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4294 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2.233333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2.233333 queue head 0 ts 2.233333
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4221 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2.266667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2.266667 queue head 0 ts 2.266667
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 19467 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2.3
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2.3 queue head 0 ts 2.3
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4986 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2.333333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2.333333 queue head 0 ts 2.333333
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4633 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2.366667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2.366667 queue head 0 ts 2.366667
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4272 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2.4
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2.4 queue head 0 ts 2.4
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4368 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2.433333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2.433333 queue head 0 ts 2.433333
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4620 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4138 bytes
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2.466667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2.466667 queue head 0 ts 2.466667
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2.5
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2.5 queue head 0 ts 2.5
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4323 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4403 bytes
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2.533333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2.533333 queue head 0 ts 2.533333
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2.566667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2.566667 queue head 0 ts 2.566667
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4502 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2.6
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2.6 queue head 0 ts 2.6
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 20797 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4551 bytes
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2.633333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2.633333 queue head 0 ts 2.633333
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4621 bytes
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2.666667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2.666667 queue head 0 ts 2.666667
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2.7
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2.7 queue head 0 ts 2.7
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4332 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2.733333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2.733333 queue head 0 ts 2.733333
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4128 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2.766667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2.766667 queue head 0 ts 2.766667
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4219 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2.8
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2.8 queue head 0 ts 2.8
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4628 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2.833333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2.833333 queue head 0 ts 2.833333
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4357 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2.866667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2.866667 queue head 0 ts 2.866667
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4382 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2.9
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2.9 queue head 0 ts 2.9
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4345 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2.933333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2.933333 queue head 0 ts 2.933333
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 17792 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 2.966667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 2.966667 queue head 0 ts 2.966667
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4933 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3 queue head 0 ts 3
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4809 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3.033333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3.033333 queue head 0 ts 3.033333
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4835 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3.066667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3.066667 queue head 0 ts 3.066667
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4998 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3.1
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3.1 queue head 0 ts 3.1
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4658 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3.133333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3.133333 queue head 0 ts 3.133333
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4602 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3.166667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3.166667 queue head 0 ts 3.166667
+[vp9 @ 0x56ece82e75c0] Decoding frame, 5096 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3.2
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3.2 queue head 0 ts 3.2
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 34141 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[vp9 @ 0x56ece82e75c0] Decoding frame, 16279 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 3429 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[vp9 @ 0x56ece82e75c0] Decoding frame, 1782 bytes
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3.233333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3.233333 queue head 0 ts 3.233333
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3.266667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3.266667 queue head 0 ts 3.266667
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3.3
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3.3 queue head 0 ts 3.3
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3.333333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3.333333 queue head 0 ts 3.333333
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 2683 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3.366667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3.366667 queue head 0 ts 3.366667
+[vp9 @ 0x56ece82e75c0] Decoding frame, 3398 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3.4
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3.4 queue head 0 ts 3.4
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 3912 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3.433333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3.433333 queue head 0 ts 3.433333
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4415 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3.466667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3.466667 queue head 0 ts 3.466667
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4195 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3.5
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3.5 queue head 0 ts 3.5
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4367 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3.533333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3.533333 queue head 0 ts 3.533333
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 14047 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3.566667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3.566667 queue head 0 ts 3.566667
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4473 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3.6
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3.6 queue head 0 ts 3.6
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4398 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3.633333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3.633333 queue head 0 ts 3.633333
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4423 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3.666667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3.666667 queue head 0 ts 3.666667
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4635 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3.7
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3.7 queue head 0 ts 3.7
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4565 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3.733333
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4495 bytes
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3.733333 queue head 0 ts 3.733333
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3.766667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3.766667 queue head 0 ts 3.766667
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4813 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3.8
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3.8 queue head 0 ts 3.8
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4294 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3.833333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3.833333 queue head 0 ts 3.833333
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4221 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3.866667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3.866667 queue head 0 ts 3.866667
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 19467 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3.9
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3.9 queue head 0 ts 3.9
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4986 bytes
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3.933333
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3.933333 queue head 0 ts 3.933333
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4633 bytes
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4272 bytes
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 3.966667
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 3.966667 queue head 0 ts 3.966667
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[out#0/null @ 0x56ece82e8f80] sq: send 0 ts 4
+[out#0/null @ 0x56ece82e8f80] sq: 0 frames_max 120 reached
+[out#0/null @ 0x56ece82e8f80] sq: finish 0; head ts 4
+[out#0/null @ 0x56ece82e8f80] sq: finish queue
+[out#0/null @ 0x56ece82e8f80] sq: receive 0 ts 4 queue head 0 ts 4
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4368 bytes
+[vost#0:0/wrapped_avframe @ 0x56ece82e9300] [enc:wrapped_avframe @ 0x56ece82e9640] Encoder thread received EOF
+[vost#0:0/wrapped_avframe @ 0x56ece82e9300] Terminating thread with return code 0 (success)
+[out#0/null @ 0x56ece82e8f80] All streams finished
+[out#0/null @ 0x56ece82e8f80] Terminating thread with return code 0 (success)
+[vp9 @ 0x56ece82e75c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[vp9 @ 0x56ece82e75c0] Decoding frame, 4620 bytes
+[in#0/matroska,webm @ 0x56ece82c69c0] Terminating thread with return code 0 (success)
+[vf#0:0 @ 0x56ece82e9b40] All consumers returned EOF
+[out#0/null @ 0x56ece82e8f80] sq: 0 EOF
+[out#0/null @ 0x56ece82e8f80] sq: finish queue
+[vf#0:0 @ 0x56ece82e9b40] Terminating thread with return code 0 (success)
+[vp9 @ 0x56ece82cf3c0] Frame:  size 1280x720  subsample 1x1  bit_depth 10  tiles 4x1.
+[vist#0:0/vp9 @ 0x56ece82e8d80] [dec:vp9 @ 0x56ece82d8600] Decoder returned EOF, finishing
+[vist#0:0/vp9 @ 0x56ece82e8d80] [dec:vp9 @ 0x56ece82d8600] Terminating thread with return code 0 (success)
+[out#0/null @ 0x56ece82e8f80] Output file #0 (pipe:):
+[out#0/null @ 0x56ece82e8f80]   Output stream #0:0 (video): 120 frames encoded; 120 packets muxed (49920 bytes); 
+[out#0/null @ 0x56ece82e8f80]   Total: 120 packets (49920 bytes) muxed
+[out#0/null @ 0x56ece82e8f80] video:49KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  120 fps=0.0 q=-0.0 Lsize=N/A time=00:00:04.00 bitrate=N/A speed=21.1x elapsed=0:00:00.18    
+[AVIOContext @ 0x56ece829d0c0] Statistics: 181 bytes written, 0 seeks, 1 writeouts
+[vp9 @ 0x56ece82cf3c0] Decoding frame, 4138 bytes
+[in#0/matroska,webm @ 0x56ece82c69c0] Input file #0 (/home/polarbear/.t3/projects/catchingup/HD620-benchmark/inputs/vp9_p2.webm):
+[in#0/matroska,webm @ 0x56ece82c69c0]   Input stream #0:0 (video): 132 packets read (844845 bytes); 122 frames decoded; 0 decode errors; 
+[in#0/matroska,webm @ 0x56ece82c69c0]   Total: 132 packets (844845 bytes) demuxed
+[AVIOContext @ 0x56ece82d1080] Statistics: 851968 bytes read, 0 seeks
+
+Exiting with exit code 0

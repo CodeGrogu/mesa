@@ -1,0 +1,7 @@
+1 Noise reduction
+2 Deinterlacing
+3 Sharpening
+4 Color balance
+5 Skin tone enhancement
+6 Total color correction
+8 HDR tone mapping

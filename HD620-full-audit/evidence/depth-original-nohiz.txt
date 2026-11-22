@@ -1,0 +1,42 @@
+[Vulkan Loader] DRIVER:         Searching for driver manifest files
+[Vulkan Loader] DRIVER:            In following locations:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch6/icd/base-all/icd.json
+[Vulkan Loader] DRIVER:            Found the following files:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch6/icd/base-all/icd.json
+[Vulkan Loader] DRIVER:         Found ICD manifest file /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch6/icd/base-all/icd.json, version 1.0.1
+[Vulkan Loader] DEBUG | DRIVER: Searching for ICD drivers named /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch6/icd/base-all/libvulkan_intel.so
+[Vulkan Loader] INFO | DRIVER:  linux_read_sorted_physical_devices:
+[Vulkan Loader] INFO | DRIVER:       Original order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan Loader] INFO | DRIVER:       Sorted order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)  
+[Vulkan Loader] INFO | DRIVER:  linux_read_sorted_physical_devices:
+[Vulkan Loader] INFO | DRIVER:       Original order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan Loader] INFO | DRIVER:       Sorted order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)  
+[Vulkan Loader] DEBUG | DRIVER: Copying old device 0 into new device 0
+[Vulkan Loader] DRIVER:         vkCreateDevice layer callstack setup to:
+[Vulkan Loader] DRIVER:            <Application>
+[Vulkan Loader] DRIVER:              ||
+[Vulkan Loader] DRIVER:            <Loader>
+[Vulkan Loader] DRIVER:              ||
+[Vulkan Loader] DRIVER:            <Device>
+[Vulkan Loader] DRIVER:                Using "Intel(R) HD Graphics 620 (KBL GT2)" with driver: "/home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch6/icd/base-all/libvulkan_intel.so"
+Intel(R) HD Graphics 620 (KBL GT2) Vulkan driver 109457507 timestamp period 83.333 ns
+1,4,22.418668,1.00
+1,1,27.291918,1.00
+2,1,21.512250,0.25
+2,4,27.016000,0.25
+3,4,23.772000,1.00
+3,1,23.080918,1.00
+4,1,25.581750,0.25
+4,4,23.512834,0.25
+5,4,25.731084,1.00
+5,1,25.892000,1.00
+6,1,24.855584,0.25
+6,4,21.769084,0.25
+7,4,27.459334,1.00
+7,1,22.685668,1.00
+8,1,20.703668,0.25
+8,4,25.561750,0.25

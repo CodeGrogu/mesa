@@ -1,0 +1,42 @@
+desktop wall_ms=1795070346446 rc6_ms=66761417
+   actual frequency MHz 300
+   actual frequency MHz 300
+   actual frequency MHz 300
+   actual frequency MHz 300
+   actual frequency MHz 300
+   actual frequency MHz 300
+   actual frequency MHz 300
+   actual frequency MHz 300
+   actual frequency MHz 300
+   actual frequency MHz 300
+   actual frequency MHz 300
+   actual frequency MHz 300
+desktop wall_ms=1795070349593 rc6_ms=66764222 delta=2805
+render wall_ms=1795070350406 rc6_ms=66764296
+   actual frequency MHz 1000
+   actual frequency MHz 1000
+   actual frequency MHz 1000
+   actual frequency MHz 1000
+   actual frequency MHz 1000
+   actual frequency MHz 1000
+   actual frequency MHz 1000
+   actual frequency MHz 1000
+   actual frequency MHz 1000
+   actual frequency MHz 1000
+   actual frequency MHz 1000
+   actual frequency MHz 1000
+render wall_ms=1795070353519 rc6_ms=66764296 delta=0
+desktop-recovery wall_ms=1795070354699 rc6_ms=66764300
+   actual frequency MHz 300
+   actual frequency MHz 300
+   actual frequency MHz 300
+   actual frequency MHz 500
+   actual frequency MHz 300
+   actual frequency MHz 433
+   actual frequency MHz 300
+   actual frequency MHz 300
+   actual frequency MHz 300
+   actual frequency MHz 300
+   actual frequency MHz 300
+   actual frequency MHz 300
+desktop-recovery wall_ms=1795070357802 rc6_ms=66767074 delta=2774

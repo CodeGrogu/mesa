@@ -1,0 +1,66 @@
+[Scene] vertex
+  [Option] device-local
+    Description  : Whether to use a device-local buffer for the vertex data
+    Default Value: true
+  [Option] interleave
+    Description  : Whether to interleave vertex data
+    Default Value: true
+  [Option] duration
+    Description  : The duration of each benchmark in seconds
+    Default Value: 10.0
+[Scene] texture
+  [Option] texture-filter
+    Description  : The texture filter to use
+    Default Value: linear
+    Acceptable Values: nearest,linear
+  [Option] anisotropy
+    Description  : The max anisotropy bound to use (use 0 to disable it)
+    Default Value: 16
+  [Option] duration
+    Description  : The duration of each benchmark in seconds
+    Default Value: 10.0
+[Scene] shading
+  [Option] shading
+    Description  : Which shading method to use
+    Default Value: gouraud
+    Acceptable Values: gouraud,blinn-phong-inf,phong,cel
+  [Option] duration
+    Description  : The duration of each benchmark in seconds
+    Default Value: 10.0
+[Scene] effect2d
+  [Option] background-resolution
+    Description  : the resolution of the background image
+    Default Value: 800x600
+    Acceptable Values: 800x600,1920x1080
+  [Option] kernel
+    Description  : the convolution kernel to use
+    Default Value: blur
+    Acceptable Values: blur,edge,none
+  [Option] duration
+    Description  : The duration of each benchmark in seconds
+    Default Value: 10.0
+[Scene] desktop
+  [Option] background-resolution
+    Description  : the resolution of the background image
+    Default Value: 800x600
+    Acceptable Values: 800x600,1920x1080
+  [Option] window-size
+    Description  : the window size as a percentage of the minimum screen dimension [0.0 - 0.5]
+    Default Value: 0.35
+  [Option] windows
+    Description  : the number of windows
+    Default Value: 4
+  [Option] duration
+    Description  : The duration of each benchmark in seconds
+    Default Value: 10.0
+[Scene] cube
+  [Option] duration
+    Description  : The duration of each benchmark in seconds
+    Default Value: 10.0
+[Scene] clear
+  [Option] color
+    Description  : The normalized (0.0-1.0) "r,g,b,a" color to use or "cycle" to cycle
+    Default Value: cycle
+  [Option] duration
+    Description  : The duration of each benchmark in seconds
+    Default Value: 10.0

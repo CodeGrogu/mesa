@@ -1,0 +1,18 @@
+Intel(R) HD Graphics 620 (KBL GT2) driverVersion 109457507 driverName 'Intel open-source Mesa driver' driverInfo 'Mesa 27.0.0-devel (git-0e9e1086bb)' mode timing
+driver library: /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch8/icd/patch8-all/libvulkan_intel.so
+timing aligned-2048x2048x4 lod 0 2048x2048 loadOp-clear: best 631.29 us mean 671.13 us per op (64 reps x 6 runs)
+timing aligned-2048x2048x4 lod 0 2048x2048 clear+16-draw frame: best 18331.24 us mean 18625.02 us per op (64 reps x 6 runs)
+timing aligned-2048x2048x4 lod 1 1024x1024 loadOp-clear: best 149.94 us mean 159.99 us per op (64 reps x 6 runs)
+timing aligned-2048x2048x4 lod 1 1024x1024 clear+16-draw frame: best 3989.75 us mean 4115.64 us per op (64 reps x 6 runs)
+timing aligned-2048x2048x4 lod 2 512x512 loadOp-clear: best 36.80 us mean 37.11 us per op (64 reps x 6 runs)
+timing aligned-2048x2048x4 lod 2 512x512 clear+16-draw frame: best 629.23 us mean 634.46 us per op (64 reps x 6 runs)
+timing aligned-2048x2048x4 lod 3 256x256 loadOp-clear: best 10.90 us mean 11.08 us per op (64 reps x 6 runs)
+timing aligned-2048x2048x4 lod 3 256x256 clear+16-draw frame: best 147.20 us mean 149.16 us per op (64 reps x 6 runs)
+timing aligned-704x288x4 lod 0 704x288 loadOp-clear: best 28.82 us mean 29.59 us per op (64 reps x 6 runs)
+timing aligned-704x288x4 lod 0 704x288 clear+16-draw frame: best 476.03 us mean 478.38 us per op (64 reps x 6 runs)
+timing aligned-704x288x4 lod 1 352x144 loadOp-clear: best 9.04 us mean 9.25 us per op (64 reps x 6 runs)
+timing aligned-704x288x4 lod 1 352x144 clear+16-draw frame: best 116.03 us mean 116.37 us per op (64 reps x 6 runs)
+timing aligned-704x288x4 lod 2 176x72 loadOp-clear: best 4.00 us mean 4.20 us per op (64 reps x 6 runs)
+timing aligned-704x288x4 lod 2 176x72 clear+16-draw frame: best 32.00 us mean 32.67 us per op (64 reps x 6 runs)
+timing aligned-704x288x4 lod 3 88x36 loadOp-clear: best 2.72 us mean 2.73 us per op (64 reps x 6 runs)
+timing aligned-704x288x4 lod 3 88x36 clear+16-draw frame: best 8.00 us mean 8.27 us per op (64 reps x 6 runs)

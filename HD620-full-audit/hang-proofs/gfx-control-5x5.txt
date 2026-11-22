@@ -1,0 +1,2 @@
+control 5x5 both: ASTC 5x5 both: 200 submissions completed (27s)
+control 5x5 alt: ASTC 5x5 alt: 200 submissions completed (12s)

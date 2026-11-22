@@ -1,0 +1,36 @@
+h264_vaapi-nv12.h264 drm-only rc=218
+[in#0/h264 @ 0x653c99d94f00]   Input stream #0:0 (video): 13 packets read (53362 bytes); 2 frames decoded; 0 decode errors; 
+[in#0/h264 @ 0x653c99d94f00]   Total: 13 packets (53362 bytes) demuxed
+[AVIOContext @ 0x653c99d3e340] Statistics: 196608 bytes read, 0 seeks
+Conversion failed!
+
+h264_vaapi-nv12.h264 via-drm rc=218
+[in#0/h264 @ 0x58f5ff070f00]   Input stream #0:0 (video): 13 packets read (53362 bytes); 2 frames decoded; 0 decode errors; 
+[in#0/h264 @ 0x58f5ff070f00]   Total: 13 packets (53362 bytes) demuxed
+[AVIOContext @ 0x58f5ff01a340] Statistics: 196608 bytes read, 0 seeks
+Conversion failed!
+
+h264_vaapi-nv12.h264 copy rc=0
+[in#0/h264 @ 0x57f740d0cf00] Input file #0 (evidence/media/h264_vaapi-nv12.h264):
+[in#0/h264 @ 0x57f740d0cf00]   Input stream #0:0 (video): 60 packets read (226473 bytes); 60 frames decoded; 0 decode errors; 
+[in#0/h264 @ 0x57f740d0cf00]   Total: 60 packets (226473 bytes) demuxed
+[AVIOContext @ 0x57f740cb6340] Statistics: 226473 bytes read, 0 seeks
+
+hevc_vaapi-p010le.hevc drm-only rc=218
+[in#0/hevc @ 0x5ef6e1233f00]   Input stream #0:0 (video): 14 packets read (58390 bytes); 3 frames decoded; 0 decode errors; 
+[in#0/hevc @ 0x5ef6e1233f00]   Total: 14 packets (58390 bytes) demuxed
+[AVIOContext @ 0x5ef6e11dd340] Statistics: 196608 bytes read, 0 seeks
+Conversion failed!
+
+hevc_vaapi-p010le.hevc via-drm rc=218
+[in#0/hevc @ 0x55e35648ff00]   Input stream #0:0 (video): 14 packets read (58390 bytes); 3 frames decoded; 0 decode errors; 
+[in#0/hevc @ 0x55e35648ff00]   Total: 14 packets (58390 bytes) demuxed
+[AVIOContext @ 0x55e356439340] Statistics: 196608 bytes read, 0 seeks
+Conversion failed!
+
+hevc_vaapi-p010le.hevc copy rc=0
+[in#0/hevc @ 0x5813dd879f00] Input file #0 (evidence/media/hevc_vaapi-p010le.hevc):
+[in#0/hevc @ 0x5813dd879f00]   Input stream #0:0 (video): 60 packets read (224463 bytes); 60 frames decoded; 0 decode errors; 
+[in#0/hevc @ 0x5813dd879f00]   Total: 60 packets (224463 bytes) demuxed
+[AVIOContext @ 0x5813dd823340] Statistics: 224463 bytes read, 0 seeks
+

@@ -1,0 +1,5 @@
+Intel(R) HD Graphics 620 (KBL GT2) driverVersion 109457507 driverName 'Intel open-source Mesa driver' driverInfo 'Mesa 27.0.0-devel' mode correct
+driver library: /home/polarbear/.local/state/catchingup/round2/astc/libvulkan_intel.so
+FAIL aligned-704x288x4 phase2-target0-preserved-sampled lod 3 (44,18): got 0.408203125 expected 0.409179688
+SUMMARY 0/1 pixel cases passed
+rc=2 (expected 2)

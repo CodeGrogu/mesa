@@ -1,0 +1,7 @@
+== control, inject >= none
+vkCreateComputePipelines = 0 (VK_SUCCESS)
+exit 0
+== control, inject >= 16777216
+gemfail: create 44040192 bytes -> injected ENOMEM
+vkCreateComputePipelines = 0 (VK_SUCCESS)
+exit 0

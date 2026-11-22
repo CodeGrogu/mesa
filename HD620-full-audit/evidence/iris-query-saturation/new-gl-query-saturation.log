@@ -1,0 +1,16 @@
+3e8da3fae9ced595cf043a8e239397d177ec14d9e87dda2829cae283998194cc  /build/audit-iris/src/gallium/targets/dri/libgallium-27.0.0-devel.so
+Mesa Intel(R) HD Graphics 620 (KBL GT2) 4.6 (Core Profile) Mesa 27.0.0-devel (git-0e9e1086bb)
+Mapped driver library /build/audit-iris/src/egl/libEGL.so.1.0.0
+Mapped driver library /build/audit-iris/src/gallium/targets/dri/libgallium-27.0.0-devel.so
+PASS timestamp > UINT32_MAX, GPU path: 5/5 runs in range, 0 with errors; (u64, u32, i32) [(1924731703916, '0xffffffff', '0x7fffffff'), (1924743232500, '0xffffffff', '0x7fffffff'), (1924755415083, '0xffffffff', '0x7fffffff')]
+PASS timestamp > UINT32_MAX, CPU path: 5/5 runs in range, 0 with errors; (u64, u32, i32) [(1924789366583, '0xffffffff', '0x7fffffff'), (1924800508250, '0xffffffff', '0x7fffffff'), (1924811704833, '0xffffffff', '0x7fffffff')]
+PASS time elapsed of 3 s idle gap, INT32_MAX < v <= UINT32_MAX, GPU path: 2/2 runs in range, 0 with errors; (u64, u32, i32) [(3017752333, '0xb3df3f0d', '0x7fffffff'), (3018366500, '0xb3e89e24', '0x7fffffff')]
+PASS time elapsed of 3 s idle gap, INT32_MAX < v <= UINT32_MAX, CPU path: 2/2 runs in range, 0 with errors; (u64, u32, i32) [(3017649916, '0xb3ddaefc', '0x7fffffff'), (3017604166, '0xb3dcfc46', '0x7fffffff')]
+PASS time elapsed of draw, in range, GPU path: 5/5 runs in range, 0 with errors; (u64, u32, i32) [(11081833, '0xa91869', '0xa91869'), (11131333, '0xa9d9c5', '0xa9d9c5'), (11173583, '0xaa7ecf', '0xaa7ecf')]
+PASS time elapsed of draw, in range, CPU path: 5/5 runs in range, 0 with errors; (u64, u32, i32) [(11033333, '0xa85af5', '0xa85af5'), (10957083, '0xa7311b', '0xa7311b'), (11112500, '0xa99034', '0xa99034')]
+PASS samples passed of 1024x1024 draw, in range, GPU path: 5/5 runs in range, 0 with errors; (u64, u32, i32) [(1048576, '0x100000', '0x100000'), (1048576, '0x100000', '0x100000'), (1048576, '0x100000', '0x100000')]
+PASS samples passed of 1024x1024 draw, in range, CPU path: 5/5 runs in range, 0 with errors; (u64, u32, i32) [(1048576, '0x100000', '0x100000'), (1048576, '0x100000', '0x100000'), (1048576, '0x100000', '0x100000')]
+PASS any samples passed, boolean, GPU path: 5/5 runs in range, 0 with errors; (u64, u32, i32) [(1, '0x1', '0x1'), (1, '0x1', '0x1'), (1, '0x1', '0x1')]
+PASS any samples passed, boolean, CPU path: 5/5 runs in range, 0 with errors; (u64, u32, i32) [(1, '0x1', '0x1'), (1, '0x1', '0x1'), (1, '0x1', '0x1')]
+0 check(s) failed
+exit status 0

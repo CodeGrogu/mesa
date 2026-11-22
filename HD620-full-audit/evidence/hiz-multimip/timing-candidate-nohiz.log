@@ -1,0 +1,18 @@
+Intel(R) HD Graphics 620 (KBL GT2) driverVersion 109457507 driverName 'Intel open-source Mesa driver' driverInfo 'Mesa 27.0.0-devel (git-0e9e1086bb)' mode timing
+driver library: /home/polarbear/.local/state/catchingup/hd620-hiz-multimip/icd/candidate/libvulkan_intel.so
+timing aligned-2048x2048x4 lod 0 2048x2048 loadOp-clear: best 628.70 us mean 650.04 us per op (64 reps x 6 runs)
+timing aligned-2048x2048x4 lod 0 2048x2048 clear+16-draw frame: best 18309.59 us mean 18557.61 us per op (64 reps x 6 runs)
+timing aligned-2048x2048x4 lod 1 1024x1024 loadOp-clear: best 151.42 us mean 153.32 us per op (64 reps x 6 runs)
+timing aligned-2048x2048x4 lod 1 1024x1024 clear+16-draw frame: best 3867.08 us mean 4029.44 us per op (64 reps x 6 runs)
+timing aligned-2048x2048x4 lod 2 512x512 loadOp-clear: best 35.80 us mean 37.30 us per op (64 reps x 6 runs)
+timing aligned-2048x2048x4 lod 2 512x512 clear+16-draw frame: best 629.44 us mean 634.11 us per op (64 reps x 6 runs)
+timing aligned-2048x2048x4 lod 3 256x256 loadOp-clear: best 10.91 us mean 11.14 us per op (64 reps x 6 runs)
+timing aligned-2048x2048x4 lod 3 256x256 clear+16-draw frame: best 147.27 us mean 148.97 us per op (64 reps x 6 runs)
+timing aligned-704x288x4 lod 0 704x288 loadOp-clear: best 28.11 us mean 28.86 us per op (64 reps x 6 runs)
+timing aligned-704x288x4 lod 0 704x288 clear+16-draw frame: best 476.23 us mean 479.72 us per op (64 reps x 6 runs)
+timing aligned-704x288x4 lod 1 352x144 loadOp-clear: best 9.05 us mean 9.20 us per op (64 reps x 6 runs)
+timing aligned-704x288x4 lod 1 352x144 clear+16-draw frame: best 116.05 us mean 116.28 us per op (64 reps x 6 runs)
+timing aligned-704x288x4 lod 2 176x72 loadOp-clear: best 4.23 us mean 4.28 us per op (64 reps x 6 runs)
+timing aligned-704x288x4 lod 2 176x72 clear+16-draw frame: best 32.37 us mean 33.30 us per op (64 reps x 6 runs)
+timing aligned-704x288x4 lod 3 88x36 loadOp-clear: best 2.51 us mean 2.63 us per op (64 reps x 6 runs)
+timing aligned-704x288x4 lod 3 88x36 clear+16-draw frame: best 8.14 us mean 8.48 us per op (64 reps x 6 runs)

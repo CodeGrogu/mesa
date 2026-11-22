@@ -1,0 +1,905 @@
+Splitting the commandline.
+Reading option '-hide_banner' ... matched as option 'hide_banner' (do not show program banner) with argument '1'.
+Reading option '-nostdin' ... matched as option 'stdin' (enable or disable interaction on standard input) with argument 0.
+Reading option '-xerror' ... matched as option 'xerror' (exit on error) with argument '1'.
+Reading option '-filter_threads' ... matched as option 'filter_threads' (number of non-complex filter threads) with argument '2'.
+Reading option '-loglevel' ... matched as option 'loglevel' (set logging level) with argument 'debug'.
+Reading option '-nostats' ... matched as option 'stats' (print progress report during encoding) with argument 0.
+Reading option '-benchmark' ... matched as option 'benchmark' (add timings for benchmarking) with argument '1'.
+Reading option '-progress' ... matched as option 'progress' (write program-readable progress information) with argument 'pipe:1'.
+Reading option '-init_hw_device' ... matched as option 'init_hw_device' (initialise hardware device) with argument 'vulkan=vk:0'.
+Reading option '-hwaccel' ... matched as option 'hwaccel' (use HW accelerated decoding) with argument 'vulkan'.
+Reading option '-hwaccel_output_format' ... matched as option 'hwaccel_output_format' (select output format used with HW accelerated decoding) with argument 'vulkan'.
+Reading option '-hwaccel_device' ... matched as option 'hwaccel_device' (select a device for HW acceleration) with argument 'vk'.
+Reading option '-threads' ... matched as AVOption 'threads' with argument '2'.
+Reading option '-i' ... matched as input url with argument '/home/polarbear/.t3/projects/catchingup/HD620-benchmark/inputs/h264_1080_slices.mp4'.
+Reading option '-c:v' ... matched as option 'c' (select encoder/decoder ('copy' to copy stream without reencoding)) with argument 'h264_vulkan'.
+Reading option '-rc_mode' ... matched as AVOption 'rc_mode' with argument 'cqp'.
+Reading option '-qp' ... matched as AVOption 'qp' with argument '24'.
+Reading option '-frames:v' ... matched as option 'frames' (set the number of frames to output) with argument '48'.
+Reading option '-an' ... matched as option 'an' (disable audio) with argument '1'.
+Reading option '-f' ... matched as option 'f' (force container format (auto-detected otherwise)) with argument 'null'.
+Reading option '-' ... matched as output url.
+Finished splitting the commandline.
+Parsing a group of options: global .
+Applying option hide_banner (do not show program banner) with argument 1.
+Applying option nostdin (enable or disable interaction on standard input) with argument 0.
+Applying option xerror (exit on error) with argument 1.
+Applying option filter_threads (number of non-complex filter threads) with argument 2.
+Applying option loglevel (set logging level) with argument debug.
+Applying option nostats (print progress report during encoding) with argument 0.
+Applying option benchmark (add timings for benchmarking) with argument 1.
+Applying option progress (write program-readable progress information) with argument pipe:1.
+[pipe @ 0x5da3715bbf80] Setting default whitelist 'crypto,data'
+Applying option init_hw_device (initialise hardware device) with argument vulkan=vk:0.
+[Vulkan @ 0x5da3715c4280] Supported layers:
+[Vulkan @ 0x5da3715c4280] 	VK_LAYER_MESA_device_select
+[Vulkan @ 0x5da3715c4280] 	VK_LAYER_MESA_anti_lag
+[Vulkan @ 0x5da3715c4280] 	VK_LAYER_MESA_screenshot
+[Vulkan @ 0x5da3715c4280] 	VK_LAYER_INTEL_nullhw
+[Vulkan @ 0x5da3715c4280] 	VK_LAYER_MESA_overlay
+[Vulkan Loader] DRIVER:         Searching for driver manifest files
+[Vulkan Loader] DRIVER:            In following locations:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch6/icd/base-all/icd.json
+[Vulkan Loader] DRIVER:            Found the following files:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch6/icd/base-all/icd.json
+[Vulkan Loader] DRIVER:         Found ICD manifest file /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch6/icd/base-all/icd.json, version 1.0.1
+[Vulkan Loader] DEBUG | DRIVER: Searching for ICD drivers named /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch6/icd/base-all/libvulkan_intel.so
+[Vulkan Loader] DRIVER:         Searching for driver manifest files
+[Vulkan Loader] DRIVER:            In following locations:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch6/icd/base-all/icd.json
+[Vulkan Loader] DRIVER:            Found the following files:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch6/icd/base-all/icd.json
+[Vulkan Loader] DRIVER:         Found ICD manifest file /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch6/icd/base-all/icd.json, version 1.0.1
+[Vulkan Loader] DEBUG | DRIVER: Searching for ICD drivers named /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch6/icd/base-all/libvulkan_intel.so
+[Vulkan Loader] DRIVER:         Searching for driver manifest files
+[Vulkan Loader] DRIVER:            In following locations:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch6/icd/base-all/icd.json
+[Vulkan Loader] DRIVER:            Found the following files:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch6/icd/base-all/icd.json
+[Vulkan Loader] DRIVER:         Found ICD manifest file /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch6/icd/base-all/icd.json, version 1.0.1
+[Vulkan Loader] DEBUG | DRIVER: Searching for ICD drivers named /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch6/icd/base-all/libvulkan_intel.so
+[Vulkan @ 0x5da3715c4280] Using instance extension VK_EXT_layer_settings
+[Vulkan Loader] DRIVER:         Searching for driver manifest files
+[Vulkan Loader] DRIVER:            In following locations:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch6/icd/base-all/icd.json
+[Vulkan Loader] DRIVER:            Found the following files:
+[Vulkan Loader] DRIVER:               /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch6/icd/base-all/icd.json
+[Vulkan Loader] DRIVER:         Found ICD manifest file /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch6/icd/base-all/icd.json, version 1.0.1
+[Vulkan Loader] DEBUG | DRIVER: Searching for ICD drivers named /home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch6/icd/base-all/libvulkan_intel.so
+[Vulkan Loader] INFO | DRIVER:  linux_read_sorted_physical_devices:
+[Vulkan Loader] INFO | DRIVER:       Original order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan Loader] INFO | DRIVER:       Sorted order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)  
+[Vulkan Loader] INFO | DRIVER:  linux_read_sorted_physical_devices:
+[Vulkan Loader] INFO | DRIVER:       Original order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan Loader] INFO | DRIVER:       Sorted order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)  
+[Vulkan Loader] DEBUG | DRIVER: Copying old device 0 into new device 0
+[Vulkan Loader] INFO | DRIVER:  linux_read_sorted_physical_devices:
+[Vulkan Loader] INFO | DRIVER:       Original order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan Loader] INFO | DRIVER:       Sorted order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)  
+[Vulkan Loader] DEBUG | DRIVER: Copying old device 0 into new device 0
+[Vulkan Loader] INFO | DRIVER:  linux_read_sorted_physical_devices:
+[Vulkan Loader] INFO | DRIVER:       Original order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan Loader] INFO | DRIVER:       Sorted order:
+[Vulkan Loader] INFO | DRIVER:             [0] Intel(R) HD Graphics 620 (KBL GT2)  
+[Vulkan Loader] DEBUG | DRIVER: Copying old device 0 into new device 0
+[Vulkan @ 0x5da3715c4280] GPU listing:
+[Vulkan @ 0x5da3715c4280]     0: Intel(R) HD Graphics 620 (KBL GT2) (integrated) (0x5916)
+[Vulkan @ 0x5da3715c4280] Device 0 selected: Intel(R) HD Graphics 620 (KBL GT2) (integrated) (0x5916)
+[Vulkan @ 0x5da3715c4280] Using device extension VK_KHR_push_descriptor
+[Vulkan @ 0x5da3715c4280] Using device extension VK_EXT_physical_device_drm
+[Vulkan @ 0x5da3715c4280] Using device extension VK_EXT_shader_atomic_float
+[Vulkan @ 0x5da3715c4280] Using device extension VK_EXT_shader_object
+[Vulkan @ 0x5da3715c4280] Using device extension VK_KHR_shader_subgroup_rotate
+[Vulkan @ 0x5da3715c4280] Using device extension VK_KHR_shader_expect_assume
+[Vulkan @ 0x5da3715c4280] Using device extension VK_KHR_video_maintenance1
+[Vulkan @ 0x5da3715c4280] Using device extension VK_KHR_video_maintenance2
+[Vulkan @ 0x5da3715c4280] Using device extension VK_KHR_external_memory_fd
+[Vulkan @ 0x5da3715c4280] Using device extension VK_EXT_external_memory_dma_buf
+[Vulkan @ 0x5da3715c4280] Using device extension VK_EXT_image_drm_format_modifier
+[Vulkan @ 0x5da3715c4280] Using device extension VK_KHR_external_semaphore_fd
+[Vulkan @ 0x5da3715c4280] Using device extension VK_EXT_external_memory_host
+[Vulkan @ 0x5da3715c4280] Using device extension VK_KHR_video_queue
+[Vulkan @ 0x5da3715c4280] Using device extension VK_KHR_video_encode_queue
+[Vulkan @ 0x5da3715c4280] Using device extension VK_KHR_video_decode_queue
+[Vulkan @ 0x5da3715c4280] Using device extension VK_KHR_video_encode_h264
+[Vulkan @ 0x5da3715c4280] Using device extension VK_KHR_video_decode_h264
+[Vulkan @ 0x5da3715c4280] Using device extension VK_KHR_video_decode_vp9
+[Vulkan @ 0x5da3715c4280] Queue families:
+[Vulkan @ 0x5da3715c4280]     0: graphics compute transfer (queues: 1)
+[Vulkan @ 0x5da3715c4280]     1: encode decode (queues: 1)
+[Vulkan Loader] DRIVER:         vkCreateDevice layer callstack setup to:
+[Vulkan Loader] DRIVER:            <Application>
+[Vulkan Loader] DRIVER:              ||
+[Vulkan Loader] DRIVER:            <Loader>
+[Vulkan Loader] DRIVER:              ||
+[Vulkan Loader] DRIVER:            <Device>
+[Vulkan Loader] DRIVER:                Using "Intel(R) HD Graphics 620 (KBL GT2)" with driver: "/home/polarbear/.local/state/catchingup/hd620-anv-query-verification/patch6/icd/base-all/libvulkan_intel.so"
+[Vulkan @ 0x5da3715c4280] Using device: Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan @ 0x5da3715c4280] Alignments:
+[Vulkan @ 0x5da3715c4280]     optimalBufferCopyRowPitchAlignment: 64
+[Vulkan @ 0x5da3715c4280]     minMemoryMapAlignment:              4096
+[Vulkan @ 0x5da3715c4280]     nonCoherentAtomSize:                64
+[Vulkan @ 0x5da3715c4280]     minImportedHostPointerAlignment:    4096
+[Vulkan @ 0x5da3715c4280] Using queue family 0 (queues: 1) for graphics compute transfers
+[Vulkan @ 0x5da3715c4280] Using queue family 1 (queues: 1) for encode decode
+Successfully parsed a group of options.
+Parsing a group of options: input url /home/polarbear/.t3/projects/catchingup/HD620-benchmark/inputs/h264_1080_slices.mp4.
+Applying option hwaccel (use HW accelerated decoding) with argument vulkan.
+Applying option hwaccel_output_format (select output format used with HW accelerated decoding) with argument vulkan.
+Applying option hwaccel_device (select a device for HW acceleration) with argument vk.
+Successfully parsed a group of options.
+Opening an input file: /home/polarbear/.t3/projects/catchingup/HD620-benchmark/inputs/h264_1080_slices.mp4.
+[AVFormatContext @ 0x5da37164ec40] Opening '/home/polarbear/.t3/projects/catchingup/HD620-benchmark/inputs/h264_1080_slices.mp4' for reading
+[file @ 0x5da37164f100] Setting default whitelist 'file,crypto,data'
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x5da37164ec40] Format mov,mp4,m4a,3gp,3g2,mj2 probed with size=2048 and score=100
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x5da37164ec40] ISO: File Type Major Brand: isom
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x5da37164ec40] Unknown dref type 0x206c7275 size 12
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x5da37164ec40] Processing st: 0, edit list 0 - media time: 1024, duration: 491520
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x5da37164ec40] Offset DTS by 1024 to make first pts zero.
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x5da37164ec40] Setting codecpar->delay to 2 for stream st: 0
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x5da37164ec40] Before avformat_find_stream_info() pos: 24971976 bytes read:43816 seeks:1 nb_streams:1
+[h264 @ 0x5da3715ef940] nal_unit_type: 7(SPS), nal_ref_idc: 3
+[h264 @ 0x5da3715ef940] Decoding VUI
+[h264 @ 0x5da3715ef940] nal_unit_type: 8(PPS), nal_ref_idc: 3
+[h264 @ 0x5da3715ef940] nal_unit_type: 7(SPS), nal_ref_idc: 3
+[h264 @ 0x5da3715ef940] Decoding VUI
+[h264 @ 0x5da3715ef940] nal_unit_type: 8(PPS), nal_ref_idc: 3
+[h264 @ 0x5da3715ef940] nal_unit_type: 6(SEI), nal_ref_idc: 0
+[h264 @ 0x5da3715ef940] nal_unit_type: 5(IDR), nal_ref_idc: 3
+    Last message repeated 3 times
+[h264 @ 0x5da3715ef940] Format yuv420p chosen by get_format().
+[h264 @ 0x5da3715ef940] Reinit context to 1920x1088, pix_fmt: yuv420p
+[h264 @ 0x5da3715ef940] no picture 
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x5da37164ec40] All info found
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x5da37164ec40] After avformat_find_stream_info() pos: 42612 bytes read:86380 seeks:2 frames:1
+[vist#0:0/h264 @ 0x5da37160b340] Selecting decoder 'h264' because of requested hwaccel method vulkan
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/polarbear/.t3/projects/catchingup/HD620-benchmark/inputs/h264_1080_slices.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.3.100
+  Duration: 00:00:32.00, start: 0.000000, bitrate: 6242 kb/s
+  Stream #0:0[0x1](und), 1, 1/15360: Video: h264 (High), 1 reference frame (avc1 / 0x31637661), yuv420p(progressive, left), 1920x1080 [SAR 1:1 DAR 16:9], 0/1, 6240 kb/s, 30 fps, 30 tbr, 15360 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      vendor_id       : [0][0][0][0]
+      encoder         : Lavc62.11.100 libx264
+Successfully opened the file.
+Parsing a group of options: output url -.
+Applying option c:v (select encoder/decoder ('copy' to copy stream without reencoding)) with argument h264_vulkan.
+Applying option frames:v (set the number of frames to output) with argument 48.
+Applying option an (disable audio) with argument 1.
+Applying option f (force container format (auto-detected otherwise)) with argument null.
+Successfully parsed a group of options.
+Opening an output file: -.
+[out#0/null @ 0x5da3715ff7c0] No explicit maps, mapping streams automatically...
+[vost#0:0/h264_vulkan @ 0x5da371611480] Created video stream from input stream 0:0
+[h264 @ 0x5da3716bcc00] nal_unit_type: 7(SPS), nal_ref_idc: 3
+[h264 @ 0x5da3716bcc00] Decoding VUI
+[h264 @ 0x5da3716bcc00] nal_unit_type: 8(PPS), nal_ref_idc: 3
+Successfully opened the file.
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> h264 (h264_vulkan))
+[vost#0:0/h264_vulkan @ 0x5da371611480] Starting thread...
+[vf#0:0 @ 0x5da3716bd6c0] Starting thread...
+[vist#0:0/h264 @ 0x5da37160b340] [dec:h264 @ 0x5da3716bdec0] Starting thread...
+[in#0/mov,mp4,m4a,3gp,3g2,mj2 @ 0x5da3715cb380] Starting thread...
+[h264 @ 0x5da3716bcc00] nal_unit_type: 6(SEI), nal_ref_idc: 0
+[h264 @ 0x5da3716bcc00] nal_unit_type: 5(IDR), nal_ref_idc: 3
+    Last message repeated 3 times
+[h264 @ 0x5da3716bcc00] Format vulkan chosen by get_format().
+[h264 @ 0x5da3716bcc00] Format vulkan requires hwaccel h264_vulkan initialisation.
+[h264 @ 0x5da3716bcc00] Decoder capabilities for h264 profile "High":
+[h264 @ 0x5da3716bcc00]     Maximum level: 51 (stream 40)
+[h264 @ 0x5da3716bcc00]     Width: from 16 to 4096
+[h264 @ 0x5da3716bcc00]     Height: from 16 to 4096
+[h264 @ 0x5da3716bcc00]     Width alignment: 16
+[h264 @ 0x5da3716bcc00]     Height alignment: 16
+[h264 @ 0x5da3716bcc00]     Bitstream offset alignment: 32
+[h264 @ 0x5da3716bcc00]     Bitstream size alignment: 1
+[h264 @ 0x5da3716bcc00]     Maximum references: 17
+[h264 @ 0x5da3716bcc00]     Maximum active references: 16
+[h264 @ 0x5da3716bcc00]     Codec header name: 'VK_STD_vulkan_video_codec_h264_decode' (driver), 'VK_STD_vulkan_video_codec_h264_decode' (compiled)
+[h264 @ 0x5da3716bcc00]     Codec header version: 1.0.0 (driver), 1.0.0 (compiled)
+[h264 @ 0x5da3716bcc00]     Decode modes: reuse_dst_dpb
+[h264 @ 0x5da3716bcc00]     Capability flags: separate_references
+[h264 @ 0x5da3716bcc00] Choosing best pixel format for decoding from 2:
+[h264 @ 0x5da3716bcc00]     nv12* (Vulkan ID: 1000156003)
+    Last message repeated 1 times
+[h264 @ 0x5da3716bcc00] Chosen frame pixfmt: nv12 (Vulkan ID: 1000156003)
+[h264 @ 0x5da3716bcc00] Allocating 16384 bytes in bind index 0 for video session
+[h264 @ 0x5da3716bcc00] Allocating 65536 bytes in bind index 1 for video session
+[h264 @ 0x5da3716bcc00] Allocating 32768 bytes in bind index 2 for video session
+[h264 @ 0x5da3716bcc00] Allocating 32768 bytes in bind index 3 for video session
+[h264 @ 0x5da3716bcc00] Vulkan decoder initialization successful
+[h264 @ 0x5da3716bcc00] Reinit context to 1920x1088, pix_fmt: vulkan
+[h264 @ 0x5da3716bcc00] no picture 
+[h264 @ 0x5da3716bcc00] [vk @ 0x7a03d4055040] Creating a buffer of 2097152 bytes, usage: 0x2000, flags: 0x2
+[h264 @ 0x5da3716bcc00] Decoding frame, 41875 bytes, 4 slices
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x5da3715f4440] no picture 
+[h264 @ 0x5da3716bcc00] [vk @ 0x7a03d4055040] Creating a buffer of 2097152 bytes, usage: 0x2000, flags: 0x2
+[h264 @ 0x5da3715f4440] Decoding frame, 30121 bytes, 4 slices
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x5da3716bcc00] [vk @ 0x7a03d4055040] Creating a buffer of 2097152 bytes, usage: 0x2000, flags: 0x2
+[h264 @ 0x5da3716bcc00] Decoding frame, 30073 bytes, 4 slices
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[graph -1 input from stream 0:0 @ 0x7a03d8001c80] w:1920 h:1080 pixfmt:vulkan tb:1/15360 fr:30/1 sar:1/1 csp:unknown range:unknown
+[format @ 0x7a03d8002340] Setting 'pix_fmts' to value 'vulkan'
+Filter 'Parsed_null_0' formats:
+  in[0] 'default': yuv420p yuyv422 rgb24 bgr24 yuv422p yuv444p yuv410p yuv411p gray monow monob pal8 yuvj420p yuvj422p yuvj444p uyvy422 uyyvyy411 bgr8 bgr4 bgr4_byte rgb8 rgb4 rgb4_byte nv12 nv21 argb rgba abgr bgra gray16be gray16le yuv440p yuvj440p yuva420p rgb48be rgb48le rgb565be rgb565le rgb555be rgb555le bgr565be bgr565le bgr555be bgr555le vaapi yuv420p16le yuv420p16be yuv422p16le yuv422p16be yuv444p16le yuv444p16be dxva2_vld rgb444le rgb444be bgr444le bgr444be ya8 bgr48be bgr48le yuv420p9be yuv420p9le yuv420p10be yuv420p10le yuv422p10be yuv422p10le yuv444p9be yuv444p9le yuv444p10be yuv444p10le yuv422p9be yuv422p9le gbrp gbrp9be gbrp9le gbrp10be gbrp10le gbrp16be gbrp16le yuva422p yuva444p yuva420p9be yuva420p9le yuva422p9be yuva422p9le yuva444p9be yuva444p9le yuva420p10be yuva420p10le yuva422p10be yuva422p10le yuva444p10be yuva444p10le yuva420p16be yuva420p16le yuva422p16be yuva422p16le yuva444p16be yuva444p16le vdpau xyz12le xyz12be nv16 nv20le nv20be rgba64be rgba64le bgra64be bgra64le yvyu422 ya16be ya16le gbrap gbrap16be gbrap16le qsv mmal d3d11va_vld cuda 0rgb rgb0 0bgr bgr0 yuv420p12be yuv420p12le yuv420p14be yuv420p14le yuv422p12be yuv422p12le yuv422p14be yuv422p14le yuv444p12be yuv444p12le yuv444p14be yuv444p14le gbrp12be gbrp12le gbrp14be gbrp14le yuvj411p bayer_bggr8 bayer_rggb8 bayer_gbrg8 bayer_grbg8 bayer_bggr16le bayer_bggr16be bayer_rggb16le bayer_rggb16be bayer_gbrg16le bayer_gbrg16be bayer_grbg16le bayer_grbg16be yuv440p10le yuv440p10be yuv440p12le yuv440p12be ayuv64le ayuv64be videotoolbox_vld p010le p010be gbrap12be gbrap12le gbrap10be gbrap10le mediacodec gray12be gray12le gray10be gray10le p016le p016be d3d11 gray9be gray9le gbrpf32be gbrpf32le gbrapf32be gbrapf32le drm_prime opencl gray14be gray14le grayf32be grayf32le yuva422p12be yuva422p12le yuva444p12be yuva444p12le nv24 nv42 vulkan y210be y210le x2rgb10le x2rgb10be x2bgr10le x2bgr10be p210be p210le p410be p410le p216be p216le p416be p416le vuya rgbaf16be rgbaf16le vuyx p012le p012be y212be y212le xv30be xv30le xv36be xv36le rgbf32be rgbf32le rgbaf32be rgbaf32le p212be p212le p412be p412le gbrap14be gbrap14le d3d12 ayuv uyva vyu444 v30xbe v30xle rgbf16be rgbf16le rgba128be rgba128le rgb96be rgb96le y216be y216le xv48be xv48le gbrpf16be gbrpf16le gbrapf16be gbrapf16le grayf16be grayf16le amf gray32be gray32le yaf32be yaf32le yaf16be yaf16le gbrap32be gbrap32le yuv444p10msbbe yuv444p10msble yuv444p12msbbe yuv444p12msble gbrp10msbbe gbrp10msble gbrp12msbbe gbrp12msble ohcodec
+  out[0] 'default': yuv420p yuyv422 rgb24 bgr24 yuv422p yuv444p yuv410p yuv411p gray monow monob pal8 yuvj420p yuvj422p yuvj444p uyvy422 uyyvyy411 bgr8 bgr4 bgr4_byte rgb8 rgb4 rgb4_byte nv12 nv21 argb rgba abgr bgra gray16be gray16le yuv440p yuvj440p yuva420p rgb48be rgb48le rgb565be rgb565le rgb555be rgb555le bgr565be bgr565le bgr555be bgr555le vaapi yuv420p16le yuv420p16be yuv422p16le yuv422p16be yuv444p16le yuv444p16be dxva2_vld rgb444le rgb444be bgr444le bgr444be ya8 bgr48be bgr48le yuv420p9be yuv420p9le yuv420p10be yuv420p10le yuv422p10be yuv422p10le yuv444p9be yuv444p9le yuv444p10be yuv444p10le yuv422p9be yuv422p9le gbrp gbrp9be gbrp9le gbrp10be gbrp10le gbrp16be gbrp16le yuva422p yuva444p yuva420p9be yuva420p9le yuva422p9be yuva422p9le yuva444p9be yuva444p9le yuva420p10be yuva420p10le yuva422p10be yuva422p10le yuva444p10be yuva444p10le yuva420p16be yuva420p16le yuva422p16be yuva422p16le yuva444p16be yuva444p16le vdpau xyz12le xyz12be nv16 nv20le nv20be rgba64be rgba64le bgra64be bgra64le yvyu422 ya16be ya16le gbrap gbrap16be gbrap16le qsv mmal d3d11va_vld cuda 0rgb rgb0 0bgr bgr0 yuv420p12be yuv420p12le yuv420p14be yuv420p14le yuv422p12be yuv422p12le yuv422p14be yuv422p14le yuv444p12be yuv444p12le yuv444p14be yuv444p14le gbrp12be gbrp12le gbrp14be gbrp14le yuvj411p bayer_bggr8 bayer_rggb8 bayer_gbrg8 bayer_grbg8 bayer_bggr16le bayer_bggr16be bayer_rggb16le bayer_rggb16be bayer_gbrg16le bayer_gbrg16be bayer_grbg16le bayer_grbg16be yuv440p10le yuv440p10be yuv440p12le yuv440p12be ayuv64le ayuv64be videotoolbox_vld p010le p010be gbrap12be gbrap12le gbrap10be gbrap10le mediacodec gray12be gray12le gray10be gray10le p016le p016be d3d11 gray9be gray9le gbrpf32be gbrpf32le gbrapf32be gbrapf32le drm_prime opencl gray14be gray14le grayf32be grayf32le yuva422p12be yuva422p12le yuva444p12be yuva444p12le nv24 nv42 vulkan y210be y210le x2rgb10le x2rgb10be x2bgr10le x2bgr10be p210be p210le p410be p410le p216be p216le p416be p416le vuya rgbaf16be rgbaf16le vuyx p012le p012be y212be y212le xv30be xv30le xv36be xv36le rgbf32be rgbf32le rgbaf32be rgbaf32le p212be p212le p412be p412le gbrap14be gbrap14le d3d12 ayuv uyva vyu444 v30xbe v30xle rgbf16be rgbf16le rgba128be rgba128le rgb96be rgb96le y216be y216le xv48be xv48le gbrpf16be gbrpf16le gbrapf16be gbrapf16le grayf16be grayf16le amf gray32be gray32le yaf32be yaf32le yaf16be yaf16le gbrap32be gbrap32le yuv444p10msbbe yuv444p10msble yuv444p12msbbe yuv444p12msble gbrp10msbbe gbrp10msble gbrp12msbbe gbrp12msble ohcodec
+Filter 'graph -1 input from stream 0:0' formats:
+  out[0] 'default': vulkan
+Filter 'out_#0:0' formats:
+  in[0] 'default': yuv420p yuyv422 rgb24 bgr24 yuv422p yuv444p yuv410p yuv411p gray monow monob pal8 yuvj420p yuvj422p yuvj444p uyvy422 uyyvyy411 bgr8 bgr4 bgr4_byte rgb8 rgb4 rgb4_byte nv12 nv21 argb rgba abgr bgra gray16be gray16le yuv440p yuvj440p yuva420p rgb48be rgb48le rgb565be rgb565le rgb555be rgb555le bgr565be bgr565le bgr555be bgr555le vaapi yuv420p16le yuv420p16be yuv422p16le yuv422p16be yuv444p16le yuv444p16be dxva2_vld rgb444le rgb444be bgr444le bgr444be ya8 bgr48be bgr48le yuv420p9be yuv420p9le yuv420p10be yuv420p10le yuv422p10be yuv422p10le yuv444p9be yuv444p9le yuv444p10be yuv444p10le yuv422p9be yuv422p9le gbrp gbrp9be gbrp9le gbrp10be gbrp10le gbrp16be gbrp16le yuva422p yuva444p yuva420p9be yuva420p9le yuva422p9be yuva422p9le yuva444p9be yuva444p9le yuva420p10be yuva420p10le yuva422p10be yuva422p10le yuva444p10be yuva444p10le yuva420p16be yuva420p16le yuva422p16be yuva422p16le yuva444p16be yuva444p16le vdpau xyz12le xyz12be nv16 nv20le nv20be rgba64be rgba64le bgra64be bgra64le yvyu422 ya16be ya16le gbrap gbrap16be gbrap16le qsv mmal d3d11va_vld cuda 0rgb rgb0 0bgr bgr0 yuv420p12be yuv420p12le yuv420p14be yuv420p14le yuv422p12be yuv422p12le yuv422p14be yuv422p14le yuv444p12be yuv444p12le yuv444p14be yuv444p14le gbrp12be gbrp12le gbrp14be gbrp14le yuvj411p bayer_bggr8 bayer_rggb8 bayer_gbrg8 bayer_grbg8 bayer_bggr16le bayer_bggr16be bayer_rggb16le bayer_rggb16be bayer_gbrg16le bayer_gbrg16be bayer_grbg16le bayer_grbg16be yuv440p10le yuv440p10be yuv440p12le yuv440p12be ayuv64le ayuv64be videotoolbox_vld p010le p010be gbrap12be gbrap12le gbrap10be gbrap10le mediacodec gray12be gray12le gray10be gray10le p016le p016be d3d11 gray9be gray9le gbrpf32be gbrpf32le gbrapf32be gbrapf32le drm_prime opencl gray14be gray14le grayf32be grayf32le yuva422p12be yuva422p12le yuva444p12be yuva444p12le nv24 nv42 vulkan y210be y210le x2rgb10le x2rgb10be x2bgr10le x2bgr10be p210be p210le p410be p410le p216be p216le p416be p416le vuya rgbaf16be rgbaf16le vuyx p012le p012be y212be y212le xv30be xv30le xv36be xv36le rgbf32be rgbf32le rgbaf32be rgbaf32le p212be p212le p412be p412le gbrap14be gbrap14le d3d12 ayuv uyva vyu444 v30xbe v30xle rgbf16be rgbf16le rgba128be rgba128le rgb96be rgb96le y216be y216le xv48be xv48le gbrpf16be gbrpf16le gbrapf16be gbrapf16le grayf16be grayf16le amf gray32be gray32le yaf32be yaf32le yaf16be yaf16le gbrap32be gbrap32le yuv444p10msbbe yuv444p10msble yuv444p12msbbe yuv444p12msble gbrp10msbbe gbrp10msble gbrp12msbbe gbrp12msble ohcodec
+Filter 'format' formats:
+  in[0] 'default': vulkan
+  out[0] 'default': vulkan
+[AVFilterGraph @ 0x7a03d80010c0] query_formats: 4 queried, 9 merged, 0 already done, 0 delayed
+[graph -1 input from stream 0:0 @ 0x7a03d8001c80] video frame properties congruent with link at pts_time: 0
+[vost#0:0/h264_vulkan @ 0x5da371611480] [enc:h264_vulkan @ 0x5da37160bb40] Using input frames context (format vulkan) with h264_vulkan encoder.
+[h264_vulkan @ 0x5da3716bd300] Supported profiles:
+[h264_vulkan @ 0x5da3716bd300]     Constrained Baseline
+[h264_vulkan @ 0x5da3716bd300]     Main
+[h264_vulkan @ 0x5da3716bd300]     High
+[h264_vulkan @ 0x5da3716bd300] Using profile High
+[h264_vulkan @ 0x5da3716bd300] Encoder capabilities for h264 profile "High":
+[h264_vulkan @ 0x5da3716bd300]     Width: from 16 to 4096
+[h264_vulkan @ 0x5da3716bd300]     Height: from 16 to 4096
+[h264_vulkan @ 0x5da3716bd300]     Width alignment: 16
+[h264_vulkan @ 0x5da3716bd300]     Height alignment: 16
+[h264_vulkan @ 0x5da3716bd300]     Bitstream offset alignment: 32
+[h264_vulkan @ 0x5da3716bd300]     Bitstream size alignment: 4096
+[h264_vulkan @ 0x5da3716bd300]     Maximum references: 16
+[h264_vulkan @ 0x5da3716bd300]     Maximum active references: 16
+[h264_vulkan @ 0x5da3716bd300]     Codec header version: 1.0.0 (driver), 1.0.0 (compiled)
+[h264_vulkan @ 0x5da3716bd300]     Encoder max quality: 1
+[h264_vulkan @ 0x5da3716bd300]     Encoder image width alignment: 32
+[h264_vulkan @ 0x5da3716bd300]     Encoder image height alignment: 32
+[h264_vulkan @ 0x5da3716bd300]     Capability flags: separate_references
+[h264_vulkan @ 0x5da3716bd300] Supported input formats:
+[h264_vulkan @ 0x5da3716bd300]     0: 1000156003
+[h264_vulkan @ 0x5da3716bd300] Allocating 16384 bytes in bind index 0 for video session
+[h264_vulkan @ 0x5da3716bd300] Allocating 65536 bytes in bind index 1 for video session
+[h264_vulkan @ 0x5da3716bd300] Allocating 32768 bytes in bind index 2 for video session
+[h264_vulkan @ 0x5da3716bd300] Allocating 32768 bytes in bind index 3 for video session
+[h264_vulkan @ 0x5da3716bd300] Using nv12 as format of reconstructed frames.
+[h264 @ 0x5da3715f4440] Decoding frame, 31451 bytes, 4 slices
+[h264_vulkan @ 0x5da3716bd300] H264 encoder capabilities:
+[h264_vulkan @ 0x5da3716bd300]     Standard capability flags:
+[h264_vulkan @ 0x5da3716bd300]         separate_color_plane: 0
+[h264_vulkan @ 0x5da3716bd300]         qprime_y_zero_transform_bypass: 0
+[h264_vulkan @ 0x5da3716bd300]         scaling_lists: 0
+[h264_vulkan @ 0x5da3716bd300]         chroma_qp_index_offset: 1
+[h264_vulkan @ 0x5da3716bd300]         second_chroma_qp_index_offset: 1
+[h264_vulkan @ 0x5da3716bd300]         pic_init_qp: 0
+[h264_vulkan @ 0x5da3716bd300]         weighted:
+[h264_vulkan @ 0x5da3716bd300]         8x8_transforms: 1
+[h264_vulkan @ 0x5da3716bd300]         disable_direct_spatial_mv_pred: 0
+[h264_vulkan @ 0x5da3716bd300]         coder: cabac cavlc
+[h264_vulkan @ 0x5da3716bd300]         direct_8x8_inference: 0
+[h264_vulkan @ 0x5da3716bd300]         constrained_intra_pred: 1
+[h264_vulkan @ 0x5da3716bd300]         deblock: filter_disabling filter_enabling
+[h264_vulkan @ 0x5da3716bd300]     Capability flags:
+[h264_vulkan @ 0x5da3716bd300]         hdr_compliance: 1
+[h264_vulkan @ 0x5da3716bd300]         pred_weight_table_generated: 0
+[h264_vulkan @ 0x5da3716bd300]         row_unaligned_slice: 0
+[h264_vulkan @ 0x5da3716bd300]         different_slice_type: 0
+[h264_vulkan @ 0x5da3716bd300]         b_frame_in_l0_list: 0
+[h264_vulkan @ 0x5da3716bd300]         b_frame_in_l1_list: 0
+[h264_vulkan @ 0x5da3716bd300]         per_pict_type_min_max_qp: 1
+[h264_vulkan @ 0x5da3716bd300]         per_slice_constant_qp: 0
+[h264_vulkan @ 0x5da3716bd300]         generate_prefix_nalu: 0
+[h264_vulkan @ 0x5da3716bd300]     Capabilities:
+[h264_vulkan @ 0x5da3716bd300]         maxLevelIdc: 14
+[h264_vulkan @ 0x5da3716bd300]         maxSliceCount: 1
+[h264_vulkan @ 0x5da3716bd300]         max(P/B)PictureL0ReferenceCount: 8 P's; 8 B's
+[h264_vulkan @ 0x5da3716bd300]         maxL1ReferenceCount: 1
+[h264_vulkan @ 0x5da3716bd300]         maxTemporalLayerCount: 0
+[h264_vulkan @ 0x5da3716bd300]         expectDyadicTemporalLayerPattern: 0
+[h264_vulkan @ 0x5da3716bd300]         min/max Qp: [10, 51]
+[h264_vulkan @ 0x5da3716bd300]         prefersGopRemainingFrames: 0
+[h264_vulkan @ 0x5da3716bd300]         requiresGopRemainingFrames: 0
+[h264_vulkan @ 0x5da3716bd300] Using fixed QP = 24 / 24 / 24 for IDR- / P- / B-frames.
+[h264_vulkan @ 0x5da3716bd300] Using intra, P- and B-frames (supported references: 8 / 1).
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264_vulkan @ 0x5da3716bd300] Using level 4.
+[h264_vulkan @ 0x5da3716bd300] Feedback units written, overrides: 1 (SPS: 1 PPS: 1)
+[h264_vulkan @ 0x5da3716bd300] nal_unit_type: 7(SPS), nal_ref_idc: 3
+[h264_vulkan @ 0x5da3716bd300] nal_unit_type: 8(PPS), nal_ref_idc: 3
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.3.100
+  Stream #0:0(und), 0, 1/30: Video: h264 (High), 1 reference frame, vulkan(progressive, left), 1920x1080 [SAR 1:1 DAR 16:9], 0/1, q=2-31, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 h264_vulkan
+      handler_name    : VideoHandler
+      vendor_id       : [0][0][0][0]
+[out#0/null @ 0x5da3715ff7c0] Starting thread...
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 0.0333333
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 0.0333333 queue head 0 ts 0.0333333
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 0.0666667
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 0.0666667 queue head 0 ts 0.0666667
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (0).
+[h264 @ 0x5da3716bcc00] Decoding frame, 22766 bytes, 4 slices
+[h264_vulkan @ 0x5da3716bd300] Pick nothing to encode next - need more input for timestamps.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (1).
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 0.1
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 0.1 queue head 0 ts 0.1
+[h264_vulkan @ 0x5da3716bd300] Pick forced IDR-picture to encode next.
+[h264_vulkan @ 0x5da3716bf880] Creating a buffer of 6332416 bytes, usage: 0x8000, flags: 0xa
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (2).
+[h264 @ 0x5da3715f4440] Decoding frame, 20879 bytes, 4 slices
+[h264_vulkan @ 0x5da3716bd300] Pick nothing to encode next - need more input for reference pictures.
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 0.133333
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 0.133333 queue head 0 ts 0.133333
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (3).
+[h264 @ 0x5da3716bcc00] Decoding frame, 31433 bytes, 4 slices
+[h264_vulkan @ 0x5da3716bd300] Pick normal P-picture to encode next.
+[h264_vulkan @ 0x5da3716bf880] Creating a buffer of 6332416 bytes, usage: 0x8000, flags: 0xa
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=1/poc=3:  fn=0/poc=0
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 0.166667
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 0.166667 queue head 0 ts 0.166667
+[h264_vulkan @ 0x5da3716bd300] Frame 0/0 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 0, dts -1, size 54269 bytes.
+[h264 @ 0x5da3715f4440] Decoding frame, 23361 bytes, 4 slices
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (4).
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 0.2
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 0.2 queue head 0 ts 0.2
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x5da3716bcc00] Decoding frame, 20791 bytes, 4 slices
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=2/poc=1:  fn=0/poc=0  fn=1/poc=3
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=2/poc=1:  fn=1/poc=3  fn=0/poc=0
+[h264_vulkan @ 0x5da3716bd300] Frame 3/1 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 3, dts 0, size 50651 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (5).
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 2 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 0.233333
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 0.233333 queue head 0 ts 0.233333
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=2/poc=2:  fn=0/poc=0  fn=1/poc=3
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=2/poc=2:  fn=1/poc=3  fn=0/poc=0
+[h264 @ 0x5da3715f4440] Decoding frame, 33422 bytes, 4 slices
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 0.266667
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 0.266667 queue head 0 ts 0.266667
+[h264 @ 0x5da3716bcc00] Decoding frame, 23323 bytes, 4 slices
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 0.3
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 0.3 queue head 0 ts 0.3
+[h264 @ 0x5da3715f4440] Decoding frame, 21088 bytes, 4 slices
+[h264_vulkan @ 0x5da3716bd300] Frame 1/2 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 1, dts 1, size 50762 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (6).
+[h264_vulkan @ 0x5da3716bd300] Pick normal P-picture to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=2/poc=6:  fn=1/poc=3  fn=0/poc=0
+[h264_vulkan @ 0x5da3716bd300] Frame 2/3 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 2, dts 2, size 52801 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (7).
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=3/poc=4:  fn=1/poc=3  fn=2/poc=6
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=3/poc=4:  fn=2/poc=6  fn=1/poc=3
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 0.333333
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 0.333333 queue head 0 ts 0.333333
+[h264 @ 0x5da3716bcc00] Decoding frame, 32649 bytes, 4 slices
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x5da3715f4440] Decoding frame, 24784 bytes, 4 slices
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 0.366667
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 0.366667 queue head 0 ts 0.366667
+[h264_vulkan @ 0x5da3716bd300] Frame 6/4 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 6, dts 3, size 49529 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (8).
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=3/poc=5:  fn=1/poc=3  fn=2/poc=6
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=3/poc=5:  fn=2/poc=6  fn=1/poc=3
+[h264_vulkan @ 0x5da3716bd300] Frame 4/5 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 4, dts 4, size 48926 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (9).
+[h264_vulkan @ 0x5da3716bd300] Pick normal P-picture to encode next.
+[h264_vulkan @ 0x5da3716bf880] Creating a buffer of 6332416 bytes, usage: 0x8000, flags: 0xa
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=3/poc=9:  fn=2/poc=6  fn=1/poc=3
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 0.4
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 0.4 queue head 0 ts 0.4
+[h264 @ 0x5da3716bcc00] Decoding frame, 20977 bytes, 4 slices
+[h264_vulkan @ 0x5da3716bd300] Frame 5/6 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 5, dts 5, size 51699 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (10).
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=4/poc=7:  fn=2/poc=6  fn=3/poc=9
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=4/poc=7:  fn=3/poc=9  fn=2/poc=6
+[h264_vulkan @ 0x5da3716bd300] Frame 9/7 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 9, dts 6, size 49659 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (11).
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=4/poc=8:  fn=2/poc=6  fn=3/poc=9
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=4/poc=8:  fn=3/poc=9  fn=2/poc=6
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 0.433333
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 0.433333 queue head 0 ts 0.433333
+[h264 @ 0x5da3715f4440] Decoding frame, 21673 bytes, 4 slices
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 1 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 0.466667
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 0.466667 queue head 0 ts 0.466667
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 1 times
+[h264 @ 0x5da3716bcc00] Decoding frame, 32951 bytes, 4 slices
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x5da3715f4440] Decoding frame, 23552 bytes, 4 slices
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 0.5
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 0.5 queue head 0 ts 0.5
+[h264_vulkan @ 0x5da3716bd300] Frame 7/8 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 7, dts 7, size 48884 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (12).
+[h264_vulkan @ 0x5da3716bd300] Pick normal P-picture to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=4/poc=12:  fn=3/poc=9  fn=2/poc=6
+[h264_vulkan @ 0x5da3716bd300] Frame 8/9 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 8, dts 8, size 51319 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (13).
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=5/poc=10:  fn=3/poc=9  fn=4/poc=12
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=5/poc=10:  fn=4/poc=12  fn=3/poc=9
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x5da3716bcc00] Decoding frame, 21701 bytes, 4 slices
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 0.533333
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 0.533333 queue head 0 ts 0.533333
+[h264_vulkan @ 0x5da3716bd300] Frame 12/10 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 12, dts 9, size 49426 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (14).
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=5/poc=11:  fn=3/poc=9  fn=4/poc=12
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=5/poc=11:  fn=4/poc=12  fn=3/poc=9
+[h264_vulkan @ 0x5da3716bd300] Frame 10/11 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 10, dts 10, size 48703 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (15).
+[h264_vulkan @ 0x5da3716bd300] Pick normal P-picture to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=5/poc=15:  fn=4/poc=12  fn=3/poc=9
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 0.566667
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 0.566667 queue head 0 ts 0.566667
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x5da3715f4440] Decoding frame, 33697 bytes, 4 slices
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 0.6
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 0.6 queue head 0 ts 0.6
+[h264 @ 0x5da3716bcc00] Decoding frame, 25608 bytes, 4 slices
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 0.633333
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 0.633333 queue head 0 ts 0.633333
+[h264 @ 0x5da3715f4440] Decoding frame, 21640 bytes, 4 slices
+[h264_vulkan @ 0x5da3716bd300] Frame 11/12 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 11, dts 11, size 50955 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (16).
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=6/poc=13:  fn=4/poc=12  fn=5/poc=15
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=6/poc=13:  fn=5/poc=15  fn=4/poc=12
+[h264_vulkan @ 0x5da3716bd300] Frame 15/13 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 15, dts 12, size 49124 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (17).
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=6/poc=14:  fn=4/poc=12  fn=5/poc=15
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=6/poc=14:  fn=5/poc=15  fn=4/poc=12
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 0.666667
+[h264 @ 0x5da3716bcc00] Decoding frame, 22192 bytes, 4 slices
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 0.666667 queue head 0 ts 0.666667
+[h264_vulkan @ 0x5da3716bd300] Frame 13/14 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 13, dts 13, size 49696 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (18).
+[h264_vulkan @ 0x5da3716bd300] Pick normal P-picture to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=6/poc=18:  fn=5/poc=15  fn=4/poc=12
+[h264_vulkan @ 0x5da3716bd300] Frame 14/15 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 14, dts 14, size 50284 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (19).
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=7/poc=16:  fn=5/poc=15  fn=6/poc=18
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=7/poc=16:  fn=6/poc=18  fn=5/poc=15
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 0.7
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 0.7 queue head 0 ts 0.7
+[h264 @ 0x5da3715f4440] Decoding frame, 34390 bytes, 4 slices
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 0.733333
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 0.733333 queue head 0 ts 0.733333
+[h264 @ 0x5da3716bcc00] Decoding frame, 26993 bytes, 4 slices
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x5da3715f4440] Decoding frame, 21473 bytes, 4 slices
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 0.766667
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 0.766667 queue head 0 ts 0.766667
+[h264_vulkan @ 0x5da3716bd300] Frame 18/16 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 18, dts 15, size 49267 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (20).
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=7/poc=17:  fn=5/poc=15  fn=6/poc=18
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=7/poc=17:  fn=6/poc=18  fn=5/poc=15
+[h264_vulkan @ 0x5da3716bd300] Frame 16/17 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 16, dts 16, size 49200 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (21).
+[h264_vulkan @ 0x5da3716bd300] Pick normal P-picture to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=7/poc=21:  fn=6/poc=18  fn=5/poc=15
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 0.8
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 0.8 queue head 0 ts 0.8
+[h264 @ 0x5da3716bcc00] Decoding frame, 22414 bytes, 4 slices
+[h264_vulkan @ 0x5da3716bd300] Frame 17/18 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 17, dts 17, size 49596 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (22).
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=8/poc=19:  fn=6/poc=18  fn=7/poc=21
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=8/poc=19:  fn=7/poc=21  fn=6/poc=18
+[h264_vulkan @ 0x5da3716bd300] Frame 21/19 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 21, dts 18, size 48596 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (23).
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=8/poc=20:  fn=6/poc=18  fn=7/poc=21
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=8/poc=20:  fn=7/poc=21  fn=6/poc=18
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 1 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 0.833333
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 0.833333 queue head 0 ts 0.833333
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[h264 @ 0x5da3715f4440] Decoding frame, 33701 bytes, 4 slices
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 0.866667
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 0.866667 queue head 0 ts 0.866667
+[h264 @ 0x5da3716bcc00] Decoding frame, 27085 bytes, 4 slices
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 2 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 0.9
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 0.9 queue head 0 ts 0.9
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[h264 @ 0x5da3715f4440] Decoding frame, 21819 bytes, 4 slices
+[h264_vulkan @ 0x5da3716bd300] Frame 19/20 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 19, dts 19, size 47741 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (24).
+[h264_vulkan @ 0x5da3716bd300] Pick normal P-picture to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=8/poc=24:  fn=7/poc=21  fn=6/poc=18
+[h264_vulkan @ 0x5da3716bd300] Frame 20/21 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 20, dts 20, size 50068 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (25).
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=9/poc=22:  fn=7/poc=21  fn=8/poc=24
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=9/poc=22:  fn=8/poc=24  fn=7/poc=21
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 0.933333
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 0.933333 queue head 0 ts 0.933333
+[h264 @ 0x5da3716bcc00] Decoding frame, 21496 bytes, 4 slices
+[h264_vulkan @ 0x5da3716bd300] Frame 24/22 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 24, dts 21, size 49502 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (26).
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=9/poc=23:  fn=7/poc=21  fn=8/poc=24
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=9/poc=23:  fn=8/poc=24  fn=7/poc=21
+[h264_vulkan @ 0x5da3716bd300] Frame 22/23 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 22, dts 22, size 49357 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (27).
+[h264_vulkan @ 0x5da3716bd300] Pick normal P-picture to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=9/poc=27:  fn=8/poc=24  fn=7/poc=21
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 1 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 0.966667
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 0.966667 queue head 0 ts 0.966667
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 1 times
+[h264 @ 0x5da3715f4440] Decoding frame, 32446 bytes, 4 slices
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x5da3716bcc00] Decoding frame, 23507 bytes, 4 slices
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 1
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 1 queue head 0 ts 1
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 1.033333
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 1.033333 queue head 0 ts 1.033333
+[h264 @ 0x5da3715f4440] Decoding frame, 20839 bytes, 4 slices
+[h264_vulkan @ 0x5da3716bd300] Frame 23/24 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 23, dts 23, size 50408 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (28).
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=10/poc=25:  fn=8/poc=24  fn=9/poc=27
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=10/poc=25:  fn=9/poc=27  fn=8/poc=24
+[h264_vulkan @ 0x5da3716bd300] Frame 27/25 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 27, dts 24, size 49116 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (29).
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=10/poc=26:  fn=8/poc=24  fn=9/poc=27
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=10/poc=26:  fn=9/poc=27  fn=8/poc=24
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 1.066667
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 1.066667 queue head 0 ts 1.066667
+[h264 @ 0x5da3716bcc00] Decoding frame, 28718 bytes, 4 slices
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x5da3715f4440] Decoding frame, 30178 bytes, 4 slices
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 1.1
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 1.1 queue head 0 ts 1.1
+[h264_vulkan @ 0x5da3716bd300] Frame 25/26 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 25, dts 25, size 48057 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (30).
+[h264_vulkan @ 0x5da3716bd300] Pick normal P-picture to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=10/poc=30:  fn=9/poc=27  fn=8/poc=24
+[h264_vulkan @ 0x5da3716bd300] Frame 26/27 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 26, dts 26, size 49684 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (31).
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=11/poc=28:  fn=9/poc=27  fn=10/poc=30
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=11/poc=28:  fn=10/poc=30  fn=9/poc=27
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x5da3716bcc00] Decoding frame, 23471 bytes, 4 slices
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 1.133333
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 1.133333 queue head 0 ts 1.133333
+[h264_vulkan @ 0x5da3716bd300] Frame 30/28 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 30, dts 27, size 48757 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (32).
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=11/poc=29:  fn=9/poc=27  fn=10/poc=30
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=11/poc=29:  fn=10/poc=30  fn=9/poc=27
+[h264_vulkan @ 0x5da3716bd300] Frame 28/29 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 28, dts 28, size 48945 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (33).
+[h264_vulkan @ 0x5da3716bd300] Pick normal P-picture to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=11/poc=33:  fn=10/poc=30  fn=9/poc=27
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 2 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 1.166667
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 1.166667 queue head 0 ts 1.166667
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[h264 @ 0x5da3715f4440] Decoding frame, 21305 bytes, 4 slices
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 1 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 1.2
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 1.2 queue head 0 ts 1.2
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 1 times
+[h264 @ 0x5da3716bcc00] Decoding frame, 30210 bytes, 4 slices
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x5da3715f4440] Decoding frame, 23486 bytes, 4 slices
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 1.233333
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 1.233333 queue head 0 ts 1.233333
+[h264_vulkan @ 0x5da3716bd300] Frame 29/30 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 29, dts 29, size 49441 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (34).
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=12/poc=31:  fn=10/poc=30  fn=11/poc=33
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=12/poc=31:  fn=11/poc=33  fn=10/poc=30
+[h264_vulkan @ 0x5da3716bd300] Frame 33/31 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 33, dts 30, size 48597 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (35).
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=12/poc=32:  fn=10/poc=30  fn=11/poc=33
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=12/poc=32:  fn=11/poc=33  fn=10/poc=30
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x5da3716bcc00] Decoding frame, 21605 bytes, 4 slices
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 1.266667
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 1.266667 queue head 0 ts 1.266667
+[h264_vulkan @ 0x5da3716bd300] Frame 31/32 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 31, dts 31, size 48109 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (36).
+[h264_vulkan @ 0x5da3716bd300] Pick normal P-picture to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=12/poc=36:  fn=11/poc=33  fn=10/poc=30
+[h264_vulkan @ 0x5da3716bd300] Frame 32/33 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 32, dts 32, size 49174 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (37).
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=13/poc=34:  fn=11/poc=33  fn=12/poc=36
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=13/poc=34:  fn=12/poc=36  fn=11/poc=33
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 1 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 1.3
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 1.3 queue head 0 ts 1.3
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 1 times
+[h264 @ 0x5da3715f4440] Decoding frame, 29805 bytes, 4 slices
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 1 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 1.333333
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 1.333333 queue head 0 ts 1.333333
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 1 times
+[h264 @ 0x5da3716bcc00] Decoding frame, 26178 bytes, 4 slices
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 1.366667
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 1.366667 queue head 0 ts 1.366667
+[h264 @ 0x5da3715f4440] Decoding frame, 21316 bytes, 4 slices
+[h264_vulkan @ 0x5da3716bd300] Frame 36/34 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 36, dts 33, size 49388 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (38).
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=13/poc=35:  fn=11/poc=33  fn=12/poc=36
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=13/poc=35:  fn=12/poc=36  fn=11/poc=33
+[h264_vulkan @ 0x5da3716bd300] Frame 34/35 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 34, dts 34, size 50344 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (39).
+[h264_vulkan @ 0x5da3716bd300] Pick normal P-picture to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=13/poc=39:  fn=12/poc=36  fn=11/poc=33
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 1 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 1.4
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 1 times
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 1.4 queue head 0 ts 1.4
+[h264 @ 0x5da3716bcc00] Decoding frame, 21740 bytes, 4 slices
+[h264_vulkan @ 0x5da3716bd300] Frame 35/36 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 35, dts 35, size 50023 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (40).
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=14/poc=37:  fn=12/poc=36  fn=13/poc=39
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=14/poc=37:  fn=13/poc=39  fn=12/poc=36
+[h264_vulkan @ 0x5da3716bd300] Frame 39/37 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 39, dts 36, size 48976 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (41).
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=14/poc=38:  fn=12/poc=36  fn=13/poc=39
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=14/poc=38:  fn=13/poc=39  fn=12/poc=36
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 1.433333
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 1.433333 queue head 0 ts 1.433333
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[h264 @ 0x5da3715f4440] Decoding frame, 24896 bytes, 4 slices
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 1 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 1.466667
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 1.466667 queue head 0 ts 1.466667
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 1 times
+[h264 @ 0x5da3716bcc00] Decoding frame, 24337 bytes, 4 slices
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+    Last message repeated 3 times
+[h264 @ 0x5da3715f4440] Decoding frame, 21752 bytes, 4 slices
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 1.5
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 1.5 queue head 0 ts 1.5
+[h264_vulkan @ 0x5da3716bd300] Frame 37/38 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 37, dts 37, size 49882 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (42).
+[h264_vulkan @ 0x5da3716bd300] Pick normal P-picture to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=14/poc=42:  fn=13/poc=39  fn=12/poc=36
+[h264_vulkan @ 0x5da3716bd300] Frame 38/39 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 38, dts 38, size 50066 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (43).
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=15/poc=40:  fn=13/poc=39  fn=14/poc=42
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=15/poc=40:  fn=14/poc=42  fn=13/poc=39
+[h264 @ 0x5da3716bcc00] nal_unit_type: 6(SEI), nal_ref_idc: 0
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 1.533333
+[h264 @ 0x5da3716bcc00] nal_unit_type: 5(IDR), nal_ref_idc: 3
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 1.533333 queue head 0 ts 1.533333
+[h264 @ 0x5da3716bcc00] nal_unit_type: 5(IDR), nal_ref_idc: 3
+    Last message repeated 2 times
+[h264 @ 0x5da3716bcc00] Decoding frame, 41875 bytes, 4 slices
+[h264_vulkan @ 0x5da3716bd300] Frame 42/40 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 42, dts 39, size 49558 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (44).
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=15/poc=41:  fn=13/poc=39  fn=14/poc=42
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=15/poc=41:  fn=14/poc=42  fn=13/poc=39
+[h264_vulkan @ 0x5da3716bd300] Frame 40/41 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 40, dts 40, size 49967 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (45).
+[h264_vulkan @ 0x5da3716bd300] Pick normal P-picture to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=15/poc=45:  fn=14/poc=42  fn=13/poc=39
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 1.566667
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 1.566667 queue head 0 ts 1.566667
+[h264 @ 0x5da3715f4440] Decoding frame, 30121 bytes, 4 slices
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 2 times
+[out#0/null @ 0x5da3715ff7c0] sq: send 0 ts 1.6
+[out#0/null @ 0x5da3715ff7c0] sq: 0 frames_max 48 reached
+[out#0/null @ 0x5da3715ff7c0] sq: finish 0; head ts 1.6
+[out#0/null @ 0x5da3715ff7c0] sq: finish queue
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/null @ 0x5da3715ff7c0] sq: receive 0 ts 1.6 queue head 0 ts 1.6
+[h264 @ 0x5da3716bcc00] Decoding frame, 30073 bytes, 4 slices
+[h264 @ 0x5da3715f4440] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 3 times
+[vf#0:0 @ 0x5da3716bd6c0] All consumers returned EOF
+[h264 @ 0x5da3715f4440] Decoding frame, 31451 bytes, 4 slices
+[out#0/null @ 0x5da3715ff7c0] sq: 0 EOF
+[out#0/null @ 0x5da3715ff7c0] sq: finish queue
+[vf#0:0 @ 0x5da3716bd6c0] Terminating thread with return code 0 (success)
+[h264_vulkan @ 0x5da3716bd300] Frame 41/42 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 41, dts 41, size 49887 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (46).
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=16/poc=43:  fn=14/poc=42  fn=15/poc=45
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=16/poc=43:  fn=15/poc=45  fn=14/poc=42
+[h264_vulkan @ 0x5da3716bd300] Frame 45/43 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 45, dts 42, size 49105 bytes.
+[h264_vulkan @ 0x5da3716bd300] Input frame: 1920x1080 (47).
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=16/poc=44:  fn=14/poc=42  fn=15/poc=45
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=16/poc=44:  fn=15/poc=45  fn=14/poc=42
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 1 times
+[vist#0:0/h264 @ 0x5da37160b340] [dec:h264 @ 0x5da3716bdec0] Decoder returned EOF, finishing
+[h264 @ 0x5da3716bcc00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+    Last message repeated 1 times
+[vist#0:0/h264 @ 0x5da37160b340] [dec:h264 @ 0x5da3716bdec0] Terminating thread with return code 0 (success)
+[vist#0:0/h264 @ 0x5da37160b340] All consumers of this stream are done
+[in#0/mov,mp4,m4a,3gp,3g2,mj2 @ 0x5da3715cb380] All consumers are done
+[in#0/mov,mp4,m4a,3gp,3g2,mj2 @ 0x5da3715cb380] Terminating thread with return code 0 (success)
+[h264 @ 0x5da3716bcc00] Decoding frame, 22766 bytes, 4 slices
+[h264_vulkan @ 0x5da3716bd300] Frame 43/44 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 43, dts 43, size 48882 bytes.
+[vost#0:0/h264_vulkan @ 0x5da371611480] [enc:h264_vulkan @ 0x5da37160bb40] Encoder thread received EOF
+[h264_vulkan @ 0x5da3716bd300] Pick normal P-picture to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=16/poc=47:  fn=15/poc=45  fn=14/poc=42
+[h264_vulkan @ 0x5da3716bd300] Frame 44/45 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 44, dts 44, size 50144 bytes.
+[h264_vulkan @ 0x5da3716bd300] Pick B-picture at depth 1 to encode next.
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList0 for fn=17/poc=46:  fn=15/poc=45  fn=16/poc=47
+[h264_vulkan @ 0x5da3716bd300] Default RefPicList1 for fn=17/poc=46:  fn=16/poc=47  fn=15/poc=45
+[h264_vulkan @ 0x5da3716bd300] Frame 47/46 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 47, dts 45, size 48097 bytes.
+[h264_vulkan @ 0x5da3716bd300] Frame 46/47 encoded
+[h264_vulkan @ 0x5da3716bd300] Output packet: pts 46, dts 46, size 48153 bytes.
+[vost#0:0/h264_vulkan @ 0x5da371611480] Terminating thread with return code 0 (success)
+[out#0/null @ 0x5da3715ff7c0] All streams finished
+[out#0/null @ 0x5da3715ff7c0] Terminating thread with return code 0 (success)
+[out#0/null @ 0x5da3715ff7c0] Output file #0 (pipe:):
+[out#0/null @ 0x5da3715ff7c0]   Output stream #0:0 (video): 48 frames encoded; 48 packets muxed (2382774 bytes); 
+[out#0/null @ 0x5da3715ff7c0]   Total: 48 packets (2382774 bytes) muxed
+[out#0/null @ 0x5da3715ff7c0] video:2327KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=   48 fps=0.0 q=-0.0 Lsize=N/A time=00:00:01.56 bitrate=N/A speed=6.59x elapsed=0:00:00.23    
+[AVIOContext @ 0x5da3715c4140] Statistics: 180 bytes written, 0 seeks, 1 writeouts
+bench: utime=0.034s stime=0.062s rtime=0.238s
+bench: maxrss=77520KiB
+[in#0/mov,mp4,m4a,3gp,3g2,mj2 @ 0x5da3715cb380] Input file #0 (/home/polarbear/.t3/projects/catchingup/HD620-benchmark/inputs/h264_1080_slices.mp4):
+[in#0/mov,mp4,m4a,3gp,3g2,mj2 @ 0x5da3715cb380]   Input stream #0:0 (video): 62 packets read (1636801 bytes); 50 frames decoded; 0 decode errors; 
+[in#0/mov,mp4,m4a,3gp,3g2,mj2 @ 0x5da3715cb380]   Total: 62 packets (1636801 bytes) demuxed
+[AVIOContext @ 0x5da37164f280] Statistics: 1694872 bytes read, 2 seeks
+
+Exiting with exit code 0

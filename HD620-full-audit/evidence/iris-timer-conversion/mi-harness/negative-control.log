@@ -1,0 +1,62 @@
+run.cpp:45: FAILED *(uint64_t *)output == e (415 vs 416) f=12000000 pair 0
+run.cpp:46: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (415 vs 416) f=12000000 pair 0
+run.cpp:45: FAILED *(uint64_t *)output == e (5703716569005 vs 5726623061250) f=12000000 pair 2
+run.cpp:46: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (4294967213 vs 1431655682) f=12000000 pair 2
+run.cpp:45: FAILED *(uint64_t *)output == e (18446738369992983192 vs 666) f=12000000 pair 3
+run.cpp:46: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (664 vs 666) f=12000000 pair 3
+run.cpp:45: FAILED *(uint64_t *)output == e (18446738369992982611 vs 83) f=12000000 pair 4
+run.cpp:45: FAILED *(uint64_t *)output == e (59760000000 vs 60000000000) f=12000000 pair 5
+run.cpp:46: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (3925425152 vs 4165425152) f=12000000 pair 5
+run.cpp:45: FAILED *(uint64_t *)output == e (18446744073709551533 vs 5726623061250) f=12000000 pair 6
+run.cpp:46: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (4294967213 vs 1431655682) f=12000000 pair 6
+run.cpp:45: FAILED *(uint64_t *)output == e (18423381650642567334 vs 6125464169800357372) f=12000000 pair 7
+run.cpp:46: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (166 vs 1431655932) f=12000000 pair 7
+run.cpp:45: FAILED *(uint64_t *)output == e (18446738576151413376 vs 640) f=12500000 pair 3
+run.cpp:45: FAILED *(uint64_t *)output == e (18446738576151412816 vs 80) f=12500000 pair 4
+run.cpp:45: FAILED *(uint64_t *)output == e (18446744073709551536 vs 5497558138800) f=12500000 pair 6
+run.cpp:45: FAILED *(uint64_t *)output == e (18424226075572699296 vs 18424231573130838176) f=12500000 pair 7
+run.cpp:45: FAILED *(uint64_t *)output == e (3573412790220 vs 3579139413281) f=19200000 pair 2
+run.cpp:46: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (4294967244 vs 1431655713) f=19200000 pair 2
+run.cpp:45: FAILED *(uint64_t *)output == e (18446740500296761760 vs 416) f=19200000 pair 3
+run.cpp:45: FAILED *(uint64_t *)output == e (18446740500296761396 vs 52) f=19200000 pair 4
+run.cpp:45: FAILED *(uint64_t *)output == e (37440000000 vs 37500000000) f=19200000 pair 5
+run.cpp:46: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (3080261632 vs 3140261632) f=19200000 pair 5
+run.cpp:45: FAILED *(uint64_t *)output == e (18446744073709551564 vs 3579139413281) f=19200000 pair 6
+run.cpp:46: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (4294967244 vs 1431655713) f=19200000 pair 6
+run.cpp:45: FAILED *(uint64_t *)output == e (18432107374920597608 vs 1522572096911529405) f=19200000 pair 7
+run.cpp:46: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (104 vs 1431655869) f=19200000 pair 7
+run.cpp:45: FAILED *(uint64_t *)output == e (205 vs 208) f=24000000 pair 0
+run.cpp:46: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (205 vs 208) f=24000000 pair 0
+run.cpp:45: FAILED *(uint64_t *)output == e (2817498546135 vs 2863311530625) f=24000000 pair 2
+run.cpp:46: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (4294967255 vs 2863311489) f=24000000 pair 2
+run.cpp:45: FAILED *(uint64_t *)output == e (18446741256211005768 vs 333) f=24000000 pair 3
+run.cpp:46: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (328 vs 333) f=24000000 pair 3
+run.cpp:45: FAILED *(uint64_t *)output == e (18446741256211005481 vs 41) f=24000000 pair 4
+run.cpp:45: FAILED *(uint64_t *)output == e (29520000000 vs 30000000000) f=24000000 pair 5
+run.cpp:46: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (3750196224 vs 4230196224) f=24000000 pair 5
+run.cpp:45: FAILED *(uint64_t *)output == e (18446744073709551575 vs 2863311530625) f=24000000 pair 6
+run.cpp:46: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (4294967255 vs 2863311489) f=24000000 pair 6
+run.cpp:45: FAILED *(uint64_t *)output == e (18435203599664414802 vs 12286104121754954494) f=24000000 pair 7
+run.cpp:46: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (82 vs 2863311614) f=24000000 pair 7
+run.cpp:45: FAILED *(uint64_t *)output == e (1786706395110 vs 1789569706640) f=38400000 pair 2
+run.cpp:46: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (4294967270 vs 2863311504) f=38400000 pair 2
+run.cpp:45: FAILED *(uint64_t *)output == e (18446742287003156688 vs 208) f=38400000 pair 3
+run.cpp:45: FAILED *(uint64_t *)output == e (18446742287003156506 vs 26) f=38400000 pair 4
+run.cpp:45: FAILED *(uint64_t *)output == e (18720000000 vs 18750000000) f=38400000 pair 5
+run.cpp:46: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (1540130816 vs 1570130816) f=38400000 pair 5
+run.cpp:45: FAILED *(uint64_t *)output == e (18446744073709551590 vs 1789569706640) f=38400000 pair 6
+run.cpp:46: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (4294967270 vs 2863311504) f=38400000 pair 6
+run.cpp:45: FAILED *(uint64_t *)output == e (18439425724315074612 vs 761286048455764702) f=38400000 pair 7
+run.cpp:46: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (52 vs 2863311582) f=38400000 pair 7
+run.cpp:45: FAILED *(uint64_t *)output == e (5566277615535 vs 5571849615590) f=12333333 pair 2
+run.cpp:46: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (4294967215 vs 1277032678) f=12333333 pair 2
+run.cpp:45: FAILED *(uint64_t *)output == e (18446738507431936648 vs 648) f=12333333 pair 3
+run.cpp:45: FAILED *(uint64_t *)output == e (18446738507431936081 vs 81) f=12333333 pair 4
+run.cpp:45: FAILED *(uint64_t *)output == e (58320000000 vs 58378379956) f=12333333 pair 5
+run.cpp:46: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (2485425152 vs 2543805108) f=12333333 pair 5
+run.cpp:45: FAILED *(uint64_t *)output == e (18446744073709551535 vs 5571849615590) f=12333333 pair 6
+run.cpp:46: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (4294967215 vs 1277032678) f=12333333 pair 6
+run.cpp:45: FAILED *(uint64_t *)output == e (18423944600595988642 vs 1472905651583851970) f=12333333 pair 7
+run.cpp:46: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (162 vs 3864141250) f=12333333 pair 7
+[FAILED] mi_builder_test.iris_time_elapsed_expression
+1 tests, 1 failed, 212 checks, 60 failed checks

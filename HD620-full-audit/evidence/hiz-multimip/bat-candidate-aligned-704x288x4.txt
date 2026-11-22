@@ -1,0 +1,20 @@
+driver library: /home/polarbear/.local/state/catchingup/hd620-hiz-multimip/icd/candidate/libvulkan_intel.so
+PASS aligned-704x288x4 in-scope levels 4: 2692800 exact pixel checks, image allocation 1380352 bytes
+SUMMARY 1/1 pixel cases passed
+3DSTATE_DEPTH_BUFFER (format, LOD, LOD0 extent, HiZ enable): count
+   (D32_FLOAT) 0 704x288 true : 8
+   (D32_FLOAT) 1 704x288 true : 8
+   (D32_FLOAT) 2 704x288 true : 8
+   (D32_FLOAT) 3 704x288 true : 8
+3DSTATE_WM_HZ_OP: count
+   ambiguate lod 0 lod0-extent 704x288 hiz true (0,0)-(704,288) partial : 1
+   ambiguate lod 1 lod0-extent 704x288 hiz true (0,0)-(352,144) partial : 1
+   ambiguate lod 2 lod0-extent 704x288 hiz true (0,0)-(176,72) partial : 1
+   ambiguate lod 3 lod0-extent 704x288 hiz true (0,0)-(88,36) partial : 1
+   end : 11
+   fast-clear lod 0 lod0-extent 704x288 hiz true (0,0)-(704,288) full-surface : 1
+   fast-clear lod 0 lod0-extent 704x288 hiz true (176,72)-(528,216) partial : 1
+   fast-clear lod 1 lod0-extent 704x288 hiz true (88,36)-(264,108) partial : 1
+   fast-clear lod 2 lod0-extent 704x288 hiz true (0,0)-(176,72) full-surface : 1
+   fast-clear lod 2 lod0-extent 704x288 hiz true (44,18)-(132,54) partial : 1
+   fast-clear lod 3 lod0-extent 704x288 hiz true (22,9)-(66,27) partial : 1

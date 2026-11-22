@@ -1,0 +1,19 @@
+zink Vulkan 1.4(Intel(R) HD Graphics 620 (KBL GT2) (INTEL_OPEN_SOURCE_MESA)) 4.6 (Core Profile) Mesa 26.0.8-1ubuntu0.3
+1048576 work-items, 16 rounds, timestamp pair, output checks passed
+  GL query difference median 0.792333 ms, samples ns [1006916, 966750, 789417, 793083, 789000, 793750, 792333, 789250, 789250]
+  wall time through finish median 1.356410 ms, samples ns [2295495, 1953643, 4513301, 3396248, 1209177, 1356410, 1087460, 1132672, 1083561]
+1048576 work-items, 16 rounds, time elapsed, output checks passed
+  GL query difference median 0.817916 ms, samples ns [823000, 818083, 817916, 832166, 839500, 817916, 810083, 790666, 790916]
+  wall time through finish median 1.131142 ms, samples ns [1123941, 1132817, 1169117, 1150005, 1151049, 1125896, 1120651, 1128840, 1131142]
+1048576 work-items, 16 rounds, timestamp pair with explicit drains, output checks passed
+  GL query difference median 1.635417 ms, samples ns [1635417, 5101250, 3623167, 1222917, 1212250, 1296417, 2772583, 2980834, 1549000]
+  wall time through finish median 1.951437 ms, samples ns [1951437, 5397288, 5389676, 1438007, 1358697, 1451006, 2984468, 6584970, 1690780]
+1048576 work-items, 256 rounds, timestamp pair, output checks passed
+  GL query difference median 10.797500 ms, samples ns [10797500, 10794084, 17412501, 17740167, 10797834, 10796750, 10796917, 18240834, 10797250]
+  wall time through finish median 11.211050 ms, samples ns [11088122, 11238583, 17717215, 18363952, 11083224, 11130897, 11197747, 46746017, 11211050]
+1048576 work-items, 256 rounds, time elapsed, output checks passed
+  GL query difference median 10.828416 ms, samples ns [18064667, 10795916, 10912916, 10828416, 18837333, 14256833, 10798000, 10798500, 10797833]
+  wall time through finish median 13.004136 ms, samples ns [20947730, 14218672, 13004136, 11887555, 19164957, 16650202, 11072092, 11110102, 11074850]
+1048576 work-items, 256 rounds, timestamp pair with explicit drains, output checks passed
+  GL query difference median 11.270000 ms, samples ns [11293000, 11270000, 11220334, 18509334, 18609501, 11214083, 11244667, 11239750, 12008667]
+  wall time through finish median 11.418881 ms, samples ns [12357057, 11418881, 11385264, 18857896, 19406040, 11338778, 11358186, 11381445, 12324516]

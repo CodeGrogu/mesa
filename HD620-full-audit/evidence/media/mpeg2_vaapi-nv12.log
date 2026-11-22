@@ -1,0 +1,47 @@
+Input #0, lavfi, from 'testsrc2=size=640x360:rate=30':
+  Duration: N/A, start: 0.000000, bitrate: N/A
+  Stream #0:0: Video: wrapped_avframe, yuv420p, 640x360 [SAR 1:1 DAR 16:9], 30 fps, 30 tbr, 30 tbn
+[out#0/mpeg2video @ 0x566cf138ab80] Codec AVOption qp (use constant quantizer mode) has not been used for any stream. The most likely reason is either wrong type (e.g. a video option with no video streams) or that it is a private option of some decoder which was not actually used for any stream.
+Stream mapping:
+  Stream #0:0 -> #0:0 (wrapped_avframe (native) -> mpeg2video (mpeg2_vaapi))
+[mpeg2_vaapi @ 0x566cf138b540] No quality level set; using default (10).
+[mpeg2_vaapi @ 0x566cf138b540] Driver does not support some wanted packed headers (wanted 0x3, found 0x10).
+Output #0, mpeg2video, to '/home/polarbear/.t3/projects/catchingup/HD620-full-audit/evidence/media/mpeg2_vaapi-nv12.mpeg2video':
+  Metadata:
+    encoder         : Lavf62.3.100
+  Stream #0:0: Video: mpeg2video (Main), vaapi(tv, progressive), 640x360 [SAR 1:1 DAR 16:9], q=2-31, 30 fps, 30 tbn
+    Metadata:
+      encoder         : Lavc62.11.100 mpeg2_vaapi
+[out#0/mpeg2video @ 0x566cf138ab80] video:231KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.000000%
+frame=   60 fps=0.0 q=-0.0 Lsize=     231KiB time=00:00:01.96 bitrate= 960.4kbits/s speed=44.9x elapsed=0:00:00.04    
+stream|codec_name=mpeg2video|profile=Main|pix_fmt=yuv420p|
+Input #0, mpegvideo, from '/home/polarbear/.t3/projects/catchingup/HD620-full-audit/evidence/media/mpeg2_vaapi-nv12.mpeg2video':
+  Duration: N/A, bitrate: N/A
+  Stream #0:0: Video: mpeg2video (mpeg1video) (Main), yuv420p(tv, progressive), 640x360 [SAR 1:1 DAR 16:9], 25 fps, 30 tbr, 1200k tbn
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/0 buffer size: 1073725440 vbv_delay: N/A
+Stream mapping:
+  Stream #0:0 -> #0:0 (mpeg2video (native) -> rawvideo (native))
+Output #0, framemd5, to '/home/polarbear/.t3/projects/catchingup/HD620-full-audit/evidence/media/mpeg2_vaapi-nv12-hw.md5':
+  Metadata:
+    encoder         : Lavf62.3.100
+  Stream #0:0: Video: rawvideo (NV12 / 0x3231564E), nv12(tv, progressive), 640x360 [SAR 1:1 DAR 16:9], q=2-31, 82944 kb/s, 30 fps, 30 tbn
+    Metadata:
+      encoder         : Lavc62.11.100 rawvideo
+[out#0/framemd5 @ 0x5d167a660500] video:20250KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=   60 fps=0.0 q=-0.0 Lsize=       5KiB time=00:00:02.00 bitrate=  20.1kbits/s speed=  44x elapsed=0:00:00.04    
+Input #0, mpegvideo, from '/home/polarbear/.t3/projects/catchingup/HD620-full-audit/evidence/media/mpeg2_vaapi-nv12.mpeg2video':
+  Duration: N/A, bitrate: N/A
+  Stream #0:0: Video: mpeg2video (mpeg1video) (Main), yuv420p(tv, progressive), 640x360 [SAR 1:1 DAR 16:9], 25 fps, 30 tbr, 1200k tbn
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/0 buffer size: 1073725440 vbv_delay: N/A
+Stream mapping:
+  Stream #0:0 -> #0:0 (mpeg2video (native) -> rawvideo (native))
+Output #0, framemd5, to '/home/polarbear/.t3/projects/catchingup/HD620-full-audit/evidence/media/mpeg2_vaapi-nv12-sw.md5':
+  Metadata:
+    encoder         : Lavf62.3.100
+  Stream #0:0: Video: rawvideo (NV12 / 0x3231564E), nv12(tv, progressive), 640x360 [SAR 1:1 DAR 16:9], q=2-31, 82944 kb/s, 30 fps, 30 tbn
+    Metadata:
+      encoder         : Lavc62.11.100 rawvideo
+[out#0/framemd5 @ 0x5883ca814380] video:20250KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=   60 fps=0.0 q=-0.0 Lsize=       5KiB time=00:00:02.00 bitrate=  20.1kbits/s speed=45.4x elapsed=0:00:00.04    

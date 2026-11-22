@@ -1,0 +1,13 @@
+driver library: /home/polarbear/.local/state/catchingup/round2/astc/libvulkan_intel.so
+PASS fullchain-64x32x7 out-of-scope levels 7: 43696 exact pixel checks, image allocation 16384 bytes
+SUMMARY 1/1 pixel cases passed
+3DSTATE_DEPTH_BUFFER (format, LOD, LOD0 extent, HiZ enable): count
+   (D32_FLOAT) 0 64x32 false : 7
+   (D32_FLOAT) 1 64x32 false : 7
+   (D32_FLOAT) 2 64x32 false : 7
+   (D32_FLOAT) 3 64x32 false : 7
+   (D32_FLOAT) 4 64x32 false : 7
+   (D32_FLOAT) 5 64x32 false : 7
+   (D32_FLOAT) 6 64x32 false : 7
+3DSTATE_WM_HZ_OP: count
+   end : 1

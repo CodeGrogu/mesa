@@ -1,0 +1,5 @@
+H.264 decode · 1080p 495.1 -> 495.1 fps paired median -0.14% (-1.85% to +7.08%)
+VP9 Profile 0 decode · 720p 547.3 -> 548.7 fps paired median +0.08% (-5.76% to +13.99%)
+VP9 Profile 2 decode · 720p 487.5 -> 487.8 fps paired median +0.20% (-3.17% to +0.73%)
+H.264 encode · 1080p 256.3 -> 258.2 fps paired median +0.03% (-0.99% to +3.86%)
+H.264 transcode · 1080p 215.9 -> 216.3 fps paired median +0.34% (-0.52% to +2.52%)

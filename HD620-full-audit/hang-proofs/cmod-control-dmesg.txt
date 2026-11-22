@@ -1,0 +1,4 @@
+Nov 19 20:48:42 iced kernel: i915 0000:00:02.0: [drm] Resetting rcs0 for preemption time out
+Nov 19 20:48:43 iced kernel: i915 0000:00:02.0: [drm] hang-compute[454792] context reset due to GPU hang
+Nov 19 20:48:43 iced kernel: i915 0000:00:02.0: [drm] GPU HANG: ecode 9:1:8ed8fff3, in hang-compute [454792]
+Nov 19 20:48:43 iced kernel: i915 0000:00:02.0: [drm] GPU error state saved to /sys/class/drm/card1/error

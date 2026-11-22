@@ -1,0 +1,58 @@
+OA sysctl and i915 engine observations
+1
+4
+      .KHR_maintenance6                      = true,
+      .KHR_maintenance7                      = true,
+      .KHR_maintenance8                      = true,
+      .KHR_maintenance9                      = true,
+      .KHR_maintenance10                     = true,
+      .KHR_maintenance11                     = true,
+      .KHR_maintenance12                     = true,
+      .KHR_map_memory2                       = true,
+      .KHR_multiview                         = true,
+      .KHR_performance_query =
+         device->perf &&
+         /* The KHR profiling lock's OA stream and a metrics-library
+          * configuration activation (VK_INTEL_performance_query, advertised
+          * below when INTEL_USE_METRICS_LIBRARY is set) reprogram the same OA
+          * unit, so the two paths would silently corrupt each other's
+          * counters. The metrics library is an explicit per-process opt-in,
+          * so advertise only one of the two.
+          */
+         !device->perf->use_metrics_library &&
+         (intel_perf_has_hold_preemption(device->perf) ||
+          INTEL_DEBUG(DEBUG_NO_OACONFIG)) &&
+         !ANV_DEBUG(NO_SECONDARY_CALL),
+      .KHR_pipeline_binary                   = true,
+      .KHR_pipeline_executable_properties    = true,
+      .KHR_pipeline_library                  = true,
+#ifdef ANV_USE_WSI_PLATFORM
+int intel_huc_check_status(struct intel_huc *huc)
+{
+	struct intel_uc_fw *huc_fw = &huc->fw;
+
+	switch (__intel_uc_fw_status(huc_fw)) {
+	case INTEL_UC_FIRMWARE_NOT_SUPPORTED:
+		return -ENODEV;
+	case INTEL_UC_FIRMWARE_DISABLED:
+		return -EOPNOTSUPP;
+	case INTEL_UC_FIRMWARE_MISSING:
+		return -ENOPKG;
+	case INTEL_UC_FIRMWARE_ERROR:
+		return -ENOEXEC;
+	case INTEL_UC_FIRMWARE_INIT_FAIL:
+		return -ENOMEM;
+	case INTEL_UC_FIRMWARE_LOAD_FAIL:
+		return -EIO;
+	default:
+		break;
+	}
+
+	/*
+	 * GSC-enabled binaries loaded via DMA are first partially
+	 * authenticated by GuC and then fully authenticated by GSC
+	 */
+	if (huc_is_fully_authenticated(huc))
+		return 1; /* full auth */
+	else if (huc_fw->has_gsc_headers && !intel_huc_is_loaded_by_gsc(huc) &&
+		 intel_huc_is_authenticated(huc, INTEL_HUC_AUTH_BY_GUC))

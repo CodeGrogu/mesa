@@ -1,0 +1,88 @@
+sat.cpp:88: FAILED *(uint32_t *)(output + 0) == (uint32_t)e (2147483648 vs 2147483647) gpr limit 2147483647 v 2147483648
+sat.cpp:90: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (2147483648 vs 2147483647) gpr predicated, limit 2147483647 v 2147483648
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (2147483648 vs 2147483647) gpr 64-bit min, limit 2147483647 v 2147483648
+sat.cpp:88: FAILED *(uint32_t *)(output + 0) == (uint32_t)e (3000000000 vs 2147483647) gpr limit 2147483647 v 3000000000
+sat.cpp:90: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (3000000000 vs 2147483647) gpr predicated, limit 2147483647 v 3000000000
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (3000000000 vs 2147483647) gpr 64-bit min, limit 2147483647 v 3000000000
+sat.cpp:88: FAILED *(uint32_t *)(output + 0) == (uint32_t)e (4294967294 vs 2147483647) gpr limit 2147483647 v 4294967294
+sat.cpp:90: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (4294967294 vs 2147483647) gpr predicated, limit 2147483647 v 4294967294
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (4294967294 vs 2147483647) gpr 64-bit min, limit 2147483647 v 4294967294
+sat.cpp:88: FAILED *(uint32_t *)(output + 0) == (uint32_t)e (4294967295 vs 2147483647) gpr limit 2147483647 v 4294967295
+sat.cpp:90: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (4294967295 vs 2147483647) gpr predicated, limit 2147483647 v 4294967295
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (4294967295 vs 2147483647) gpr 64-bit min, limit 2147483647 v 4294967295
+sat.cpp:88: FAILED *(uint32_t *)(output + 0) == (uint32_t)e (0 vs 2147483647) gpr limit 2147483647 v 4294967296
+sat.cpp:90: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (0 vs 2147483647) gpr predicated, limit 2147483647 v 4294967296
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (4294967296 vs 2147483647) gpr 64-bit min, limit 2147483647 v 4294967296
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (6442450943 vs 2147483647) gpr 64-bit min, limit 2147483647 v 6442450943
+sat.cpp:88: FAILED *(uint32_t *)(output + 0) == (uint32_t)e (491425728 vs 2147483647) gpr limit 2147483647 v 2538817097664
+sat.cpp:90: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (491425728 vs 2147483647) gpr predicated, limit 2147483647 v 2538817097664
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (2538817097664 vs 2147483647) gpr 64-bit min, limit 2147483647 v 2538817097664
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (18446744071562067967 vs 2147483647) gpr 64-bit min, limit 2147483647 v 18446744071562067967
+sat.cpp:88: FAILED *(uint32_t *)(output + 0) == (uint32_t)e (0 vs 2147483647) gpr limit 2147483647 v 9223372036854775808
+sat.cpp:90: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (0 vs 2147483647) gpr predicated, limit 2147483647 v 9223372036854775808
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (9223372036854775808 vs 2147483647) gpr 64-bit min, limit 2147483647 v 9223372036854775808
+sat.cpp:88: FAILED *(uint32_t *)(output + 0) == (uint32_t)e (4294967295 vs 2147483647) gpr limit 2147483647 v 18446744073709551615
+sat.cpp:90: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (4294967295 vs 2147483647) gpr predicated, limit 2147483647 v 18446744073709551615
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (18446744073709551615 vs 2147483647) gpr 64-bit min, limit 2147483647 v 18446744073709551615
+sat.cpp:88: FAILED *(uint32_t *)(output + 0) == (uint32_t)e (0 vs 4294967295) gpr limit 4294967295 v 4294967296
+sat.cpp:90: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (0 vs 4294967295) gpr predicated, limit 4294967295 v 4294967296
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (4294967296 vs 4294967295) gpr 64-bit min, limit 4294967295 v 4294967296
+sat.cpp:88: FAILED *(uint32_t *)(output + 0) == (uint32_t)e (2147483647 vs 4294967295) gpr limit 4294967295 v 6442450943
+sat.cpp:90: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (2147483647 vs 4294967295) gpr predicated, limit 4294967295 v 6442450943
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (6442450943 vs 4294967295) gpr 64-bit min, limit 4294967295 v 6442450943
+sat.cpp:88: FAILED *(uint32_t *)(output + 0) == (uint32_t)e (491425728 vs 4294967295) gpr limit 4294967295 v 2538817097664
+sat.cpp:90: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (491425728 vs 4294967295) gpr predicated, limit 4294967295 v 2538817097664
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (2538817097664 vs 4294967295) gpr 64-bit min, limit 4294967295 v 2538817097664
+sat.cpp:88: FAILED *(uint32_t *)(output + 0) == (uint32_t)e (2147483647 vs 4294967295) gpr limit 4294967295 v 18446744071562067967
+sat.cpp:90: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (2147483647 vs 4294967295) gpr predicated, limit 4294967295 v 18446744071562067967
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (18446744071562067967 vs 4294967295) gpr 64-bit min, limit 4294967295 v 18446744071562067967
+sat.cpp:88: FAILED *(uint32_t *)(output + 0) == (uint32_t)e (0 vs 4294967295) gpr limit 4294967295 v 9223372036854775808
+sat.cpp:90: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (0 vs 4294967295) gpr predicated, limit 4294967295 v 9223372036854775808
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (9223372036854775808 vs 4294967295) gpr 64-bit min, limit 4294967295 v 9223372036854775808
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (18446744073709551615 vs 4294967295) gpr 64-bit min, limit 4294967295 v 18446744073709551615
+sat.cpp:88: FAILED *(uint32_t *)(output + 0) == (uint32_t)e (2147483648 vs 2147483647) mem limit 2147483647 v 2147483648
+sat.cpp:90: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (2147483648 vs 2147483647) mem predicated, limit 2147483647 v 2147483648
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (2147483648 vs 2147483647) mem 64-bit min, limit 2147483647 v 2147483648
+sat.cpp:88: FAILED *(uint32_t *)(output + 0) == (uint32_t)e (3000000000 vs 2147483647) mem limit 2147483647 v 3000000000
+sat.cpp:90: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (3000000000 vs 2147483647) mem predicated, limit 2147483647 v 3000000000
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (3000000000 vs 2147483647) mem 64-bit min, limit 2147483647 v 3000000000
+sat.cpp:88: FAILED *(uint32_t *)(output + 0) == (uint32_t)e (4294967294 vs 2147483647) mem limit 2147483647 v 4294967294
+sat.cpp:90: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (4294967294 vs 2147483647) mem predicated, limit 2147483647 v 4294967294
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (4294967294 vs 2147483647) mem 64-bit min, limit 2147483647 v 4294967294
+sat.cpp:88: FAILED *(uint32_t *)(output + 0) == (uint32_t)e (4294967295 vs 2147483647) mem limit 2147483647 v 4294967295
+sat.cpp:90: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (4294967295 vs 2147483647) mem predicated, limit 2147483647 v 4294967295
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (4294967295 vs 2147483647) mem 64-bit min, limit 2147483647 v 4294967295
+sat.cpp:88: FAILED *(uint32_t *)(output + 0) == (uint32_t)e (0 vs 2147483647) mem limit 2147483647 v 4294967296
+sat.cpp:90: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (0 vs 2147483647) mem predicated, limit 2147483647 v 4294967296
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (4294967296 vs 2147483647) mem 64-bit min, limit 2147483647 v 4294967296
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (6442450943 vs 2147483647) mem 64-bit min, limit 2147483647 v 6442450943
+sat.cpp:88: FAILED *(uint32_t *)(output + 0) == (uint32_t)e (491425728 vs 2147483647) mem limit 2147483647 v 2538817097664
+sat.cpp:90: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (491425728 vs 2147483647) mem predicated, limit 2147483647 v 2538817097664
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (2538817097664 vs 2147483647) mem 64-bit min, limit 2147483647 v 2538817097664
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (18446744071562067967 vs 2147483647) mem 64-bit min, limit 2147483647 v 18446744071562067967
+sat.cpp:88: FAILED *(uint32_t *)(output + 0) == (uint32_t)e (0 vs 2147483647) mem limit 2147483647 v 9223372036854775808
+sat.cpp:90: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (0 vs 2147483647) mem predicated, limit 2147483647 v 9223372036854775808
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (9223372036854775808 vs 2147483647) mem 64-bit min, limit 2147483647 v 9223372036854775808
+sat.cpp:88: FAILED *(uint32_t *)(output + 0) == (uint32_t)e (4294967295 vs 2147483647) mem limit 2147483647 v 18446744073709551615
+sat.cpp:90: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (4294967295 vs 2147483647) mem predicated, limit 2147483647 v 18446744073709551615
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (18446744073709551615 vs 2147483647) mem 64-bit min, limit 2147483647 v 18446744073709551615
+sat.cpp:88: FAILED *(uint32_t *)(output + 0) == (uint32_t)e (0 vs 4294967295) mem limit 4294967295 v 4294967296
+sat.cpp:90: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (0 vs 4294967295) mem predicated, limit 4294967295 v 4294967296
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (4294967296 vs 4294967295) mem 64-bit min, limit 4294967295 v 4294967296
+sat.cpp:88: FAILED *(uint32_t *)(output + 0) == (uint32_t)e (2147483647 vs 4294967295) mem limit 4294967295 v 6442450943
+sat.cpp:90: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (2147483647 vs 4294967295) mem predicated, limit 4294967295 v 6442450943
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (6442450943 vs 4294967295) mem 64-bit min, limit 4294967295 v 6442450943
+sat.cpp:88: FAILED *(uint32_t *)(output + 0) == (uint32_t)e (491425728 vs 4294967295) mem limit 4294967295 v 2538817097664
+sat.cpp:90: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (491425728 vs 4294967295) mem predicated, limit 4294967295 v 2538817097664
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (2538817097664 vs 4294967295) mem 64-bit min, limit 4294967295 v 2538817097664
+sat.cpp:88: FAILED *(uint32_t *)(output + 0) == (uint32_t)e (2147483647 vs 4294967295) mem limit 4294967295 v 18446744071562067967
+sat.cpp:90: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (2147483647 vs 4294967295) mem predicated, limit 4294967295 v 18446744071562067967
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (18446744071562067967 vs 4294967295) mem 64-bit min, limit 4294967295 v 18446744071562067967
+sat.cpp:88: FAILED *(uint32_t *)(output + 0) == (uint32_t)e (0 vs 4294967295) mem limit 4294967295 v 9223372036854775808
+sat.cpp:90: FAILED *(uint32_t *)(output + 8) == (uint32_t)e (0 vs 4294967295) mem predicated, limit 4294967295 v 9223372036854775808
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (9223372036854775808 vs 4294967295) mem 64-bit min, limit 4294967295 v 9223372036854775808
+sat.cpp:94: FAILED *(uint64_t *)(output + 24) == e (18446744073709551615 vs 4294967295) mem 64-bit min, limit 4294967295 v 18446744073709551615
+[FAILED] mi_builder_test.iris_query_saturation
+SAT clamp: 45 batch dwords incl. setup and store
+[  OK  ] mi_builder_test.iris_query_saturation_gprs
+2 tests, 1 failed, 885 checks, 84 failed checks

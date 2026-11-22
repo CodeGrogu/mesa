@@ -1,0 +1,16 @@
+driver library: /home/polarbear/.local/state/catchingup/round2/astc/libvulkan_intel.so
+PASS resolve-17x9x2 in-scope levels 2: 1665 exact pixel checks, image allocation 8192 bytes
+SUMMARY 1/1 pixel cases passed
+3DSTATE_DEPTH_BUFFER (format, LOD, LOD0 extent, HiZ enable): count
+   (D32_FLOAT) 0 17x9 true : 9
+   (D32_FLOAT) 0 24x12 true : 3
+   (D32_FLOAT) 1 17x9 true : 12
+3DSTATE_WM_HZ_OP: count
+   ambiguate lod 0 lod0-extent 24x12 hiz true (0,0)-(24,12) partial : 2
+   ambiguate lod 1 lod0-extent 17x9 hiz true (0,0)-(8,4) partial : 2
+   end : 10
+   fast-clear lod 0 lod0-extent 17x9 hiz true (0,0)-(17,9) full-surface : 1
+   fast-clear lod 0 lod0-extent 17x9 hiz true (4,2)-(12,6) partial : 1
+   fast-clear lod 1 lod0-extent 17x9 hiz true (2,1)-(6,3) partial : 1
+   full-resolve lod 0 lod0-extent 24x12 hiz true (0,0)-(24,12) partial : 1
+   full-resolve lod 1 lod0-extent 17x9 hiz true (0,0)-(8,4) partial : 1

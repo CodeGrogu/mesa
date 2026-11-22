@@ -1,0 +1,50 @@
+e2f1e50851cc1243e0128305e4644893a57a2d189d16ff8bba351e94e5612535  /build/iris-timer-baseline/src/gallium/targets/dri/libgallium-27.0.0-devel.so
+Mesa Intel(R) HD Graphics 620 (KBL GT2) 4.6 (Core Profile) Mesa 27.0.0-devel (git-0e9e1086bb)
+Mapped driver library /build/iris-timer-baseline/src/egl/libEGL.so.1.0.0
+Mapped driver library /build/iris-timer-baseline/src/gallium/targets/dri/libgallium-27.0.0-devel.so
+FAIL timestamp after draw, GPU path: 64-bit buffer == glGetQueryObjectui64v: 0/9 exact; buffer-minus-client ns [-2552847465959, -2552847512830, -2552847559320, -2552847604959, -2552847651381, -2552847697493, -2552847743518, -2552847789090, -2552847834717]
+FAIL timestamp after draw, GPU path: 32-bit buffer == low 32 bits of the 64-bit result: 0/9; client glGetQueryObjectuiv [4294967295]
+FAIL timestamp after draw, GPU path: NO_WAIT buffer is the exact result or untouched: 9/9 written
+PASS timestamp after draw, GPU path: AVAILABLE buffer == 1: [1, 1, 1, 1, 1, 1, 1, 1, 1]
+PASS timestamp after draw, GPU path: result is nonzero: median client 2556753037416 ns
+FAIL timestamp after compute, GPU path: 64-bit buffer == glGetQueryObjectui64v: 0/9 exact; buffer-minus-client ns [-2552847838380, -2552847887598, -2552847934363, -2552847980587, -2552848027267, -2552848073930, -2552848120065, -2552848169334, -2552848216371]
+FAIL timestamp after compute, GPU path: 32-bit buffer == low 32 bits of the 64-bit result: 0/9; client glGetQueryObjectuiv [4294967295]
+FAIL timestamp after compute, GPU path: NO_WAIT buffer is the exact result or untouched: 9/9 written
+PASS timestamp after compute, GPU path: AVAILABLE buffer == 1: [1, 1, 1, 1, 1, 1, 1, 1, 1]
+PASS timestamp after compute, GPU path: result is nonzero: median client 2556847008916 ns
+PASS timestamp, CPU path: 64-bit buffer == glGetQueryObjectui64v: 9/9 exact; buffer-minus-client ns [0, 0, 0, 0, 0, 0, 0, 0, 0]
+PASS timestamp, CPU path: 32-bit buffer == low 32 bits of the 64-bit result: 9/9; client glGetQueryObjectuiv [4294967295]
+PASS timestamp, CPU path: NO_WAIT buffer is the exact result or untouched: 9/9 written
+PASS timestamp, CPU path: AVAILABLE buffer == 1: [1, 1, 1, 1, 1, 1, 1, 1, 1]
+PASS timestamp, CPU path: result is nonzero: median client 2556963422000 ns
+FAIL time elapsed of draw, GPU path: 64-bit buffer == glGetQueryObjectui64v: 0/9 exact; buffer-minus-client ns [-43946, -44593, -43940, -44077, -45022, -44511, -43415, -44609, -44425]
+FAIL time elapsed of draw, GPU path: 32-bit buffer == low 32 bits of the 64-bit result: 0/9; client glGetQueryObjectuiv [10853750, 10985083, 10986500]
+FAIL time elapsed of draw, GPU path: NO_WAIT buffer is the exact result or untouched: 9/9 written
+PASS time elapsed of draw, GPU path: AVAILABLE buffer == 1: [1, 1, 1, 1, 1, 1, 1, 1, 1]
+PASS time elapsed of draw, GPU path: result is nonzero: median client 11106250 ns
+PASS time elapsed of compute, GPU path: 64-bit buffer == glGetQueryObjectui64v: 9/9 exact; buffer-minus-client ns [0, 0, 0, 0, 0, 0, 0, 0, 0]
+PASS time elapsed of compute, GPU path: 32-bit buffer == low 32 bits of the 64-bit result: 9/9; client glGetQueryObjectuiv [0, 83]
+PASS time elapsed of compute, GPU path: NO_WAIT buffer is the exact result or untouched: 9/9 written
+PASS time elapsed of compute, GPU path: AVAILABLE buffer == 1: [1, 1, 1, 1, 1, 1, 1, 1, 1]
+FAIL time elapsed of compute, GPU path: result is nonzero: median client 83 ns
+FAIL time elapsed of draw+compute, GPU path: 64-bit buffer == glGetQueryObjectui64v: 0/9 exact; buffer-minus-client ns [-43559, -44354, -44810, -44667, -44542, -43554, -44122, -43797, -44803]
+FAIL time elapsed of draw+compute, GPU path: 32-bit buffer == low 32 bits of the 64-bit result: 0/9; client glGetQueryObjectuiv [10888666, 10889750, 10949333]
+FAIL time elapsed of draw+compute, GPU path: NO_WAIT buffer is the exact result or untouched: 9/9 written
+PASS time elapsed of draw+compute, GPU path: AVAILABLE buffer == 1: [1, 1, 1, 1, 1, 1, 1, 1, 1]
+PASS time elapsed of draw+compute, GPU path: result is nonzero: median client 11088666 ns
+PASS time elapsed of draw, CPU path: 64-bit buffer == glGetQueryObjectui64v: 9/9 exact; buffer-minus-client ns [0, 0, 0, 0, 0, 0, 0, 0, 0]
+PASS time elapsed of draw, CPU path: 32-bit buffer == low 32 bits of the 64-bit result: 9/9; client glGetQueryObjectuiv [10740583, 10741166, 11014000]
+PASS time elapsed of draw, CPU path: NO_WAIT buffer is the exact result or untouched: 9/9 written
+PASS time elapsed of draw, CPU path: AVAILABLE buffer == 1: [1, 1, 1, 1, 1, 1, 1, 1, 1]
+PASS time elapsed of draw, CPU path: result is nonzero: median client 11050750 ns
+PASS time elapsed of nothing, GPU path: 64-bit buffer == glGetQueryObjectui64v: 9/9 exact; buffer-minus-client ns [0, 0, 0, 0, 0, 0, 0, 0, 0]
+PASS time elapsed of nothing, GPU path: 32-bit buffer == low 32 bits of the 64-bit result: 9/9; client glGetQueryObjectuiv [0, 83]
+PASS time elapsed of nothing, GPU path: NO_WAIT buffer is the exact result or untouched: 9/9 written
+PASS time elapsed of nothing, GPU path: AVAILABLE buffer == 1: [1, 1, 1, 1, 1, 1, 1, 1, 1]
+FAIL timestamp pair, CPU-resolved then GPU-resolved: buffer delta == client delta: buffer deltas ns [-2552850666572, -2552850639752, -2552850757805, -2552850786731, -2552850775748, -2552850868167, -2552850878353, -2552850910919, -2552850946654]
+note: current raw timestamp about 30691392016 ticks; next 36-bit rollover in about 3169 s (assuming 12 MHz)
+overhead none + GPU-path buffer resolve: median 179.4 us per iteration, samples us [179.0, 179.4, 179.3, 185.2, 181.9]
+overhead timestamp + GPU-path buffer resolve: median 200.0 us per iteration, samples us [203.7, 200.0, 200.2, 196.3, 187.2]
+overhead elapsed + GPU-path buffer resolve: median 195.0 us per iteration, samples us [195.0, 197.9, 191.9, 189.5, 201.3]
+14 check(s) failed: ['timestamp after draw, GPU path: 64-bit buffer == glGetQueryObjectui64v', 'timestamp after draw, GPU path: 32-bit buffer == low 32 bits of the 64-bit result', 'timestamp after draw, GPU path: NO_WAIT buffer is the exact result or untouched', 'timestamp after compute, GPU path: 64-bit buffer == glGetQueryObjectui64v', 'timestamp after compute, GPU path: 32-bit buffer == low 32 bits of the 64-bit result', 'timestamp after compute, GPU path: NO_WAIT buffer is the exact result or untouched', 'time elapsed of draw, GPU path: 64-bit buffer == glGetQueryObjectui64v', 'time elapsed of draw, GPU path: 32-bit buffer == low 32 bits of the 64-bit result', 'time elapsed of draw, GPU path: NO_WAIT buffer is the exact result or untouched', 'time elapsed of compute, GPU path: result is nonzero', 'time elapsed of draw+compute, GPU path: 64-bit buffer == glGetQueryObjectui64v', 'time elapsed of draw+compute, GPU path: 32-bit buffer == low 32 bits of the 64-bit result', 'time elapsed of draw+compute, GPU path: NO_WAIT buffer is the exact result or untouched', 'timestamp pair, CPU-resolved then GPU-resolved: buffer delta == client delta']
+exit status 1

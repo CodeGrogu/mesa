@@ -1,0 +1,82 @@
+[
+  {
+    "job": "H.264 decode \u00b7 1080p",
+    "original_fps": 495.076525,
+    "patched_fps": 495.1084175,
+    "delta_pct": -0.13728809763779437,
+    "pair_delta_min": -1.8466310808533115,
+    "pair_delta_max": 7.078874840537486,
+    "original_range": [
+      461.659469,
+      501.014028
+    ],
+    "patched_range": [
+      485.805181,
+      500.884662
+    ]
+  },
+  {
+    "job": "VP9 Profile 0 decode \u00b7 720p",
+    "original_fps": 547.332497,
+    "patched_fps": 548.655424,
+    "delta_pct": 0.08343644428107644,
+    "pair_delta_min": -5.763437305296593,
+    "pair_delta_max": 13.986051205443427,
+    "original_range": [
+      482.810466,
+      549.812227
+    ],
+    "patched_range": [
+      518.124144,
+      551.407924
+    ]
+  },
+  {
+    "job": "VP9 Profile 2 decode \u00b7 720p",
+    "original_fps": 487.4637695,
+    "patched_fps": 487.842358,
+    "delta_pct": 0.19775604774709965,
+    "pair_delta_min": -3.165902549619437,
+    "pair_delta_max": 0.7260663711091686,
+    "original_range": [
+      486.003776,
+      488.829042
+    ],
+    "patched_range": [
+      473.243229,
+      490.614432
+    ]
+  },
+  {
+    "job": "H.264 encode \u00b7 1080p",
+    "original_fps": 256.3221625,
+    "patched_fps": 258.212602,
+    "delta_pct": 0.025216703781816285,
+    "pair_delta_min": -0.9937301701850587,
+    "pair_delta_max": 3.8595707394590395,
+    "original_range": [
+      249.148873,
+      260.695433
+    ],
+    "patched_range": [
+      253.442876,
+      260.992244
+    ]
+  },
+  {
+    "job": "H.264 transcode \u00b7 1080p",
+    "original_fps": 215.8933755,
+    "patched_fps": 216.3039865,
+    "delta_pct": 0.3408134549830244,
+    "pair_delta_min": -0.5194616649161765,
+    "pair_delta_max": 2.523235031546167,
+    "original_range": [
+      211.551359,
+      217.329993
+    ],
+    "patched_range": [
+      215.996679,
+      216.948536
+    ]
+  }
+]

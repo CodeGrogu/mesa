@@ -1,0 +1,22 @@
+<style>
+#va-scaling-paths{display:grid;gap:.55rem;max-width:44rem;color:var(--foreground,CanvasText);font-family:var(--font-sans,system-ui)}
+#va-scaling-paths h3,#va-scaling-paths p{margin:0}
+#va-scaling-paths p{color:var(--muted-foreground,GrayText)}
+#va-scaling-paths .row{display:grid;grid-template-columns:4.5em 1fr 4.7em;gap:.55rem;align-items:center}
+#va-scaling-paths .track{height:.8em;display:flex;background:color-mix(in srgb,currentColor 12%,transparent)}
+#va-scaling-paths .e0{background:var(--chart-1,currentColor)}
+#va-scaling-paths .e1{background:var(--chart-2,GrayText)}
+#va-scaling-paths .e2{background:repeating-linear-gradient(125deg,var(--chart-3,GrayText) 0 3px,transparent 3px 5px)}
+#va-scaling-paths .legend{display:flex;flex-wrap:wrap;gap:.25rem 1rem}
+#va-scaling-paths .legend i{display:inline-block;width:.85em;height:.7em;margin-inline-end:.3em}
+#va-scaling-paths .value{font-variant-numeric:tabular-nums;text-align:right}
+</style>
+<section id="va-scaling-paths" aria-labelledby="va-scaling-title">
+<h3 id="va-scaling-title">VA-API scaling policy changes which engine runs</h3>
+<p>960 H.264 frames scaled to 640 × 360 · summed engine busy seconds</p>
+<div class="legend"><span><i class="e0"></i>Video decode</span><span><i class="e1"></i>Render</span><span><i class="e2"></i>Video enhancement</span></div>
+<div class="row"><span>default</span><span class="track" role="img" aria-label="Video 1.40 seconds, render 0.00, video enhancement 1.03"><span class="e0" style="width:55.837%"></span><span class="e1" style="width:0.000%"></span><span class="e2" style="width:41.030%"></span></span><span class="value">2.42 s</span></div>
+<div class="row"><span>fast</span><span class="track" role="img" aria-label="Video 1.40 seconds, render 1.00, video enhancement 0.00"><span class="e0" style="width:55.897%"></span><span class="e1" style="width:40.051%"></span><span class="e2" style="width:0.000%"></span></span><span class="value">2.40 s</span></div>
+<div class="row"><span>hq</span><span class="track" role="img" aria-label="Video 1.39 seconds, render 1.00, video enhancement 0.00"><span class="e0" style="width:55.739%"></span><span class="e1" style="width:39.899%"></span><span class="e2" style="width:0.000%"></span></span><span class="value">2.39 s</span></div>
+<p>Engine activity can overlap. Totals are engine time.</p>
+</section>

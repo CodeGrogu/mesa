@@ -1,0 +1,17 @@
+PCI device: 22806
+HuC authentication: unavailable (Operation not supported)
+Softpin: 1
+Timeline fences: 1
+Context isolation: 15
+GPU reset level: 2
+CS timer frequency Hz: 12000000
+Engine query: 240 bytes
+  class 0 instance 0 capabilities 0x0
+  class 1 instance 0 capabilities 0x0
+  class 2 instance 0 capabilities 0x3
+  class 3 instance 0 capabilities 0x0
+Topology query: 32 bytes
+  1 slice(s), 3 subslice(s), 24 EUs
+Memory query: 104 bytes
+  class 0 instance 0 probed 12406296576 bytes
+GuC HWCONFIG query: unavailable (No such device)

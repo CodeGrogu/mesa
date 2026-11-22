@@ -1,0 +1,165 @@
+NIR (SSA form) for compute shader:
+shader: MESA_SHADER_COMPUTE
+source_blake3: {0x9f70b9f5, 0xa7584750, 0xa69b305b, 0x95af661e, 0x759c3b1e, 0x54ed2d80, 0xa8f7679c, 0xa3319976}
+name: 
+workgroup_size: 128, 1, 1
+num_ssbos: 4
+system_values_read: 0x00000000'00000000'00018400'00000000
+api_subgroup_size: 32
+max_subgroup_size: 32
+min_subgroup_size: 32
+bit_sizes_float: 0x10
+bit_sizes_int: 0x31
+separate_shader: true
+flrp_lowered: true
+writes_memory: true
+decl_var ssbo INTERP_MODE_NONE restrict readonly A #0 (~0, 0, 0)
+decl_var ssbo INTERP_MODE_NONE restrict readonly B #1 (~0, 0, 1)
+decl_var ssbo INTERP_MODE_NONE restrict readonly C #2 (~0, 0, 2)
+decl_var ssbo INTERP_MODE_NONE restrict writeonly O #3 (~0, 0, 3)
+decl_function main () (entrypoint)
+
+impl main {
+    con block b0:       // preds:
+    con 32x3   %0 = @load_workgroup_id
+    con 32     %1 = load_const (0x00000000)
+    con 32     %2 = @load_push_data_intel (%1 (0x0)) (base=20, range=12)
+    con 32     %3 = @load_push_data_intel (%1 (0x0)) (base=368, range=4)
+    con 32     %4 = load_const (0x00000005)
+    con 32     %5 = ishl %3, %4 (0x5)
+    div 32     %6 = @load_subgroup_invocation
+    div 32     %7 = iadd %6, %5
+    con 32     %8 = iadd %0.x, %2
+    con 32     %9 = load_const (0x00000007)
+    con 32    %10 = ishl %8, %9 (0x7)
+    con 32    %11 = load_const (0x0000007f = 127)
+    div 32    %12 = iand %7, %11 (0x7f)
+    div 32    %13 = iadd %10, %12
+    con 32    %14 = load_const (0x00000001)
+    con 32    %15 = load_const (0xdeaddead = -6.264321e+18 = -559030611 = 3735936685)
+    con 32    %16 = @resource_intel (%15 (0xdeaddead), %14 (0x1), %1 (0x0), %1 (0x0)) (desc_set=0, binding=0, resource_intel=0, resource_block_intel=-1)
+    con 32    %17 = load_const (0x00000002 = 0.000000)
+    con 32    %18 = @resource_intel (%15 (0xdeaddead), %17 (0x2), %1 (0x0), %1 (0x0)) (desc_set=0, binding=1, resource_intel=0, resource_block_intel=-1)
+    con 32    %19 = load_const (0x00000003 = 0.000000)
+    con 32    %20 = @resource_intel (%15 (0xdeaddead), %19 (0x3), %1 (0x0), %1 (0x0)) (desc_set=0, binding=2, resource_intel=0, resource_block_intel=-1)
+    div 32    %21 = ishl %13, %14 (0x1)
+    div 16    %22 = @load_ssbo (%20, %21) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16    %23 = @load_ssbo (%16, %21) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16    %24 = @load_ssbo (%18, %21) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16    %25 = ffma %23, %24, %22
+    con 16    %26 = load_const (0x2e66 = 0.099976)
+    div 16    %27 = fmul %25, %26 (0.099976)
+    con 16    %28 = load_const (0x0000 = 0.000000)
+    div 32    %29 = flt32 %25, %28 (0.000000) // preserve:inf,nan
+    div 16    %30 = b32csel %29, %27, %25
+    con 32    %31 = load_const (0x00000004 = 0.000000)
+    con 32    %32 = @resource_intel (%15 (0xdeaddead), %31 (0x4), %1 (0x0), %1 (0x0)) (desc_set=0, binding=3, resource_intel=0, resource_block_intel=-1)
+                    @store_ssbo (%30, %32, %21) (wrmask=x, access=writeonly, align_mul=2, align_offset=0, offset_shift=0)
+                    // succs: b1
+    block b1:
+}
+
+NIR (final form) for compute shader:
+shader: MESA_SHADER_COMPUTE
+source_blake3: {0x9f70b9f5, 0xa7584750, 0xa69b305b, 0x95af661e, 0x759c3b1e, 0x54ed2d80, 0xa8f7679c, 0xa3319976}
+name: 
+workgroup_size: 128, 1, 1
+num_ssbos: 4
+system_values_read: 0x00000000'00000000'00018400'00000000
+api_subgroup_size: 32
+max_subgroup_size: 32
+min_subgroup_size: 32
+bit_sizes_float: 0x10
+bit_sizes_int: 0x31
+separate_shader: true
+flrp_lowered: true
+writes_memory: true
+decl_var ssbo INTERP_MODE_NONE restrict readonly A #0 (~0, 0, 0)
+decl_var ssbo INTERP_MODE_NONE restrict readonly B #1 (~0, 0, 1)
+decl_var ssbo INTERP_MODE_NONE restrict readonly C #2 (~0, 0, 2)
+decl_var ssbo INTERP_MODE_NONE restrict writeonly O #3 (~0, 0, 3)
+decl_function main () (entrypoint)
+
+impl main {
+    con block b0:       // preds:
+    con 32x3   %0 = @load_workgroup_id
+    con 32     %1 = load_const (0x00000000)
+    con 32     %2 = @load_push_data_intel (%1 (0x0)) (base=20, range=12)
+    con 32     %3 = @load_push_data_intel (%1 (0x0)) (base=368, range=4)
+    con 32     %4 = load_const (0x00000005)
+    con 32     %5 = ishl %3, %4 (0x5)
+    div 32     %6 = @load_subgroup_invocation
+    div 32     %7 = iadd %6, %5
+    con 32     %8 = iadd %0.x, %2
+    con 32     %9 = load_const (0x00000007)
+    con 32    %10 = ishl %8, %9 (0x7)
+    con 32    %11 = load_const (0x0000007f = 127)
+    div 32    %12 = iand %7, %11 (0x7f)
+    div 32    %13 = iadd %10, %12
+    con 32    %14 = load_const (0x00000001)
+    con 32    %15 = load_const (0xdeaddead = -6.264321e+18 = -559030611 = 3735936685)
+    con 32    %16 = @resource_intel (%15 (0xdeaddead), %14 (0x1), %1 (0x0), %1 (0x0)) (desc_set=0, binding=0, resource_intel=0, resource_block_intel=-1)
+    con 32    %17 = load_const (0x00000002 = 0.000000)
+    con 32    %18 = @resource_intel (%15 (0xdeaddead), %17 (0x2), %1 (0x0), %1 (0x0)) (desc_set=0, binding=1, resource_intel=0, resource_block_intel=-1)
+    con 32    %19 = load_const (0x00000003 = 0.000000)
+    con 32    %20 = @resource_intel (%15 (0xdeaddead), %19 (0x3), %1 (0x0), %1 (0x0)) (desc_set=0, binding=2, resource_intel=0, resource_block_intel=-1)
+    div 32    %21 = ishl %13, %14 (0x1)
+    div 16    %22 = @load_ssbo (%20, %21) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16    %23 = @load_ssbo (%16, %21) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16    %24 = @load_ssbo (%18, %21) (access=readonly|reorderable, align_mul=2, align_offset=0, offset_shift=0)
+    div 16    %25 = ffma %23, %24, %22
+    con 16    %26 = load_const (0x2e66 = 0.099976)
+    div 16    %27 = fmul %25, %26 (0.099976)
+    con 16    %28 = load_const (0x0000 = 0.000000)
+    div 32    %29 = flt32 %25, %28 (0.000000) // preserve:inf,nan
+    div 16    %30 = b32csel %29, %27, %25
+    con 32    %31 = load_const (0x00000004 = 0.000000)
+    con 32    %32 = @resource_intel (%15 (0xdeaddead), %31 (0x4), %1 (0x0), %1 (0x0)) (desc_set=0, binding=3, resource_intel=0, resource_block_intel=-1)
+                    @store_ssbo (%30, %32, %21) (wrmask=x, access=writeonly, align_mul=2, align_offset=0, offset_shift=0)
+                    // succs: b1
+    block b1:
+}
+
+Native code for unnamed compute shader  (src_hash 0xa75847509f70b9f5) (blake3 0c44afdd3d3ed5124632862e010adad15158bb5a2e67b78a889b3192f63002a0)
+SIMD32 shader: 38 instructions. 0 loops. 498 cycles. 0:0 spills:fills, 9 sends, scheduled with mode top-down. Promoted 0 constants. GRF registers: 127. Compacted 608 to 560 bytes (8%)
+
+// 498 cycles
+(W)     mov (8)                   r33           r0.1<0>                           {Compacted}
+(W)     shl (8)                   r2:d          r12.4<0>:d        0x00000005
+(W)     mov (8)                   r126          r0                                {Compacted}
+(W)     add (8)                   r7:d          r33<0>:d          r1.5<0>:d       {Compacted}
+(W)     mov (8)                   r5:uw         0x76543210:v
+(W)     shl (8)                   r8:d          r7<0>:d           0x00000007
+(W)     add (8)                   r5.8:uw       r5:uw             8:uw
+(W)     add (16)                  r6:uw         r5:uw             16:uw
+        mov (16)                  r34           r5:uw
+        mov (16|M16)              r3            r6:uw
+        add (16)                  r36:d         r34:d             r2<0>:d         {Compacted}
+        add (16|M16)              r6:d          r3:d              r2<0>:d
+        and (16)                  r38           r36               0x0000007f      {Compacted}
+        and (16|M16)              r9            r6                0x0000007f
+        add (16)                  r40:d         r8<0>:d           r38:d           {Compacted}
+        add (16|M16)              r11:d         r8<0>:d           r9:d
+        shl (16)                  r42:d         r40:d             0x00000001
+        shl (16|M16)              r13:d         r11:d             0x00000001
+        sends.hdc0 (16)           r44     r42    null    0x00000000  0x04210503  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(3)
+        sends.hdc0 (16)           r46     r42    null    0x00000000  0x04210501  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(1)
+        sends.hdc0 (16)           r48     r42    null    0x00000000  0x04210502  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(2)
+        sends.hdc0 (16|M16)       r17     r13    null    0x00000000  0x04210503  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(3)
+        sends.hdc0 (16|M16)       r21     r13    null    0x00000000  0x04210501  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(1)
+        sends.hdc0 (16|M16)       r25     r13    null    0x00000000  0x04210502  // wr:2+0, rd:2; byte_scattered_read:d16 simd16 (16) bti(2)
+        mov (16)                  r15:uw        r44<2>:uw
+        mov (16)                  r28:uw        r46<2>:uw
+        mov (16)                  r23:uw        r48<2>:uw
+        mov (16|M16)              r16:uw        r17<2>:uw
+        mov (16|M16)              r29:uw        r21<2>:uw
+        mov (16|M16)              r24:uw        r25<2>:uw
+        mad (32)       (lt)f0.0   r26:hf        r15:hf            r23:hf            r28:hf {Align16}
+        mul (32)                  r19:hf        r26:hf            0x2e66:hf
+(f0.0)  sel (32)                  r30:uw        r19:uw            r26:uw
+        mov (16)                  r49           r30:uw
+        mov (16|M16)              r32           r31:uw
+        sends.hdc0 (16)           null    r42    r49     0x00000080  0x04030504  // wr:2+2, rd:0; byte_scattered_write:d16 simd16 (16) bti(4)
+        sends.hdc0 (16|M16)       null    r13    r32     0x00000080  0x04030504  // wr:2+2, rd:0; byte_scattered_write:d16 simd16 (16) bti(4)
+(W)     sends.ts (32)             null    r126   null    0x00000000  0x02000010   {EOT}
+pipeline created at subgroup size 32

@@ -1,0 +1,3 @@
+GEM created and exported, imported on a separate DRM file
+BCS accepts and completes a minimal batch
+DRM timeline syncobj signaled and queried point 7

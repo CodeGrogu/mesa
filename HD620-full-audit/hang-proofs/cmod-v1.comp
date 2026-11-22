@@ -1,0 +1,15 @@
+#version 450
+// Leaky ReLU after an FP16 multiply-add (ncnn pattern from Mesa #16526).
+#extension GL_EXT_shader_explicit_arithmetic_types_float16 : require
+#extension GL_EXT_shader_16bit_storage : require
+layout(local_size_x = 128) in;
+layout(std430, binding = 0) readonly buffer A { float16_t a[]; };
+layout(std430, binding = 1) readonly buffer B { float16_t b[]; };
+layout(std430, binding = 2) readonly buffer C { float16_t c[]; };
+layout(std430, binding = 3) writeonly buffer O { float16_t o[]; };
+void main()
+{
+    uint i = gl_GlobalInvocationID.x;
+    float16_t x = fma(a[i], b[i], c[i]);
+    o[i] = x < float16_t(0) ? x * float16_t(0.1) : x;
+}

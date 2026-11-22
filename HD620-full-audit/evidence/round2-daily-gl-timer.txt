@@ -1,0 +1,30 @@
+Mesa Intel(R) HD Graphics 620 (KBL GT2) 4.6 (Core Profile) Mesa 27.0.0-devel
+Mapped driver library /home/polarbear/.local/mesa-round2/lib/x86_64-linux-gnu/libEGL.so.1.0.0
+Mapped driver library /home/polarbear/.local/mesa-round2/lib/x86_64-linux-gnu/libgallium-27.0.0-devel.so
+drained references: compute 11.509 ms, draw 11.482 ms, compute+draw 22.854 ms
+PASS time elapsed covers compute: 11.262 ms (want >= 9.207 ms)
+PASS time elapsed covers draw: 11.121 ms (want >= 9.186 ms)
+PASS time elapsed covers compute then draw: 22.476 ms (want >= 18.283 ms)
+PASS time elapsed covers draw then compute: 22.572 ms (want >= 18.283 ms)
+PASS timestamp pair covers compute: 11.297 ms (want >= 9.207 ms)
+PASS timestamp pair covers draw: 11.121 ms (want >= 9.186 ms)
+PASS query-buffer-resolved timestamp pair covers compute (CPU readback): 11.319 ms (want >= 9.207 ms)
+PASS query-buffer GL_TIMESTAMP values equal glGetQueryObjectui64v values in 9/9 runs; query-buffer deltas ns [11375250, 11423250, 11294250, 11267750, 11334250, 11134000, 11445584, 11227250, 11318750]
+PASS time elapsed excludes earlier compute: 0.000 ms (want <= 1.151 ms)
+PASS time elapsed excludes later compute: 0.000 ms (want <= 1.151 ms)
+PASS time elapsed excludes earlier draw: 0.000 ms (want <= 1.148 ms)
+PASS time elapsed excludes later draw: 0.000 ms (want <= 1.148 ms)
+PASS timestamp pair excludes earlier compute: 0.000 ms (want <= 1.151 ms)
+PASS timestamp pair excludes later compute: 0.000 ms (want <= 1.151 ms)
+PASS query-buffer-resolved pair excludes later compute (CPU readback): 0.000 ms (want <= 1.151 ms)
+PASS timestamp chain interval 1 covers compute: 11.303 ms (want >= 9.207 <= 17.264 ms)
+PASS timestamp chain interval 2 covers draw: 11.155 ms (want >= 9.186 <= 17.223 ms)
+PASS timestamp chain interval 3 covers second compute: 11.398 ms (want >= 9.207 <= 17.264 ms)
+compute buffer and rendered pixel checks passed
+overhead small dispatch, no query: median 11.2 us per iteration, samples us [11.2, 11.1, 10.8, 13.7, 12.5]
+overhead small dispatch inside time elapsed: median 74.7 us per iteration, samples us [76.6, 74.7, 73.7, 73.7, 78.5]
+overhead small draw, no query: median 185.8 us per iteration, samples us [186.1, 185.3, 187.4, 185.2, 185.8]
+overhead small draw inside time elapsed: median 188.8 us per iteration, samples us [187.8, 188.8, 190.0, 188.8, 189.0]
+overhead small draw+dispatch, no query: median 200.3 us per iteration, samples us [200.2, 202.4, 199.3, 201.9, 200.3]
+overhead small draw+dispatch inside time elapsed: median 271.0 us per iteration, samples us [302.2, 271.0, 266.8, 336.0, 261.4]
+0 timing check(s) failed

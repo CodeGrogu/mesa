@@ -1,0 +1,38 @@
+<section id="hd620-throughput" aria-labelledby="hd620-throughput-title">
+<style>
+#hd620-throughput{color:var(--foreground);font-family:var(--font-sans,system-ui);display:grid;gap:12px}
+#hd620-throughput h2,#hd620-throughput p{margin:0}
+#hd620-throughput h2{font-size:1.1em;font-weight:500}
+#hd620-throughput .sub{color:var(--muted-foreground)}
+#hd620-throughput .workload{display:grid;grid-template-columns:minmax(132px,30%) 1fr;gap:8px 14px;align-items:center}
+#hd620-throughput .series{display:grid;gap:4px}
+#hd620-throughput .row{display:grid;grid-template-columns:58px 1fr 51px;gap:6px;align-items:center;font-variant-numeric:tabular-nums}
+#hd620-throughput .track{background:color-mix(in srgb,var(--foreground) 9%,transparent);height:9px}
+#hd620-throughput .bar{display:block;height:100%;background:var(--viz-series-1,var(--chart-1,var(--foreground)))}
+#hd620-throughput .patched .bar{background:var(--viz-series-2,var(--chart-2,var(--primary)))}
+#hd620-throughput .row data{text-align:right}
+@media(max-width:500px){#hd620-throughput .workload{grid-template-columns:1fr;gap:3px}}
+</style>
+<h2 id="hd620-throughput-title">HD 620 Vulkan Video throughput</h2>
+<p class="sub">Median frames per second · 8 paired runs per workload · common scale 0–600 fps</p>
+<div class="workload"><div>H.264 decode · 1080p</div><div class="series">
+<div class="row original"><span>Original</span><span class="track" aria-hidden="true"><span class="bar" style="width:82.5128%"></span></span><data value="495.076525">495.1</data></div>
+<div class="row patched"><span>Patched</span><span class="track" aria-hidden="true"><span class="bar" style="width:82.5181%"></span></span><data value="495.108417">495.1</data></div>
+</div></div>
+<div class="workload"><div>VP9 8-bit decode · 720p</div><div class="series">
+<div class="row original"><span>Original</span><span class="track" aria-hidden="true"><span class="bar" style="width:91.2221%"></span></span><data value="547.332497">547.3</data></div>
+<div class="row patched"><span>Patched</span><span class="track" aria-hidden="true"><span class="bar" style="width:91.4426%"></span></span><data value="548.655424">548.7</data></div>
+</div></div>
+<div class="workload"><div>VP9 10-bit decode · 720p</div><div class="series">
+<div class="row original"><span>Original</span><span class="track" aria-hidden="true"><span class="bar" style="width:81.2440%"></span></span><data value="487.463770">487.5</data></div>
+<div class="row patched"><span>Patched</span><span class="track" aria-hidden="true"><span class="bar" style="width:81.3071%"></span></span><data value="487.842358">487.8</data></div>
+</div></div>
+<div class="workload"><div>H.264 encode · 1080p</div><div class="series">
+<div class="row original"><span>Original</span><span class="track" aria-hidden="true"><span class="bar" style="width:42.7204%"></span></span><data value="256.322162">256.3</data></div>
+<div class="row patched"><span>Patched</span><span class="track" aria-hidden="true"><span class="bar" style="width:43.0354%"></span></span><data value="258.212602">258.2</data></div>
+</div></div>
+<div class="workload"><div>H.264 transcode · 1080p</div><div class="series">
+<div class="row original"><span>Original</span><span class="track" aria-hidden="true"><span class="bar" style="width:35.9822%"></span></span><data value="215.893375">215.9</data></div>
+<div class="row patched"><span>Patched</span><span class="track" aria-hidden="true"><span class="bar" style="width:36.0507%"></span></span><data value="216.303987">216.3</data></div>
+</div></div>
+</section>

@@ -1,0 +1,4 @@
+[QSV @ 0x5be0e1cf9c80] Error creating a MFX session: -9.
+Device creation failed: -1313558101.
+Failed to set value 'qsv=hw' for option 'init_hw_device': Unknown error occurred
+Error parsing global options: Unknown error occurred

@@ -1,0 +1,13 @@
+Mesa Intel(R) HD Graphics 620 (KBL GT2) OpenCL 3.0 
+<built-in>:407:10: fatal error: 'opencl-c-base.h' file not found
+    1 | #include "opencl-c-base.h"
+      |          ^~~~~~~~~~~~~~~~~
+Error executing LLVM compilation action.
+
+Traceback (most recent call last):
+  File "/audit/opencl-smoke.py", line 68, in <module>
+    check(status)
+    ~~~~~^^^^^^^^
+  File "/audit/opencl-smoke.py", line 17, in check
+    raise RuntimeError(f"OpenCL result {result}")
+RuntimeError: OpenCL result -11

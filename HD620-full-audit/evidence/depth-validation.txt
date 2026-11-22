@@ -1,0 +1,82 @@
+[Vulkan Loader] LAYER:          Searching for implicit layer manifest files
+[Vulkan Loader] LAYER:             In following locations:
+[Vulkan Loader] LAYER:                /home/polarbear/.config/vulkan/implicit_layer.d
+[Vulkan Loader] LAYER:                /etc/xdg/xdg-ubuntu/vulkan/implicit_layer.d
+[Vulkan Loader] LAYER:                /etc/xdg/vulkan/implicit_layer.d
+[Vulkan Loader] LAYER:                /etc/vulkan/implicit_layer.d
+[Vulkan Loader] LAYER:                /home/polarbear/.local/share/vulkan/implicit_layer.d
+[Vulkan Loader] LAYER:                /tmp/.mount_T3-CoddEgpLG/usr/share/vulkan/implicit_layer.d
+[Vulkan Loader] LAYER:                /usr/share/ubuntu/vulkan/implicit_layer.d
+[Vulkan Loader] LAYER:                /usr/share/gnome/vulkan/implicit_layer.d
+[Vulkan Loader] LAYER:                /home/polarbear/.local/share/flatpak/exports/share/vulkan/implicit_layer.d
+[Vulkan Loader] LAYER:                /var/lib/flatpak/exports/share/vulkan/implicit_layer.d
+[Vulkan Loader] LAYER:                /usr/local/share/vulkan/implicit_layer.d
+[Vulkan Loader] LAYER:                /usr/share/vulkan/implicit_layer.d
+[Vulkan Loader] LAYER:                /var/lib/snapd/desktop/vulkan/implicit_layer.d
+[Vulkan Loader] LAYER:             Found the following files:
+[Vulkan Loader] LAYER:                /usr/share/vulkan/implicit_layer.d/VkLayer_MESA_device_select.json
+[Vulkan Loader] LAYER:                /usr/share/vulkan/implicit_layer.d/VkLayer_MESA_anti_lag.json
+[Vulkan Loader] LAYER:          Searching for explicit layer manifest files
+[Vulkan Loader] LAYER:             In following locations:
+[Vulkan Loader] LAYER:                /home/polarbear/.t3/projects/catchingup/HD620-full-audit/tools/root/usr/share/vulkan/explicit_layer.d
+[Vulkan Loader] LAYER:             Found the following files:
+[Vulkan Loader] LAYER:                /home/polarbear/.t3/projects/catchingup/HD620-full-audit/tools/root/usr/share/vulkan/explicit_layer.d/VkLayer_khronos_validation.json
+[Vulkan Loader] WARNING | LAYER: env var 'VK_INSTANCE_LAYERS' defined and adding layers "VK_LAYER_KHRONOS_validation"
+[Vulkan Loader] WARNING | LAYER: env var 'VK_INSTANCE_LAYERS' defined and adding layers "VK_LAYER_KHRONOS_validation"
+[Vulkan Loader] DEBUG | LAYER:  Loading layer library libVkLayer_khronos_validation.so
+[Vulkan Loader] INFO | LAYER:   Insert instance layer "VK_LAYER_KHRONOS_validation" (/home/polarbear/.t3/projects/catchingup/HD620-full-audit/tools/root/usr/lib/x86_64-linux-gnu/libVkLayer_khronos_validation.so)
+[Vulkan Loader] DEBUG | LAYER:  Loading layer library libVkLayer_MESA_device_select.so
+[Vulkan Loader] INFO | LAYER:   Insert instance layer "VK_LAYER_MESA_device_select" (/usr/lib/x86_64-linux-gnu/libVkLayer_MESA_device_select.so)
+[Vulkan Loader] LAYER:          vkCreateInstance layer callstack setup to:
+[Vulkan Loader] LAYER:             <Application>
+[Vulkan Loader] LAYER:               ||
+[Vulkan Loader] LAYER:             <Loader>
+[Vulkan Loader] LAYER:               ||
+[Vulkan Loader] LAYER:             VK_LAYER_MESA_device_select
+[Vulkan Loader] LAYER:                     Type: Implicit
+[Vulkan Loader] LAYER:                     Enabled By: Implicit Layer
+[Vulkan Loader] LAYER:                         Disable Env Var:  NODEVICE_SELECT
+[Vulkan Loader] LAYER:                     Manifest: /usr/share/vulkan/implicit_layer.d/VkLayer_MESA_device_select.json
+[Vulkan Loader] LAYER:                     Library:  /usr/lib/x86_64-linux-gnu/libVkLayer_MESA_device_select.so
+[Vulkan Loader] LAYER:               ||
+[Vulkan Loader] LAYER:             VK_LAYER_KHRONOS_validation
+[Vulkan Loader] LAYER:                     Type: Explicit
+[Vulkan Loader] LAYER:                     Enabled By: Environment Variable VK_INSTANCE_LAYERS
+[Vulkan Loader] LAYER:                     Manifest: /home/polarbear/.t3/projects/catchingup/HD620-full-audit/tools/root/usr/share/vulkan/explicit_layer.d/VkLayer_khronos_validation.json
+[Vulkan Loader] LAYER:                     Library:  /home/polarbear/.t3/projects/catchingup/HD620-full-audit/tools/root/usr/lib/x86_64-linux-gnu/libVkLayer_khronos_validation.so
+[Vulkan Loader] LAYER:               ||
+[Vulkan Loader] LAYER:             <Drivers>
+[Vulkan Loader] INFO | LAYER:   Inserted device layer "VK_LAYER_KHRONOS_validation" (/home/polarbear/.t3/projects/catchingup/HD620-full-audit/tools/root/usr/lib/x86_64-linux-gnu/libVkLayer_khronos_validation.so)
+[Vulkan Loader] INFO | LAYER:   Failed to find vkGetDeviceProcAddr in layer "/usr/lib/x86_64-linux-gnu/libVkLayer_MESA_device_select.so"
+[Vulkan Loader] DRIVER:         vkCreateDevice layer callstack setup to:
+[Vulkan Loader] DRIVER:            <Application>
+[Vulkan Loader] DRIVER:              ||
+[Vulkan Loader] DRIVER:            <Loader>
+[Vulkan Loader] DRIVER:              ||
+[Vulkan Loader] LAYER:             VK_LAYER_KHRONOS_validation
+[Vulkan Loader] LAYER:                     Type: Explicit
+[Vulkan Loader] LAYER:                     Enabled By: Environment Variable VK_INSTANCE_LAYERS
+[Vulkan Loader] LAYER:                     Manifest: /home/polarbear/.t3/projects/catchingup/HD620-full-audit/tools/root/usr/share/vulkan/explicit_layer.d/VkLayer_khronos_validation.json
+[Vulkan Loader] LAYER:                     Library:  /home/polarbear/.t3/projects/catchingup/HD620-full-audit/tools/root/usr/lib/x86_64-linux-gnu/libVkLayer_khronos_validation.so
+[Vulkan Loader] LAYER:               ||
+[Vulkan Loader] DRIVER:            <Device>
+[Vulkan Loader] DRIVER:                Using "Intel(R) HD Graphics 620 (KBL GT2)" with driver: "/usr/lib/x86_64-linux-gnu/libvulkan_intel.so"
+[Vulkan Loader] DEBUG | LAYER:  Unloading layer library /usr/lib/x86_64-linux-gnu/libVkLayer_MESA_device_select.so
+[Vulkan Loader] DEBUG | LAYER:  Unloading layer library /home/polarbear/.t3/projects/catchingup/HD620-full-audit/tools/root/usr/lib/x86_64-linux-gnu/libVkLayer_khronos_validation.so
+Intel(R) HD Graphics 620 (KBL GT2) Vulkan driver 109051912 timestamp period 83.333 ns
+1,4,32.603000,1.00
+1,1,2.369584,1.00
+2,1,2.372584,0.25
+2,4,37.789836,0.25
+3,4,32.083084,1.00
+3,1,2.406667,1.00
+4,1,2.341167,0.25
+4,4,31.885834,0.25
+5,4,33.326834,1.00
+5,1,2.305250,1.00
+6,1,2.355167,0.25
+6,4,28.526418,0.25
+7,4,36.612000,1.00
+7,1,2.423500,1.00
+8,1,2.363750,0.25
+8,4,32.995252,0.25

@@ -1,0 +1,68 @@
+--- a/src/gallium/drivers/iris/iris_query.c
++++ b/src/gallium/drivers/iris/iris_query.c
+@@ -666,6 +666,45 @@
+    return true;
+ }
+ 
++/**
++ * Largest value a 32-bit query buffer destination can hold.
++ *
++ * Every query result Iris produces is a nonnegative unsigned 64-bit logical
++ * value.  GL (ARB_query_buffer_object) writes the result to a buffer exactly
++ * as glGetQueryObject{i,ui}v would return it, and those saturate to the
++ * largest representable value (ARB_timer_query; queryobj.c clamps the same
++ * way for client memory).  64-bit destinations need no clamp.
++ */
++static uint64_t
++query_result_limit32(enum pipe_query_value_type result_type)
++{
++   assert(result_type <= PIPE_QUERY_TYPE_U32);
++   return result_type == PIPE_QUERY_TYPE_I32 ? INT32_MAX : UINT32_MAX;
++}
++
++/**
++ * Unsigned min(val, limit) computed by MI_MATH:
++ *
++ *    mask = limit < val ? ~0 : 0
++ *    val ^ ((val ^ limit) & mask)
++ *
++ * Consumes the caller's reference to \p val.
++ */
++static struct mi_value
++mi_umin_imm(struct mi_builder *b, struct mi_value val, uint64_t limit)
++{
++   if (val.type == MI_VALUE_TYPE_IMM)
++      return mi_imm(MIN2(mi_value_to_u64(val), limit));
++
++   /* Load memory/register sources once; val is used three times below. */
++   assert(!val.invert);
++   val = mi_value_to_gpr(b, val);
++
++   struct mi_value mask = mi_ult(b, mi_imm(limit), mi_value_ref(b, val));
++   struct mi_value diff = mi_ixor(b, mi_value_ref(b, val), mi_imm(limit));
++   return mi_ixor(b, val, mi_iand(b, diff, mask));
++}
++
+ static void
+ iris_get_query_result_resource(struct pipe_context *ctx,
+                                struct pipe_query *query,
+@@ -712,7 +751,8 @@
+    if (q->ready) {
+       /* We happen to have the result on the CPU, so just copy it. */
+       if (result_type <= PIPE_QUERY_TYPE_U32) {
+-         batch->screen->vtbl.store_data_imm32(batch, dst_bo, offset, q->result);
++         batch->screen->vtbl.store_data_imm32(batch, dst_bo, offset,
++            MIN2(q->result, query_result_limit32(result_type)));
+       } else {
+          batch->screen->vtbl.store_data_imm64(batch, dst_bo, offset, q->result);
+       }
+@@ -732,6 +772,9 @@
+    iris_batch_sync_region_start(batch);
+ 
+    struct mi_value result = calculate_result_on_gpu(devinfo, &b, q);
++   if (result_type <= PIPE_QUERY_TYPE_U32)
++      result = mi_umin_imm(&b, result, query_result_limit32(result_type));
++
+    struct mi_value dst =
+       result_type <= PIPE_QUERY_TYPE_U32 ?
+       mi_mem32(rw_bo(dst_bo, offset, IRIS_DOMAIN_OTHER_WRITE)) :

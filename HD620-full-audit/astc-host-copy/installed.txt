@@ -1,0 +1,35 @@
+device Intel(R) HD Graphics 620 (KBL GT2), driver Mesa 26.0.8-1ubuntu0.3
+ASTC_4x4_UNORM  cmd-copy       0/16384 channel mismatches, worst error 0.000486374
+    (0,0) ch0 got 1.000000 want 0.647059
+    (0,0) ch1 got 0.000000 want 0.639216
+    (0,0) ch2 got 1.000000 want 0.768627
+ASTC_4x4_UNORM  host-copy  16222/16384 channel mismatches, worst error 1
+    (0,0) ch0 got 1.000000 want 0.647059
+    (0,0) ch1 got 0.000000 want 0.639216
+    (0,0) ch2 got 1.000000 want 0.768627
+ASTC_4x4_UNORM  host-i2i   16224/16384 channel mismatches, worst error 1
+ASTC_4x4_SRGB   cmd-copy       0/16384 channel mismatches, worst error 0.00114751
+ASTC_4x4_SRGB   host-copy      0/16384 channel mismatches, worst error 0.00114751
+ASTC_4x4_SRGB   host-i2i       0/16384 channel mismatches, worst error 0.00114751
+ASTC_8x8_UNORM  cmd-copy       0/16384 channel mismatches, worst error 0.000484467
+    (0,0) ch0 got 1.000000 want 0.647059
+    (0,0) ch1 got 0.000000 want 0.639216
+    (0,0) ch2 got 1.000000 want 0.768627
+ASTC_8x8_UNORM  host-copy  16320/16384 channel mismatches, worst error 1
+    (0,0) ch0 got 1.000000 want 0.647059
+    (0,0) ch1 got 0.000000 want 0.639216
+    (0,0) ch2 got 1.000000 want 0.768627
+ASTC_8x8_UNORM  host-i2i   16320/16384 channel mismatches, worst error 1
+ASTC_5x5_UNORM  cmd-copy       0/16384 channel mismatches, worst error 0.000486374
+    (0,0) ch0 got 1.000000 want 0.647059
+    (0,0) ch1 got 0.000000 want 0.639216
+    (0,0) ch2 got 1.000000 want 0.768627
+ASTC_5x5_UNORM  host-copy  16289/16384 channel mismatches, worst error 1
+    (0,0) ch0 got 1.000000 want 0.647059
+    (0,0) ch1 got 0.000000 want 0.639216
+    (0,0) ch2 got 1.000000 want 0.768627
+ASTC_5x5_UNORM  host-i2i   16289/16384 channel mismatches, worst error 1
+ASTC_5x5_SRGB   cmd-copy       0/16384 channel mismatches, worst error 0.00114751
+ASTC_5x5_SRGB   host-copy      0/16384 channel mismatches, worst error 0.00114751
+ASTC_5x5_SRGB   host-i2i       0/16384 channel mismatches, worst error 0.00114751
+FAIL

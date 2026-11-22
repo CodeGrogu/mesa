@@ -1,0 +1,42 @@
+Input #0, lavfi, from 'testsrc2=size=640x360:rate=30':
+  Duration: N/A, start: 0.000000, bitrate: N/A
+  Stream #0:0: Video: wrapped_avframe, yuv420p, 640x360 [SAR 1:1 DAR 16:9], 30 fps, 30 tbr, 30 tbn
+[out#0/ivf @ 0x5f25aa771b80] Codec AVOption qp (use constant quantizer mode) has not been used for any stream. The most likely reason is either wrong type (e.g. a video option with no video streams) or that it is a private option of some decoder which was not actually used for any stream.
+Stream mapping:
+  Stream #0:0 -> #0:0 (wrapped_avframe (native) -> vp8 (vp8_vaapi))
+[vp8_vaapi @ 0x5f25aa772580] No quality level set; using default (40).
+Output #0, ivf, to '/home/polarbear/.t3/projects/catchingup/HD620-full-audit/evidence/media/vp8_vaapi-nv12.ivf':
+  Metadata:
+    encoder         : Lavf62.3.100
+  Stream #0:0: Video: vp8 (VP80 / 0x30385056), vaapi(tv, progressive), 640x360 [SAR 1:1 DAR 16:9], q=2-31, 30 fps, 30 tbn
+    Metadata:
+      encoder         : Lavc62.11.100 vp8_vaapi
+[out#0/ivf @ 0x5f25aa771b80] video:236KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 0.311693%
+frame=   60 fps=0.0 q=-0.0 Lsize=     236KiB time=00:00:02.00 bitrate= 968.1kbits/s speed=20.4x elapsed=0:00:00.09    
+stream|codec_name=vp8|profile=0|pix_fmt=yuv420p
+Input #0, ivf, from '/home/polarbear/.t3/projects/catchingup/HD620-full-audit/evidence/media/vp8_vaapi-nv12.ivf':
+  Duration: 00:00:02.00, start: 0.000000, bitrate: 968 kb/s
+  Stream #0:0: Video: vp8 (VP80 / 0x30385056), yuv420p(progressive), 640x360, 30 tbr, 30 tbn
+Stream mapping:
+  Stream #0:0 -> #0:0 (vp8 (native) -> rawvideo (native))
+Output #0, framemd5, to '/home/polarbear/.t3/projects/catchingup/HD620-full-audit/evidence/media/vp8_vaapi-nv12-hw.md5':
+  Metadata:
+    encoder         : Lavf62.3.100
+  Stream #0:0: Video: rawvideo (NV12 / 0x3231564E), nv12(tv, bt470bg/unknown/unknown, progressive), 640x360, q=2-31, 82944 kb/s, 30 fps, 30 tbn
+    Metadata:
+      encoder         : Lavc62.11.100 rawvideo
+[out#0/framemd5 @ 0x618f31d18d80] video:20250KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=   60 fps=0.0 q=-0.0 Lsize=       5KiB time=00:00:02.00 bitrate=  20.1kbits/s speed=  45x elapsed=0:00:00.04    
+Input #0, ivf, from '/home/polarbear/.t3/projects/catchingup/HD620-full-audit/evidence/media/vp8_vaapi-nv12.ivf':
+  Duration: 00:00:02.00, start: 0.000000, bitrate: 968 kb/s
+  Stream #0:0: Video: vp8 (VP80 / 0x30385056), yuv420p(progressive), 640x360, 30 tbr, 30 tbn
+Stream mapping:
+  Stream #0:0 -> #0:0 (vp8 (native) -> rawvideo (native))
+Output #0, framemd5, to '/home/polarbear/.t3/projects/catchingup/HD620-full-audit/evidence/media/vp8_vaapi-nv12-sw.md5':
+  Metadata:
+    encoder         : Lavf62.3.100
+  Stream #0:0: Video: rawvideo (NV12 / 0x3231564E), nv12(tv, bt470bg/unknown/unknown, progressive), 640x360, q=2-31, 82944 kb/s, 30 fps, 30 tbn
+    Metadata:
+      encoder         : Lavc62.11.100 rawvideo
+[out#0/framemd5 @ 0x610894e01c80] video:20250KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=   60 fps=0.0 q=-0.0 Lsize=       5KiB time=00:00:02.00 bitrate=  20.1kbits/s speed=45.6x elapsed=0:00:00.04    

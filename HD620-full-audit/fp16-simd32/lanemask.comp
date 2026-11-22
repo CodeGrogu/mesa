@@ -1,0 +1,31 @@
+#version 450
+// FP16 three-source arithmetic under divergent control flow (Mesa #16528).
+// The memory write inside the branch keeps NIR from flattening it into a
+// select, so the multiply-add executes under a non-uniform execution mask.
+#extension GL_EXT_shader_explicit_arithmetic_types_float16 : require
+#extension GL_EXT_shader_16bit_storage : require
+#extension GL_KHR_shader_subgroup_basic : require
+
+layout(local_size_x = 128) in;
+
+layout(std430, binding = 0) readonly buffer A { float16_t a[]; };
+layout(std430, binding = 1) readonly buffer B { float16_t b[]; };
+layout(std430, binding = 2) readonly buffer C { float16_t c[]; };
+layout(std430, binding = 3) readonly buffer M { uint m[]; };
+layout(std430, binding = 4) writeonly buffer O { float16_t o[]; };
+layout(std430, binding = 5) writeonly buffer T { uint taken[]; };
+layout(std430, binding = 6) writeonly buffer S { uint subgroup_size; };
+
+void main()
+{
+    uint i = gl_GlobalInvocationID.x;
+    float16_t r = c[i];
+    if (m[i] != 0u) {
+        r = fma(a[i], b[i], r);
+        r = fma(r, b[i], a[i]);
+        taken[i] = 1u;
+    }
+    o[i] = r;
+    if (i == 0u)
+        subgroup_size = gl_SubgroupSize;
+}

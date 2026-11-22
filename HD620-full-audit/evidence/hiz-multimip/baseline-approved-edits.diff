@@ -1,0 +1,1037 @@
+diff --git a/src/gallium/drivers/iris/iris_context.h b/src/gallium/drivers/iris/iris_context.h
+index 7ac6ee1..1c5fee4 100644
+--- a/src/gallium/drivers/iris/iris_context.h
++++ b/src/gallium/drivers/iris/iris_context.h
+@@ -1134,6 +1134,12 @@ struct iris_context {
+        */
+       struct iris_address compute_predicate;
+ 
++      /**
++       * A timer query snapshot was written to the render batch.  The next
++       * compute dispatch must not start until that snapshot has executed.
++       */
++      bool compute_after_timer_snapshot;
++
+       /** Is a PIPE_QUERY_PRIMITIVES_GENERATED query active? */
+       bool prims_generated_query_active;
+ 
+diff --git a/src/gallium/drivers/iris/iris_draw.c b/src/gallium/drivers/iris/iris_draw.c
+index f2859ae..5504635 100644
+--- a/src/gallium/drivers/iris/iris_draw.c
++++ b/src/gallium/drivers/iris/iris_draw.c
+@@ -404,6 +404,12 @@ iris_launch_grid(struct pipe_context *ctx, const struct pipe_grid_info *grid)
+    if (ice->state.predicate == IRIS_PREDICATE_STATE_DONT_RENDER)
+       return;
+ 
++   if (ice->state.compute_after_timer_snapshot) {
++      /* Keep this dispatch out of a preceding timer query interval. */
++      iris_batch_wait_for_batch(batch, &ice->batches[IRIS_BATCH_RENDER]);
++      ice->state.compute_after_timer_snapshot = false;
++   }
++
+    if (INTEL_DEBUG(DEBUG_REEMIT)) {
+       ice->state.dirty |= IRIS_ALL_DIRTY_FOR_COMPUTE;
+       ice->state.stage_dirty |= IRIS_ALL_STAGE_DIRTY_FOR_COMPUTE;
+diff --git a/src/gallium/drivers/iris/iris_fence.c b/src/gallium/drivers/iris/iris_fence.c
+index 5732e18..5b0acc2 100644
+--- a/src/gallium/drivers/iris/iris_fence.c
++++ b/src/gallium/drivers/iris/iris_fence.c
+@@ -108,6 +108,32 @@ iris_batch_add_syncobj(struct iris_batch *batch,
+    iris_syncobj_reference(batch->screen->bufmgr, store, syncobj);
+ }
+ 
++/**
++ * Make the next submission of \p batch wait until all work recorded so far
++ * in \p other has completed.
++ *
++ * \p other is flushed if it has queued commands, so the syncobj we wait on
++ * has been submitted.  Nothing is added when \p other has no outstanding
++ * work.  Batches on one i915 context execute in order, so waiting for the
++ * last submission covers all earlier submissions of \p other.
++ */
++void
++iris_batch_wait_for_batch(struct iris_batch *batch, struct iris_batch *other)
++{
++   iris_batch_flush(other);
++
++   struct iris_fine_fence *last = other->last_fence;
++   if (iris_fine_fence_signaled(last))
++      return;
++
++   util_dynarray_foreach(&batch->syncobjs, struct iris_syncobj *, s) {
++      if (*s == last->syncobj)
++         return;
++   }
++
++   iris_batch_add_syncobj(batch, last->syncobj, IRIS_BATCH_FENCE_WAIT);
++}
++
+ /**
+  * Walk through a batch's dependencies (any IRIS_BATCH_FENCE_WAIT syncobjs)
+  * and unreference any which have already passed.
+diff --git a/src/gallium/drivers/iris/iris_fence.h b/src/gallium/drivers/iris/iris_fence.h
+index 74c2302..f5c6176 100644
+--- a/src/gallium/drivers/iris/iris_fence.h
++++ b/src/gallium/drivers/iris/iris_fence.h
+@@ -27,6 +27,8 @@ void iris_syncobj_signal(struct iris_bufmgr *, struct iris_syncobj *);
+ void iris_batch_add_syncobj(struct iris_batch *batch,
+                             struct iris_syncobj *syncobj,
+                             uint32_t flags);
++void iris_batch_wait_for_batch(struct iris_batch *batch,
++                               struct iris_batch *other);
+ bool iris_wait_syncobj(struct iris_bufmgr *bufmgr,
+                        struct iris_syncobj *syncobj,
+                        int64_t timeout_nsec);
+diff --git a/src/gallium/drivers/iris/iris_query.c b/src/gallium/drivers/iris/iris_query.c
+index c366970..4ac09aa 100644
+--- a/src/gallium/drivers/iris/iris_query.c
++++ b/src/gallium/drivers/iris/iris_query.c
+@@ -196,6 +196,14 @@ write_value(struct iris_context *ice, struct iris_query *q, unsigned offset)
+    case PIPE_QUERY_TIMESTAMP:
+    case PIPE_QUERY_TIMESTAMP_DISJOINT:
+    case PIPE_QUERY_TIMESTAMP_RAW:
++      /* Timer snapshots go in the render batch, while dispatches go in the
++       * compute batch, which is a separate hardware context.  Order the
++       * snapshot after previously submitted compute work, and make the next
++       * dispatch wait for the snapshot (see iris_launch_grid).
++       */
++      iris_batch_wait_for_batch(&ice->batches[IRIS_BATCH_RENDER],
++                                &ice->batches[IRIS_BATCH_COMPUTE]);
++      ice->state.compute_after_timer_snapshot = true;
+       iris_pipelined_write(&ice->batches[IRIS_BATCH_RENDER], q,
+                            PIPE_CONTROL_WRITE_TIMESTAMP,
+                            offset);
+@@ -400,20 +408,22 @@ calculate_result_on_gpu(const struct intel_device_info *devinfo,
+    case PIPE_QUERY_TIMESTAMP_RAW:
+       result = start_val;
+       break;
+-   case PIPE_QUERY_TIMESTAMP: {
+-      /* TODO: This discards any fractional bits of the timebase scale.
+-       * We would need to do a bit of fixed point math on the CS ALU, or
+-       * launch an actual shader to calculate this with full precision.
++   case PIPE_QUERY_TIMESTAMP:
++      /* Same value as calculate_result_on_cpu(), so a query buffer and
++       * glGetQueryObject agree whichever path resolves the query.
+        */
+-      uint32_t scale = 1000000000ull / devinfo->timestamp_frequency;
+-      result = mi_iand(b, mi_imm((1ull << 36) - 1),
+-                          mi_imul_imm(b, start_val, scale));
++      result = mi_umul_udiv64_imm(b, start_val, 1000000000,
++                                  devinfo->timestamp_frequency);
+       break;
+-   }
+    case PIPE_QUERY_TIME_ELAPSED: {
+-      /* TODO: This discards fractional bits (see above). */
+-      uint32_t scale = 1000000000ull / devinfo->timestamp_frequency;
+-      result = mi_imul_imm(b, mi_isub(b, end_val, start_val), scale);
++      /* iris_raw_timestamp_delta(): end - start, plus 2^36 if the 36-bit
++       * counter wrapped (end < start), then scaled as on the CPU.
++       */
++      struct mi_value wrap =
++         mi_iand(b, mi_ult(b, end_val, start_val), mi_imm(1ull << 36));
++      result = mi_iadd(b, mi_isub(b, end_val, start_val), wrap);
++      result = mi_umul_udiv64_imm(b, result, 1000000000,
++                                  devinfo->timestamp_frequency);
+       break;
+    }
+    default:
+diff --git a/src/intel/common/mi_builder.h b/src/intel/common/mi_builder.h
+index 527e649..2066fb8 100644
+--- a/src/intel/common/mi_builder.h
++++ b/src/intel/common/mi_builder.h
+@@ -1301,6 +1301,100 @@ mi_udiv32_imm(struct mi_builder *b, struct mi_value N, uint32_t D)
+    }
+ }
+ 
++/**
++ * Divide a 64-bit value by an immediate.
++ *
++ * Returns floor(N / D) and, if rem_out is not NULL, N % D.  N must be less
++ * than 2^bits, and D must be in [1, 2^31].
++ *
++ * The CS ALU has no divide and mi_udiv32_imm() needs a 32-bit numerator, so
++ * this is schoolbook long division in base 2^k.  k is the largest power of
++ * two up to 16 with D * 2^k <= 2^32, so every partial dividend
++ * rem * 2^k + digit < D * 2^k fits mi_udiv32_imm().
++ */
++static inline struct mi_value
++mi_udiv64_imm(struct mi_builder *b, struct mi_value N, uint32_t D,
++              unsigned bits, struct mi_value *rem_out)
++{
++   assert(D >= 1 && D <= (1u << 31));
++   assert(bits >= 1 && bits <= 64);
++
++   if (N.type == MI_VALUE_TYPE_IMM) {
++      uint64_t n = mi_value_to_u64(N);
++      if (rem_out)
++         *rem_out = mi_imm(n % D);
++      return mi_imm(n / D);
++   }
++
++   unsigned k = 16;
++   while (k > 1 && ((uint64_t)D << k) > (1ull << 32))
++      k /= 2;
++
++   N = mi_value_to_gpr(b, N);
++
++   struct mi_value Q = mi_imm(0), R = mi_imm(0);
++   for (int d = DIV_ROUND_UP(bits, k) - 1; d >= 0; d--) {
++      struct mi_value digit =
++         mi_iand(b, mi_ushr32_imm(b, mi_value_ref(b, N), d * k),
++                    mi_imm((1u << k) - 1));
++      struct mi_value P = mi_iadd(b, mi_ishl_imm(b, R, k), digit);
++      struct mi_value q = mi_udiv32_imm(b, mi_value_ref(b, P), D);
++      R = mi_isub(b, P, mi_imul_imm(b, mi_value_ref(b, q), D));
++      Q = mi_iadd(b, mi_ishl_imm(b, Q, k), q);
++   }
++   mi_value_unref(b, N);
++
++   if (rem_out)
++      *rem_out = R;
++   else
++      mi_value_unref(b, R);
++
++   return Q;
++}
++
++/**
++ * Compute floor(N * num / den) mod 2^64 exactly, for every 64-bit N.
++ *
++ * This gives the same value as intel_device_info_timebase_scale() on the
++ * CPU when num is 1000000000 and den is the timestamp frequency.  After
++ * reducing num / den, den must be at most 2^31.
++ */
++static inline struct mi_value
++mi_umul_udiv64_imm(struct mi_builder *b, struct mi_value N,
++                   uint32_t num, uint32_t den)
++{
++   assert(den > 0);
++
++   if (num == 0) {
++      mi_value_unref(b, N);
++      return mi_imm(0);
++   }
++
++   uint32_t g = num, r = den;
++   while (r) {
++      uint32_t t = g % r;
++      g = r;
++      r = t;
++   }
++   num /= g;
++   den /= g;
++
++   if (den == 1)
++      return mi_imul_imm(b, N, num);
++
++   /* With N = q * den + rem and rem < den,
++    * floor(N * num / den) = q * num + floor(rem * num / den), and
++    * rem * num < den * num < 2^63 cannot overflow.
++    */
++   struct mi_value rem;
++   struct mi_value q = mi_udiv64_imm(b, N, den, 64, &rem);
++   struct mi_value frac =
++      mi_udiv64_imm(b, mi_imul_imm(b, rem, num), den,
++                    util_last_bit64((uint64_t)(den - 1) * num), NULL);
++
++   return mi_iadd(b, mi_imul_imm(b, q, num), frac);
++}
++
+ /* Finds the maximum between the two specified unsigned numbers. */
+ static inline struct mi_value
+ mi_umax2(struct mi_builder *b, struct mi_value val1, struct mi_value val2)
+diff --git a/src/intel/common/tests/mi_builder_test.cpp b/src/intel/common/tests/mi_builder_test.cpp
+index a2d50ec..c87eb6c 100644
+--- a/src/intel/common/tests/mi_builder_test.cpp
++++ b/src/intel/common/tests/mi_builder_test.cpp
+@@ -1252,6 +1252,99 @@ TEST_F(mi_builder_test, udiv32_imm)
+    }
+ }
+ 
++static const uint64_t udiv64_values[] = {
++   0,
++   1,
++   0xfffffffffull,          /* largest 36-bit timestamp */
++   0x1000000000ull,
++   0x0123456789abcdefull,
++   0x8000000000000000ull,
++   0xfffffffffffffffeull,
++   0xffffffffffffffffull,
++};
++
++TEST_F(mi_builder_test, udiv64_imm)
++{
++   /* Divisors covering every digit size: 16-bit digits up to 2^16, then
++    * 8-, 4-, 2- and 1-bit digits.
++    */
++   const uint32_t divisors[] = {
++      1, 2, 3, 12, 24, 65521, 65536, 65537, 16777259, 0x7fffffff, 0x80000000,
++   };
++   memcpy(input, udiv64_values, sizeof(udiv64_values));
++
++   for (unsigned j = 0; j < ARRAY_SIZE(divisors); j++) {
++      batch_offset = 0;
++      mi_builder_init(&b, &devinfo, this);
++
++      for (unsigned i = 0; i < ARRAY_SIZE(udiv64_values); i++) {
++         struct mi_value rem;
++         struct mi_value q =
++            mi_udiv64_imm(&b, in_mem64(i * 8), divisors[j], 64, &rem);
++         mi_store(&b, out_mem64(i * 16), q);
++         mi_store(&b, out_mem64(i * 16 + 8), rem);
++      }
++
++      submit_batch();
++
++      for (unsigned i = 0; i < ARRAY_SIZE(udiv64_values); i++) {
++         EXPECT_EQ(*(uint64_t *)(output + i * 16),
++                   udiv64_values[i] / divisors[j]) << "D=" << divisors[j];
++         EXPECT_EQ(*(uint64_t *)(output + i * 16 + 8),
++                   udiv64_values[i] % divisors[j]) << "D=" << divisors[j];
++      }
++   }
++}
++
++/* CS timestamp frequencies that i915 and Xe can report: fixed Gen8-9
++ * values, crystal clocks shifted by the CTC shift parameter, divide-logic
++ * values such as 12 + 1/3 MHz, and extreme divisors.
++ */
++static const uint32_t timestamp_frequencies[] = {
++   12500000, 12000000, 19200000, 24000000, 25000000, 38400000,
++   3000000, 6000000, 2400000, 4800000, 9600000, 3125000, 6250000,
++   12333333, 1000000000, 1, 0x7fffffff,
++};
++
++static uint64_t
++cpu_timebase_scale(uint32_t frequency, uint64_t ticks)
++{
++   struct intel_device_info info = {};
++   info.timestamp_frequency = frequency;
++   return intel_device_info_timebase_scale(&info, ticks);
++}
++
++TEST_F(mi_builder_test, umul_udiv64_imm_timebase_scale)
++{
++   memcpy(input, udiv64_values, sizeof(udiv64_values));
++
++   /* One batch per value: a divisor near 2^31 needs 1-bit digits, which
++    * makes a single conversion several hundred kilobytes of MI_MATH.
++    */
++   for (unsigned j = 0; j < ARRAY_SIZE(timestamp_frequencies); j++) {
++      for (unsigned i = 0; i < ARRAY_SIZE(udiv64_values); i++) {
++         batch_offset = 0;
++         mi_builder_init(&b, &devinfo, this);
++
++         struct mi_value ns =
++            mi_umul_udiv64_imm(&b, in_mem64(i * 8), 1000000000,
++                               timestamp_frequencies[j]);
++         mi_store(&b, out_mem64(0), mi_value_ref(&b, ns));
++         mi_store(&b, out_mem32(8), ns);
++
++         submit_batch();
++
++         uint64_t expected =
++            cpu_timebase_scale(timestamp_frequencies[j], udiv64_values[i]);
++         EXPECT_EQ(*(uint64_t *)(output + 0), expected)
++            << "f=" << timestamp_frequencies[j] << " i=" << i;
++         EXPECT_EQ(*(uint32_t *)(output + 8), (uint32_t)expected)
++            << "f=" << timestamp_frequencies[j] << " i=" << i;
++         EXPECT_EQ(*(uint32_t *)(output + 12), (uint32_t)canary);
++      }
++   }
++}
++
+ TEST_F(mi_builder_test, umax2_32)
+ {
+    const uint32_t values[] = {
+diff --git a/src/intel/vulkan/anv_formats.c b/src/intel/vulkan/anv_formats.c
+index b4ebd0f..c3a3bd7 100644
+--- a/src/intel/vulkan/anv_formats.c
++++ b/src/intel/vulkan/anv_formats.c
+@@ -862,11 +862,14 @@ anv_get_color_format_features(const struct anv_physical_device *physical_device,
+    if (anv_format->flags & ANV_FORMAT_FLAG_CAN_VIDEO &&
+          !(create_flags & VK_IMAGE_CREATE_2_DISJOINT_BIT_KHR) &&
+          video_tiling_supported) {
+-      flags |= ANV_DEBUG(VIDEO_DECODE) ?
++      const struct vk_device_extension_table *exts =
++         &physical_device->vk.supported_extensions;
++
++      flags |= exts->KHR_video_decode_queue ?
+                   VK_FORMAT_FEATURE_2_VIDEO_DECODE_OUTPUT_BIT_KHR |
+                   VK_FORMAT_FEATURE_2_VIDEO_DECODE_DPB_BIT_KHR : 0;
+ 
+-      flags |= ANV_DEBUG(VIDEO_ENCODE) ?
++      flags |= exts->KHR_video_encode_queue ?
+                   VK_FORMAT_FEATURE_2_VIDEO_ENCODE_INPUT_BIT_KHR |
+                   VK_FORMAT_FEATURE_2_VIDEO_ENCODE_DPB_BIT_KHR : 0;
+    }
+@@ -1503,6 +1506,13 @@ anv_formats_are_compatible(
+    if (img_fmt == img_view_fmt)
+       return true;
+ 
++   /* Depth/stencil formats are only compatible with themselves, so a
++    * distinct format of the same size is not a possible view format.
++    */
++   if (vk_format_is_depth_or_stencil(img_fmt->vk_format) ||
++       vk_format_is_depth_or_stencil(img_view_fmt->vk_format))
++      return false;
++
+    if (img_view_fmt->n_planes != 1)
+       return false;
+ 
+@@ -1709,17 +1719,14 @@ anv_get_image_format_properties(
+    const VkImageCompressionControlEXT *comp_info = NULL;
+    const VkImageCreateFlags2CreateInfoKHR *create_flags_2_info = NULL;
+    const VkImageUsageFlags2CreateInfoKHR *usage_flags_2_info = NULL;
++   const VkVideoProfileListInfoKHR *video_profile_list = NULL;
+    VkExternalImageFormatProperties *external_props = NULL;
+    VkSamplerYcbcrConversionImageFormatProperties *ycbcr_props = NULL;
+    VkTextureLODGatherFormatPropertiesAMD *texture_lod_gather_props = NULL;
+    VkImageCompressionPropertiesEXT *comp_props = NULL;
+    VkHostImageCopyDevicePerformanceQueryEXT *host_props = NULL;
+    const struct wsi_image_create_info *wsi_info = NULL;
+-
+-   /* Unsupported format or unsupported image format */
+-   if (format == NULL ||
+-       format->planes[0].isl_format == ISL_FORMAT_UNSUPPORTED)
+-      goto unsupported;
++   VkResult unsupported_result = VK_ERROR_FORMAT_NOT_SUPPORTED;
+ 
+    /* Extract input structs */
+    vk_foreach_struct_const(sType, s, info->pNext) {
+@@ -1740,7 +1747,7 @@ anv_get_image_format_properties(
+          wsi_info = s;
+          break;
+       case VK_STRUCTURE_TYPE_VIDEO_PROFILE_LIST_INFO_KHR:
+-         /* Ignore but don't warn */
++         video_profile_list = s;
+          break;
+       case VK_STRUCTURE_TYPE_IMAGE_COMPRESSION_CONTROL_EXT:
+          comp_info = s;
+@@ -1757,6 +1764,37 @@ anv_get_image_format_properties(
+       }
+    }
+ 
++   /* From the Vulkan spec (vkGetPhysicalDeviceImageFormatProperties2):
++    *
++    *    If any of the video profiles specified via
++    *    VkVideoProfileListInfoKHR::pProfiles are not supported, then this
++    *    command returns one of the video-profile-specific error codes.
++    */
++   if (video_profile_list != NULL) {
++      for (uint32_t i = 0; i < video_profile_list->profileCount; i++) {
++         VkResult res = anv_video_profile_supported(
++            physical_device, &video_profile_list->pProfiles[i]);
++         if (res != VK_SUCCESS) {
++            unsupported_result = res;
++            goto unsupported;
++         }
++      }
++
++      /* Reference picture usages need a profile of the matching direction. */
++      VkResult res = anv_video_profile_list_usage_supported(
++         video_profile_list,
++         usage_flags_2_info ? usage_flags_2_info->usage : info->usage);
++      if (res != VK_SUCCESS) {
++         unsupported_result = res;
++         goto unsupported;
++      }
++   }
++
++   /* Unsupported format or unsupported image format */
++   if (format == NULL ||
++       format->planes[0].isl_format == ISL_FORMAT_UNSUPPORTED)
++      goto unsupported;
++
+    /* Extract output structs */
+    vk_foreach_struct(sType, s, props->pNext) {
+       switch (sType) {
+@@ -2262,7 +2300,7 @@ unsupported:
+       .maxResourceSize = 0,
+    };
+ 
+-   return VK_ERROR_FORMAT_NOT_SUPPORTED;
++   return unsupported_result;
+ }
+ 
+ VkResult anv_GetPhysicalDeviceImageFormatProperties2(
+diff --git a/src/intel/vulkan/anv_physical_device.c b/src/intel/vulkan/anv_physical_device.c
+index 909849d..bc6632f 100644
+--- a/src/intel/vulkan/anv_physical_device.c
++++ b/src/intel/vulkan/anv_physical_device.c
+@@ -354,20 +354,79 @@ get_device_descriptor_limits(const struct anv_physical_device *device,
+ }
+ 
+ 
++/* Codec operations that this build, the debug flags, the hardware
++ * generation and the HuC firmware allow. Queue setup and extension
++ * exposure both derive from this mask.
++ */
++static VkVideoCodecOperationFlagsKHR
++anv_physical_device_candidate_video_ops(const struct anv_physical_device *device)
++{
++   VkVideoCodecOperationFlagsKHR ops = 0;
++
++   if (ANV_DEBUG(VIDEO_DECODE)) {
++      if (VIDEO_CODEC_H264DEC)
++         ops |= VK_VIDEO_CODEC_OPERATION_DECODE_H264_BIT_KHR;
++      if (VIDEO_CODEC_H265DEC && device->has_huc)
++         ops |= VK_VIDEO_CODEC_OPERATION_DECODE_H265_BIT_KHR;
++      if (VIDEO_CODEC_AV1DEC && device->info.ver >= 12)
++         ops |= VK_VIDEO_CODEC_OPERATION_DECODE_AV1_BIT_KHR;
++      if (VIDEO_CODEC_VP9DEC)
++         ops |= VK_VIDEO_CODEC_OPERATION_DECODE_VP9_BIT_KHR;
++   }
++
++   if (ANV_DEBUG(VIDEO_ENCODE) && device->info.verx10 <= 125) {
++      if (VIDEO_CODEC_H264ENC)
++         ops |= VK_VIDEO_CODEC_OPERATION_ENCODE_H264_BIT_KHR;
++      if (VIDEO_CODEC_H265ENC && device->info.ver >= 12)
++         ops |= VK_VIDEO_CODEC_OPERATION_ENCODE_H265_BIT_KHR;
++      if (VIDEO_CODEC_AV1ENC && device->info.verx10 == 125)
++         ops |= VK_VIDEO_CODEC_OPERATION_ENCODE_AV1_BIT_KHR;
++   }
++
++   return ops;
++}
++
++static VkQueueFlags
++anv_video_queue_flags_for_ops(VkVideoCodecOperationFlagsKHR ops)
++{
++   return ((ops & ANV_VIDEO_DECODE_CODEC_OPS) ?
++           VK_QUEUE_VIDEO_DECODE_BIT_KHR : 0) |
++          ((ops & ANV_VIDEO_ENCODE_CODEC_OPS) ?
++           VK_QUEUE_VIDEO_ENCODE_BIT_KHR : 0);
++}
++
+ static void
+ get_device_extensions(const struct anv_physical_device *device,
+                       struct vk_device_extension_table *ext)
+ {
+    const bool rt_enabled = ANV_SUPPORT_RT && device->info.has_ray_tracing;
+-   const bool hw_video_encode_supported = device->info.verx10 <= 125;
+ 
+-   const bool video_encode_enabled = hw_video_encode_supported &&
+-                                     ANV_DEBUG(VIDEO_ENCODE);
+-   const bool video_decode_enabled = ANV_DEBUG(VIDEO_DECODE);
+-
+-   if (VIDEO_CODEC_H265DEC && video_decode_enabled && !device->has_huc)
++   if (VIDEO_CODEC_H265DEC && ANV_DEBUG(VIDEO_DECODE) && !device->has_huc)
+       debug_warn_once("HuC firmware is not loaded, disabling H.265 video decoding");
+ 
++   /* Only expose codecs that an enumerated video queue can execute. */
++   VkQueueFlags video_queue_flags = 0;
++   for (uint32_t i = 0; i < device->queue.family_count; i++) {
++      video_queue_flags |= device->queue.families[i].queueFlags &
++                           (VK_QUEUE_VIDEO_DECODE_BIT_KHR |
++                            VK_QUEUE_VIDEO_ENCODE_BIT_KHR);
++   }
++
++   VkVideoCodecOperationFlagsKHR video_ops =
++      anv_physical_device_candidate_video_ops(device);
++   if (!(video_queue_flags & VK_QUEUE_VIDEO_DECODE_BIT_KHR))
++      video_ops &= ~ANV_VIDEO_DECODE_CODEC_OPS;
++   if (!(video_queue_flags & VK_QUEUE_VIDEO_ENCODE_BIT_KHR))
++      video_ops &= ~ANV_VIDEO_ENCODE_CODEC_OPS;
++
++   const bool video_decode_enabled = video_ops & ANV_VIDEO_DECODE_CODEC_OPS;
++   const bool video_encode_enabled = video_ops & ANV_VIDEO_ENCODE_CODEC_OPS;
++   const bool video_h26x_enabled =
++      video_ops & (VK_VIDEO_CODEC_OPERATION_DECODE_H264_BIT_KHR |
++                   VK_VIDEO_CODEC_OPERATION_DECODE_H265_BIT_KHR |
++                   VK_VIDEO_CODEC_OPERATION_ENCODE_H264_BIT_KHR |
++                   VK_VIDEO_CODEC_OPERATION_ENCODE_H265_BIT_KHR);
++
+    *ext = (struct vk_device_extension_table) {
+       .KHR_8bit_storage                      = true,
+       .KHR_16bit_storage                     = !device->drirc.debug.no_16bit,
+@@ -494,22 +553,16 @@ get_device_extensions(const struct anv_physical_device *device,
+       .KHR_vertex_attribute_divisor          = true,
+       .KHR_video_queue                       = video_decode_enabled || video_encode_enabled,
+       .KHR_video_decode_queue                = video_decode_enabled,
+-      .KHR_video_decode_h264                 = VIDEO_CODEC_H264DEC && video_decode_enabled,
+-      .KHR_video_decode_h265                 = VIDEO_CODEC_H265DEC && video_decode_enabled && device->has_huc,
+-      .KHR_video_decode_av1                  = device->info.ver >= 12 && VIDEO_CODEC_AV1DEC && video_decode_enabled,
+-      .KHR_video_decode_vp9                  = VIDEO_CODEC_VP9DEC && video_decode_enabled,
++      .KHR_video_decode_h264                 = video_ops & VK_VIDEO_CODEC_OPERATION_DECODE_H264_BIT_KHR,
++      .KHR_video_decode_h265                 = video_ops & VK_VIDEO_CODEC_OPERATION_DECODE_H265_BIT_KHR,
++      .KHR_video_decode_av1                  = video_ops & VK_VIDEO_CODEC_OPERATION_DECODE_AV1_BIT_KHR,
++      .KHR_video_decode_vp9                  = video_ops & VK_VIDEO_CODEC_OPERATION_DECODE_VP9_BIT_KHR,
+       .KHR_video_encode_queue                = video_encode_enabled,
+-      .KHR_video_encode_h264                 = VIDEO_CODEC_H264ENC && video_encode_enabled,
+-      .KHR_video_encode_h265                 = device->info.ver >= 12 && VIDEO_CODEC_H265ENC && video_encode_enabled,
+-      .KHR_video_encode_av1                  = device->info.verx10 == 125 && VIDEO_CODEC_AV1ENC && video_encode_enabled,
+-      .KHR_video_maintenance1                = (video_decode_enabled &&
+-                                               (VIDEO_CODEC_H264DEC || VIDEO_CODEC_H265DEC)) ||
+-                                               (video_encode_enabled &&
+-                                               (VIDEO_CODEC_H264ENC || VIDEO_CODEC_H265ENC)),
+-      .KHR_video_maintenance2                = (video_decode_enabled &&
+-                                               (VIDEO_CODEC_H264DEC || VIDEO_CODEC_H265DEC)) ||
+-                                               (video_encode_enabled &&
+-                                               (VIDEO_CODEC_H264ENC || VIDEO_CODEC_H265ENC)),
++      .KHR_video_encode_h264                 = video_ops & VK_VIDEO_CODEC_OPERATION_ENCODE_H264_BIT_KHR,
++      .KHR_video_encode_h265                 = video_ops & VK_VIDEO_CODEC_OPERATION_ENCODE_H265_BIT_KHR,
++      .KHR_video_encode_av1                  = video_ops & VK_VIDEO_CODEC_OPERATION_ENCODE_AV1_BIT_KHR,
++      .KHR_video_maintenance1                = video_h26x_enabled,
++      .KHR_video_maintenance2                = video_h26x_enabled,
+       .KHR_vulkan_memory_model               = true,
+       .KHR_workgroup_memory_explicit_layout  = true,
+       .KHR_zero_initialize_workgroup_memory  = true,
+@@ -2958,7 +3011,9 @@ anv_physical_device_init_queue_families(struct anv_physical_device *pdevice)
+             .engine_class = compute_class,
+          };
+       }
+-      if (v_count > 0 && (ANV_DEBUG(VIDEO_DECODE) || ANV_DEBUG(VIDEO_ENCODE))) {
++      const VkQueueFlags video_flags =
++         anv_video_queue_flags_for_ops(anv_physical_device_candidate_video_ops(pdevice));
++      if (v_count > 0 && video_flags) {
+          /* HEVC support on Gfx9 is only available on VCS0. So limit the number of video queues
+           * to the first VCS engine instance.
+           *
+@@ -2971,10 +3026,7 @@ anv_physical_device_init_queue_families(struct anv_physical_device *pdevice)
+           */
+          /* TODO: enable protected content on video queue */
+          pdevice->queue.families[family_count++] = (struct anv_queue_family) {
+-            .queueFlags = (ANV_DEBUG(VIDEO_DECODE) ?
+-                           VK_QUEUE_VIDEO_DECODE_BIT_KHR : 0) |
+-                          (ANV_DEBUG(VIDEO_ENCODE) ?
+-                           VK_QUEUE_VIDEO_ENCODE_BIT_KHR : 0),
++            .queueFlags = video_flags,
+             .queueCount = pdevice->info.ver == 9 ? MIN2(1, v_count) : v_count,
+             .engine_class = INTEL_ENGINE_CLASS_VIDEO,
+          };
+@@ -3482,20 +3534,34 @@ void anv_GetPhysicalDeviceQueueFamilyProperties2(
+             case VK_STRUCTURE_TYPE_QUEUE_FAMILY_VIDEO_PROPERTIES_KHR: {
+                VkQueueFamilyVideoPropertiesKHR *prop =
+                   (VkQueueFamilyVideoPropertiesKHR *)ext;
++               const struct vk_device_extension_table *exts =
++                  &pdevice->vk.supported_extensions;
++               VkVideoCodecOperationFlagsKHR ops = 0;
++
++               /* Only report codec operations whose extension is exposed, so
++                * the queue properties match the device extension list.
++                */
+                if (queue_family->queueFlags & VK_QUEUE_VIDEO_DECODE_BIT_KHR) {
+-                  prop->videoCodecOperations = VK_VIDEO_CODEC_OPERATION_DECODE_H264_BIT_KHR |
+-                                               VK_VIDEO_CODEC_OPERATION_DECODE_H265_BIT_KHR |
+-                                               VK_VIDEO_CODEC_OPERATION_DECODE_VP9_BIT_KHR;
+-                  if (pdevice->info.ver >= 12)
+-                     prop->videoCodecOperations |= VK_VIDEO_CODEC_OPERATION_DECODE_AV1_BIT_KHR;
++                  if (exts->KHR_video_decode_h264)
++                     ops |= VK_VIDEO_CODEC_OPERATION_DECODE_H264_BIT_KHR;
++                  if (exts->KHR_video_decode_h265)
++                     ops |= VK_VIDEO_CODEC_OPERATION_DECODE_H265_BIT_KHR;
++                  if (exts->KHR_video_decode_av1)
++                     ops |= VK_VIDEO_CODEC_OPERATION_DECODE_AV1_BIT_KHR;
++                  if (exts->KHR_video_decode_vp9)
++                     ops |= VK_VIDEO_CODEC_OPERATION_DECODE_VP9_BIT_KHR;
+                }
+ 
+                if (queue_family->queueFlags & VK_QUEUE_VIDEO_ENCODE_BIT_KHR) {
+-                  prop->videoCodecOperations |= VK_VIDEO_CODEC_OPERATION_ENCODE_H264_BIT_KHR |
+-                                                VK_VIDEO_CODEC_OPERATION_ENCODE_H265_BIT_KHR;
+-                  if (pdevice->info.verx10 == 125)
+-                     prop->videoCodecOperations |= VK_VIDEO_CODEC_OPERATION_ENCODE_AV1_BIT_KHR;
++                  if (exts->KHR_video_encode_h264)
++                     ops |= VK_VIDEO_CODEC_OPERATION_ENCODE_H264_BIT_KHR;
++                  if (exts->KHR_video_encode_h265)
++                     ops |= VK_VIDEO_CODEC_OPERATION_ENCODE_H265_BIT_KHR;
++                  if (exts->KHR_video_encode_av1)
++                     ops |= VK_VIDEO_CODEC_OPERATION_ENCODE_AV1_BIT_KHR;
+                }
++
++               prop->videoCodecOperations = ops;
+                break;
+             }
+ 
+diff --git a/src/intel/vulkan/anv_private.h b/src/intel/vulkan/anv_private.h
+index c153f62..c584a77 100644
+--- a/src/intel/vulkan/anv_private.h
++++ b/src/intel/vulkan/anv_private.h
+@@ -7318,6 +7318,24 @@ void anv_calculate_qmul(const struct VkVideoDecodeVP9PictureInfoKHR *vp9_pic,
+                         uint32_t seg_id,
+                         int16_t *ptr);
+ 
++#define ANV_VIDEO_DECODE_CODEC_OPS                  \
++   (VK_VIDEO_CODEC_OPERATION_DECODE_H264_BIT_KHR |  \
++    VK_VIDEO_CODEC_OPERATION_DECODE_H265_BIT_KHR |  \
++    VK_VIDEO_CODEC_OPERATION_DECODE_AV1_BIT_KHR |   \
++    VK_VIDEO_CODEC_OPERATION_DECODE_VP9_BIT_KHR)
++
++#define ANV_VIDEO_ENCODE_CODEC_OPS                  \
++   (VK_VIDEO_CODEC_OPERATION_ENCODE_H264_BIT_KHR |  \
++    VK_VIDEO_CODEC_OPERATION_ENCODE_H265_BIT_KHR |  \
++    VK_VIDEO_CODEC_OPERATION_ENCODE_AV1_BIT_KHR)
++
++VkResult anv_video_profile_supported(struct anv_physical_device *pdevice,
++                                     const VkVideoProfileInfoKHR *profile);
++
++VkResult anv_video_profile_list_usage_supported(
++   const VkVideoProfileListInfoKHR *profile_list,
++   VkImageUsageFlags2KHR usage);
++
+ uint32_t anv_video_get_image_mv_size(struct anv_device *device,
+                                      struct anv_image *image,
+                                      const struct VkVideoProfileListInfoKHR *profile_list);
+diff --git a/src/intel/vulkan/anv_video.c b/src/intel/vulkan/anv_video.c
+index 799c8d6..602cc24 100644
+--- a/src/intel/vulkan/anv_video.c
++++ b/src/intel/vulkan/anv_video.c
+@@ -199,9 +199,9 @@ anv_UpdateVideoSessionParametersKHR(VkDevice _device,
+    return VK_SUCCESS;
+ }
+ 
+-static VkResult
+-video_profile_supported(struct anv_physical_device *pdevice,
+-                  const VkVideoProfileInfoKHR *profile)
++VkResult
++anv_video_profile_supported(struct anv_physical_device *pdevice,
++                            const VkVideoProfileInfoKHR *profile)
+ {
+    VkResult result = vk_video_is_profile_supported(profile);
+    if (result != VK_SUCCESS)
+@@ -323,6 +323,46 @@ video_profile_supported(struct anv_physical_device *pdevice,
+    return VK_SUCCESS;
+ }
+ 
++/* Check the reference picture usages against the directions of a supplied,
++ * already validated, nonempty video profile list.
++ *
++ * VUID-VkImageCreateInfo-usage-04815 and -04816 require a decode (encode)
++ * profile in the list for decode (encode) usages unless the image is video
++ * profile independent. A profile independent image can never be an encode
++ * DPB (VUID-VkImageCreateInfo-flags-08331) or a decode DPB that is not also
++ * decode output (VUID-VkImageCreateInfo-flags-08329), so those two roles
++ * always need a profile of the matching direction. Other video usages are
++ * deliberately left alone here, because profile independent images may
++ * combine them with profiles of the other direction.
++ */
++VkResult
++anv_video_profile_list_usage_supported(const VkVideoProfileListInfoKHR *profile_list,
++                                       VkImageUsageFlags2KHR usage)
++{
++   if (profile_list == NULL || profile_list->profileCount == 0)
++      return VK_SUCCESS;
++
++   const bool needs_encode = usage & VK_IMAGE_USAGE_2_VIDEO_ENCODE_DPB_BIT_KHR;
++   const bool needs_decode =
++      (usage & VK_IMAGE_USAGE_2_VIDEO_DECODE_DPB_BIT_KHR) &&
++      !(usage & VK_IMAGE_USAGE_2_VIDEO_DECODE_DST_BIT_KHR);
++
++   if (!needs_encode && !needs_decode)
++      return VK_SUCCESS;
++
++   VkVideoCodecOperationFlagsKHR ops = 0;
++   for (uint32_t i = 0; i < profile_list->profileCount; i++)
++      ops |= profile_list->pProfiles[i].videoCodecOperation;
++
++   if (needs_encode && !(ops & ANV_VIDEO_ENCODE_CODEC_OPS))
++      return VK_ERROR_IMAGE_USAGE_NOT_SUPPORTED_KHR;
++
++   if (needs_decode && !(ops & ANV_VIDEO_DECODE_CODEC_OPS))
++      return VK_ERROR_IMAGE_USAGE_NOT_SUPPORTED_KHR;
++
++   return VK_SUCCESS;
++}
++
+ #define ANV_AV1_REF_NAME_BIT(name) \
+    (1u << (STD_VIDEO_AV1_REFERENCE_NAME_##name - STD_VIDEO_AV1_REFERENCE_NAME_LAST_FRAME))
+ 
+@@ -339,7 +379,7 @@ anv_GetPhysicalDeviceVideoCapabilitiesKHR(VkPhysicalDevice physicalDevice,
+ {
+    ANV_FROM_HANDLE(anv_physical_device, pdevice, physicalDevice);
+ 
+-   VkResult res = video_profile_supported(pdevice, pVideoProfile);
++   VkResult res = anv_video_profile_supported(pdevice, pVideoProfile);
+    if (res != VK_SUCCESS)
+       return res;
+ 
+@@ -437,6 +477,23 @@ anv_GetPhysicalDeviceVideoCapabilitiesKHR(VkPhysicalDevice physicalDevice,
+       enc_caps->rateControlModes = VK_VIDEO_ENCODE_RATE_CONTROL_MODE_DEFAULT_KHR |
+                                    VK_VIDEO_ENCODE_RATE_CONTROL_MODE_DISABLED_BIT_KHR;
+ 
++      /* Without CBR/VBR support, report the minimum maxBitrate required by
++       * the Vulkan specification for each codec.
++       */
++      switch (pVideoProfile->videoCodecOperation) {
++      case VK_VIDEO_CODEC_OPERATION_ENCODE_H264_BIT_KHR:
++         enc_caps->maxBitrate = 64000;
++         break;
++      case VK_VIDEO_CODEC_OPERATION_ENCODE_H265_BIT_KHR:
++         enc_caps->maxBitrate = 128000;
++         break;
++      case VK_VIDEO_CODEC_OPERATION_ENCODE_AV1_BIT_KHR:
++         enc_caps->maxBitrate = 5529600;
++         break;
++      default:
++         break;
++      }
++
+       if (((pVideoProfile->videoCodecOperation == VK_VIDEO_CODEC_OPERATION_ENCODE_H264_BIT_KHR) ||
+            (pVideoProfile->videoCodecOperation == VK_VIDEO_CODEC_OPERATION_ENCODE_H265_BIT_KHR) ||
+            (pVideoProfile->videoCodecOperation == VK_VIDEO_CODEC_OPERATION_ENCODE_AV1_BIT_KHR)) &&
+@@ -468,7 +525,7 @@ anv_GetPhysicalDeviceVideoCapabilitiesKHR(VkPhysicalDevice physicalDevice,
+          ext->maxPPictureL0ReferenceCount = 8;
+          ext->maxBPictureL0ReferenceCount = 8;
+          ext->maxL1ReferenceCount = 1;
+-         ext->maxTemporalLayerCount = 0;
++         ext->maxTemporalLayerCount = 1;
+          ext->expectDyadicTemporalLayerPattern = false;
+          ext->prefersGopRemainingFrames = 0;
+          ext->requiresGopRemainingFrames = 0;
+@@ -620,18 +677,77 @@ anv_GetPhysicalDeviceVideoFormatPropertiesKHR(VkPhysicalDevice physicalDevice,
+ {
+    ANV_FROM_HANDLE(anv_physical_device, pdevice, physicalDevice);
+ 
+-   VK_OUTARRAY_MAKE_TYPED(VkVideoFormatPropertiesKHR, out,
+-                          pVideoFormatProperties,
+-                          pVideoFormatPropertyCount);
+-
+    const struct VkVideoProfileListInfoKHR *prof_list = (struct VkVideoProfileListInfoKHR *)
+       vk_find_struct_const(pVideoFormatInfo->pNext, VIDEO_PROFILE_LIST_INFO_KHR);
+    const VkImageUsageFlags2CreateInfoKHR *usage_2_info =
+       vk_find_struct_const(pVideoFormatInfo->pNext, IMAGE_USAGE_FLAGS_2_CREATE_INFO_KHR);
+ 
++   /* Every returned format must be usable with all of the video profiles in
++    * the list, so validate all of them and pick a single shared format
++    * before writing any output.
++    */
++   VkFormat format = VK_FORMAT_UNDEFINED;
++   bool unmappable_depth = false;
++   bool depth_conflict = false;
++
++   if (prof_list) {
++      for (unsigned i = 0; i < prof_list->profileCount; i++) {
++         const VkVideoProfileInfoKHR *profile = &prof_list->pProfiles[i];
++
++         /* Spec says:
++          *    If any of the video profiles specified via
++          *    VkVideoProfileListInfoKHR::pProfiles are not supported,
++          *    then this command returns one of the video-profile-specific
++          *    error codes.
++          */
++         VkResult res = anv_video_profile_supported(pdevice, profile);
++         if (res != VK_SUCCESS)
++            return res;
++
++         VkFormat profile_format;
++         if (profile->lumaBitDepth == VK_VIDEO_COMPONENT_BIT_DEPTH_8_BIT_KHR) {
++            profile_format = VK_FORMAT_G8_B8R8_2PLANE_420_UNORM;
++         } else if (profile->lumaBitDepth == VK_VIDEO_COMPONENT_BIT_DEPTH_10_BIT_KHR) {
++            profile_format = VK_FORMAT_G10X6_B10X6R10X6_2PLANE_420_UNORM_3PACK16;
++         } else {
++            unmappable_depth = true;
++            continue;
++         }
++
++         if (format == VK_FORMAT_UNDEFINED)
++            format = profile_format;
++         else if (format != profile_format)
++            depth_conflict = true;
++      }
++   }
++
++   /* No single format supports profiles with different bit depths. */
++   if (!unmappable_depth && depth_conflict)
++      return VK_ERROR_IMAGE_USAGE_NOT_SUPPORTED_KHR;
++
+    const VkImageUsageFlags2KHR requested_usages = usage_2_info ?
+       usage_2_info->usage : pVideoFormatInfo->imageUsage;
+ 
++   /* Reference picture usages need a profile of the matching direction. */
++   if (!unmappable_depth) {
++      VkResult res =
++         anv_video_profile_list_usage_supported(prof_list, requested_usages);
++      if (res != VK_SUCCESS)
++         return res;
++
++      /* NV12 and P010 do not support depth/stencil attachment usage. */
++      if (format != VK_FORMAT_UNDEFINED &&
++          (requested_usages & VK_IMAGE_USAGE_2_DEPTH_STENCIL_ATTACHMENT_BIT_KHR))
++         return VK_ERROR_IMAGE_USAGE_NOT_SUPPORTED_KHR;
++   }
++
++   VK_OUTARRAY_MAKE_TYPED(VkVideoFormatPropertiesKHR, out,
++                          pVideoFormatProperties,
++                          pVideoFormatPropertyCount);
++
++   if (unmappable_depth || format == VK_FORMAT_UNDEFINED)
++      return VK_ERROR_VIDEO_PROFILE_FORMAT_NOT_SUPPORTED_KHR;
++
+    VkImageUsageFlags2KHR supportedImageUsage = requested_usages;
+    VkImageCreateFlags2KHR supportedImageCreateFlags = 0;
+ 
+@@ -647,90 +763,56 @@ anv_GetPhysicalDeviceVideoFormatPropertiesKHR(VkPhysicalDevice physicalDevice,
+ 
+    }
+ 
+-   if (prof_list) {
+-      for (unsigned i = 0; i < prof_list->profileCount; i++) {
+-         const VkVideoProfileInfoKHR *profile = &prof_list->pProfiles[i];
+-
+-         /* Spec says:
+-          *    If any of the video profiles specified via
+-          *    VkVideoProfileListInfoKHR::pProfiles are not supported,
+-          *    then this command returns one of the video-profile-specific
+-          *    error codes.
+-          */
+-         VkResult res = video_profile_supported(pdevice, profile);
+-         if (res != VK_SUCCESS)
+-            return res;
+-
+-         const VkImageUsageFlags2KHR dpb_output_coincide_usage =
+-            VK_IMAGE_USAGE_2_VIDEO_DECODE_DST_BIT_KHR |
+-            VK_IMAGE_USAGE_2_VIDEO_DECODE_DPB_BIT_KHR;
+-
+-         const bool decode_dpb_only =
+-            (requested_usages & dpb_output_coincide_usage) ==
+-            VK_IMAGE_USAGE_2_VIDEO_DECODE_DPB_BIT_KHR;
+-         const bool decode_dst_only =
+-            (requested_usages & dpb_output_coincide_usage) ==
+-            VK_IMAGE_USAGE_2_VIDEO_DECODE_DST_BIT_KHR;
+-
+-         /* Decoder supports only
+-          * VK_VIDEO_DECODE_CAPABILITY_DPB_AND_OUTPUT_COINCIDE_BIT_KHR.
+-          *
+-          * So we need to set both usages.
+-          */
+-         if (decode_dpb_only || decode_dst_only)
+-            supportedImageUsage |= dpb_output_coincide_usage;
+-
+-         VkImageTiling tilings[2];
+-         unsigned num_tilings = 0;
+-         tilings[num_tilings++] = VK_IMAGE_TILING_OPTIMAL;
+-         if (supportedImageUsage & VK_IMAGE_USAGE_VIDEO_DECODE_DST_BIT_KHR)
+-            tilings[num_tilings++] = VK_IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT;
+-
+-         for (unsigned t = 0; t < num_tilings; t++) {
+-            if (profile->lumaBitDepth == VK_VIDEO_COMPONENT_BIT_DEPTH_8_BIT_KHR) {
+-               vk_outarray_append_typed(VkVideoFormatPropertiesKHR, &out, p) {
+-                  p->format = VK_FORMAT_G8_B8R8_2PLANE_420_UNORM;
+-                  p->imageCreateFlags = supportedImageCreateFlags;
+-                  p->imageType = VK_IMAGE_TYPE_2D;
+-                  p->imageTiling = tilings[t];
+-                  p->imageUsageFlags = supportedImageUsage;
+-
+-                  VkImageCreateFlags2CreateInfoKHR *create_2 =
+-                     vk_find_struct(p->pNext, IMAGE_CREATE_FLAGS_2_CREATE_INFO_KHR);
+-                  if (create_2)
+-                     create_2->flags = supportedImageCreateFlags;
+-                  VkImageUsageFlags2CreateInfoKHR *flags_2 =
+-                     vk_find_struct(p->pNext, IMAGE_USAGE_FLAGS_2_CREATE_INFO_KHR);
+-                  if (flags_2)
+-                     flags_2->usage = supportedImageUsage;
+-               }
+-            }
+-
+-            if (profile->lumaBitDepth == VK_VIDEO_COMPONENT_BIT_DEPTH_10_BIT_KHR) {
+-               vk_outarray_append_typed(VkVideoFormatPropertiesKHR, &out, p) {
+-                  p->format = VK_FORMAT_G10X6_B10X6R10X6_2PLANE_420_UNORM_3PACK16;
+-                  p->imageCreateFlags = supportedImageCreateFlags;
+-                  p->imageType = VK_IMAGE_TYPE_2D;
+-                  p->imageTiling = tilings[t];
+-                  p->imageUsageFlags = supportedImageUsage;
+-
+-                  VkImageCreateFlags2CreateInfoKHR *create_2 =
+-                     vk_find_struct(p->pNext, IMAGE_CREATE_FLAGS_2_CREATE_INFO_KHR);
+-                  if (create_2)
+-                     create_2->flags = supportedImageCreateFlags;
+-                  VkImageUsageFlags2CreateInfoKHR *flags_2 =
+-                  vk_find_struct(p->pNext, IMAGE_USAGE_FLAGS_2_CREATE_INFO_KHR);
+-                  if (flags_2)
+-                     flags_2->usage = supportedImageUsage;
+-               }
+-            }
+-         }
++   const VkImageUsageFlags2KHR dpb_output_coincide_usage =
++      VK_IMAGE_USAGE_2_VIDEO_DECODE_DST_BIT_KHR |
++      VK_IMAGE_USAGE_2_VIDEO_DECODE_DPB_BIT_KHR;
++
++   const bool decode_dpb_only =
++      (requested_usages & dpb_output_coincide_usage) ==
++      VK_IMAGE_USAGE_2_VIDEO_DECODE_DPB_BIT_KHR;
++   const bool decode_dst_only =
++      (requested_usages & dpb_output_coincide_usage) ==
++      VK_IMAGE_USAGE_2_VIDEO_DECODE_DST_BIT_KHR;
++
++   /* Decoder supports only
++    * VK_VIDEO_DECODE_CAPABILITY_DPB_AND_OUTPUT_COINCIDE_BIT_KHR.
++    *
++    * So we need to set both usages.
++    */
++   if (decode_dpb_only || decode_dst_only)
++      supportedImageUsage |= dpb_output_coincide_usage;
++
++   VkImageTiling tilings[2];
++   unsigned num_tilings = 0;
++   tilings[num_tilings++] = VK_IMAGE_TILING_OPTIMAL;
++   if (supportedImageUsage & VK_IMAGE_USAGE_VIDEO_DECODE_DST_BIT_KHR)
++      tilings[num_tilings++] = VK_IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT;
++
++   for (unsigned t = 0; t < num_tilings; t++) {
++      vk_outarray_append_typed(VkVideoFormatPropertiesKHR, &out, p) {
++         p->format = format;
++         p->componentMapping = (VkComponentMapping) {
++            .r = VK_COMPONENT_SWIZZLE_IDENTITY,
++            .g = VK_COMPONENT_SWIZZLE_IDENTITY,
++            .b = VK_COMPONENT_SWIZZLE_IDENTITY,
++            .a = VK_COMPONENT_SWIZZLE_IDENTITY,
++         };
++         p->imageCreateFlags = supportedImageCreateFlags;
++         p->imageType = VK_IMAGE_TYPE_2D;
++         p->imageTiling = tilings[t];
++         p->imageUsageFlags = supportedImageUsage;
++
++         VkImageCreateFlags2CreateInfoKHR *create_2 =
++            vk_find_struct(p->pNext, IMAGE_CREATE_FLAGS_2_CREATE_INFO_KHR);
++         if (create_2)
++            create_2->flags = supportedImageCreateFlags;
++         VkImageUsageFlags2CreateInfoKHR *flags_2 =
++            vk_find_struct(p->pNext, IMAGE_USAGE_FLAGS_2_CREATE_INFO_KHR);
++         if (flags_2)
++            flags_2->usage = supportedImageUsage;
+       }
+    }
+ 
+-   if (*pVideoFormatPropertyCount == 0)
+-      return VK_ERROR_VIDEO_PROFILE_FORMAT_NOT_SUPPORTED_KHR;
+-
+    return vk_outarray_status(&out);
+ }
+ 
+@@ -1537,14 +1619,18 @@ anv_GetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHR(VkPhysicalDevice physi
+    const VkVideoProfileInfoKHR *profile = pQualityLevelInfo->pVideoProfile;
+ 
+    pQualityLevelProperties->preferredRateControlMode = VK_VIDEO_ENCODE_RATE_CONTROL_MODE_DEFAULT_KHR;
++   pQualityLevelProperties->preferredRateControlLayerCount = 0;
+ 
+    switch (profile->videoCodecOperation) {
+    case VK_VIDEO_CODEC_OPERATION_ENCODE_H264_BIT_KHR: {
+       VkVideoEncodeH264QualityLevelPropertiesKHR *ext =
+          vk_find_struct(pQualityLevelProperties->pNext, VIDEO_ENCODE_H264_QUALITY_LEVEL_PROPERTIES_KHR);
+ 
++      ext->preferredRateControlFlags = 0;
+       ext->preferredIdrPeriod = 60;
+       ext->preferredGopFrameCount = 60;
++      ext->preferredConsecutiveBFrameCount = 0;
++      ext->preferredTemporalLayerCount = 1;
+       ext->preferredConstantQp = (VkVideoEncodeH264QpKHR) { 26, 26, 26 };
+       /* For Low-Power(VDENC) mode */
+       ext->preferredMaxL0ReferenceCount = 3;
+@@ -1555,11 +1641,15 @@ anv_GetPhysicalDeviceVideoEncodeQualityLevelPropertiesKHR(VkPhysicalDevice physi
+    case VK_VIDEO_CODEC_OPERATION_ENCODE_H265_BIT_KHR: {
+       VkVideoEncodeH265QualityLevelPropertiesKHR *ext =
+          vk_find_struct(pQualityLevelProperties->pNext, VIDEO_ENCODE_H265_QUALITY_LEVEL_PROPERTIES_KHR);
++      ext->preferredRateControlFlags = 0;
+       ext->preferredIdrPeriod = 60;
+       ext->preferredGopFrameCount = 60;
++      ext->preferredConsecutiveBFrameCount = 0;
++      ext->preferredSubLayerCount = 1;
+       /* For Low-Power(VDENC) mode */
+       ext->preferredMaxL0ReferenceCount = 3;
+-      ext->preferredMaxL1ReferenceCount = 3;
++      /* Match VkVideoEncodeH265CapabilitiesKHR::maxL1ReferenceCount. */
++      ext->preferredMaxL1ReferenceCount = 1;
+       ext->preferredConstantQp = (VkVideoEncodeH265QpKHR) { 26, 26, 26 };
+       break;
+    }

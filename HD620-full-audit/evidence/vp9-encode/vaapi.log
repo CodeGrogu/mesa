@@ -1,0 +1,17 @@
+Input #0, lavfi, from 'testsrc2=size=1280x720:rate=30':
+  Duration: N/A, start: 0.000000, bitrate: N/A
+  Stream #0:0: Video: wrapped_avframe, yuv420p, 1280x720 [SAR 1:1 DAR 16:9], 30 fps, 30 tbr, 30 tbn
+Stream mapping:
+  Stream #0:0 -> #0:0 (wrapped_avframe (native) -> vp9 (vp9_vaapi))
+Press [q] to stop, [?] for help
+[vp9_vaapi @ 0x5a57a41d1340] No usable encoding entrypoint found for profile VAProfileVP9Profile0 (19).
+[vost#0:0/vp9_vaapi @ 0x5a57a41d0d40] [enc:vp9_vaapi @ 0x5a57a41d12c0] Error while opening encoder - maybe incorrect parameters such as bit_rate, rate, width or height.
+[vf#0:0 @ 0x5a57a41d2040] Error sending frames to consumers: Function not implemented
+[vf#0:0 @ 0x5a57a41d2040] Task finished with error code: -38 (Function not implemented)
+[vf#0:0 @ 0x5a57a41d2040] Terminating thread with return code -38 (Function not implemented)
+[vost#0:0/vp9_vaapi @ 0x5a57a41d0d40] [enc:vp9_vaapi @ 0x5a57a41d12c0] Could not open encoder before EOF
+[vost#0:0/vp9_vaapi @ 0x5a57a41d0d40] Task finished with error code: -22 (Invalid argument)
+[vost#0:0/vp9_vaapi @ 0x5a57a41d0d40] Terminating thread with return code -22 (Invalid argument)
+[out#0/webm @ 0x5a57a41d09c0] Nothing was written into output file, because at least one of its streams received no packets.
+frame=    0 fps=0.0 q=0.0 Lsize=       0KiB time=N/A bitrate=N/A speed=N/A elapsed=0:00:00.01    
+Conversion failed!

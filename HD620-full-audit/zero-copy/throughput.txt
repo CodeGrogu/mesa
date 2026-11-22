@@ -1,0 +1,10 @@
+round 1 zero-copy : frame=  960 rtime=1.498s 
+round 1 download  : frame=  960 rtime=4.584s 
+round 2 zero-copy : frame=  960 rtime=1.474s 
+round 2 download  : frame=  960 rtime=4.643s 
+round 3 zero-copy : frame=  960 rtime=2.937s 
+round 3 download  : frame=  960 rtime=5.154s 
+round 4 zero-copy : frame=  960 rtime=1.494s 
+round 4 download  : frame=  960 rtime=4.123s 
+round 5 zero-copy : frame=  960 rtime=1.483s 
+round 5 download  : frame=  960 rtime=4.233s 

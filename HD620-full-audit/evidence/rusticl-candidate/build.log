@@ -1,0 +1,1193 @@
+ninja: Entering directory `/build/audit-rusticl'
+[1/1188] Generating src/util/format/u_format_gen.h with a custom command (wrapped by meson to capture output)
+[2/1188] Generating src/util/format_srgb with a custom command (wrapped by meson to capture output)
+[3/1188] Generating src/util/shader_stats.h with a custom command (wrapped by meson to capture output)
+[4/1188] Generating src/util/format/u_format_pack.h with a custom command (wrapped by meson to capture output)
+[5/1188] Generating src/util/format/u_format_table.c with a custom command (wrapped by meson to capture output)
+[6/1188] Generating src/compiler/builtin_types.h with a custom command
+[7/1188] Generating src/compiler/builtin_types.c with a custom command
+[8/1188] Generating src/compiler/ir_expression_operation.h with a custom command (wrapped by meson to capture output)
+[9/1188] Generating src/compiler/nir/nir_builder_opcodes.h with a custom command (wrapped by meson to capture output)
+[10/1188] Generating src/compiler/nir/nir_constant_expressions.c with a custom command (wrapped by meson to capture output)
+[11/1188] Generating src/compiler/nir/nir_opcodes.h with a custom command (wrapped by meson to capture output)
+[12/1188] Generating src/compiler/nir/nir_opcodes.c with a custom command (wrapped by meson to capture output)
+[13/1188] Generating src/compiler/nir/nir_opt_algebraic with a custom command
+[14/1188] Generating src/compiler/nir/nir_intrinsics.h with a custom command
+[15/1188] Generating src/compiler/nir/nir_intrinsics_indices.h with a custom command
+[16/1188] Generating src/compiler/nir/nir_intrinsic.c with a custom command
+[17/1188] Generating src/compiler/spirv/vtn_gather_types.c with a custom command
+[18/1188] Generating src/compiler/spirv/spirv_info with a custom command
+[19/1188] Generating src/compiler/spirv/vtn_generator_ids.h with a custom command
+[20/1188] Compiling C object src/c11/impl/libmesa_util_c11.a.p/time.c.o
+[21/1188] Compiling C object src/c11/impl/libmesa_util_c11.a.p/threads_posix.c.o
+[22/1188] Compiling C object src/util/blake3/libblake3.a.p/blake3.c.o
+[23/1188] Compiling C object src/util/blake3/libblake3.a.p/blake3_dispatch.c.o
+[24/1188] Compiling C object src/util/blake3/libblake3.a.p/blake3_portable.c.o
+[25/1188] Compiling C object src/util/blake3/libblake3.a.p/blake3_sse2_x86-64_unix.S.o
+[26/1188] Compiling C object src/util/blake3/libblake3.a.p/blake3_sse41_x86-64_unix.S.o
+[27/1188] Compiling C object src/util/blake3/libblake3.a.p/blake3_avx2_x86-64_unix.S.o
+[28/1188] Compiling C object src/util/blake3/libblake3.a.p/blake3_avx512_x86-64_unix.S.o
+[29/1188] Compiling C object src/util/libmesa_util_clflush.a.p/cache_ops_x86.c.o
+[30/1188] Compiling C object src/util/libmesa_util_clflushopt.a.p/cache_ops_x86_clflushopt.c.o
+[31/1188] Compiling C object src/util/libmesa_util_simd.a.p/streaming-load-memcpy.c.o
+[32/1188] Compiling C object src/util/libmesa_util.a.p/meson-generated_.._format_u_format_table.c.o
+[33/1188] Compiling C object src/util/libmesa_util.a.p/meson-generated_.._format_srgb.c.o
+[34/1188] Compiling C object src/util/libmesa_util.a.p/anon_file.c.o
+[35/1188] Compiling C object src/util/libmesa_util.a.p/bitscan.c.o
+[36/1188] Compiling C object src/util/libmesa_util.a.p/blob.c.o
+[37/1188] Compiling C object src/util/libmesa_util.a.p/build_id.c.o
+[38/1188] Compiling C object src/util/libmesa_util.a.p/cnd_monotonic.c.o
+[39/1188] Compiling C object src/util/libmesa_util.a.p/compress.c.o
+[40/1188] Compiling C object src/util/libmesa_util.a.p/thread_sched.c.o
+[41/1188] Compiling C object src/util/libmesa_util.a.p/crc32.c.o
+[42/1188] Compiling C object src/util/libmesa_util.a.p/dag.c.o
+[43/1188] Compiling C object src/util/libmesa_util.a.p/disk_cache.c.o
+[44/1188] Compiling C object src/util/libmesa_util.a.p/disk_cache_os.c.o
+[45/1188] Compiling C object src/util/libmesa_util.a.p/double.c.o
+[46/1188] Compiling C object src/util/libmesa_util.a.p/fast_idiv_by_const.c.o
+[47/1188] Compiling C object src/util/libmesa_util.a.p/float8.c.o
+[48/1188] Compiling C object src/util/libmesa_util.a.p/fossilize_db.c.o
+[49/1188] Compiling C object src/util/libmesa_util.a.p/futex.c.o
+[50/1188] Compiling C object src/util/libmesa_util.a.p/half_float.c.o
+[51/1188] Compiling C object src/util/libmesa_util.a.p/hash_table.c.o
+[52/1188] Compiling C object src/util/libmesa_util.a.p/helpers.c.o
+[53/1188] Compiling C object src/util/libmesa_util.a.p/u_idalloc.c.o
+[54/1188] Compiling C object src/util/libmesa_util.a.p/log.c.o
+[55/1188] Compiling C object src/util/libmesa_util.a.p/lut.c.o
+[56/1188] Compiling C object src/util/libmesa_util.a.p/memstream.c.o
+[57/1188] Compiling C object src/util/libmesa_util.a.p/mesa-blake3.c.o
+[58/1188] Compiling C object src/util/libmesa_util.a.p/os_time.c.o
+[59/1188] Compiling C object src/util/libmesa_util.a.p/os_file.c.o
+[60/1188] Compiling C object src/util/libmesa_util.a.p/os_file_notify.c.o
+[61/1188] Compiling C object src/util/libmesa_util.a.p/os_memory_fd.c.o
+[62/1188] Compiling C object src/util/libmesa_util.a.p/os_misc.c.o
+[63/1188] Compiling C object src/util/libmesa_util.a.p/os_socket.c.o
+[64/1188] Compiling C object src/util/libmesa_util.a.p/pb_slab.c.o
+[65/1188] Compiling C object src/util/libmesa_util.a.p/perf_u_trace.c.o
+[66/1188] Compiling C object src/util/libmesa_util.a.p/u_process.c.o
+[67/1188] Compiling C++ object src/util/libmesa_util.a.p/u_qsort.cpp.o
+[68/1188] Compiling C object src/util/libmesa_util.a.p/rwlock.c.o
+[69/1188] Compiling C object src/util/libmesa_util.a.p/ralloc.c.o
+[70/1188] Compiling C object src/util/libmesa_util.a.p/rand_xor.c.o
+[71/1188] Compiling C object src/util/libmesa_util.a.p/range_minimum_query.c.o
+[72/1188] Compiling C object src/util/libmesa_util.a.p/rb_tree.c.o
+[73/1188] Compiling C object src/util/libmesa_util.a.p/register_allocate.c.o
+[74/1188] Compiling C object src/util/libmesa_util.a.p/rgtc.c.o
+[75/1188] Compiling C object src/util/libmesa_util.a.p/set.c.o
+[76/1188] Compiling C object src/util/libmesa_util.a.p/simple_mtx.c.o
+[77/1188] Compiling C object src/util/libmesa_util.a.p/slab.c.o
+[78/1188] Compiling C object src/util/libmesa_util.a.p/softfloat.c.o
+[79/1188] Compiling C object src/util/libmesa_util.a.p/sparse_array.c.o
+[80/1188] Compiling C object src/util/libmesa_util.a.p/string_buffer.c.o
+[81/1188] Compiling C object src/util/libmesa_util.a.p/strndup.c.o
+[82/1188] Compiling C object src/util/libmesa_util.a.p/strtod.c.o
+[83/1188] Compiling C++ object src/util/libmesa_util.a.p/texcompress_astc_luts.cpp.o
+[84/1188] Compiling C++ object src/util/libmesa_util.a.p/texcompress_astc_luts_wrap.cpp.o
+[85/1188] Compiling C++ object src/util/libmesa_util.a.p/texcompress_astc.cpp.o
+[86/1188] Compiling C object src/util/libmesa_util.a.p/texcompress_etc.c.o
+[87/1188] Compiling C object src/util/libmesa_util.a.p/u_atomic.c.o
+[88/1188] Compiling C object src/util/libmesa_util.a.p/u_call_once.c.o
+[89/1188] Compiling C object src/util/libmesa_util.a.p/u_dl.c.o
+[90/1188] Compiling C object src/util/libmesa_util.a.p/u_dynarray.c.o
+[91/1188] Compiling C object src/util/libmesa_util.a.p/u_hash_table.c.o
+[92/1188] Compiling C object src/util/libmesa_util.a.p/u_queue.c.o
+[93/1188] Compiling C object src/util/libmesa_util.a.p/u_range_remap.c.o
+[94/1188] Compiling C object src/util/libmesa_util.a.p/u_shader_variant_cache.c.o
+[95/1188] Compiling C object src/util/libmesa_util.a.p/u_string.c.o
+[96/1188] Compiling C object src/util/libmesa_util.a.p/u_thread.c.o
+[97/1188] Compiling C object src/util/libmesa_util.a.p/u_vector.c.o
+[98/1188] Compiling C object src/util/libmesa_util.a.p/u_math.c.o
+[99/1188] Compiling C object src/util/libmesa_util.a.p/u_mm.c.o
+[100/1188] Compiling C object src/util/libmesa_util.a.p/u_debug.c.o
+[101/1188] Compiling C object src/util/libmesa_util.a.p/u_debug_memory.c.o
+[102/1188] Compiling C object src/util/libmesa_util.a.p/u_cpu_detect.c.o
+[103/1188] Compiling C object src/util/libmesa_util.a.p/u_printf.c.o
+[104/1188] Compiling C object src/util/libmesa_util.a.p/u_worklist.c.o
+[105/1188] Compiling C object src/util/libmesa_util.a.p/vl_zscan_data.c.o
+[106/1188] Compiling C object src/util/libmesa_util.a.p/vma.c.o
+[107/1188] Compiling C object src/util/libmesa_util.a.p/mesa_cache_db.c.o
+[108/1188] Compiling C object src/util/libmesa_util.a.p/mesa_cache_db_multipart.c.o
+[109/1188] Compiling C object src/util/libmesa_util.a.p/format_u_format.c.o
+[110/1188] Compiling C object src/util/libmesa_util.a.p/format_u_format_bptc.c.o
+[111/1188] Compiling C object src/util/libmesa_util.a.p/format_u_format_etc.c.o
+[112/1188] Compiling C object src/util/libmesa_util.a.p/format_u_format_fxt1.c.o
+[113/1188] Compiling C object src/util/libmesa_util.a.p/format_u_format_latc.c.o
+[114/1188] Compiling C object src/util/libmesa_util.a.p/format_u_format_other.c.o
+[115/1188] Compiling C object src/util/libmesa_util.a.p/format_u_format_rgtc.c.o
+[116/1188] Compiling C object src/util/libmesa_util.a.p/format_u_format_s3tc.c.o
+[117/1188] Compiling C object src/util/libmesa_util.a.p/format_u_format_tests.c.o
+[118/1188] Compiling C object src/util/libmesa_util.a.p/format_u_format_unpack_neon.c.o
+[119/1188] Compiling C object src/util/libmesa_util.a.p/format_u_format_yuv.c.o
+[120/1188] Compiling C object src/util/libmesa_util.a.p/format_u_format_zs.c.o
+[121/1188] Compiling C object src/util/libmesa_util.a.p/u_sync_provider.c.o
+[122/1188] Compiling C object src/util/libmesa_util.a.p/u_debug_stack.c.o
+[123/1188] Compiling C object src/util/libmesa_util.a.p/u_debug_symbol.c.o
+[124/1188] Compiling C object src/compiler/libcompiler.a.p/meson-generated_.._builtin_types.c.o
+[125/1188] Compiling C object src/compiler/libcompiler.a.p/glsl_types.c.o
+[126/1188] Compiling C object src/compiler/libcompiler.a.p/shader_enums.c.o
+[127/1188] Compiling C object src/compiler/nir/libnir.a.p/meson-generated_.._nir_opt_algebraic.c.o
+[128/1188] Compiling C object src/compiler/nir/libnir.a.p/meson-generated_.._nir_opcodes.c.o
+[129/1188] Compiling C object src/compiler/nir/libnir.a.p/meson-generated_.._nir_constant_expressions.c.o
+[130/1188] Compiling C object src/compiler/nir/libnir.a.p/meson-generated_.._nir_intrinsics.c.o
+[131/1188] Compiling C object src/compiler/nir/libnir.a.p/nir.c.o
+[132/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_builder.c.o
+[133/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_builtin_builder.c.o
+[134/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_convert_address_format.c.o
+[135/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_clip_cull_distance_io_utils.c.o
+[136/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_clone.c.o
+[137/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_control_flow.c.o
+[138/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_deref.c.o
+[139/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_divergence_analysis.c.o
+[140/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_dominance.c.o
+[141/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_dominance_lca.c.o
+[142/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_fixup_is_exported.c.o
+[143/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_format_convert.c.o
+[144/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_from_ssa.c.o
+[145/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_functions.c.o
+[146/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_gather_info.c.o
+[147/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_gather_output_deps.c.o
+[148/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_gather_tcs_info.c.o
+[149/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_gather_types.c.o
+[150/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_gather_xfb_info.c.o
+[151/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_group_loads.c.o
+[152/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_gs_count_vertices.c.o
+[153/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_inline_sysval.c.o
+[154/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_inline_uniforms.c.o
+[155/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_instr_set.c.o
+[156/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_io_add_xfb_info.c.o
+[157/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_legacy.c.o
+[158/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_linking_helpers.c.o
+[159/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_liveness.c.o
+[160/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_loop_analyze.c.o
+[161/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_abort.c.o
+[162/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_alu.c.o
+[163/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_alu_width.c.o
+[164/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_alpha.c.o
+[165/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_amul.c.o
+[166/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_array_deref_of_vec.c.o
+[167/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_atomics_to_ssbo.c.o
+[168/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_bitmap.c.o
+[169/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_blend.c.o
+[170/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_bool_to_float.c.o
+[171/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_bool_to_int32.c.o
+[172/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_calls_to_builtins.c.o
+[173/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_cl_images.c.o
+[174/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_clamp_color_outputs.c.o
+[175/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_clip.c.o
+[176/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_clip_disable.c.o
+[177/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_clip_halfz.c.o
+[178/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_const_arrays_to_uniforms.c.o
+[179/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_continue_constructs.c.o
+[180/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_convert_alu_types.c.o
+[181/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_cooperative_matrix.c.o
+[182/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_variable_initializers.c.o
+[183/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_discard_if.c.o
+[184/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_double_ops.c.o
+[185/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_explicit_io.c.o
+[186/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_fb_read.c.o
+[187/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_flatshade.c.o
+[188/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_floats.c.o
+[189/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_flrp.c.o
+[190/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_fp16_conv.c.o
+[191/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_fragcoord_wtrans.c.o
+[192/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_frag_coord_to_pixel_coord.c.o
+[193/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_fragcolor.c.o
+[194/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_frexp.c.o
+[195/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_global_vars_to_local.c.o
+[196/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_goto_ifs.c.o
+[197/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_gs_intrinsics.c.o
+[198/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_halt_to_return.c.o
+[199/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_helper_writes.c.o
+[200/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_load_const_to_scalar.c.o
+[201/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_locals_to_regs.c.o
+[202/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_idiv.c.o
+[203/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_image.c.o
+[204/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_image_atomics_to_global.c.o
+[205/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_indirect_derefs_to_if_else_trees.c.o
+[206/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_input_attachments.c.o
+[207/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_int64.c.o
+[208/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_interpolation.c.o
+[209/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_int_to_float.c.o
+[210/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_io.c.o
+[211/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_io_array_vars_to_elements.c.o
+[212/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_io_indirect_loads.c.o
+[213/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_io_vars_to_temporaries.c.o
+[214/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_io_to_scalar.c.o
+[215/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_io_vars_to_scalar.c.o
+[216/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_is_helper_invocation.c.o
+[217/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_multiview.c.o
+[218/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_mediump.c.o
+[219/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_mem_access_bit_sizes.c.o
+[220/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_memcpy.c.o
+[221/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_memory_model.c.o
+[222/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_non_uniform_access.c.o
+[223/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_packing.c.o
+[224/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_passthrough_edgeflags.c.o
+[225/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_patch_vertices.c.o
+[226/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_phis_to_scalar.c.o
+[227/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_pntc_ytransform.c.o
+[228/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_point_size.c.o
+[229/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_point_smooth.c.o
+[230/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_poly_line_smooth.c.o
+[231/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_printf.c.o
+[232/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_reg_intrinsics_to_ssa.c.o
+[233/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_readonly_images_to_tex.c.o
+[234/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_returns.c.o
+[235/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_robust_access.c.o
+[236/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_samplers.c.o
+[237/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_sample_shading.c.o
+[238/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_scratch.c.o
+[239/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_scratch_to_var.c.o
+[240/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_shader_calls.c.o
+[241/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_single_sampled.c.o
+[242/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_ssbo.c.o
+[243/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_subgroups.c.o
+[244/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_system_values.c.o
+[245/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_task_shader.c.o
+[246/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_terminate_to_demote.c.o
+[247/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_tess_coord_z.c.o
+[248/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_tex_shadow.c.o
+[249/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_tex.c.o
+[250/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_texcoord_replace.c.o
+[251/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_texcoord_replace_late.c.o
+[252/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_two_sided_color.c.o
+[253/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_undef_to_zero.c.o
+[254/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_vars_to_ssa.c.o
+[255/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_var_copies.c.o
+[256/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_vec_to_regs.c.o
+[257/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_vec3_to_vec4.c.o
+[258/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_view_index_to_device_index.c.o
+[259/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_viewport_transform.c.o
+[260/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_wpos_center.c.o
+[261/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_wpos_ytransform.c.o
+[262/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_wrmasks.c.o
+[263/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_xfb_to_stores.c.o
+[264/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_bit_size.c.o
+[265/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_ubo_vec4.c.o
+[266/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_uniforms_to_ubo.c.o
+[267/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_workgroup_size.c.o
+[268/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_sysvals_to_varyings.c.o
+[269/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_metadata.c.o
+[270/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_mod_analysis.c.o
+[271/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_move_output_stores_to_end.c.o
+[272/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_move_vec_src_uses_to_dest.c.o
+[273/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_normalize_cubemap_coords.c.o
+[274/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_normalize_sin_cos.c.o
+[275/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_access.c.o
+[276/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_barriers.c.o
+[277/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_barycentric.c.o
+[278/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_call.c.o
+[279/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_clip_cull_const.c.o
+[280/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_combine_stores.c.o
+[281/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_comparison_pre.c.o
+[282/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_constant_folding.c.o
+[283/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_copy_prop_vars.c.o
+[284/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_copy_propagate.c.o
+[285/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_cse.c.o
+[286/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_dce.c.o
+[287/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_dead_cf.c.o
+[288/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_dead_write_vars.c.o
+[289/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_find_array_copies.c.o
+[290/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_fp_math_ctrl.c.o
+[291/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_frag_coord_to_pixel_coord.c.o
+[292/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_fragdepth.c.o
+[293/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_gcm.c.o
+[294/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_generate_bfi.c.o
+[295/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_idiv_const.c.o
+[296/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_if.c.o
+[297/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_intrinsics.c.o
+[298/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_large_constants.c.o
+[299/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_licm.c.o
+[300/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_load_skip_helpers.c.o
+[301/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_load_store_vectorize.c.o
+[302/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_loop.c.o
+[303/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_loop_unroll.c.o
+[304/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_memcpy.c.o
+[305/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_move.c.o
+[306/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_move_discards_to_top.c.o
+[307/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_move_to_top.c.o
+[308/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_mqsad.c.o
+[309/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_non_uniform_access.c.o
+[310/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_offsets.c.o
+[311/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_peephole_select.c.o
+[312/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_phi_precision.c.o
+[313/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_phi_to_bool.c.o
+[314/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_preamble.c.o
+[315/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_ray_queries.c.o
+[316/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_reassociate.c.o
+[317/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_reassociate_bfi.c.o
+[318/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_rematerialize_compares.c.o
+[319/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_remove_phis.c.o
+[320/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_scalar_array_vars_to_vec.c.o
+[321/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_shared_vars_to_subgroup.c.o
+[322/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_shrink_stores.c.o
+[323/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_shrink_vectors.c.o
+[324/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_sink.c.o
+[325/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_uadd_carry.c.o
+[326/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_undef.c.o
+[327/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_uniform_atomics.c.o
+[328/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_uniform_subgroup.c.o
+[329/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_uub.c.o
+[330/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_varyings.c.o
+[331/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_vectorize.c.o
+[332/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_vectorize_io.c.o
+[333/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_opt_vectorize_io_vars.c.o
+[334/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_passthrough_gs.c.o
+[335/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_passthrough_tcs.c.o
+[336/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_phi_builder.c.o
+[337/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_print.c.o
+[338/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_propagate_invariant.c.o
+[339/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_range_analysis.c.o
+[340/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_recompute_io_bases.c.o
+[341/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_remove_dead_variables.c.o
+[342/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_remove_outputs.c.o
+[343/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_remove_tex_shadow.c.o
+[344/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_repair_ssa.c.o
+[345/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_scale_fdiv.c.o
+[346/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_schedule.c.o
+[347/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_search.c.o
+[348/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_separate_merged_clip_cull_io.c.o
+[349/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_serialize.c.o
+[350/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_shader_bisect.c.o
+[351/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_split_64bit_vec3_and_vec4.c.o
+[352/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_split_conversions.c.o
+[353/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_split_per_member_structs.c.o
+[354/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_split_var_copies.c.o
+[355/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_split_vars.c.o
+[356/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_sweep.c.o
+[357/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_to_lcssa.c.o
+[358/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_trivialize_registers.c.o
+[359/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_unlower_io_to_vars.c.o
+[360/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_use_dominance.c.o
+[361/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_validate.c.o
+[362/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_worklist.c.o
+[363/1188] Compiling C object src/compiler/nir/libnir.a.p/nir_lower_atomics.c.o
+[364/1188] Compiling C object src/compiler/spirv/libvtn.a.p/meson-generated_.._spirv_info.c.o
+[365/1188] Compiling C object src/compiler/spirv/libvtn.a.p/meson-generated_.._vtn_gather_types.c.o
+[366/1188] Compiling C object src/compiler/spirv/libvtn.a.p/gl_spirv.c.o
+[367/1188] Compiling C object src/compiler/spirv/libvtn.a.p/spirv_to_nir.c.o
+[368/1188] Compiling C object src/compiler/spirv/libvtn.a.p/vtn_alu.c.o
+[369/1188] Compiling C object src/compiler/spirv/libvtn.a.p/vtn_amd.c.o
+[370/1188] Compiling C object src/compiler/spirv/libvtn.a.p/vtn_cfg.c.o
+[371/1188] Compiling C object src/compiler/spirv/libvtn.a.p/vtn_cmat.c.o
+[372/1188] Compiling C object src/compiler/spirv/libvtn.a.p/vtn_constants.c.o
+[373/1188] Compiling C object src/compiler/spirv/libvtn.a.p/vtn_debug.c.o
+[374/1188] Compiling C object src/compiler/spirv/libvtn.a.p/vtn_glsl450.c.o
+[375/1188] Compiling C object src/compiler/spirv/libvtn.a.p/vtn_opencl.c.o
+[376/1188] Compiling C object src/compiler/spirv/libvtn.a.p/vtn_structured_cfg.c.o
+[377/1188] Compiling C object src/compiler/spirv/libvtn.a.p/vtn_subgroup.c.o
+[378/1188] Compiling C object src/compiler/spirv/libvtn.a.p/vtn_variables.c.o
+[379/1188] Compiling C object src/compiler/clc/liblibmesaclc.a.p/clc.c.o
+[380/1188] Compiling C++ object src/compiler/clc/liblibmesaclc.a.p/clc_helpers.cpp.o
+[381/1188] Compiling C object src/compiler/clc/liblibmesaclc.a.p/nir_load_libclc.c.o
+[382/1188] Linking static target src/c11/impl/libmesa_util_c11.a
+[383/1188] Linking static target src/util/blake3/libblake3.a
+[384/1188] Linking static target src/util/libmesa_util_clflush.a
+[385/1188] Linking static target src/util/libmesa_util_clflushopt.a
+[386/1188] Linking static target src/util/libmesa_util_simd.a
+[387/1188] Linking static target src/util/libmesa_util.a
+[388/1188] Linking static target src/compiler/libcompiler.a
+[389/1188] Linking static target src/compiler/nir/libnir.a
+[390/1188] Linking static target src/compiler/spirv/libvtn.a
+[391/1188] Linking static target src/compiler/clc/liblibmesaclc.a
+[392/1188] Compiling C object src/compiler/clc/mesa_clc.p/mesa_clc.c.o
+[393/1188] Generating src/gallium/auxiliary/draw_nir_lower_opcodes.c with a custom command (wrapped by meson to capture output)
+[394/1188] Generating src/gallium/auxiliary/lp_bld_nir_no_integer_algebraic.c with a custom command (wrapped by meson to capture output)
+[395/1188] Generating src/gallium/auxiliary/tr_util.[ch] with a custom command
+[396/1188] Generating src/gallium/auxiliary/u_tracepoints.c with a custom command
+[397/1188] Generating src/gallium/auxiliary/u_tracepoints.h with a custom command
+[398/1188] Generating src/gallium/auxiliary/u_indices_gen.c with a custom command
+[399/1188] Generating src/gallium/auxiliary/u_unfilled_gen.c with a custom command
+[400/1188] Generating src/git_sha1.h with a custom command
+[401/1188] Compiling C object src/compiler/spirv/vtn_bindgen2.p/vtn_bindgen2.c.o
+[402/1188] Linking target src/compiler/clc/mesa_clc
+[403/1188] Generating src/intel/genxml/gen40_cl_pack.h with a custom command (wrapped by meson to capture output)
+[404/1188] Generating src/intel/genxml/gen45_cl_pack.h with a custom command (wrapped by meson to capture output)
+[405/1188] Generating src/intel/genxml/gen50_cl_pack.h with a custom command (wrapped by meson to capture output)
+[406/1188] Generating src/intel/genxml/gen60_cl_pack.h with a custom command (wrapped by meson to capture output)
+[407/1188] Generating src/intel/genxml/gen70_cl_pack.h with a custom command (wrapped by meson to capture output)
+[408/1188] Generating src/intel/genxml/gen75_cl_pack.h with a custom command (wrapped by meson to capture output)
+[409/1188] Generating src/intel/genxml/gen80_cl_pack.h with a custom command (wrapped by meson to capture output)
+[410/1188] Generating src/intel/genxml/gen90_cl_pack.h with a custom command (wrapped by meson to capture output)
+[411/1188] Generating src/intel/genxml/gen110_cl_pack.h with a custom command (wrapped by meson to capture output)
+[412/1188] Generating src/intel/genxml/gen120_cl_pack.h with a custom command (wrapped by meson to capture output)
+[413/1188] Generating src/intel/genxml/gen125_cl_pack.h with a custom command (wrapped by meson to capture output)
+[414/1188] Generating src/intel/genxml/xe2_cl_pack.h with a custom command (wrapped by meson to capture output)
+[415/1188] Generating src/intel/genxml/xe3_cl_pack.h with a custom command (wrapped by meson to capture output)
+[416/1188] Generating src/intel/genxml/xe3p_cl_pack.h with a custom command (wrapped by meson to capture output)
+[417/1188] Generating src/intel/genxml/gen125_rt_cl_pack.h with a custom command (wrapped by meson to capture output)
+[418/1188] Generating src/intel/genxml/xe2_rt_cl_pack.h with a custom command (wrapped by meson to capture output)
+[419/1188] Generating src/intel/genxml/xe3_rt_cl_pack.h with a custom command (wrapped by meson to capture output)
+[420/1188] Generating src/intel/genxml/xe3p_rt_cl_pack.h with a custom command (wrapped by meson to capture output)
+[421/1188] Generating src/intel/dev/intel_wa.[ch] with a custom command
+[422/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/meson-generated_.._draw_nir_lower_opcodes.c.o
+[423/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/meson-generated_.._lp_bld_nir_no_integer_algebraic.c.o
+[424/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/meson-generated_.._tr_util.c.o
+[425/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/meson-generated_.._u_tracepoints.c.o
+[426/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/meson-generated_.._u_indices_gen.c.o
+[427/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/meson-generated_.._u_unfilled_gen.c.o
+[428/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/driver_ddebug_dd_util.c.o
+[429/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/pipebuffer_pb_buffer_fenced.c.o
+[430/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/pipebuffer_pb_bufmgr_cache.c.o
+[431/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/pipebuffer_pb_bufmgr_debug.c.o
+[432/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/pipebuffer_pb_bufmgr_mm.c.o
+[433/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/pipebuffer_pb_bufmgr_slab.c.o
+[434/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/pipebuffer_pb_cache.c.o
+[435/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/pipebuffer_pb_validate.c.o
+[436/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_async_debug.c.o
+[437/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_bitmask.c.o
+[438/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_blitter.c.o
+[439/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_debug_describe.c.o
+[440/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_debug_flush.c.o
+[441/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_debug_image.c.o
+[442/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_debug_refcnt.c.o
+[443/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_draw.c.o
+[444/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_draw_quad.c.o
+[445/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_driconf.c.o
+[446/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_dump_defines.c.o
+[447/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_dump_state.c.o
+[448/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_framebuffer.c.o
+[449/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_gen_mipmap.c.o
+[450/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_handle_table.c.o
+[451/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_helpers.c.o
+[452/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_index_modify.c.o
+[453/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_live_shader_cache.c.o
+[454/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_log.c.o
+[455/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_prim.c.o
+[456/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_prim_restart.c.o
+[457/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_pstipple.c.o
+[458/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_resource.c.o
+[459/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_sample_positions.c.o
+[460/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_sampler.c.o
+[461/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_screen.c.o
+[462/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_split_draw.c.o
+[463/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_suballoc.c.o
+[464/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_surface.c.o
+[465/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_texture.c.o
+[466/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_tile.c.o
+[467/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_transfer.c.o
+[468/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_transfer_helper.c.o
+[469/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_threaded_context.c.o
+[470/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_trace_gallium.c.o
+[471/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_upload_mgr.c.o
+[472/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_vbuf.c.o
+[473/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_vertex_state_cache.c.o
+[474/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/cso_cache_cso_cache.c.o
+[475/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/cso_cache_cso_context.c.o
+[476/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/cso_cache_cso_hash.c.o
+[477/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_context.c.o
+[478/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_fs.c.o
+[479/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_gs.c.o
+[480/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_mesh.c.o
+[481/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_mesh_prim.c.o
+[482/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_pipe_aaline.c.o
+[483/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_pipe_aapoint.c.o
+[484/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_pipe.c.o
+[485/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_pipe_clip.c.o
+[486/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_pipe_cull.c.o
+[487/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_pipe_flatshade.c.o
+[488/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_pipe_offset.c.o
+[489/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_pipe_stipple.c.o
+[490/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_pipe_twoside.c.o
+[491/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_pipe_unfilled.c.o
+[492/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_pipe_user_cull.c.o
+[493/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_pipe_util.c.o
+[494/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_pipe_validate.c.o
+[495/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_pipe_vbuf.c.o
+[496/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_pipe_wide_line.c.o
+[497/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_pipe_wide_point.c.o
+[498/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_prim_assembler.c.o
+[499/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_pt.c.o
+[500/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_pt_emit.c.o
+[501/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_pt_fetch.c.o
+[502/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_pt_fetch_shade_emit.c.o
+[503/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_pt_fetch_shade_pipeline.c.o
+[504/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_pt_mesh_pipeline.c.o
+[505/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_pt_post_vs.c.o
+[506/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_pt_so_emit.c.o
+[507/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_pt_util.c.o
+[508/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_pt_vsplit.c.o
+[509/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_tess.c.o
+[510/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_vertex.c.o
+[511/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_vs.c.o
+[512/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_vs_exec.c.o
+[513/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_vs_variant.c.o
+[514/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/driver_ddebug_dd_context.c.o
+[515/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/driver_ddebug_dd_draw.c.o
+[516/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/driver_ddebug_dd_screen.c.o
+[517/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/driver_noop_noop_pipe.c.o
+[518/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/driver_noop_noop_state.c.o
+[519/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/driver_trace_tr_context.c.o
+[520/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/driver_trace_tr_dump.c.o
+[521/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/driver_trace_tr_dump_state.c.o
+[522/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/driver_trace_tr_screen.c.o
+[523/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/driver_trace_tr_texture.c.o
+[524/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/driver_trace_tr_video.c.o
+[525/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/hud_font.c.o
+[526/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/hud_hud_context.c.o
+[527/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/hud_hud_cpu.c.o
+[528/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/hud_hud_nic.c.o
+[529/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/hud_hud_cpufreq.c.o
+[530/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/hud_hud_diskstat.c.o
+[531/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/hud_hud_sensors_temp.c.o
+[532/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/hud_hud_driver_query.c.o
+[533/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/hud_hud_fps.c.o
+[534/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/indices_u_primconvert.c.o
+[535/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/rtasm_rtasm_execmem.c.o
+[536/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/rtasm_rtasm_x86sse.c.o
+[537/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/tgsi_tgsi_aa_point.c.o
+[538/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/tgsi_tgsi_build.c.o
+[539/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/tgsi_tgsi_dump.c.o
+[540/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/tgsi_tgsi_dynamic_indexing.c.o
+[541/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/tgsi_tgsi_exec.c.o
+[542/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/tgsi_tgsi_from_mesa.c.o
+[543/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/tgsi_tgsi_info.c.o
+[544/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/tgsi_tgsi_iterate.c.o
+[545/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/tgsi_tgsi_parse.c.o
+[546/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/tgsi_tgsi_point_sprite.c.o
+[547/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/tgsi_tgsi_sanity.c.o
+[548/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/tgsi_tgsi_scan.c.o
+[549/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/tgsi_tgsi_strings.c.o
+[550/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/tgsi_tgsi_text.c.o
+[551/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/tgsi_tgsi_transform.c.o
+[552/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/tgsi_tgsi_two_side.c.o
+[553/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/tgsi_tgsi_ureg.c.o
+[554/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/tgsi_tgsi_util.c.o
+[555/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/tgsi_tgsi_vpos.c.o
+[556/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/translate_translate.c.o
+[557/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/translate_translate_cache.c.o
+[558/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/translate_translate_generic.c.o
+[559/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/translate_translate_sse.c.o
+[560/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/nir_tgsi_to_nir.c.o
+[561/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/nir_nir_to_tgsi.c.o
+[562/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/nir_nir_draw_helpers.c.o
+[563/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_simple_shaders.c.o
+[564/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/util_u_tests.c.o
+[565/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/renderonly_renderonly.c.o
+[566/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_arit.c.o
+[567/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_arit_overflow.c.o
+[568/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_assert.c.o
+[569/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_bitarit.c.o
+[570/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_const.c.o
+[571/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_conv.c.o
+[572/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_coro.c.o
+[573/1188] Compiling C++ object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_debug.cpp.o
+[574/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_flow.c.o
+[575/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_format_aos_array.c.o
+[576/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_format_aos.c.o
+[577/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_format_float.c.o
+[578/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_format_s3tc.c.o
+[579/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_format.c.o
+[580/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_format_soa.c.o
+[581/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_format_srgb.c.o
+[582/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_format_yuv.c.o
+[583/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_gather.c.o
+[584/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_init_common.c.o
+[585/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_intr.c.o
+[586/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_ir_common.c.o
+[587/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_jit_sample.c.o
+[588/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_jit_types.c.o
+[589/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_logic.c.o
+[590/1188] Compiling C++ object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_misc.cpp.o
+[591/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_nir.c.o
+[592/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_nir_aos.c.o
+[593/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_nir_lower.c.o
+[594/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_nir_soa.c.o
+[595/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_pack.c.o
+[596/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_passmgr.c.o
+[597/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_printf.c.o
+[598/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_quad.c.o
+[599/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_sample_aos.c.o
+[600/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_sample.c.o
+[601/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_sample_soa.c.o
+[602/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_struct.c.o
+[603/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_swizzle.c.o
+[604/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_tgsi_action.c.o
+[605/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_tgsi.c.o
+[606/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_tgsi_info.c.o
+[607/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_tgsi_soa.c.o
+[608/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_type.c.o
+[609/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_llvm.c.o
+[610/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_pt_fetch_shade_pipeline_llvm.c.o
+[611/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/draw_draw_vs_llvm.c.o
+[612/1188] Compiling C++ object src/gallium/auxiliary/libgallium.a.p/tessellator_tessellator.cpp.o
+[613/1188] Compiling C++ object src/gallium/auxiliary/libgallium.a.p/tessellator_p_tessellator.cpp.o
+[614/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/nir_nir_to_tgsi_info.c.o
+[615/1188] Compiling C object src/gallium/auxiliary/libgallium.a.p/gallivm_lp_bld_init.c.o
+[616/1188] Generating bindings for Rust src/gallium/frontends/rusticl/rustmod-bindgen-rusticl_mesa_bindings.h
+Failed to run rustfmt: No such file or directory (os error 2) (non-fatal, continuing)
+[617/1188] Linking target src/compiler/spirv/vtn_bindgen2
+[618/1188] Generating src/intel/blorp/blorp_shaders.spv with a custom command
+[619/1188] Generating src/intel/shaders/intel_gfx80_shaders.spv with a custom command
+[620/1188] Generating src/intel/shaders/intel_gfx90_shaders.spv with a custom command
+[621/1188] Generating src/intel/shaders/intel_gfx110_shaders.spv with a custom command
+[622/1188] Generating src/intel/shaders/intel_gfx120_shaders.spv with a custom command
+[623/1188] Generating src/intel/shaders/intel_gfx125_shaders.spv with a custom command
+[624/1188] Generating src/intel/shaders/intel_gfx200_shaders.spv with a custom command
+[625/1188] Generating src/intel/shaders/intel_gfx300_shaders.spv with a custom command
+[626/1188] Generating src/intel/shaders/intel_gfx350_shaders.spv with a custom command
+[627/1188] Linking static target src/gallium/auxiliary/libgallium.a
+[628/1188] Generating src/gallium/frontends/rusticl/builtin_kernels/rusticl_kernels.spv64 with a custom command
+[629/1188] Generating src/gallium/frontends/rusticl/builtin_kernels/rusticl_kernels.spv32 with a custom command
+[630/1188] Generating src/gallium/frontends/rusticl/builtin_kernels/rusticl_kernels_ulong.spv64 with a custom command
+[631/1188] Generating src/gallium/frontends/rusticl/builtin_kernels/rusticl_kernels_ulong.spv32 with a custom command
+[632/1188] Generating bindings for Rust src/gallium/frontends/rusticl/rustmod-bindgen-rusticl_libc_bindings.h
+Failed to run rustfmt: No such file or directory (os error 2) (non-fatal, continuing)
+[633/1188] Compiling C object src/gallium/frontends/rusticl/librusticl_c.a.p/meson-generated_.._rusticl_mesa_bindings.c.o
+[634/1188] Compiling C object src/gallium/frontends/rusticl/librusticl_c.a.p/rusticl_nir.c.o
+[635/1188] Compiling C object src/gallium/frontends/rusticl/librusticl_c.a.p/rusticl_system_bindings.c.o
+[636/1188] Generating src/util/driconf_static.h with a custom command
+[637/1188] Generating src/intel/genxml/genX_xml.h with a custom command (wrapped by meson to capture output)
+[638/1188] Generating src/intel/genxml/genX_bits.h with a custom command
+[639/1188] Generating src/intel/genxml/gen40_pack.h with a custom command (wrapped by meson to capture output)
+[640/1188] Generating src/intel/genxml/gen45_pack.h with a custom command (wrapped by meson to capture output)
+[641/1188] Generating src/intel/genxml/gen50_pack.h with a custom command (wrapped by meson to capture output)
+[642/1188] Generating src/intel/genxml/gen60_pack.h with a custom command (wrapped by meson to capture output)
+[643/1188] Generating src/intel/genxml/gen70_pack.h with a custom command (wrapped by meson to capture output)
+[644/1188] Generating src/intel/genxml/gen75_pack.h with a custom command (wrapped by meson to capture output)
+[645/1188] Generating src/intel/genxml/gen80_pack.h with a custom command (wrapped by meson to capture output)
+[646/1188] Generating src/intel/genxml/gen90_pack.h with a custom command (wrapped by meson to capture output)
+[647/1188] Generating src/intel/genxml/gen110_pack.h with a custom command (wrapped by meson to capture output)
+[648/1188] Generating src/intel/genxml/gen120_pack.h with a custom command (wrapped by meson to capture output)
+[649/1188] Generating src/intel/genxml/gen125_pack.h with a custom command (wrapped by meson to capture output)
+[650/1188] Generating src/intel/genxml/xe2_pack.h with a custom command (wrapped by meson to capture output)
+[651/1188] Generating src/intel/genxml/xe3_pack.h with a custom command (wrapped by meson to capture output)
+[652/1188] Generating src/intel/genxml/xe3p_pack.h with a custom command (wrapped by meson to capture output)
+[653/1188] Generating src/intel/genxml/gen125_rt_pack.h with a custom command (wrapped by meson to capture output)
+[654/1188] Generating src/intel/genxml/xe2_rt_pack.h with a custom command (wrapped by meson to capture output)
+[655/1188] Generating src/intel/genxml/xe3_rt_pack.h with a custom command (wrapped by meson to capture output)
+[656/1188] Generating src/intel/genxml/xe3p_rt_pack.h with a custom command (wrapped by meson to capture output)
+[657/1188] Generating src/intel/genxml/gen40_video_pack.h with a custom command (wrapped by meson to capture output)
+[658/1188] Generating src/intel/genxml/gen45_video_pack.h with a custom command (wrapped by meson to capture output)
+[659/1188] Generating src/intel/genxml/gen50_video_pack.h with a custom command (wrapped by meson to capture output)
+[660/1188] Generating src/intel/genxml/gen60_video_pack.h with a custom command (wrapped by meson to capture output)
+[661/1188] Generating src/intel/genxml/gen70_video_pack.h with a custom command (wrapped by meson to capture output)
+[662/1188] Generating src/intel/genxml/gen75_video_pack.h with a custom command (wrapped by meson to capture output)
+[663/1188] Generating src/intel/genxml/gen80_video_pack.h with a custom command (wrapped by meson to capture output)
+[664/1188] Generating src/intel/genxml/gen90_video_pack.h with a custom command (wrapped by meson to capture output)
+[665/1188] Generating src/intel/genxml/gen110_video_pack.h with a custom command (wrapped by meson to capture output)
+[666/1188] Generating src/intel/genxml/gen120_video_pack.h with a custom command (wrapped by meson to capture output)
+[667/1188] Generating src/intel/genxml/gen125_video_pack.h with a custom command (wrapped by meson to capture output)
+[668/1188] Generating src/intel/genxml/xe2_video_pack.h with a custom command (wrapped by meson to capture output)
+[669/1188] Generating src/intel/genxml/xe3_video_pack.h with a custom command (wrapped by meson to capture output)
+[670/1188] Generating src/intel/genxml/xe3p_video_pack.h with a custom command (wrapped by meson to capture output)
+[671/1188] Generating src/intel/dev/intel_device_info_gen.h with a custom command
+[672/1188] Generating src/intel/isl/isl_format_layout.c with a custom command
+[673/1188] Generating src/intel/compiler/brw_device_sha1_gen.c with a custom command
+[674/1188] Generating src/intel/compiler/gen/gen_opcodes with a custom command
+[675/1188] Generating src/intel/compiler/gen/gen_info_*.h with a custom command
+[676/1188] Generating src/intel/compiler/brw/brw_nir_lower_fsign.c with a custom command (wrapped by meson to capture output)
+[677/1188] Generating src/intel/compiler/brw/brw_nir_workarounds.c with a custom command (wrapped by meson to capture output)
+[678/1188] Generating src/intel/compiler/jay/jay_opcodes.c with a custom command
+[679/1188] Generating src/intel/compiler/jay/jay_extra_info.h with a custom command
+[680/1188] Generating src/intel/compiler/jay/jay_builder_opcodes.h with a custom command
+[681/1188] Generating src/intel/compiler/jay/jay_nir_algebraic.c with a custom command
+[682/1188] Generating src/intel/compiler/elk/elk_nir_trig_workarounds.c with a custom command (wrapped by meson to capture output)
+[683/1188] Generating src/intel/blorp/blorp_shaders.cpp with a custom command
+[684/1188] Generating src/intel/shaders/intel_gfx80_shaders_binding.cpp with a custom command
+[685/1188] Generating src/intel/shaders/intel_gfx90_shaders_binding.cpp with a custom command
+[686/1188] Generating src/intel/shaders/intel_gfx110_shaders_binding.cpp with a custom command
+[687/1188] Generating src/intel/shaders/intel_gfx120_shaders_binding.cpp with a custom command
+[688/1188] Generating src/intel/shaders/intel_gfx125_shaders_binding.cpp with a custom command
+[689/1188] Generating src/intel/shaders/intel_gfx200_shaders_binding.cpp with a custom command
+[690/1188] Generating src/intel/shaders/intel_gfx300_shaders_binding.cpp with a custom command
+[691/1188] Generating src/intel/shaders/intel_gfx350_shaders_binding.cpp with a custom command
+[692/1188] Generating src/intel/perf/intel-perf-sources with a custom command
+[693/1188] Generating src/intel/ds/intel_tracepoints.[ch] with a custom command
+[694/1188] Copying /build/audit-rusticl-src.r815d9Gy/src/gallium/frontends/rusticl/builtin_kernels/lib.rs to src/gallium/frontends/rusticl/builtin_kernels/librusticl_kernels.rlib.p/structured/lib.rs
+[695/1188] Copying src/gallium/frontends/rusticl/builtin_kernels/rusticl_kernels.spv64 to src/gallium/frontends/rusticl/builtin_kernels/librusticl_kernels.rlib.p/structured/gen/rusticl_kernels.spv64
+[696/1188] Copying src/gallium/frontends/rusticl/builtin_kernels/rusticl_kernels_ulong.spv64 to src/gallium/frontends/rusticl/builtin_kernels/librusticl_kernels.rlib.p/structured/gen/rusticl_kernels_ulong.spv64
+[697/1188] Copying src/gallium/frontends/rusticl/builtin_kernels/rusticl_kernels.spv32 to src/gallium/frontends/rusticl/builtin_kernels/librusticl_kernels.rlib.p/structured/gen/rusticl_kernels.spv32
+[698/1188] Copying src/gallium/frontends/rusticl/builtin_kernels/rusticl_kernels_ulong.spv32 to src/gallium/frontends/rusticl/builtin_kernels/librusticl_kernels.rlib.p/structured/gen/rusticl_kernels_ulong.spv32
+[699/1188] Generating bindings for Rust src/gallium/frontends/rusticl/rustmod-bindgen-rusticl_opencl_bindings.h
+Failed to run rustfmt: No such file or directory (os error 2) (non-fatal, continuing)
+[700/1188] Generating bindings for Rust src/gallium/frontends/rusticl/rustmod-bindgen-rusticl_llvm_bindings.hpp
+Failed to run rustfmt: No such file or directory (os error 2) (non-fatal, continuing)
+[701/1188] Linking static target src/gallium/frontends/rusticl/librusticl_c.a
+[702/1188] Compiling Rust source src/gallium/frontends/rusticl/rusticl_mesa_bindings.rs
+[703/1188] Compiling Rust source src/gallium/frontends/rusticl/rusticl_libc_bindings.rs
+[704/1188] Compiling Rust source ../audit-rusticl-src.r815d9Gy/src/gallium/frontends/rusticl/util/lib.rs
+[705/1188] Compiling C object src/util/libxmlconfig.a.p/xmlconfig.c.o
+[706/1188] Compiling C object src/loader/libloader.a.p/loader_dri_helper.c.o
+[707/1188] Compiling C object src/loader/libloader.a.p/loader.c.o
+[708/1188] Compiling C object src/intel/mda/libmda.a.p/debug_archiver.c.o
+[709/1188] Compiling C object src/intel/mda/libmda.a.p/mda_match.c.o
+[710/1188] Compiling C object src/intel/mda/libmda.a.p/slice.c.o
+[711/1188] Compiling C object src/intel/mda/libmda.a.p/tar.c.o
+[712/1188] Compiling C object src/intel/dev/libintel_dev.a.p/meson-generated_.._intel_wa.c.o
+[713/1188] Compiling C object src/intel/dev/libintel_dev.a.p/i915_intel_device_info.c.o
+[714/1188] Compiling C object src/intel/dev/libintel_dev.a.p/xe_intel_device_info.c.o
+[715/1188] Compiling C object src/intel/dev/libintel_dev.a.p/intel_debug.c.o
+[716/1188] Compiling C object src/intel/dev/libintel_dev.a.p/intel_device_info.c.o
+[717/1188] Compiling C object src/intel/dev/libintel_dev.a.p/intel_hwconfig.c.o
+[718/1188] Compiling C object src/intel/dev/libintel_dev.a.p/intel_kmd.c.o
+[719/1188] Compiling C object src/intel/isl/libisl_per_hw_ver40.a.p/isl_gfx4.c.o
+[720/1188] Compiling C object src/intel/isl/libisl_per_hw_ver40.a.p/isl_emit_cpb.c.o
+[721/1188] Compiling C object src/intel/isl/libisl_per_hw_ver40.a.p/isl_emit_depth_stencil.c.o
+[722/1188] Compiling C object src/intel/isl/libisl_per_hw_ver40.a.p/isl_surface_state.c.o
+[723/1188] Compiling C object src/intel/isl/libisl_per_hw_ver50.a.p/isl_emit_cpb.c.o
+[724/1188] Compiling C object src/intel/isl/libisl_per_hw_ver50.a.p/isl_emit_depth_stencil.c.o
+[725/1188] Compiling C object src/intel/isl/libisl_per_hw_ver50.a.p/isl_surface_state.c.o
+[726/1188] Compiling C object src/intel/isl/libisl_per_hw_ver60.a.p/isl_gfx6.c.o
+[727/1188] Compiling C object src/intel/isl/libisl_per_hw_ver60.a.p/isl_emit_cpb.c.o
+[728/1188] Compiling C object src/intel/isl/libisl_per_hw_ver60.a.p/isl_emit_depth_stencil.c.o
+[729/1188] Compiling C object src/intel/isl/libisl_per_hw_ver60.a.p/isl_surface_state.c.o
+[730/1188] Compiling C object src/intel/isl/libisl_per_hw_ver70.a.p/isl_gfx7.c.o
+[731/1188] Compiling C object src/intel/isl/libisl_per_hw_ver70.a.p/isl_emit_cpb.c.o
+[732/1188] Compiling C object src/intel/isl/libisl_per_hw_ver70.a.p/isl_emit_depth_stencil.c.o
+[733/1188] Compiling C object src/intel/isl/libisl_per_hw_ver70.a.p/isl_surface_state.c.o
+[734/1188] Compiling C object src/intel/isl/libisl_per_hw_ver75.a.p/isl_emit_cpb.c.o
+[735/1188] Compiling C object src/intel/isl/libisl_per_hw_ver75.a.p/isl_emit_depth_stencil.c.o
+[736/1188] Compiling C object src/intel/isl/libisl_per_hw_ver75.a.p/isl_surface_state.c.o
+[737/1188] Compiling C object src/intel/isl/libisl_per_hw_ver80.a.p/isl_gfx8.c.o
+[738/1188] Compiling C object src/intel/isl/libisl_per_hw_ver80.a.p/isl_emit_cpb.c.o
+[739/1188] Compiling C object src/intel/isl/libisl_per_hw_ver80.a.p/isl_emit_depth_stencil.c.o
+[740/1188] Compiling C object src/intel/isl/libisl_per_hw_ver80.a.p/isl_surface_state.c.o
+[741/1188] Compiling C object src/intel/isl/libisl_per_hw_ver90.a.p/isl_gfx9.c.o
+[742/1188] Compiling C object src/intel/isl/libisl_per_hw_ver90.a.p/isl_emit_cpb.c.o
+[743/1188] Compiling C object src/intel/isl/libisl_per_hw_ver90.a.p/isl_emit_depth_stencil.c.o
+[744/1188] Compiling C object src/intel/isl/libisl_per_hw_ver90.a.p/isl_surface_state.c.o
+[745/1188] Compiling C object src/intel/isl/libisl_per_hw_ver110.a.p/isl_emit_cpb.c.o
+[746/1188] Compiling C object src/intel/isl/libisl_per_hw_ver110.a.p/isl_emit_depth_stencil.c.o
+[747/1188] Compiling C object src/intel/isl/libisl_per_hw_ver110.a.p/isl_surface_state.c.o
+[748/1188] Compiling C object src/intel/isl/libisl_per_hw_ver120.a.p/isl_gfx12.c.o
+[749/1188] Compiling C object src/intel/isl/libisl_per_hw_ver120.a.p/isl_emit_cpb.c.o
+[750/1188] Compiling C object src/intel/isl/libisl_per_hw_ver120.a.p/isl_emit_depth_stencil.c.o
+[751/1188] Compiling C object src/intel/isl/libisl_per_hw_ver120.a.p/isl_surface_state.c.o
+[752/1188] Compiling C object src/intel/isl/libisl_per_hw_ver125.a.p/isl_gfx12.c.o
+[753/1188] Compiling C object src/intel/isl/libisl_per_hw_ver125.a.p/isl_emit_cpb.c.o
+[754/1188] Compiling C object src/intel/isl/libisl_per_hw_ver125.a.p/isl_emit_depth_stencil.c.o
+[755/1188] Compiling C object src/intel/isl/libisl_per_hw_ver125.a.p/isl_surface_state.c.o
+[756/1188] Compiling C object src/intel/isl/libisl_per_hw_ver200.a.p/isl_gfx20.c.o
+[757/1188] Compiling C object src/intel/isl/libisl_per_hw_ver200.a.p/isl_emit_cpb.c.o
+[758/1188] Compiling C object src/intel/isl/libisl_per_hw_ver200.a.p/isl_emit_depth_stencil.c.o
+[759/1188] Compiling C object src/intel/isl/libisl_per_hw_ver200.a.p/isl_surface_state.c.o
+[760/1188] Compiling C object src/intel/isl/libisl_per_hw_ver300.a.p/isl_gfx20.c.o
+[761/1188] Compiling C object src/intel/isl/libisl_per_hw_ver300.a.p/isl_emit_cpb.c.o
+[762/1188] Compiling C object src/intel/isl/libisl_per_hw_ver300.a.p/isl_emit_depth_stencil.c.o
+[763/1188] Compiling C object src/intel/isl/libisl_per_hw_ver300.a.p/isl_surface_state.c.o
+[764/1188] Compiling C object src/intel/isl/libisl_per_hw_ver350.a.p/isl_gfx20.c.o
+[765/1188] Compiling C object src/intel/isl/libisl_per_hw_ver350.a.p/isl_emit_cpb.c.o
+[766/1188] Compiling C object src/intel/isl/libisl_per_hw_ver350.a.p/isl_emit_depth_stencil.c.o
+[767/1188] Compiling C object src/intel/isl/libisl_per_hw_ver350.a.p/isl_surface_state.c.o
+[768/1188] Compiling C object src/intel/isl/libisl_tiled_memcpy.a.p/isl_tiled_memcpy_normal.c.o
+[769/1188] Compiling C object src/intel/isl/libisl_tiled_memcpy_sse41.a.p/isl_tiled_memcpy_sse41.c.o
+[770/1188] Compiling C object src/intel/isl/libisl.a.p/meson-generated_.._isl_format_layout.c.o
+[771/1188] Compiling C object src/intel/isl/libisl.a.p/isl.c.o
+[772/1188] Compiling C object src/intel/isl/libisl.a.p/isl_aux_info.c.o
+[773/1188] Compiling C object src/intel/isl/libisl.a.p/isl_drm.c.o
+[774/1188] Compiling C object src/intel/isl/libisl.a.p/isl_format.c.o
+[775/1188] Compiling C object src/intel/isl/libisl.a.p/isl_storage_image.c.o
+[776/1188] Compiling C object src/intel/common/libintel_common.a.p/i915_intel_engine.c.o
+[777/1188] Compiling C object src/intel/common/libintel_common.a.p/i915_intel_gem.c.o
+[778/1188] Compiling C object src/intel/common/libintel_common.a.p/xe_intel_device_query.c.o
+[779/1188] Compiling C object src/intel/common/libintel_common.a.p/xe_intel_engine.c.o
+[780/1188] Compiling C object src/intel/common/libintel_common.a.p/xe_intel_gem.c.o
+[781/1188] Compiling C object src/intel/common/libintel_common.a.p/xe_intel_queue.c.o
+[782/1188] Compiling C object src/intel/common/libintel_common.a.p/intel_aux_map.c.o
+[783/1188] Compiling C object src/intel/common/libintel_common.a.p/intel_bind_timeline.c.o
+[784/1188] Compiling C object src/intel/common/libintel_common.a.p/intel_common.c.o
+[785/1188] Compiling C object src/intel/common/libintel_common.a.p/intel_compute_slm.c.o
+[786/1188] Compiling C object src/intel/common/libintel_common.a.p/intel_debug_identifier.c.o
+[787/1188] Compiling C object src/intel/common/libintel_common.a.p/intel_engine.c.o
+[788/1188] Compiling C object src/intel/common/libintel_common.a.p/intel_gem.c.o
+[789/1188] Compiling C object src/intel/common/libintel_common.a.p/intel_l3_config.c.o
+[790/1188] Compiling C object src/intel/common/libintel_common.a.p/intel_urb_config.c.o
+[791/1188] Compiling C object src/intel/common/libintel_common.a.p/intel_sample_positions.c.o
+[792/1188] Compiling C object src/intel/common/libintel_common.a.p/intel_uuid.c.o
+[793/1188] Compiling C object src/intel/common/libintel_common.a.p/intel_measure.c.o
+[794/1188] Compiling C object src/intel/common/libintel_common.a.p/intel_pagefault.c.o
+[795/1188] Compiling C object src/intel/compiler/libintel_compiler_nir.a.p/intel_nir.c.o
+[796/1188] Compiling C object src/intel/compiler/libintel_compiler_nir.a.p/intel_nir_blockify_uniform_loads.c.o
+[797/1188] Compiling C object src/intel/compiler/libintel_compiler_nir.a.p/intel_nir_clamp_image_1d_2d_array_sizes.c.o
+[798/1188] Compiling C object src/intel/compiler/libintel_compiler_nir.a.p/intel_nir_clamp_per_vertex_loads.c.o
+[799/1188] Compiling C object src/intel/compiler/libintel_compiler_nir.a.p/intel_nir_lower_fragment_outputs.c.o
+[800/1188] Compiling C object src/intel/compiler/libintel_compiler_nir.a.p/intel_nir_lower_non_uniform_barycentric_at_sample.c.o
+[801/1188] Compiling C object src/intel/compiler/libintel_compiler_nir.a.p/intel_nir_lower_non_uniform_resource_intel.c.o
+[802/1188] Compiling C object src/intel/compiler/libintel_compiler_nir.a.p/intel_nir_lower_printf.c.o
+[803/1188] Compiling C object src/intel/compiler/libintel_compiler_nir.a.p/intel_nir_lower_shading_rate_output.c.o
+[804/1188] Compiling C object src/intel/compiler/libintel_compiler_nir.a.p/intel_nir_lower_sparse.c.o
+[805/1188] Compiling C object src/intel/compiler/libintel_compiler_nir.a.p/intel_nir_lower_vec2_surface_sampler.c.o
+[806/1188] Compiling C object src/intel/compiler/libintel_compiler_nir.a.p/intel_nir_opt_atomic_branch.c.o
+[807/1188] Compiling C object src/intel/compiler/libintel_compiler_nir.a.p/intel_nir_opt_peephole_ffma.c.o
+[808/1188] Compiling C object src/intel/compiler/libintel_compiler_nir.a.p/intel_nir_opt_peephole_imul32x16.c.o
+[809/1188] Compiling C object src/intel/compiler/libintel_compiler_nir.a.p/intel_nir_tcs_workarounds.c.o
+[810/1188] Compiling C++ object src/intel/compiler/gen/libintel_compiler_gen.a.p/meson-generated_.._gen_opcodes.cpp.o
+[811/1188] Compiling C object src/intel/compiler/gen/libintel_compiler_gen.a.p/gen_names.c.o
+[812/1188] Compiling C++ object src/intel/compiler/gen/libintel_compiler_gen.a.p/gen_compact.cpp.o
+[813/1188] Compiling C++ object src/intel/compiler/gen/libintel_compiler_gen.a.p/gen_control_flow.cpp.o
+[814/1188] Compiling C++ object src/intel/compiler/gen/libintel_compiler_gen.a.p/gen_parse.cpp.o
+[815/1188] Compiling C++ object src/intel/compiler/gen/libintel_compiler_gen.a.p/gen_print.cpp.o
+[816/1188] Compiling C++ object src/intel/compiler/gen/libintel_compiler_gen.a.p/gen_encoding.cpp.o
+[817/1188] Compiling C++ object src/intel/compiler/gen/libintel_compiler_gen.a.p/gen_encoding_pre_xe.cpp.o
+[818/1188] Compiling C++ object src/intel/compiler/gen/libintel_compiler_gen.a.p/gen_validate.cpp.o
+[819/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/meson-generated_.._brw_nir_lower_fsign.c.o
+[820/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/meson-generated_.._brw_nir_workarounds.c.o
+[821/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/meson-generated_.._.._brw_device_sha1_gen.c.o
+[822/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_analysis.cpp.o
+[823/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_analysis_def.cpp.o
+[824/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_analysis_liveness.cpp.o
+[825/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_analysis_performance.cpp.o
+[826/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_builder.cpp.o
+[827/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_cfg.cpp.o
+[828/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_compile_bs.cpp.o
+[829/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_compile_cs.cpp.o
+[830/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_compile_fs.cpp.o
+[831/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_compile_gs.cpp.o
+[832/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_compile_mesh.cpp.o
+[833/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_compile_tcs.cpp.o
+[834/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_compile_tes.cpp.o
+[835/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_compile_vs.cpp.o
+[836/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_compiler.c.o
+[837/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_eu.c.o
+[838/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_from_nir.cpp.o
+[839/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_inst.cpp.o
+[840/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_load_reg.cpp.o
+[841/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_lower.cpp.o
+[842/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_lower_dpas.cpp.o
+[843/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_lower_fill_spill.cpp.o
+[844/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_lower_integer_multiplication.cpp.o
+[845/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_lower_logical_sends.cpp.o
+[846/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_lower_pack.cpp.o
+[847/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_lower_regioning.cpp.o
+[848/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_lower_scoreboard.cpp.o
+[849/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_lower_simd_width.cpp.o
+[850/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_lower_subgroup_ops.cpp.o
+[851/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_nir.c.o
+[852/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_nir_fence_shared_stores.c.o
+[853/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_nir_lower_cooperative_matrix.c.o
+[854/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_nir_lower_cs_intrinsics.c.o
+[855/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_nir_lower_alpha_to_coverage.c.o
+[856/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_nir_lower_divergent_barriers.c.o
+[857/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_nir_lower_fs_barycentrics.c.o
+[858/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_nir_lower_fs_load_output.c.o
+[859/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_nir_lower_fully_covered.c.o
+[860/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_nir_lower_immediate_offsets.c.o
+[861/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_nir_lower_intersection_shader.c.o
+[862/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_nir_lower_ray_queries.c.o
+[863/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_nir_lower_rt_intrinsics.c.o
+[864/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_nir_lower_rt_intrinsics_pre_trace.c.o
+[865/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_nir_lower_sample_index_in_coord.c.o
+[866/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_nir_lower_shader_calls.c.o
+[867/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_nir_lower_storage_image.c.o
+[868/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_nir_lower_texel_address.c.o
+[869/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_nir_lower_texture.c.o
+[870/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_nir_opt_divergent_atomics.c.o
+[871/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_nir_wa_18019110168.c.o
+[872/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_nir_opt_fsat.c.o
+[873/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_nir_opt_systolic_vectorize.c.o
+[874/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_nir_rt.c.o
+[875/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_opt.cpp.o
+[876/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_opt_address_reg_load.cpp.o
+[877/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_opt_algebraic.cpp.o
+[878/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_opt_bank_conflicts.cpp.o
+[879/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_opt_cmod_propagation.cpp.o
+[880/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_opt_cmp_flag_destination.cpp.o
+[881/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_opt_combine_constants.cpp.o
+[882/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_opt_copy_propagation.cpp.o
+[883/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_opt_cse.cpp.o
+[884/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_opt_dead_code_eliminate.cpp.o
+[885/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_opt_fill_spill.cpp.o
+[886/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_opt_mac.cpp.o
+[887/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_opt_predicate_logic.cpp.o
+[888/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_opt_register_coalesce.cpp.o
+[889/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_opt_saturate_propagation.cpp.o
+[890/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_opt_txf_combiner.cpp.o
+[891/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_opt_virtual_grfs.cpp.o
+[892/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_packed_float.c.o
+[893/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_print.cpp.o
+[894/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_reg.cpp.o
+[895/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_reg_allocate.cpp.o
+[896/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_reg_type.c.o
+[897/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_sampler.c.o
+[898/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_schedule_instructions.cpp.o
+[899/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_shader.cpp.o
+[900/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_simd_selection.cpp.o
+[901/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_thread_payload.cpp.o
+[902/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_to_binary.cpp.o
+[903/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_validate.cpp.o
+[904/1188] Compiling C object src/intel/compiler/brw/libintel_compiler.a.p/brw_vue_map.c.o
+[905/1188] Compiling C++ object src/intel/compiler/brw/libintel_compiler.a.p/brw_workaround.cpp.o
+[906/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/meson-generated_.._jay_nir_algebraic.c.o
+[907/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/meson-generated_.._jay_opcodes.c.o
+[908/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_assign_accumulators.c.o
+[909/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_from_nir.c.o
+[910/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_liveness.c.o
+[911/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_lower_flags.c.o
+[912/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_lower_helpers.c.o
+[913/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_lower_post_ra.c.o
+[914/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_lower_post_sched.c.o
+[915/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_lower_pre_ra.c.o
+[916/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_lower_scoreboard.c.o
+[917/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_lower_send.c.o
+[918/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_lower_spill.c.o
+[919/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_nir.c.o
+[920/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_opt_bfn.c.o
+[921/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_opt_dead_code.c.o
+[922/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_opt_postra_vectorize.c.o
+[923/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_opt_predicate.c.o
+[924/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_opt_propagate.c.o
+[925/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_opt_sampler_vectorize.c.o
+[926/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_partition.c.o
+[927/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_performance.c.o
+[928/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_print.c.o
+[929/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_prog_data.c.o
+[930/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_register_allocate.c.o
+[931/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_simd_width.c.o
+[932/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_schedule.c.o
+[933/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_stride.c.o
+[934/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_spill.c.o
+[935/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_to_binary.c.o
+[936/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_validate.c.o
+[937/1188] Compiling C object src/intel/compiler/jay/libintel_compiler_jay.a.p/jay_validate_ra.c.o
+[938/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/meson-generated_.._elk_nir_trig_workarounds.c.o
+[939/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_cfg.cpp.o
+[940/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_clip_line.c.o
+[941/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_clip_point.c.o
+[942/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_clip_tri.c.o
+[943/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_clip_unfilled.c.o
+[944/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_clip_util.c.o
+[945/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_compile_clip.c.o
+[946/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_compile_ff_gs.c.o
+[947/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_compile_sf.c.o
+[948/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_compiler.c.o
+[949/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_dead_control_flow.cpp.o
+[950/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_debug_recompile.c.o
+[951/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_disasm.c.o
+[952/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_disasm_info.c.o
+[953/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_eu.c.o
+[954/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_eu_compact.c.o
+[955/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_eu_emit.c.o
+[956/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_eu_util.c.o
+[957/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_eu_validate.c.o
+[958/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_fs_bank_conflicts.cpp.o
+[959/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_fs_cmod_propagation.cpp.o
+[960/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_fs_combine_constants.cpp.o
+[961/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_fs_copy_propagation.cpp.o
+[962/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_fs.cpp.o
+[963/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_fs_cse.cpp.o
+[964/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_fs_dead_code_eliminate.cpp.o
+[965/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_fs_generator.cpp.o
+[966/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_fs_live_variables.cpp.o
+[967/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_fs_lower_pack.cpp.o
+[968/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_fs_lower_regioning.cpp.o
+[969/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_fs_nir.cpp.o
+[970/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_fs_reg_allocate.cpp.o
+[971/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_fs_register_coalesce.cpp.o
+[972/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_fs_saturate_propagation.cpp.o
+[973/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_fs_sel_peephole.cpp.o
+[974/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_fs_thread_payload.cpp.o
+[975/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_fs_validate.cpp.o
+[976/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_fs_visitor.cpp.o
+[977/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_interpolation_map.c.o
+[978/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_ir_performance.cpp.o
+[979/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_lower_logical_sends.cpp.o
+[980/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_nir.c.o
+[981/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_nir_analyze_boolean_resolves.c.o
+[982/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_nir_analyze_ubo_ranges.c.o
+[983/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_nir_attribute_workarounds.c.o
+[984/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_nir_lower_alpha_to_coverage.c.o
+[985/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_nir_lower_cs_intrinsics.c.o
+[986/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_nir_lower_storage_image.c.o
+[987/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_nir_options.c.o
+[988/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_packed_float.c.o
+[989/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_predicated_break.cpp.o
+[990/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_reg_type.c.o
+[991/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_schedule_instructions.cpp.o
+[992/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_shader.cpp.o
+[993/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_simd_selection.cpp.o
+[994/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_vec4_cmod_propagation.cpp.o
+[995/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_vec4_copy_propagation.cpp.o
+[996/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_vec4.cpp.o
+[997/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_vec4_cse.cpp.o
+[998/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_vec4_dead_code_eliminate.cpp.o
+[999/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_vec4_generator.cpp.o
+[1000/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_vec4_gs_visitor.cpp.o
+[1001/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_vec4_live_variables.cpp.o
+[1002/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_vec4_nir.cpp.o
+[1003/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_vec4_gs_nir.cpp.o
+[1004/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_vec4_reg_allocate.cpp.o
+[1005/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_vec4_surface_builder.cpp.o
+[1006/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_vec4_tcs.cpp.o
+[1007/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_vec4_tes.cpp.o
+[1008/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_vec4_visitor.cpp.o
+[1009/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_vec4_vs_visitor.cpp.o
+[1010/1188] Compiling C object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_vue_map.c.o
+[1011/1188] Compiling C++ object src/intel/compiler/elk/libintel_compiler_elk.a.p/elk_gfx6_gs_visitor.cpp.o
+[1012/1188] Compiling C++ object src/intel/blorp/libblorp.a.p/meson-generated_.._blorp_shaders.cpp.o
+[1013/1188] Compiling C object src/intel/blorp/libblorp.a.p/blorp.c.o
+[1014/1188] Compiling C object src/intel/blorp/libblorp.a.p/blorp_blit.c.o
+[1015/1188] Compiling C object src/intel/blorp/libblorp.a.p/blorp_clear.c.o
+[1016/1188] Compiling C object src/intel/blorp/libblorp.a.p/blorp_mem_copy.c.o
+[1017/1188] Compiling C object src/intel/blorp/libblorp.a.p/blorp_indirect_copy.c.o
+[1018/1188] Compiling C object src/intel/blorp/libblorp.a.p/blorp_brw.c.o
+[1019/1188] Compiling C++ object src/intel/blorp/libblorp_elk.a.p/meson-generated_.._blorp_shaders.cpp.o
+[1020/1188] Compiling C object src/intel/blorp/libblorp_elk.a.p/blorp.c.o
+[1021/1188] Compiling C object src/intel/blorp/libblorp_elk.a.p/blorp_blit.c.o
+[1022/1188] Compiling C object src/intel/blorp/libblorp_elk.a.p/blorp_clear.c.o
+[1023/1188] Compiling C object src/intel/blorp/libblorp_elk.a.p/blorp_mem_copy.c.o
+[1024/1188] Compiling C object src/intel/blorp/libblorp_elk.a.p/blorp_indirect_copy.c.o
+[1025/1188] Compiling C object src/intel/blorp/libblorp_elk.a.p/blorp_elk.c.o
+[1026/1188] Compiling C object src/intel/decoder/libintel_decoder.a.p/intel_decoder.c.o
+[1027/1188] Compiling C object src/intel/decoder/libintel_decoder.a.p/intel_batch_decoder.c.o
+[1028/1188] Compiling C object src/intel/decoder/libintel_decoder_gen.a.p/intel_batch_decoder_gen.c.o
+[1029/1188] Compiling C object src/intel/decoder/libintel_decoder_elk.a.p/intel_batch_decoder_elk.c.o
+[1030/1188] Compiling C++ object src/intel/shaders/libintel_shaders.a.p/meson-generated_.._intel_gfx80_shaders_binding.cpp.o
+[1031/1188] Compiling C++ object src/intel/shaders/libintel_shaders.a.p/meson-generated_.._intel_gfx90_shaders_binding.cpp.o
+[1032/1188] Compiling C++ object src/intel/shaders/libintel_shaders.a.p/meson-generated_.._intel_gfx110_shaders_binding.cpp.o
+[1033/1188] Compiling C++ object src/intel/shaders/libintel_shaders.a.p/meson-generated_.._intel_gfx120_shaders_binding.cpp.o
+[1034/1188] Compiling C++ object src/intel/shaders/libintel_shaders.a.p/meson-generated_.._intel_gfx125_shaders_binding.cpp.o
+[1035/1188] Compiling C++ object src/intel/shaders/libintel_shaders.a.p/meson-generated_.._intel_gfx200_shaders_binding.cpp.o
+[1036/1188] Compiling C++ object src/intel/shaders/libintel_shaders.a.p/meson-generated_.._intel_gfx300_shaders_binding.cpp.o
+[1037/1188] Compiling C++ object src/intel/shaders/libintel_shaders.a.p/meson-generated_.._intel_gfx350_shaders_binding.cpp.o
+[1038/1188] Compiling C object src/intel/perf/libintel_perf.a.p/meson-generated_.._intel_perf_metrics.c.o
+[1039/1188] Compiling C object src/intel/perf/libintel_perf.a.p/i915_intel_perf.c.o
+[1040/1188] Compiling C object src/intel/perf/libintel_perf.a.p/xe_intel_perf.c.o
+[1041/1188] Compiling C object src/intel/perf/libintel_perf.a.p/intel_perf_common.c.o
+[1042/1188] Compiling C object src/intel/perf/libintel_perf.a.p/intel_perf.c.o
+[1043/1188] Compiling C object src/intel/perf/libintel_perf.a.p/intel_perf_query.c.o
+[1044/1188] Compiling C object src/intel/perf/libintel_perf.a.p/intel_perf_mdapi.c.o
+[1045/1188] Compiling C++ object src/intel/perf/libintel_perf.a.p/intel_perf_metrics_library.cpp.o
+[1046/1188] Compiling C object src/intel/ds/libintel-driver-ds.a.p/meson-generated_.._intel_tracepoints.c.o
+[1047/1188] Compiling C++ object src/intel/ds/libintel-driver-ds.a.p/intel_driver_ds.cc.o
+[1048/1188] Compiling C object src/gallium/auxiliary/libgalliumvl.a.p/vl_vl_codec.c.o
+[1049/1188] Compiling C object src/gallium/auxiliary/libgalliumvl.a.p/vl_vl_compositor.c.o
+[1050/1188] Compiling C object src/gallium/auxiliary/libgalliumvl.a.p/vl_vl_compositor_gfx.c.o
+[1051/1188] Compiling C object src/gallium/auxiliary/libgalliumvl.a.p/vl_vl_compositor_cs.c.o
+[1052/1188] Compiling C object src/gallium/auxiliary/libgalliumvl.a.p/vl_vl_compositor_proc.c.o
+[1053/1188] Compiling C object src/gallium/auxiliary/libgalliumvl.a.p/vl_vl_csc.c.o
+[1054/1188] Compiling C object src/gallium/auxiliary/libgalliumvl.a.p/vl_vl_deint_filter.c.o
+[1055/1188] Compiling C object src/gallium/auxiliary/libgalliumvl.a.p/vl_vl_deint_filter_cs.c.o
+[1056/1188] Compiling C object src/gallium/auxiliary/libgalliumvl.a.p/vl_vl_mpeg12_bitstream.c.o
+[1057/1188] Compiling C object src/gallium/auxiliary/libgalliumvl.a.p/vl_vl_proc.c.o
+[1058/1188] Compiling C object src/gallium/auxiliary/libgalliumvl.a.p/vl_vl_vertex_buffers.c.o
+[1059/1188] Compiling C object src/gallium/auxiliary/libgalliumvl.a.p/vl_vl_video_buffer.c.o
+[1060/1188] Compiling C object src/gallium/auxiliary/pipe-loader/libpipe_loader_static.a.p/pipe_loader.c.o
+[1061/1188] Compiling C object src/gallium/auxiliary/pipe-loader/libpipe_loader_static.a.p/pipe_loader_sw.c.o
+[1062/1188] Compiling C object src/gallium/auxiliary/pipe-loader/libpipe_loader_static.a.p/pipe_loader_drm.c.o
+[1063/1188] Compiling C object src/gallium/winsys/sw/null/libws_null.a.p/null_sw_winsys.c.o
+[1064/1188] Compiling C object src/gallium/winsys/sw/dri/libswdri.a.p/dri_sw_winsys.c.o
+[1065/1188] Compiling C object src/gallium/winsys/sw/kms-dri/libswkmsdri.a.p/kms_dri_sw_winsys.c.o
+[1066/1188] Compiling C object src/gallium/winsys/sw/wrapper/libwsw.a.p/wrapper_sw_winsys.c.o
+[1067/1188] Compiling C object src/gallium/winsys/iris/drm/libiriswinsys.a.p/iris_drm_winsys.c.o
+[1068/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver80.a.p/iris_blorp.c.o
+[1069/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver80.a.p/iris_query.c.o
+[1070/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver80.a.p/iris_state.c.o
+[1071/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver80.a.p/iris_indirect_gen.c.o
+[1072/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver90.a.p/iris_blorp.c.o
+[1073/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver90.a.p/iris_query.c.o
+[1074/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver90.a.p/iris_state.c.o
+[1075/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver90.a.p/iris_indirect_gen.c.o
+[1076/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver110.a.p/iris_blorp.c.o
+[1077/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver110.a.p/iris_query.c.o
+[1078/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver110.a.p/iris_state.c.o
+[1079/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver110.a.p/iris_indirect_gen.c.o
+[1080/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver120.a.p/iris_blorp.c.o
+[1081/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver120.a.p/iris_query.c.o
+[1082/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver120.a.p/iris_state.c.o
+[1083/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver120.a.p/iris_indirect_gen.c.o
+[1084/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver125.a.p/iris_blorp.c.o
+[1085/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver125.a.p/iris_query.c.o
+[1086/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver125.a.p/iris_state.c.o
+[1087/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver125.a.p/iris_indirect_gen.c.o
+[1088/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver200.a.p/iris_blorp.c.o
+[1089/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver200.a.p/iris_query.c.o
+[1090/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver200.a.p/iris_state.c.o
+[1091/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver200.a.p/iris_indirect_gen.c.o
+[1092/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver300.a.p/iris_blorp.c.o
+[1093/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver300.a.p/iris_query.c.o
+[1094/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver300.a.p/iris_state.c.o
+[1095/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver300.a.p/iris_indirect_gen.c.o
+[1096/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver350.a.p/iris_blorp.c.o
+[1097/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver350.a.p/iris_query.c.o
+[1098/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver350.a.p/iris_state.c.o
+[1099/1188] Compiling C object src/gallium/drivers/iris/libiris_per_hw_ver350.a.p/iris_indirect_gen.c.o
+[1100/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/i915_iris_batch.c.o
+[1101/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/i915_iris_bufmgr.c.o
+[1102/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/i915_iris_kmd_backend.c.o
+[1103/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/xe_iris_batch.c.o
+[1104/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/xe_iris_bufmgr.c.o
+[1105/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/xe_iris_kmd_backend.c.o
+[1106/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/iris_batch.c.o
+[1107/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/iris_binder.c.o
+[1108/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/iris_blit.c.o
+[1109/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/iris_border_color.c.o
+[1110/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/iris_bufmgr.c.o
+[1111/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/iris_clear.c.o
+[1112/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/iris_context.c.o
+[1113/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/iris_draw.c.o
+[1114/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/iris_fence.c.o
+[1115/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/iris_fine_fence.c.o
+[1116/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/iris_formats.c.o
+[1117/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/iris_kmd_backend.c.o
+[1118/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/iris_measure.c.o
+[1119/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/iris_monitor.c.o
+[1120/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/iris_nir_analyze_ubo_ranges.c.o
+[1121/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/iris_perf.c.o
+[1122/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/iris_performance_query.c.o
+[1123/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/iris_pipe_control.c.o
+[1124/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/iris_program.c.o
+[1125/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/iris_program_cache.c.o
+[1126/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/iris_resolve.c.o
+[1127/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/iris_resource.c.o
+[1128/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/iris_screen.c.o
+[1129/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/iris_disk_cache.c.o
+[1130/1188] Compiling C object src/gallium/drivers/iris/libiris.a.p/iris_utrace.c.o
+[1131/1188] Compiling Rust source src/gallium/frontends/rusticl/builtin_kernels/librusticl_kernels.rlib.p/structured/lib.rs
+[1132/1188] Compiling Rust source src/gallium/frontends/rusticl/rusticl_opencl_bindings.rs
+[1133/1188] Compiling Rust source src/gallium/frontends/rusticl/rusticl_llvm_bindings.rs
+[1134/1188] Compiling Rust source ../audit-rusticl-src.r815d9Gy/src/gallium/frontends/rusticl/mesa/lib.rs
+[1135/1188] Compiling Rust source ../audit-rusticl-src.r815d9Gy/src/gallium/frontends/rusticl/proc/lib.rs
+[1136/1188] Linking static target src/util/libxmlconfig.a
+[1137/1188] Linking static target src/loader/libloader.a
+[1138/1188] Linking static target src/intel/mda/libmda.a
+[1139/1188] Linking static target src/intel/dev/libintel_dev.a
+[1140/1188] Linking static target src/intel/isl/libisl_per_hw_ver40.a
+[1141/1188] Linking static target src/intel/isl/libisl_per_hw_ver50.a
+[1142/1188] Linking static target src/intel/isl/libisl_per_hw_ver60.a
+[1143/1188] Linking static target src/intel/isl/libisl_per_hw_ver70.a
+[1144/1188] Linking static target src/intel/isl/libisl_per_hw_ver75.a
+[1145/1188] Linking static target src/intel/isl/libisl_per_hw_ver80.a
+[1146/1188] Linking static target src/intel/isl/libisl_per_hw_ver90.a
+[1147/1188] Linking static target src/intel/isl/libisl_per_hw_ver110.a
+[1148/1188] Linking static target src/intel/isl/libisl_per_hw_ver120.a
+[1149/1188] Linking static target src/intel/isl/libisl_per_hw_ver125.a
+[1150/1188] Linking static target src/intel/isl/libisl_per_hw_ver200.a
+[1151/1188] Linking static target src/intel/isl/libisl_per_hw_ver300.a
+[1152/1188] Linking static target src/intel/isl/libisl_per_hw_ver350.a
+[1153/1188] Linking static target src/intel/isl/libisl_tiled_memcpy.a
+[1154/1188] Linking static target src/intel/isl/libisl_tiled_memcpy_sse41.a
+[1155/1188] Linking static target src/intel/isl/libisl.a
+[1156/1188] Linking static target src/intel/common/libintel_common.a
+[1157/1188] Linking static target src/intel/compiler/libintel_compiler_nir.a
+[1158/1188] Linking static target src/intel/compiler/gen/libintel_compiler_gen.a
+[1159/1188] Linking static target src/intel/compiler/brw/libintel_compiler.a
+[1160/1188] Linking static target src/intel/compiler/jay/libintel_compiler_jay.a
+[1161/1188] Linking static target src/intel/compiler/elk/libintel_compiler_elk.a
+[1162/1188] Linking static target src/intel/blorp/libblorp.a
+[1163/1188] Linking static target src/intel/blorp/libblorp_elk.a
+[1164/1188] Linking static target src/intel/decoder/libintel_decoder.a
+[1165/1188] Linking static target src/intel/decoder/libintel_decoder_gen.a
+[1166/1188] Linking static target src/intel/decoder/libintel_decoder_elk.a
+[1167/1188] Linking static target src/intel/shaders/libintel_shaders.a
+[1168/1188] Linking static target src/intel/perf/libintel_perf.a
+[1169/1188] Linking static target src/intel/ds/libintel-driver-ds.a
+[1170/1188] Linking static target src/gallium/auxiliary/libgalliumvl.a
+[1171/1188] Linking static target src/gallium/auxiliary/pipe-loader/libpipe_loader_static.a
+[1172/1188] Linking static target src/gallium/winsys/sw/null/libws_null.a
+[1173/1188] Linking static target src/gallium/winsys/sw/dri/libswdri.a
+[1174/1188] Linking static target src/gallium/winsys/sw/kms-dri/libswkmsdri.a
+[1175/1188] Linking static target src/gallium/winsys/sw/wrapper/libwsw.a
+[1176/1188] Linking static target src/gallium/winsys/iris/drm/libiriswinsys.a
+[1177/1188] Linking static target src/gallium/drivers/iris/libiris_per_hw_ver80.a
+[1178/1188] Linking static target src/gallium/drivers/iris/libiris_per_hw_ver90.a
+[1179/1188] Linking static target src/gallium/drivers/iris/libiris_per_hw_ver110.a
+[1180/1188] Linking static target src/gallium/drivers/iris/libiris_per_hw_ver120.a
+[1181/1188] Linking static target src/gallium/drivers/iris/libiris_per_hw_ver125.a
+[1182/1188] Linking static target src/gallium/drivers/iris/libiris_per_hw_ver200.a
+[1183/1188] Linking static target src/gallium/drivers/iris/libiris_per_hw_ver300.a
+[1184/1188] Linking static target src/gallium/drivers/iris/libiris_per_hw_ver350.a
+[1185/1188] Linking static target src/gallium/drivers/iris/libiris.a
+[1186/1188] Compiling Rust source ../audit-rusticl-src.r815d9Gy/src/gallium/frontends/rusticl/lib.rs
+[1187/1188] Compiling C object src/gallium/targets/rusticl/libRusticlOpenCL.so.1.0.0.p/rusticl_target.c.o
+[1188/1188] Linking target src/gallium/targets/rusticl/libRusticlOpenCL.so.1.0.0

@@ -1,0 +1,7 @@
+== fixed, inject >= none
+vkCreateComputePipelines = 0 (VK_SUCCESS)
+exit 0
+== fixed, inject >= 16777216
+gemfail: create 44040192 bytes -> injected ENOMEM
+vkCreateComputePipelines = -2 (VK_ERROR_OUT_OF_DEVICE_MEMORY)
+exit 3

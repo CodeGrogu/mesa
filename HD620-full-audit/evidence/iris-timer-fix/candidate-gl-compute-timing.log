@@ -1,0 +1,21 @@
+Mesa Intel(R) HD Graphics 620 (KBL GT2) 4.6 (Core Profile) Mesa 27.0.0-devel (git-0e9e1086bb)
+Mapped driver library /build/audit-iris/src/egl/libEGL.so.1.0.0
+Mapped driver library /build/audit-iris/src/gallium/targets/dri/libgallium-27.0.0-devel.so
+1048576 work-items, 16 rounds, timestamp pair, output checks passed
+  GL query difference median 1.862667 ms, samples ns [2808417, 2617500, 2319250, 2182083, 1862667, 1479000, 1428083, 1000500, 1032500]
+  wall time through finish median 1.977314 ms, samples ns [3195292, 2985119, 2694765, 2503658, 1977314, 1720803, 1749541, 1112612, 1199281]
+1048576 work-items, 16 rounds, time elapsed, output checks passed
+  GL query difference median 0.971166 ms, samples ns [1037500, 1086000, 1039333, 976833, 918833, 938166, 936166, 971166, 902000]
+  wall time through finish median 1.208860 ms, samples ns [1306008, 1224806, 1312574, 1262958, 1166341, 1163347, 1175910, 1208860, 1190741]
+1048576 work-items, 16 rounds, timestamp pair with explicit drains, output checks passed
+  GL query difference median 1.213917 ms, samples ns [1173833, 1296916, 1212667, 1293667, 1278334, 1104167, 1213917, 1236167, 1100583]
+  wall time through finish median 1.325698 ms, samples ns [1308533, 1389091, 1341889, 1427697, 1325698, 1188043, 1345110, 1290983, 1199764]
+1048576 work-items, 256 rounds, timestamp pair, output checks passed
+  GL query difference median 11.271000 ms, samples ns [11259583, 11286583, 11293000, 11225416, 11253667, 11264083, 11319584, 11271000, 11383334]
+  wall time through finish median 11.499384 ms, samples ns [11523176, 11489287, 11557251, 11374221, 11518060, 11426634, 11581107, 11384026, 11499384]
+1048576 work-items, 256 rounds, time elapsed, output checks passed
+  GL query difference median 11.288583 ms, samples ns [11259083, 11361666, 11357833, 11288583, 11832333, 11268583, 11334083, 11255083, 11259833]
+  wall time through finish median 11.519629 ms, samples ns [11518536, 11512278, 11611924, 11417470, 12004950, 11536841, 11633063, 11490312, 11519629]
+1048576 work-items, 256 rounds, timestamp pair with explicit drains, output checks passed
+  GL query difference median 11.631000 ms, samples ns [11673417, 11503000, 11569833, 11383083, 11655833, 11638750, 11363750, 11666000, 11631000]
+  wall time through finish median 11.723044 ms, samples ns [11811931, 11643508, 11703897, 11516533, 11761285, 11773086, 11499087, 11799730, 11723044]

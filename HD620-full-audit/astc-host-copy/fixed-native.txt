@@ -1,0 +1,17 @@
+device Intel(R) HD Graphics 620 (KBL GT2), driver Mesa 27.0.0-devel
+ASTC_4x4_UNORM  cmd-copy       0/16384 channel mismatches, worst error 0.000486374
+ASTC_4x4_UNORM  host-copy      0/16384 channel mismatches, worst error 0.000486374
+ASTC_4x4_UNORM  host-i2i       0/16384 channel mismatches, worst error 0.000486374
+ASTC_4x4_SRGB   cmd-copy       0/16384 channel mismatches, worst error 0.00114751
+ASTC_4x4_SRGB   host-copy      0/16384 channel mismatches, worst error 0.00114751
+ASTC_4x4_SRGB   host-i2i       0/16384 channel mismatches, worst error 0.00114751
+ASTC_8x8_UNORM  cmd-copy       0/16384 channel mismatches, worst error 0.000484467
+ASTC_8x8_UNORM  host-copy      0/16384 channel mismatches, worst error 0.000484467
+ASTC_8x8_UNORM  host-i2i       0/16384 channel mismatches, worst error 0.000484467
+ASTC_5x5_UNORM  cmd-copy       0/16384 channel mismatches, worst error 0.000486374
+ASTC_5x5_UNORM  host-copy      0/16384 channel mismatches, worst error 0.000486374
+ASTC_5x5_UNORM  host-i2i       0/16384 channel mismatches, worst error 0.000486374
+ASTC_5x5_SRGB   cmd-copy       0/16384 channel mismatches, worst error 0.00114751
+ASTC_5x5_SRGB   host-copy      0/16384 channel mismatches, worst error 0.00114751
+ASTC_5x5_SRGB   host-i2i       0/16384 channel mismatches, worst error 0.00114751
+PASS

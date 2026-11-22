@@ -1,0 +1,83 @@
+<style>
+  #hd620-measurements {
+    display:grid; gap:1.4rem; color:var(--foreground,CanvasText);
+    font-family:var(--font-sans,system-ui); max-width:48rem; margin-inline:auto;
+  }
+  #hd620-measurements section { display:grid; gap:.4rem; min-width:0; }
+  #hd620-measurements h2,#hd620-measurements h3,#hd620-measurements p { margin:0; }
+  #hd620-measurements h2,#hd620-measurements h3 { font-weight:500; }
+  #hd620-measurements .note { color:var(--muted-foreground,GrayText); }
+  #hd620-measurements .row {
+    display:grid; grid-template-columns:minmax(7rem,27%) minmax(0,1fr) 5.5em;
+    gap:.5rem; align-items:center;
+  }
+  #hd620-measurements .value { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  #hd620-measurements .track {
+    height:.65rem; position:relative;
+    background:var(--muted,color-mix(in srgb,currentColor 12%,transparent));
+  }
+  #hd620-measurements .fill { display:block; height:100%; width:var(--w); }
+  #hd620-measurements .series1 { background:var(--viz-series-1,var(--chart-1,currentColor)); }
+  #hd620-measurements .series2 { background:var(--viz-series-2,var(--chart-2,GrayText)); }
+  #hd620-measurements .series3 {
+    background:repeating-linear-gradient(125deg,var(--viz-series-3,var(--chart-3,GrayText)) 0 3px,transparent 3px 5px);
+  }
+  #hd620-measurements .dot {
+    position:absolute; left:var(--x); top:50%; width:.66rem; height:.66rem; border-radius:50%;
+    transform:translate(-50%,-50%);
+  }
+  #hd620-measurements .axis { display:flex; justify-content:space-between; gap:.2rem; }
+  #hd620-measurements .stack { display:flex; }
+  #hd620-measurements .legend { display:flex; gap:.4rem 1rem; flex-wrap:wrap; }
+  #hd620-measurements .key { display:inline-block; vertical-align:middle; width:.85em; height:.7em; margin-right:.25em; }
+  #hd620-measurements .group { margin-top:.25rem; }
+  @media (max-width:420px) {
+    #hd620-measurements .axis .optional-tick { display:none; }
+    #hd620-measurements .row { gap:.35rem; }
+  }
+</style>
+<div id="hd620-measurements">
+  <h2>Intel HD 620 driver measurements</h2>
+
+  <section aria-labelledby="hd620-iris-chart">
+    <h3 id="hd620-iris-chart">Iris compute timer</h3>
+    <p class="note">Fresh-build median · 256-round workload · logarithmic time axis</p>
+    <div class="row"><span>GL timestamp pair</span><span class="track" aria-hidden="true"><span class="dot series1" style="--x:6.63%"></span></span><span class="value">250 ns</span></div>
+    <div class="row"><span>Dispatch to finish</span><span class="track" aria-hidden="true"><span class="dot series2" style="--x:84.33%"></span></span><span class="value">11.48 ms</span></div>
+    <div class="row"><span>GL with explicit waits</span><span class="track" aria-hidden="true"><span class="dot series1" style="--x:84.38%"></span></span><span class="value">11.55 ms</span></div>
+    <div class="row note" aria-hidden="true"><span></span><span class="axis"><span>100 ns</span><span class="optional-tick">10 μs</span><span class="optional-tick">1 ms</span><span>100 ms</span></span><span></span></div>
+    <p class="note">Median GL_TIME_ELAPSED was 0 ns, outside the log scale.</p>
+  </section>
+
+  <section aria-labelledby="hd620-submit-chart">
+    <h3 id="hd620-submit-chart">Vulkan submission cost</h3>
+    <p class="note">Same 64 buffer fills · median wall time</p>
+    <div class="group">Installed ANV</div>
+    <div class="row"><span>64 submits + waits</span><span class="track" aria-hidden="true"><span class="fill series1" style="--w:84.52%"></span></span><span class="value">5.07 ms</span></div>
+    <div class="row"><span>1 submit + wait</span><span class="track" aria-hidden="true"><span class="fill series2" style="--w:18.40%"></span></span><span class="value">1.10 ms</span></div>
+    <div class="group">Unmodified Mesa build</div>
+    <div class="row"><span>64 submits + waits</span><span class="track" aria-hidden="true"><span class="fill series1" style="--w:81.12%"></span></span><span class="value">4.87 ms</span></div>
+    <div class="row"><span>1 submit + wait</span><span class="track" aria-hidden="true"><span class="fill series2" style="--w:17.23%"></span></span><span class="value">1.03 ms</span></div>
+    <div class="group">Patched Mesa build</div>
+    <div class="row"><span>64 submits + waits</span><span class="track" aria-hidden="true"><span class="fill series1" style="--w:85.30%"></span></span><span class="value">5.12 ms</span></div>
+    <div class="row"><span>1 submit + wait</span><span class="track" aria-hidden="true"><span class="fill series2" style="--w:17.48%"></span></span><span class="value">1.05 ms</span></div>
+  </section>
+
+  <section aria-labelledby="hd620-engine-chart">
+    <h3 id="hd620-engine-chart">Where VA-API work ran</h3>
+    <p class="note">960 H.264 frames · summed i915 engine busy seconds</p>
+    <div class="legend" aria-hidden="true"><span><i class="key series1"></i>Video</span><span><i class="key series2"></i>Render</span><span><i class="key series3"></i>Video enhance</span></div>
+    <div class="row"><span>Decode</span><span class="track stack" role="img" aria-label="Video 1.361 seconds. Render and video enhancement zero."><span class="fill series1" style="--w:38.88%"></span></span><span class="value">1.36 s</span></div>
+    <div class="row"><span>Decode + scale</span><span class="track stack" role="img" aria-label="Video 1.397 seconds, render 0.327 seconds, video enhancement zero."><span class="fill series1" style="--w:39.91%"></span><span class="fill series2" style="--w:9.35%"></span></span><span class="value">1.72 s</span></div>
+    <div class="row"><span>Decode + denoise</span><span class="track stack" role="img" aria-label="Video 1.620 seconds, render zero, video enhancement 1.725 seconds."><span class="fill series1" style="--w:46.30%"></span><span class="fill series3" style="--w:49.28%"></span></span><span class="value">3.35 s</span></div>
+    <p class="note">Engine activity can overlap. The copy engine recorded zero in these runs.</p>
+  </section>
+
+  <section aria-labelledby="hd620-idle-chart">
+    <h3 id="hd620-idle-chart">GPU idle state</h3>
+    <p class="note">Share of each roughly 3-second window spent in RC6</p>
+    <div class="row"><span>Desktop</span><span class="track" aria-hidden="true"><span class="fill series1" style="--w:89.13%"></span></span><span class="value">89.1%</span></div>
+    <div class="row"><span>Render load</span><span class="track" aria-hidden="true"></span><span class="value">0.0%</span></div>
+    <div class="row"><span>After render load</span><span class="track" aria-hidden="true"><span class="fill series1" style="--w:89.40%"></span></span><span class="value">89.4%</span></div>
+  </section>
+</div>

@@ -1,0 +1,302 @@
+Splitting the commandline.
+Reading option '-hide_banner' ... matched as option 'hide_banner' (do not show program banner) with argument '1'.
+Reading option '-nostdin' ... matched as option 'stdin' (enable or disable interaction on standard input) with argument 0.
+Reading option '-y' ... matched as option 'y' (overwrite output files) with argument '1'.
+Reading option '-v' ... matched as option 'v' (set logging level) with argument 'debug'.
+Reading option '-hwaccel' ... matched as option 'hwaccel' (use HW accelerated decoding) with argument 'vaapi'.
+Reading option '-hwaccel_device' ... matched as option 'hwaccel_device' (select a device for HW acceleration) with argument '/dev/dri/renderD128'.
+Reading option '-hwaccel_output_format' ... matched as option 'hwaccel_output_format' (select output format used with HW accelerated decoding) with argument 'vaapi'.
+Reading option '-i' ... matched as input url with argument 'evidence/media/h264_vaapi-nv12.h264'.
+Reading option '-vf' ... matched as option 'vf' (alias for -filter:v (apply filters to video streams)) with argument 'hwmap=derive_device=vulkan:mode=read+direct'.
+Reading option '-pix_fmt' ... matched as option 'pix_fmt' (set pixel format) with argument '+vulkan'.
+Reading option '-noauto_conversion_filters' ... matched as option 'auto_conversion_filters' (enable automatic conversion filters globally) with argument 0.
+Reading option '-frames:v' ... matched as option 'frames' (set the number of frames to output) with argument '5'.
+Reading option '-c:v' ... matched as option 'c' (select encoder/decoder ('copy' to copy stream without reencoding)) with argument 'wrapped_avframe'.
+Reading option '-f' ... matched as option 'f' (force container format (auto-detected otherwise)) with argument 'null'.
+Reading option '-' ... matched as output url.
+Finished splitting the commandline.
+Parsing a group of options: global .
+Applying option hide_banner (do not show program banner) with argument 1.
+Applying option nostdin (enable or disable interaction on standard input) with argument 0.
+Applying option y (overwrite output files) with argument 1.
+Applying option v (set logging level) with argument debug.
+Applying option noauto_conversion_filters (enable automatic conversion filters globally) with argument 0.
+Successfully parsed a group of options.
+Parsing a group of options: input url evidence/media/h264_vaapi-nv12.h264.
+Applying option hwaccel (use HW accelerated decoding) with argument vaapi.
+Applying option hwaccel_device (select a device for HW acceleration) with argument /dev/dri/renderD128.
+Applying option hwaccel_output_format (select output format used with HW accelerated decoding) with argument vaapi.
+Successfully parsed a group of options.
+Opening an input file: evidence/media/h264_vaapi-nv12.h264.
+[AVFormatContext @ 0x5be7442fd100] Opening 'evidence/media/h264_vaapi-nv12.h264' for reading
+[file @ 0x5be7442fd6c0] Setting default whitelist 'file,crypto,data'
+[h264 @ 0x5be7442fd100] Format h264 probed with size=2048 and score=51
+[h264 @ 0x5be7442fd100] Before avformat_find_stream_info() pos: 0 bytes read:32768 seeks:0 nb_streams:1
+[h264 @ 0x5be7442fdf80] Decoding VUI
+[extract_extradata @ 0x5be74431f780] nal_unit_type: 7(SPS), nal_ref_idc: 3
+[extract_extradata @ 0x5be74431f780] nal_unit_type: 8(PPS), nal_ref_idc: 3
+[extract_extradata @ 0x5be74431f780] nal_unit_type: 6(SEI), nal_ref_idc: 0
+[extract_extradata @ 0x5be74431f780] nal_unit_type: 5(IDR), nal_ref_idc: 3
+[h264 @ 0x5be7442fdf80] nal_unit_type: 7(SPS), nal_ref_idc: 3
+[h264 @ 0x5be7442fdf80] nal_unit_type: 8(PPS), nal_ref_idc: 3
+[h264 @ 0x5be7442fdf80] nal_unit_type: 6(SEI), nal_ref_idc: 0
+[h264 @ 0x5be7442fdf80] nal_unit_type: 5(IDR), nal_ref_idc: 3
+[h264 @ 0x5be7442fdf80] Decoding VUI
+[h264 @ 0x5be7442fdf80] Format yuv420p chosen by get_format().
+[h264 @ 0x5be7442fdf80] Reinit context to 640x368, pix_fmt: yuv420p
+[h264 @ 0x5be7442fdf80] no picture 
+[h264 @ 0x5be7442fd100] All info found
+[h264 @ 0x5be7442fd100] After avformat_find_stream_info() pos: 190464 bytes read:196608 seeks:0 frames:50
+[vist#0:0/h264 @ 0x5be7442ff3c0] Selecting decoder 'h264' because of requested hwaccel method vaapi
+Input #0, h264, from 'evidence/media/h264_vaapi-nv12.h264':
+  Duration: N/A, bitrate: N/A
+  Stream #0:0, 50, 1/1200000: Video: h264 (High), 1 reference frame, yuv420p(tv, progressive, left), 640x360 [SAR 1:1 DAR 16:9], 0/1, 25 fps, 60 tbr, 1200k tbn
+Successfully opened the file.
+Parsing a group of options: output url -.
+Applying option vf (alias for -filter:v (apply filters to video streams)) with argument hwmap=derive_device=vulkan:mode=read+direct.
+Applying option pix_fmt (set pixel format) with argument +vulkan.
+Applying option frames:v (set the number of frames to output) with argument 5.
+Applying option c:v (select encoder/decoder ('copy' to copy stream without reencoding)) with argument wrapped_avframe.
+Applying option f (force container format (auto-detected otherwise)) with argument null.
+Successfully parsed a group of options.
+Opening an output file: -.
+[out#0/null @ 0x5be744354b80] No explicit maps, mapping streams automatically...
+[vost#0:0/wrapped_avframe @ 0x5be744354f80] Created video stream from input stream 0:0
+[AVFilterGraph @ 0x5be744355800] Setting 'derive_device' to value 'vulkan'
+[AVFilterGraph @ 0x5be744355800] Setting 'mode' to value 'read+direct'
+[VAAPI @ 0x5be744352900] libva: VA-API version 1.23.0
+[VAAPI @ 0x5be744352900] libva: User environment variable requested driver 'iHD'
+[VAAPI @ 0x5be744352900] libva: Trying to open /usr/lib/x86_64-linux-gnu/dri/iHD_drv_video.so
+[VAAPI @ 0x5be744352900] libva: Found init function __vaDriverInit_1_22
+[VAAPI @ 0x5be744352900] libva: va_openDriver() returns 0
+[VAAPI @ 0x5be744352900] Initialised VAAPI connection: version 1.23
+[VAAPI @ 0x5be744352900] Format 0x41524742 -> bgra.
+[VAAPI @ 0x5be744352900] Format 0x41424752 -> rgba.
+[VAAPI @ 0x5be744352900] Format 0x58524742 -> bgr0.
+[VAAPI @ 0x5be744352900] Format 0x58424752 -> rgb0.
+[VAAPI @ 0x5be744352900] Format 0x30335241 -> unknown.
+[VAAPI @ 0x5be744352900] Format 0x30334241 -> unknown.
+[VAAPI @ 0x5be744352900] Format 0x30335258 -> x2rgb10le.
+[VAAPI @ 0x5be744352900] Format 0x30334258 -> unknown.
+[VAAPI @ 0x5be744352900] Format 0x36314752 -> unknown.
+[VAAPI @ 0x5be744352900] Format 0x50424752 -> unknown.
+[VAAPI @ 0x5be744352900] Format 0x50524742 -> unknown.
+[VAAPI @ 0x5be744352900] Format 0x56555941 -> unknown.
+[VAAPI @ 0x5be744352900] Format 0x30303859 -> gray.
+[VAAPI @ 0x5be744352900] Format 0x3231564e -> nv12.
+[VAAPI @ 0x5be744352900] Format 0x3132564e -> unknown.
+[VAAPI @ 0x5be744352900] Format 0x32595559 -> yuyv422.
+[VAAPI @ 0x5be744352900] Format 0x59565955 -> uyvy422.
+[VAAPI @ 0x5be744352900] Format 0x32315659 -> yuv420p.
+[VAAPI @ 0x5be744352900] Format 0x30323449 -> yuv420p.
+[VAAPI @ 0x5be744352900] Format 0x50313134 -> yuv411p.
+[VAAPI @ 0x5be744352900] Format 0x48323234 -> yuv422p.
+[VAAPI @ 0x5be744352900] Format 0x56323234 -> yuv440p.
+[VAAPI @ 0x5be744352900] Format 0x50343434 -> yuv444p.
+[VAAPI @ 0x5be744352900] Format 0x33434d49 -> unknown.
+[VAAPI @ 0x5be744352900] Format 0x30313050 -> p010le.
+[VAAPI @ 0x5be744352900] VAAPI driver: Intel iHD driver for Intel(R) Gen Graphics - 26.1.2 ().
+[VAAPI @ 0x5be744352900] Driver not found in known nonstandard list, using standard behaviour.
+detected 4 logical cores
+[h264 @ 0x5be7443ec5c0] nal_unit_type: 7(SPS), nal_ref_idc: 3
+[h264 @ 0x5be7443ec5c0] nal_unit_type: 8(PPS), nal_ref_idc: 3
+[h264 @ 0x5be7443ec5c0] Decoding VUI
+Successfully opened the file.
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+[vost#0:0/wrapped_avframe @ 0x5be744354f80] Starting thread...
+[vf#0:0 @ 0x5be744353a00] Starting thread...
+[vist#0:0/h264 @ 0x5be7442ff3c0] [dec:h264 @ 0x5be744354500] Starting thread...
+[in#0/h264 @ 0x5be7442fce40] Starting thread...
+[h264 @ 0x5be7443ec5c0] nal_unit_type: 7(SPS), nal_ref_idc: 3
+[h264 @ 0x5be7443ec5c0] nal_unit_type: 8(PPS), nal_ref_idc: 3
+[h264 @ 0x5be7443ec5c0] nal_unit_type: 6(SEI), nal_ref_idc: 0
+[h264 @ 0x5be7443ec5c0] nal_unit_type: 5(IDR), nal_ref_idc: 3
+[h264 @ 0x5be7443ec5c0] Decoding VUI
+[h264 @ 0x5be7443ec5c0] Format vaapi chosen by get_format().
+[h264 @ 0x5be7443ec5c0] Format vaapi requires hwaccel h264_vaapi initialisation.
+[h264 @ 0x5be7443ec5c0] Considering format 0x3231564e -> nv12.
+[h264 @ 0x5be7443ec5c0] Picked nv12 (0x3231564e) as best match for yuv420p.
+[AVHWFramesContext @ 0x702e4c076680] Created surface 0.
+[AVHWFramesContext @ 0x702e4c076680] Direct mapping possible.
+[h264 @ 0x5be7443ec5c0] Decode context initialised: 0x4/0x10000000.
+[h264 @ 0x5be7443ec5c0] Reinit context to 640x368, pix_fmt: vaapi
+[h264 @ 0x5be7443ec5c0] no picture 
+[h264 @ 0x5be7443ec5c0] Param buffer (type 0, 672 bytes) is 0.
+[h264 @ 0x5be7443ec5c0] Param buffer (type 1, 240 bytes) is 0x1.
+[h264 @ 0x5be7443ec5c0] Slice 0 param buffer (3128 bytes) is 0x2.
+[h264 @ 0x5be7443ec5c0] Slice 0 data buffer (10123 bytes) is 0x3.
+[h264 @ 0x5be7443ec5c0] Decode to surface 0.
+[h264 @ 0x5be744380800] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 1
+[AVHWFramesContext @ 0x702e4c076680] Created surface 0x1.
+[h264 @ 0x5be744380800] Param buffer (type 0, 672 bytes) is 0x3.
+[h264 @ 0x5be744380800] Param buffer (type 1, 240 bytes) is 0x2.
+[h264 @ 0x5be744380800] Slice 0 param buffer (3128 bytes) is 0x1.
+[h264 @ 0x5be744380800] Slice 0 data buffer (5645 bytes) is 0.
+[h264 @ 0x5be744380800] Decode to surface 0x1.
+[h264 @ 0x5be7443d5d40] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[AVHWFramesContext @ 0x702e4c076680] Created surface 0x2.
+[h264 @ 0x5be7443d5d40] Param buffer (type 0, 672 bytes) is 0.
+[h264 @ 0x5be7443d5d40] Param buffer (type 1, 240 bytes) is 0x1.
+[h264 @ 0x5be7443d5d40] Slice 0 param buffer (3128 bytes) is 0x2.
+[h264 @ 0x5be7443d5d40] Slice 0 data buffer (2582 bytes) is 0x3.
+[h264 @ 0x5be7443d5d40] Decode to surface 0x2.
+[h264 @ 0x5be744713f80] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[AVHWFramesContext @ 0x702e4c076680] Created surface 0x3.
+[h264 @ 0x5be744713f80] Param buffer (type 0, 672 bytes) is 0x3.
+[h264 @ 0x5be744713f80] Param buffer (type 1, 240 bytes) is 0x2.
+[h264 @ 0x5be744713f80] Slice 0 param buffer (3128 bytes) is 0x1.
+[h264 @ 0x5be744713f80] Slice 0 data buffer (2496 bytes) is 0.
+[h264 @ 0x5be744713f80] Decode to surface 0x3.
+[h264 @ 0x5be7447def00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 1
+[AVHWFramesContext @ 0x702e4c076680] Created surface 0x4.
+[AVFilterGraph @ 0x702e580010c0] Setting 'derive_device' to value 'vulkan'
+[AVFilterGraph @ 0x702e580010c0] Setting 'mode' to value 'read+direct'
+[h264 @ 0x5be7447def00] Param buffer (type 0, 672 bytes) is 0.
+[h264 @ 0x5be7447def00] Param buffer (type 1, 240 bytes) is 0x1.
+[h264 @ 0x5be7447def00] Slice 0 param buffer (3128 bytes) is 0x2.
+[h264 @ 0x5be7447def00] Slice 0 data buffer (5674 bytes) is 0x3.
+[h264 @ 0x5be7447def00] Decode to surface 0x4.
+[graph -1 input from stream 0:0 @ 0x702e58002580] w:640 h:360 pixfmt:vaapi tb:1/1200000 fr:30/1 sar:1/1 csp:unknown range:tv
+[format @ 0x702e58002bc0] Setting 'pix_fmts' to value 'vulkan'
+Filter 'Parsed_hwmap_0' formats:
+  in[0] 'default': yuv420p yuyv422 rgb24 bgr24 yuv422p yuv444p yuv410p yuv411p gray monow monob pal8 yuvj420p yuvj422p yuvj444p uyvy422 uyyvyy411 bgr8 bgr4 bgr4_byte rgb8 rgb4 rgb4_byte nv12 nv21 argb rgba abgr bgra gray16be gray16le yuv440p yuvj440p yuva420p rgb48be rgb48le rgb565be rgb565le rgb555be rgb555le bgr565be bgr565le bgr555be bgr555le vaapi yuv420p16le yuv420p16be yuv422p16le yuv422p16be yuv444p16le yuv444p16be dxva2_vld rgb444le rgb444be bgr444le bgr444be ya8 bgr48be bgr48le yuv420p9be yuv420p9le yuv420p10be yuv420p10le yuv422p10be yuv422p10le yuv444p9be yuv444p9le yuv444p10be yuv444p10le yuv422p9be yuv422p9le gbrp gbrp9be gbrp9le gbrp10be gbrp10le gbrp16be gbrp16le yuva422p yuva444p yuva420p9be yuva420p9le yuva422p9be yuva422p9le yuva444p9be yuva444p9le yuva420p10be yuva420p10le yuva422p10be yuva422p10le yuva444p10be yuva444p10le yuva420p16be yuva420p16le yuva422p16be yuva422p16le yuva444p16be yuva444p16le vdpau xyz12le xyz12be nv16 nv20le nv20be rgba64be rgba64le bgra64be bgra64le yvyu422 ya16be ya16le gbrap gbrap16be gbrap16le qsv mmal d3d11va_vld cuda 0rgb rgb0 0bgr bgr0 yuv420p12be yuv420p12le yuv420p14be yuv420p14le yuv422p12be yuv422p12le yuv422p14be yuv422p14le yuv444p12be yuv444p12le yuv444p14be yuv444p14le gbrp12be gbrp12le gbrp14be gbrp14le yuvj411p bayer_bggr8 bayer_rggb8 bayer_gbrg8 bayer_grbg8 bayer_bggr16le bayer_bggr16be bayer_rggb16le bayer_rggb16be bayer_gbrg16le bayer_gbrg16be bayer_grbg16le bayer_grbg16be yuv440p10le yuv440p10be yuv440p12le yuv440p12be ayuv64le ayuv64be videotoolbox_vld p010le p010be gbrap12be gbrap12le gbrap10be gbrap10le mediacodec gray12be gray12le gray10be gray10le p016le p016be d3d11 gray9be gray9le gbrpf32be gbrpf32le gbrapf32be gbrapf32le drm_prime opencl gray14be gray14le grayf32be grayf32le yuva422p12be yuva422p12le yuva444p12be yuva444p12le nv24 nv42 vulkan y210be y210le x2rgb10le x2rgb10be x2bgr10le x2bgr10be p210be p210le p410be p410le p216be p216le p416be p416le vuya rgbaf16be rgbaf16le vuyx p012le p012be y212be y212le xv30be xv30le xv36be xv36le rgbf32be rgbf32le rgbaf32be rgbaf32le p212be p212le p412be p412le gbrap14be gbrap14le d3d12 ayuv uyva vyu444 v30xbe v30xle rgbf16be rgbf16le rgba128be rgba128le rgb96be rgb96le y216be y216le xv48be xv48le gbrpf16be gbrpf16le gbrapf16be gbrapf16le grayf16be grayf16le amf gray32be gray32le yaf32be yaf32le yaf16be yaf16le gbrap32be gbrap32le yuv444p10msbbe yuv444p10msble yuv444p12msbbe yuv444p12msble gbrp10msbbe gbrp10msble gbrp12msbbe gbrp12msble ohcodec
+  out[0] 'default': yuv420p yuyv422 rgb24 bgr24 yuv422p yuv444p yuv410p yuv411p gray monow monob pal8 yuvj420p yuvj422p yuvj444p uyvy422 uyyvyy411 bgr8 bgr4 bgr4_byte rgb8 rgb4 rgb4_byte nv12 nv21 argb rgba abgr bgra gray16be gray16le yuv440p yuvj440p yuva420p rgb48be rgb48le rgb565be rgb565le rgb555be rgb555le bgr565be bgr565le bgr555be bgr555le vaapi yuv420p16le yuv420p16be yuv422p16le yuv422p16be yuv444p16le yuv444p16be dxva2_vld rgb444le rgb444be bgr444le bgr444be ya8 bgr48be bgr48le yuv420p9be yuv420p9le yuv420p10be yuv420p10le yuv422p10be yuv422p10le yuv444p9be yuv444p9le yuv444p10be yuv444p10le yuv422p9be yuv422p9le gbrp gbrp9be gbrp9le gbrp10be gbrp10le gbrp16be gbrp16le yuva422p yuva444p yuva420p9be yuva420p9le yuva422p9be yuva422p9le yuva444p9be yuva444p9le yuva420p10be yuva420p10le yuva422p10be yuva422p10le yuva444p10be yuva444p10le yuva420p16be yuva420p16le yuva422p16be yuva422p16le yuva444p16be yuva444p16le vdpau xyz12le xyz12be nv16 nv20le nv20be rgba64be rgba64le bgra64be bgra64le yvyu422 ya16be ya16le gbrap gbrap16be gbrap16le qsv mmal d3d11va_vld cuda 0rgb rgb0 0bgr bgr0 yuv420p12be yuv420p12le yuv420p14be yuv420p14le yuv422p12be yuv422p12le yuv422p14be yuv422p14le yuv444p12be yuv444p12le yuv444p14be yuv444p14le gbrp12be gbrp12le gbrp14be gbrp14le yuvj411p bayer_bggr8 bayer_rggb8 bayer_gbrg8 bayer_grbg8 bayer_bggr16le bayer_bggr16be bayer_rggb16le bayer_rggb16be bayer_gbrg16le bayer_gbrg16be bayer_grbg16le bayer_grbg16be yuv440p10le yuv440p10be yuv440p12le yuv440p12be ayuv64le ayuv64be videotoolbox_vld p010le p010be gbrap12be gbrap12le gbrap10be gbrap10le mediacodec gray12be gray12le gray10be gray10le p016le p016be d3d11 gray9be gray9le gbrpf32be gbrpf32le gbrapf32be gbrapf32le drm_prime opencl gray14be gray14le grayf32be grayf32le yuva422p12be yuva422p12le yuva444p12be yuva444p12le nv24 nv42 vulkan y210be y210le x2rgb10le x2rgb10be x2bgr10le x2bgr10be p210be p210le p410be p410le p216be p216le p416be p416le vuya rgbaf16be rgbaf16le vuyx p012le p012be y212be y212le xv30be xv30le xv36be xv36le rgbf32be rgbf32le rgbaf32be rgbaf32le p212be p212le p412be p412le gbrap14be gbrap14le d3d12 ayuv uyva vyu444 v30xbe v30xle rgbf16be rgbf16le rgba128be rgba128le rgb96be rgb96le y216be y216le xv48be xv48le gbrpf16be gbrpf16le gbrapf16be gbrapf16le grayf16be grayf16le amf gray32be gray32le yaf32be yaf32le yaf16be yaf16le gbrap32be gbrap32le yuv444p10msbbe yuv444p10msble yuv444p12msbbe yuv444p12msble gbrp10msbbe gbrp10msble gbrp12msbbe gbrp12msble ohcodec
+Filter 'graph -1 input from stream 0:0' formats:
+  out[0] 'default': vaapi
+Filter 'out_#0:0' formats:
+  in[0] 'default': yuv420p yuyv422 rgb24 bgr24 yuv422p yuv444p yuv410p yuv411p gray monow monob pal8 yuvj420p yuvj422p yuvj444p uyvy422 uyyvyy411 bgr8 bgr4 bgr4_byte rgb8 rgb4 rgb4_byte nv12 nv21 argb rgba abgr bgra gray16be gray16le yuv440p yuvj440p yuva420p rgb48be rgb48le rgb565be rgb565le rgb555be rgb555le bgr565be bgr565le bgr555be bgr555le vaapi yuv420p16le yuv420p16be yuv422p16le yuv422p16be yuv444p16le yuv444p16be dxva2_vld rgb444le rgb444be bgr444le bgr444be ya8 bgr48be bgr48le yuv420p9be yuv420p9le yuv420p10be yuv420p10le yuv422p10be yuv422p10le yuv444p9be yuv444p9le yuv444p10be yuv444p10le yuv422p9be yuv422p9le gbrp gbrp9be gbrp9le gbrp10be gbrp10le gbrp16be gbrp16le yuva422p yuva444p yuva420p9be yuva420p9le yuva422p9be yuva422p9le yuva444p9be yuva444p9le yuva420p10be yuva420p10le yuva422p10be yuva422p10le yuva444p10be yuva444p10le yuva420p16be yuva420p16le yuva422p16be yuva422p16le yuva444p16be yuva444p16le vdpau xyz12le xyz12be nv16 nv20le nv20be rgba64be rgba64le bgra64be bgra64le yvyu422 ya16be ya16le gbrap gbrap16be gbrap16le qsv mmal d3d11va_vld cuda 0rgb rgb0 0bgr bgr0 yuv420p12be yuv420p12le yuv420p14be yuv420p14le yuv422p12be yuv422p12le yuv422p14be yuv422p14le yuv444p12be yuv444p12le yuv444p14be yuv444p14le gbrp12be gbrp12le gbrp14be gbrp14le yuvj411p bayer_bggr8 bayer_rggb8 bayer_gbrg8 bayer_grbg8 bayer_bggr16le bayer_bggr16be bayer_rggb16le bayer_rggb16be bayer_gbrg16le bayer_gbrg16be bayer_grbg16le bayer_grbg16be yuv440p10le yuv440p10be yuv440p12le yuv440p12be ayuv64le ayuv64be videotoolbox_vld p010le p010be gbrap12be gbrap12le gbrap10be gbrap10le mediacodec gray12be gray12le gray10be gray10le p016le p016be d3d11 gray9be gray9le gbrpf32be gbrpf32le gbrapf32be gbrapf32le drm_prime opencl gray14be gray14le grayf32be grayf32le yuva422p12be yuva422p12le yuva444p12be yuva444p12le nv24 nv42 vulkan y210be y210le x2rgb10le x2rgb10be x2bgr10le x2bgr10be p210be p210le p410be p410le p216be p216le p416be p416le vuya rgbaf16be rgbaf16le vuyx p012le p012be y212be y212le xv30be xv30le xv36be xv36le rgbf32be rgbf32le rgbaf32be rgbaf32le p212be p212le p412be p412le gbrap14be gbrap14le d3d12 ayuv uyva vyu444 v30xbe v30xle rgbf16be rgbf16le rgba128be rgba128le rgb96be rgb96le y216be y216le xv48be xv48le gbrpf16be gbrpf16le gbrapf16be gbrapf16le grayf16be grayf16le amf gray32be gray32le yaf32be yaf32le yaf16be yaf16le gbrap32be gbrap32le yuv444p10msbbe yuv444p10msble yuv444p12msbbe yuv444p12msble gbrp10msbbe gbrp10msble gbrp12msbbe gbrp12msble ohcodec
+Filter 'format' formats:
+  in[0] 'default': vulkan
+  out[0] 'default': vulkan
+[AVFilterGraph @ 0x702e580010c0] query_formats: 4 queried, 9 merged, 0 already done, 0 delayed
+[Parsed_hwmap_0 @ 0x702e58002100] Configure hwmap vaapi -> vulkan.
+[h264 @ 0x5be7443ec5c0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[AVHWFramesContext @ 0x702e4c076680] Created surface 0x5.
+[h264 @ 0x5be7443ec5c0] Param buffer (type 0, 672 bytes) is 0x3.
+[h264 @ 0x5be7443ec5c0] Param buffer (type 1, 240 bytes) is 0x2.
+[h264 @ 0x5be7443ec5c0] Slice 0 param buffer (3128 bytes) is 0x1.
+[h264 @ 0x5be7443ec5c0] Slice 0 data buffer (2536 bytes) is 0.
+[h264 @ 0x5be7443ec5c0] Decode to surface 0x5.
+[h264 @ 0x5be744380800] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[AVHWFramesContext @ 0x702e4c076680] Created surface 0x6.
+[h264 @ 0x5be744380800] Param buffer (type 0, 672 bytes) is 0.
+[h264 @ 0x5be744380800] Param buffer (type 1, 240 bytes) is 0x1.
+[h264 @ 0x5be744380800] Slice 0 param buffer (3128 bytes) is 0x2.
+[h264 @ 0x5be744380800] Slice 0 data buffer (2601 bytes) is 0x3.
+[h264 @ 0x5be744380800] Decode to surface 0x6.
+[h264 @ 0x5be7443d5d40] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 1
+[AVHWFramesContext @ 0x702e4c076680] Created surface 0x7.
+[h264 @ 0x5be7443d5d40] Param buffer (type 0, 672 bytes) is 0x3.
+[h264 @ 0x5be7443d5d40] Param buffer (type 1, 240 bytes) is 0x2.
+[h264 @ 0x5be7443d5d40] Slice 0 param buffer (3128 bytes) is 0x1.
+[h264 @ 0x5be7443d5d40] Slice 0 data buffer (5450 bytes) is 0.
+[h264 @ 0x5be7443d5d40] Decode to surface 0x7.
+[h264 @ 0x5be744713f80] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[AVHWFramesContext @ 0x702e4c076680] Created surface 0x8.
+[h264 @ 0x5be744713f80] Param buffer (type 0, 672 bytes) is 0.
+[h264 @ 0x5be744713f80] Param buffer (type 1, 240 bytes) is 0x1.
+[h264 @ 0x5be744713f80] Slice 0 param buffer (3128 bytes) is 0x2.
+[h264 @ 0x5be744713f80] Slice 0 data buffer (2537 bytes) is 0x3.
+[h264 @ 0x5be744713f80] Decode to surface 0x8.
+[h264 @ 0x5be7447def00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[AVHWFramesContext @ 0x702e4c076680] Created surface 0x9.
+[h264 @ 0x5be7447def00] Param buffer (type 0, 672 bytes) is 0x3.
+[h264 @ 0x5be7447def00] Param buffer (type 1, 240 bytes) is 0x2.
+[h264 @ 0x5be7447def00] Slice 0 param buffer (3128 bytes) is 0x1.
+[h264 @ 0x5be7447def00] Slice 0 data buffer (2595 bytes) is 0.
+[h264 @ 0x5be7447def00] Decode to surface 0x9.
+[h264 @ 0x5be7443ec5c0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 1
+[AVHWFramesContext @ 0x702e4c076680] Created surface 0xa.
+[h264 @ 0x5be7443ec5c0] Param buffer (type 0, 672 bytes) is 0.
+[h264 @ 0x5be7443ec5c0] Param buffer (type 1, 240 bytes) is 0x1.
+[h264 @ 0x5be7443ec5c0] Slice 0 param buffer (3128 bytes) is 0x2.
+[h264 @ 0x5be7443ec5c0] Slice 0 data buffer (5700 bytes) is 0x3.
+[h264 @ 0x5be7443ec5c0] Decode to surface 0xa.
+[h264 @ 0x5be744380800] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[AVHWFramesContext @ 0x702e4c076680] Created surface 0xb.
+[h264 @ 0x5be744380800] Param buffer (type 0, 672 bytes) is 0x3.
+[h264 @ 0x5be744380800] Param buffer (type 1, 240 bytes) is 0x2.
+[h264 @ 0x5be744380800] Slice 0 param buffer (3128 bytes) is 0x1.
+[h264 @ 0x5be744380800] Slice 0 data buffer (2739 bytes) is 0.
+[h264 @ 0x5be744380800] Decode to surface 0xb.
+[h264 @ 0x5be7443d5d40] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[AVHWFramesContext @ 0x702e4c076680] Created surface 0xc.
+[h264 @ 0x5be7443d5d40] Param buffer (type 0, 672 bytes) is 0.
+[h264 @ 0x5be7443d5d40] Param buffer (type 1, 240 bytes) is 0x1.
+[h264 @ 0x5be7443d5d40] Slice 0 param buffer (3128 bytes) is 0x2.
+[h264 @ 0x5be7443d5d40] Slice 0 data buffer (2483 bytes) is 0x3.
+[h264 @ 0x5be7443d5d40] Decode to surface 0xc.
+[h264 @ 0x5be744713f80] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 1
+[AVHWFramesContext @ 0x702e4c076680] Created surface 0xd.
+[h264 @ 0x5be744713f80] Param buffer (type 0, 672 bytes) is 0x3.
+[h264 @ 0x5be744713f80] Param buffer (type 1, 240 bytes) is 0x2.
+[h264 @ 0x5be744713f80] Slice 0 param buffer (3128 bytes) is 0x1.
+[h264 @ 0x5be744713f80] Slice 0 data buffer (5449 bytes) is 0.
+[h264 @ 0x5be744713f80] Decode to surface 0xd.
+[h264 @ 0x5be7447def00] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[AVHWFramesContext @ 0x702e4c076680] Created surface 0xe.
+[h264 @ 0x5be7447def00] Param buffer (type 0, 672 bytes) is 0.
+[h264 @ 0x5be7447def00] Param buffer (type 1, 240 bytes) is 0x1.
+[h264 @ 0x5be7447def00] Slice 0 param buffer (3128 bytes) is 0x2.
+[h264 @ 0x5be7447def00] Slice 0 data buffer (2659 bytes) is 0x3.
+[h264 @ 0x5be7447def00] Decode to surface 0xe.
+[Vulkan @ 0x702e58004300] Supported layers:
+[Vulkan @ 0x702e58004300] 	VK_LAYER_MESA_device_select
+[Vulkan @ 0x702e58004300] 	VK_LAYER_MESA_anti_lag
+[Vulkan @ 0x702e58004300] 	VK_LAYER_MESA_screenshot
+[Vulkan @ 0x702e58004300] 	VK_LAYER_INTEL_nullhw
+[Vulkan @ 0x702e58004300] 	VK_LAYER_MESA_overlay
+[Vulkan @ 0x702e58004300] Using instance extension VK_EXT_layer_settings
+[Vulkan @ 0x702e58004300] GPU listing:
+[Vulkan @ 0x702e58004300]     0: Intel(R) HD Graphics 620 (KBL GT2) (integrated) (0x5916)
+[Vulkan @ 0x702e58004300] Requested device: 0x5916
+[Vulkan @ 0x702e58004300] Device 0 selected: Intel(R) HD Graphics 620 (KBL GT2) (integrated) (0x5916)
+[Vulkan @ 0x702e58004300] Using device extension VK_KHR_push_descriptor
+[Vulkan @ 0x702e58004300] Using device extension VK_EXT_physical_device_drm
+[Vulkan @ 0x702e58004300] Using device extension VK_EXT_shader_atomic_float
+[Vulkan @ 0x702e58004300] Using device extension VK_EXT_shader_object
+[Vulkan @ 0x702e58004300] Using device extension VK_KHR_shader_subgroup_rotate
+[Vulkan @ 0x702e58004300] Using device extension VK_KHR_shader_expect_assume
+[Vulkan @ 0x702e58004300] Using device extension VK_KHR_external_memory_fd
+[Vulkan @ 0x702e58004300] Using device extension VK_EXT_external_memory_dma_buf
+[Vulkan @ 0x702e58004300] Using device extension VK_EXT_image_drm_format_modifier
+[Vulkan @ 0x702e58004300] Using device extension VK_KHR_external_semaphore_fd
+[Vulkan @ 0x702e58004300] Using device extension VK_EXT_external_memory_host
+[Vulkan @ 0x702e58004300] Queue families:
+[Vulkan @ 0x702e58004300]     0: graphics compute transfer (queues: 1)
+[Vulkan @ 0x702e58004300] Using device: Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan @ 0x702e58004300] Alignments:
+[Vulkan @ 0x702e58004300]     optimalBufferCopyRowPitchAlignment: 64
+[Vulkan @ 0x702e58004300]     minMemoryMapAlignment:              4096
+[Vulkan @ 0x702e58004300]     nonCoherentAtomSize:                64
+[Vulkan @ 0x702e58004300]     minImportedHostPointerAlignment:    4096
+[Vulkan @ 0x702e58004300] Using queue family 0 (queues: 1) for graphics compute transfers
+[graph -1 input from stream 0:0 @ 0x702e58002580] video frame properties congruent with link at pts_time: 0
+[hwmap @ 0x702e58002200] Filter input: vaapi, 640x360 (0).
+[AVHWFramesContext @ 0x702e4c076680] Map surface 0.
+[Parsed_hwmap_0 @ 0x702e58002100] Failed to map frame: -22.
+[vf#0:0 @ 0x5be744353a00] Error while filtering: Invalid argument
+[vf#0:0 @ 0x5be744353a00] Task finished with error code: -22 (Invalid argument)
+[out#0/null @ 0x5be744354b80] sq: 0 EOF
+[out#0/null @ 0x5be744354b80] sq: finish 0; head ts NOPTS
+[out#0/null @ 0x5be744354b80] sq: finish queue
+[vf#0:0 @ 0x5be744353a00] Terminating thread with return code -22 (Invalid argument)
+[vost#0:0/wrapped_avframe @ 0x5be744354f80] [enc:wrapped_avframe @ 0x5be744355380] Encoder thread received EOF
+[vost#0:0/wrapped_avframe @ 0x5be744354f80] [enc:wrapped_avframe @ 0x5be744355380] Could not open encoder before EOF
+[vost#0:0/wrapped_avframe @ 0x5be744354f80] Task finished with error code: -22 (Invalid argument)
+[vost#0:0/wrapped_avframe @ 0x5be744354f80] Terminating thread with return code -22 (Invalid argument)
+[vist#0:0/h264 @ 0x5be7442ff3c0] [dec:h264 @ 0x5be744354500] Decoder returned EOF, finishing
+[vist#0:0/h264 @ 0x5be7442ff3c0] All consumers of this stream are done
+[in#0/h264 @ 0x5be7442fce40] All consumers are done
+[in#0/h264 @ 0x5be7442fce40] Terminating thread with return code 0 (success)
+[vist#0:0/h264 @ 0x5be7442ff3c0] [dec:h264 @ 0x5be744354500] Terminating thread with return code 0 (success)
+[out#0/null @ 0x5be744354b80] Nothing was written into output file, because at least one of its streams received no packets.
+frame=    0 fps=0.0 q=0.0 Lsize=       0KiB time=N/A bitrate=N/A speed=N/A elapsed=0:00:01.96    
+[in#0/h264 @ 0x5be7442fce40] Input file #0 (evidence/media/h264_vaapi-nv12.h264):
+[in#0/h264 @ 0x5be7442fce40]   Input stream #0:0 (video): 24 packets read (94889 bytes); 10 frames decoded; 0 decode errors; 
+[in#0/h264 @ 0x5be7442fce40]   Total: 24 packets (94889 bytes) demuxed
+[AVIOContext @ 0x5be744305840] Statistics: 196608 bytes read, 0 seeks
+Conversion failed!
+
+Exiting with exit code -22

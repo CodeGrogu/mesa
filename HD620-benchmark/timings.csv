@@ -1,0 +1,81 @@
+workload,pair,first_in_pair,driver,frames,wall_seconds,ffmpeg_seconds,wall_fps
+H.264 decode · 1080p,1,original,original,960,1.916114013,1.835,501.014028
+H.264 decode · 1080p,1,original,patched,960,1.916608897,1.835,500.884662
+H.264 decode · 1080p,2,patched,patched,960,1.936666510,1.849,495.697114
+H.264 decode · 1080p,2,patched,original,960,1.924232010,1.839,498.900338
+H.264 decode · 1080p,3,original,original,960,1.944639469,1.856,493.664772
+H.264 decode · 1080p,3,original,patched,960,1.926274361,1.846,498.371374
+H.264 decode · 1080p,4,patched,patched,960,1.925893361,1.838,498.469967
+H.264 decode · 1080p,4,patched,original,960,1.941625909,1.856,494.430979
+H.264 decode · 1080p,5,original,original,960,1.939609496,1.855,494.944989
+H.264 decode · 1080p,5,original,patched,960,1.976100784,1.89,485.805181
+H.264 decode · 1080p,6,patched,patched,960,1.941277486,1.857,494.519721
+H.264 decode · 1080p,6,patched,original,960,1.936448452,1.856,495.752933
+H.264 decode · 1080p,7,original,original,960,2.079454802,2.0,461.659469
+H.264 decode · 1080p,7,original,patched,960,1.941984175,1.855,494.339765
+H.264 decode · 1080p,8,patched,patched,960,1.956354755,1.868,490.708547
+H.264 decode · 1080p,8,patched,original,960,1.938579107,1.859,495.208061
+VP9 Profile 0 decode · 720p,1,patched,patched,960,1.751763082,1.675,548.019313
+VP9 Profile 0 decode · 720p,1,patched,original,960,1.755614158,1.681,546.817190
+VP9 Profile 0 decode · 720p,2,original,original,960,1.746050656,1.671,549.812227
+VP9 Profile 0 decode · 720p,2,original,patched,960,1.852837800,1.772,518.124144
+VP9 Profile 0 decode · 720p,3,patched,patched,960,1.753303658,1.68,547.537784
+VP9 Profile 0 decode · 720p,3,patched,original,960,1.752311486,1.677,547.847804
+VP9 Profile 0 decode · 720p,4,original,original,960,1.747609386,1.674,549.321838
+VP9 Profile 0 decode · 720p,4,original,patched,960,1.748535534,1.673,549.030878
+VP9 Profile 0 decode · 720p,5,patched,patched,960,1.740997831,1.667,551.407924
+VP9 Profile 0 decode · 720p,5,patched,original,960,1.758636358,1.681,545.877489
+VP9 Profile 0 decode · 720p,6,original,original,960,1.747201727,1.674,549.450006
+VP9 Profile 0 decode · 720p,6,original,patched,960,1.750359582,1.675,548.458734
+VP9 Profile 0 decode · 720p,7,patched,patched,960,1.744387029,1.672,550.336585
+VP9 Profile 0 decode · 720p,7,patched,original,960,1.988357891,1.914,482.810466
+VP9 Profile 0 decode · 720p,8,original,original,960,1.756961509,1.678,546.397855
+VP9 Profile 0 decode · 720p,8,original,patched,960,1.749105041,1.673,548.852114
+VP9 Profile 2 decode · 720p,1,original,original,960,1.970937205,1.883,487.077923
+VP9 Profile 2 decode · 720p,1,original,patched,960,1.956730047,1.879,490.614432
+VP9 Profile 2 decode · 720p,2,patched,patched,960,1.970058649,1.891,487.295137
+VP9 Profile 2 decode · 720p,2,patched,original,960,1.975293294,1.897,486.003776
+VP9 Profile 2 decode · 720p,3,original,original,960,1.964333093,1.888,488.715485
+VP9 Profile 2 decode · 720p,3,original,patched,960,2.028555172,1.954,473.243229
+VP9 Profile 2 decode · 720p,4,patched,patched,960,1.979809343,1.9,484.895176
+VP9 Profile 2 decode · 720p,4,patched,original,960,1.969913271,1.889,487.331099
+VP9 Profile 2 decode · 720p,5,original,original,960,1.963876768,1.884,488.829042
+VP9 Profile 2 decode · 720p,5,original,patched,960,1.959314525,1.879,489.967276
+VP9 Profile 2 decode · 720p,6,patched,patched,960,2.009173665,1.913,477.808373
+VP9 Profile 2 decode · 720p,6,patched,original,960,1.974058364,1.869,486.307810
+VP9 Profile 2 decode · 720p,7,original,original,960,1.967873970,1.886,487.836119
+VP9 Profile 2 decode · 720p,7,original,patched,960,1.958108918,1.877,490.268948
+VP9 Profile 2 decode · 720p,8,patched,patched,960,1.965643908,1.89,488.389579
+VP9 Profile 2 decode · 720p,8,patched,original,960,1.968841283,1.887,487.596440
+H.264 encode · 1080p,1,patched,patched,480,1.839135109,1.76,260.992244
+H.264 encode · 1080p,1,patched,original,480,1.890005760,1.806,253.967480
+H.264 encode · 1080p,2,original,original,480,1.921465215,1.842,249.809362
+H.264 encode · 1080p,2,original,patched,480,1.870100085,1.784,256.670755
+H.264 encode · 1080p,3,patched,patched,480,1.854965288,1.77,258.764950
+H.264 encode · 1080p,3,patched,original,480,1.926558985,1.834,249.148873
+H.264 encode · 1080p,4,original,original,480,1.875097466,1.8,255.986693
+H.264 encode · 1080p,4,original,patched,480,1.893917901,1.816,253.442876
+H.264 encode · 1080p,5,patched,patched,480,1.844828550,1.769,260.186780
+H.264 encode · 1080p,5,patched,original,480,1.841229033,1.759,260.695433
+H.264 encode · 1080p,6,original,original,480,1.849478440,1.773,259.532628
+H.264 encode · 1080p,6,original,patched,480,1.862918293,1.785,257.660254
+H.264 encode · 1080p,7,patched,patched,480,1.868411516,1.794,256.902720
+H.264 encode · 1080p,7,patched,original,480,1.870195702,1.793,256.657632
+H.264 encode · 1080p,8,original,original,480,1.847775885,1.771,259.771763
+H.264 encode · 1080p,8,original,patched,480,1.848608851,1.769,259.654713
+H.264 transcode · 1080p,1,original,original,480,2.243723186,2.134,213.930133
+H.264 transcode · 1080p,1,original,patched,480,2.219144259,2.133,216.299593
+H.264 transcode · 1080p,2,patched,patched,480,2.213110589,2.132,216.889297
+H.264 transcode · 1080p,2,patched,original,480,2.268952576,2.153,211.551359
+H.264 transcode · 1080p,3,original,original,480,2.214616517,2.124,216.741813
+H.264 transcode · 1080p,3,original,patched,480,2.222256388,2.129,215.996679
+H.264 transcode · 1080p,4,patched,patched,480,2.220155761,2.126,216.201047
+H.264 transcode · 1080p,4,patched,original,480,2.208622903,2.127,217.329993
+H.264 transcode · 1080p,5,original,original,480,2.231829646,2.136,215.070178
+H.264 transcode · 1080p,5,original,patched,480,2.216920718,2.136,216.516539
+H.264 transcode · 1080p,6,patched,patched,480,2.212506287,2.129,216.948536
+H.264 transcode · 1080p,6,patched,original,480,2.226030879,2.13,215.630432
+H.264 transcode · 1080p,7,original,original,480,2.220615162,2.129,216.156319
+H.264 transcode · 1080p,7,original,patched,480,2.219054109,2.127,216.308380
+H.264 transcode · 1080p,8,patched,patched,480,2.221382881,2.129,216.081615
+H.264 transcode · 1080p,8,patched,original,480,2.213577050,2.129,216.843593

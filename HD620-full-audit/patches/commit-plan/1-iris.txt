@@ -1,0 +1,16 @@
+iris: order timer queries with the work they measure, fix saturation
+
+On Gfx9 a timestamp snapshot and a compute dispatch can land in separate
+batches with no shared resource to order them, so GL_TIME_ELAPSED and
+Rusticl event profiling reported ~250 ns for an 11 ms dispatch.  Order the
+query boundaries against already-flushed work with the batches' syncobjs,
+correct the timestamp-to-ns conversion, and saturate 32-bit-delta results
+in mi_builder instead of wrapping (with mi_builder unit tests).
+
+Tested on HD 620 (KBL GT2): timer ordering, conversion and saturation
+probes pass; Rusticl event duration for a 256-round kernel is 11.56 ms
+against 11.18 ms of i915 render-busy time (baseline: 250 ns).
+
+Developed with Codex ("Sol") in an earlier session.
+
+Generated-by: LLM

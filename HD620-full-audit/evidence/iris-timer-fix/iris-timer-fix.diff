@@ -1,0 +1,103 @@
+diff --git a/src/gallium/drivers/iris/iris_context.h b/src/gallium/drivers/iris/iris_context.h
+index 7ac6ee1..1c5fee4 100644
+--- a/src/gallium/drivers/iris/iris_context.h
++++ b/src/gallium/drivers/iris/iris_context.h
+@@ -1134,6 +1134,12 @@ struct iris_context {
+        */
+       struct iris_address compute_predicate;
+ 
++      /**
++       * A timer query snapshot was written to the render batch.  The next
++       * compute dispatch must not start until that snapshot has executed.
++       */
++      bool compute_after_timer_snapshot;
++
+       /** Is a PIPE_QUERY_PRIMITIVES_GENERATED query active? */
+       bool prims_generated_query_active;
+ 
+diff --git a/src/gallium/drivers/iris/iris_draw.c b/src/gallium/drivers/iris/iris_draw.c
+index f2859ae..5504635 100644
+--- a/src/gallium/drivers/iris/iris_draw.c
++++ b/src/gallium/drivers/iris/iris_draw.c
+@@ -404,6 +404,12 @@ iris_launch_grid(struct pipe_context *ctx, const struct pipe_grid_info *grid)
+    if (ice->state.predicate == IRIS_PREDICATE_STATE_DONT_RENDER)
+       return;
+ 
++   if (ice->state.compute_after_timer_snapshot) {
++      /* Keep this dispatch out of a preceding timer query interval. */
++      iris_batch_wait_for_batch(batch, &ice->batches[IRIS_BATCH_RENDER]);
++      ice->state.compute_after_timer_snapshot = false;
++   }
++
+    if (INTEL_DEBUG(DEBUG_REEMIT)) {
+       ice->state.dirty |= IRIS_ALL_DIRTY_FOR_COMPUTE;
+       ice->state.stage_dirty |= IRIS_ALL_STAGE_DIRTY_FOR_COMPUTE;
+diff --git a/src/gallium/drivers/iris/iris_fence.c b/src/gallium/drivers/iris/iris_fence.c
+index 5732e18..5b0acc2 100644
+--- a/src/gallium/drivers/iris/iris_fence.c
++++ b/src/gallium/drivers/iris/iris_fence.c
+@@ -108,6 +108,32 @@ iris_batch_add_syncobj(struct iris_batch *batch,
+    iris_syncobj_reference(batch->screen->bufmgr, store, syncobj);
+ }
+ 
++/**
++ * Make the next submission of \p batch wait until all work recorded so far
++ * in \p other has completed.
++ *
++ * \p other is flushed if it has queued commands, so the syncobj we wait on
++ * has been submitted.  Nothing is added when \p other has no outstanding
++ * work.  Batches on one i915 context execute in order, so waiting for the
++ * last submission covers all earlier submissions of \p other.
++ */
++void
++iris_batch_wait_for_batch(struct iris_batch *batch, struct iris_batch *other)
++{
++   iris_batch_flush(other);
++
++   struct iris_fine_fence *last = other->last_fence;
++   if (iris_fine_fence_signaled(last))
++      return;
++
++   util_dynarray_foreach(&batch->syncobjs, struct iris_syncobj *, s) {
++      if (*s == last->syncobj)
++         return;
++   }
++
++   iris_batch_add_syncobj(batch, last->syncobj, IRIS_BATCH_FENCE_WAIT);
++}
++
+ /**
+  * Walk through a batch's dependencies (any IRIS_BATCH_FENCE_WAIT syncobjs)
+  * and unreference any which have already passed.
+diff --git a/src/gallium/drivers/iris/iris_fence.h b/src/gallium/drivers/iris/iris_fence.h
+index 74c2302..f5c6176 100644
+--- a/src/gallium/drivers/iris/iris_fence.h
++++ b/src/gallium/drivers/iris/iris_fence.h
+@@ -27,6 +27,8 @@ void iris_syncobj_signal(struct iris_bufmgr *, struct iris_syncobj *);
+ void iris_batch_add_syncobj(struct iris_batch *batch,
+                             struct iris_syncobj *syncobj,
+                             uint32_t flags);
++void iris_batch_wait_for_batch(struct iris_batch *batch,
++                               struct iris_batch *other);
+ bool iris_wait_syncobj(struct iris_bufmgr *bufmgr,
+                        struct iris_syncobj *syncobj,
+                        int64_t timeout_nsec);
+diff --git a/src/gallium/drivers/iris/iris_query.c b/src/gallium/drivers/iris/iris_query.c
+index c366970..d115a5c 100644
+--- a/src/gallium/drivers/iris/iris_query.c
++++ b/src/gallium/drivers/iris/iris_query.c
+@@ -196,6 +196,14 @@ write_value(struct iris_context *ice, struct iris_query *q, unsigned offset)
+    case PIPE_QUERY_TIMESTAMP:
+    case PIPE_QUERY_TIMESTAMP_DISJOINT:
+    case PIPE_QUERY_TIMESTAMP_RAW:
++      /* Timer snapshots go in the render batch, while dispatches go in the
++       * compute batch, which is a separate hardware context.  Order the
++       * snapshot after previously submitted compute work, and make the next
++       * dispatch wait for the snapshot (see iris_launch_grid).
++       */
++      iris_batch_wait_for_batch(&ice->batches[IRIS_BATCH_RENDER],
++                                &ice->batches[IRIS_BATCH_COMPUTE]);
++      ice->state.compute_after_timer_snapshot = true;
+       iris_pipelined_write(&ice->batches[IRIS_BATCH_RENDER], q,
+                            PIPE_CONTROL_WRITE_TIMESTAMP,
+                            offset);

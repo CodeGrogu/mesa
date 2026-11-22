@@ -1,0 +1,25 @@
+Mesa Intel(R) HD Graphics 620 (KBL GT2) OpenCL 3.0 
+1048576 exact results, local 32
+  event duration    median   0.000917 ms  samples ns [917, 917, 916, 917, 917, 917, 917, 750, 667]
+  enqueue and wait  median   2.040623 ms  samples ns [2176501, 2068482, 2235077, 2040623, 1832111, 1766197, 2243628, 1972268, 1628146]
+  i915 render busy  median   1.335636 ms  samples ns [1341695, 1353564, 1346509, 1335636, 1311981, 1870571, 1279196, 1286002, 963464]
+1048576 exact results, local 64
+  event duration    median   0.000750 ms  samples ns [1000, 833, 750, 667, 750, 667, 750, 666, 667]
+  enqueue and wait  median   1.705782 ms  samples ns [1653028, 2006132, 1751875, 1705782, 1566687, 1732827, 1478157, 1715696, 1369492]
+  i915 render busy  median   0.879551 ms  samples ns [1434406, 1196113, 1109378, 845189, 920387, 879551, 876065, 848094, 853821]
+1048576 exact results, local 128
+  event duration    median   0.000916 ms  samples ns [916, 917, 916, 917, 834, 834, 750, 916, 833]
+  enqueue and wait  median   2.004705 ms  samples ns [2028618, 2102885, 2004705, 2089023, 2036911, 1607954, 1896941, 1890669, 1543472]
+  i915 render busy  median   1.179845 ms  samples ns [1188062, 1179347, 1179845, 1187315, 1115022, 2062301, 1032935, 1265169, 1131705]
+1048576 exact results, local 256
+  event duration    median   0.000916 ms  samples ns [917, 916, 833, 916, 917, 917, 834, 916, 916]
+  enqueue and wait  median   1.827061 ms  samples ns [1666756, 1815882, 1941291, 1983028, 1813707, 1827061, 1955512, 1712385, 1945588]
+  i915 render busy  median   1.219270 ms  samples ns [1239688, 1230641, 1058997, 1219270, 1152704, 1494664, 1125812, 1381203, 1200346]
+1048576 work-items, 16 dependent rounds, stride-1021 output checks
+  event duration    median   0.000500 ms  samples ns [833, 500, 500, 500, 500, 500, 500, 500, 500]
+  enqueue and wait  median   2.522896 ms  samples ns [3504385, 2522310, 2633565, 2180088, 2497794, 2696030, 2590563, 2259325, 2522896]
+  i915 render busy  median   1.824506 ms  samples ns [2592339, 1824506, 1806827, 2095750, 1822099, 1885843, 1977890, 1776034, 1754703]
+1048576 work-items, 256 dependent rounds, stride-1021 output checks
+  event duration    median   0.000250 ms  samples ns [250, 250, 333, 250, 250, 334, 334, 250, 334]
+  enqueue and wait  median  12.110011 ms  samples ns [12119371, 12017070, 11939860, 11825328, 11813310, 12110011, 12134507, 12124503, 12300582]
+  i915 render busy  median  11.093033 ms  samples ns [11081994, 11045474, 11096685, 11065311, 11424701, 11093033, 11115775, 11101831, 11072698]

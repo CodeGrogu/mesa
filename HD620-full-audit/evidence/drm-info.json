@@ -1,0 +1,4635 @@
+{
+  "\/dev\/dri\/card1": {
+    "driver": {
+      "name": "i915",
+      "desc": "Intel Graphics",
+      "version": {
+        "major": 1,
+        "minor": 6,
+        "patch": 0,
+        "date": "0"
+      },
+      "kernel": {
+        "sysname": "Linux",
+        "release": "7.0.0-43-generic",
+        "version": "#43-Ubuntu SMP PREEMPT_DYNAMIC Fri Oct 23 13:25:25 UTC 2026",
+        "tainted": 68
+      },
+      "client_caps": {
+        "STEREO_3D": true,
+        "UNIVERSAL_PLANES": true,
+        "ATOMIC": true,
+        "ASPECT_RATIO": true,
+        "WRITEBACK_CONNECTORS": true
+      },
+      "caps": {
+        "DUMB_BUFFER": 1,
+        "VBLANK_HIGH_CRTC": 1,
+        "DUMB_PREFERRED_DEPTH": 24,
+        "DUMB_PREFER_SHADOW": 1,
+        "PRIME": 3,
+        "TIMESTAMP_MONOTONIC": 1,
+        "ASYNC_PAGE_FLIP": 1,
+        "CURSOR_WIDTH": 256,
+        "CURSOR_HEIGHT": 256,
+        "ADDFB2_MODIFIERS": 1,
+        "PAGE_FLIP_TARGET": 0,
+        "CRTC_IN_VBLANK_EVENT": 1,
+        "SYNCOBJ": 1,
+        "SYNCOBJ_TIMELINE": 1
+      }
+    },
+    "device": {
+      "available_nodes": 5,
+      "bus_type": 0,
+      "device_data": {
+        "vendor": 32902,
+        "device": 22806,
+        "subsystem_vendor": 4133,
+        "subsystem_device": 4757
+      },
+      "bus_data": {
+        "domain": 0,
+        "bus": 0,
+        "slot": 2,
+        "function": 0
+      }
+    },
+    "fb_size": {
+      "min_width": 0,
+      "max_width": 16384,
+      "min_height": 0,
+      "max_height": 16384
+    },
+    "connectors": [
+      {
+        "id": 110,
+        "type": 14,
+        "status": 1,
+        "phy_width": 340,
+        "phy_height": 190,
+        "subpixel": 1,
+        "encoder_id": 109,
+        "encoders": [
+          109
+        ],
+        "modes": [
+          {
+            "clock": 76420,
+            "hdisplay": 1366,
+            "hsync_start": 1434,
+            "hsync_end": 1479,
+            "htotal": 1592,
+            "hskew": 0,
+            "vdisplay": 768,
+            "vsync_start": 772,
+            "vsync_end": 779,
+            "vtotal": 800,
+            "vscan": 0,
+            "vrefresh": 60,
+            "flags": 10,
+            "type": 72,
+            "name": "1366x768"
+          },
+          {
+            "clock": 114620,
+            "hdisplay": 1366,
+            "hsync_start": 1434,
+            "hsync_end": 1479,
+            "htotal": 1592,
+            "hskew": 0,
+            "vdisplay": 768,
+            "vsync_start": 772,
+            "vsync_end": 779,
+            "vtotal": 800,
+            "vscan": 0,
+            "vrefresh": 90,
+            "flags": 10,
+            "type": 64,
+            "name": "1366x768"
+          },
+          {
+            "clock": 91700,
+            "hdisplay": 1366,
+            "hsync_start": 1434,
+            "hsync_end": 1479,
+            "htotal": 1592,
+            "hskew": 0,
+            "vdisplay": 768,
+            "vsync_start": 772,
+            "vsync_end": 779,
+            "vtotal": 800,
+            "vscan": 0,
+            "vrefresh": 72,
+            "flags": 10,
+            "type": 64,
+            "name": "1366x768"
+          },
+          {
+            "clock": 61130,
+            "hdisplay": 1366,
+            "hsync_start": 1434,
+            "hsync_end": 1479,
+            "htotal": 1592,
+            "hskew": 0,
+            "vdisplay": 768,
+            "vsync_start": 772,
+            "vsync_end": 779,
+            "vtotal": 800,
+            "vscan": 0,
+            "vrefresh": 48,
+            "flags": 10,
+            "type": 64,
+            "name": "1366x768"
+          }
+        ],
+        "properties": {
+          "EDID": {
+            "id": 1,
+            "flags": 20,
+            "type": 16,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 111,
+            "spec": null,
+            "value": null,
+            "data": null
+          },
+          "DPMS": {
+            "id": 2,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": [
+              {
+                "name": "On",
+                "value": 0
+              },
+              {
+                "name": "Standby",
+                "value": 1
+              },
+              {
+                "name": "Suspend",
+                "value": 2
+              },
+              {
+                "name": "Off",
+                "value": 3
+              }
+            ],
+            "value": 0,
+            "data": null
+          },
+          "link-status": {
+            "id": 5,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": [
+              {
+                "name": "Good",
+                "value": 0
+              },
+              {
+                "name": "Bad",
+                "value": 1
+              }
+            ],
+            "value": 0,
+            "data": null
+          },
+          "non-desktop": {
+            "id": 7,
+            "flags": 6,
+            "type": 2,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 1
+            },
+            "value": 0,
+            "data": null
+          },
+          "TILE": {
+            "id": 4,
+            "flags": 20,
+            "type": 16,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 0,
+            "spec": null,
+            "value": null,
+            "data": null
+          },
+          "CRTC_ID": {
+            "id": 21,
+            "flags": 2147483712,
+            "type": 64,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 58,
+            "spec": 3435973836,
+            "value": 58,
+            "data": null
+          },
+          "scaling mode": {
+            "id": 112,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 3,
+            "spec": [
+              {
+                "name": "Full",
+                "value": 1
+              },
+              {
+                "name": "Center",
+                "value": 2
+              },
+              {
+                "name": "Full aspect",
+                "value": 3
+              }
+            ],
+            "value": 3,
+            "data": null
+          },
+          "panel orientation": {
+            "id": 113,
+            "flags": 12,
+            "type": 8,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 0,
+            "spec": [
+              {
+                "name": "Normal",
+                "value": 0
+              },
+              {
+                "name": "Upside Down",
+                "value": 1
+              },
+              {
+                "name": "Left Side Up",
+                "value": 2
+              },
+              {
+                "name": "Right Side Up",
+                "value": 3
+              }
+            ],
+            "value": 0,
+            "data": null
+          },
+          "Broadcast RGB": {
+            "id": 114,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": [
+              {
+                "name": "Automatic",
+                "value": 0
+              },
+              {
+                "name": "Full",
+                "value": 1
+              },
+              {
+                "name": "Limited 16:235",
+                "value": 2
+              }
+            ],
+            "value": 0,
+            "data": null
+          },
+          "max bpc": {
+            "id": 115,
+            "flags": 2,
+            "type": 2,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 12,
+            "spec": {
+              "min": 6,
+              "max": 12
+            },
+            "value": 12,
+            "data": null
+          },
+          "Colorspace": {
+            "id": 116,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": [
+              {
+                "name": "Default",
+                "value": 0
+              },
+              {
+                "name": "BT709_YCC",
+                "value": 2
+              },
+              {
+                "name": "XVYCC_601",
+                "value": 3
+              },
+              {
+                "name": "XVYCC_709",
+                "value": 4
+              },
+              {
+                "name": "SYCC_601",
+                "value": 5
+              },
+              {
+                "name": "opYCC_601",
+                "value": 6
+              },
+              {
+                "name": "opRGB",
+                "value": 7
+              },
+              {
+                "name": "BT2020_CYCC",
+                "value": 8
+              },
+              {
+                "name": "BT2020_RGB",
+                "value": 9
+              },
+              {
+                "name": "BT2020_YCC",
+                "value": 10
+              },
+              {
+                "name": "DCI-P3_RGB_D65",
+                "value": 11
+              },
+              {
+                "name": "RGB_WIDE_FIXED",
+                "value": 13
+              },
+              {
+                "name": "RGB_WIDE_FLOAT",
+                "value": 14
+              },
+              {
+                "name": "BT601_YCC",
+                "value": 15
+              }
+            ],
+            "value": 0,
+            "data": null
+          }
+        }
+      },
+      {
+        "id": 118,
+        "type": 11,
+        "status": 2,
+        "phy_width": 0,
+        "phy_height": 0,
+        "subpixel": 1,
+        "encoder_id": 0,
+        "encoders": [
+          117
+        ],
+        "modes": [],
+        "properties": {
+          "EDID": {
+            "id": 1,
+            "flags": 20,
+            "type": 16,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 0,
+            "spec": null,
+            "value": null,
+            "data": null
+          },
+          "DPMS": {
+            "id": 2,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 3,
+            "spec": [
+              {
+                "name": "On",
+                "value": 0
+              },
+              {
+                "name": "Standby",
+                "value": 1
+              },
+              {
+                "name": "Suspend",
+                "value": 2
+              },
+              {
+                "name": "Off",
+                "value": 3
+              }
+            ],
+            "value": 3,
+            "data": null
+          },
+          "link-status": {
+            "id": 5,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": [
+              {
+                "name": "Good",
+                "value": 0
+              },
+              {
+                "name": "Bad",
+                "value": 1
+              }
+            ],
+            "value": 0,
+            "data": null
+          },
+          "non-desktop": {
+            "id": 7,
+            "flags": 6,
+            "type": 2,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 1
+            },
+            "value": 0,
+            "data": null
+          },
+          "TILE": {
+            "id": 4,
+            "flags": 20,
+            "type": 16,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 0,
+            "spec": null,
+            "value": null,
+            "data": null
+          },
+          "CRTC_ID": {
+            "id": 21,
+            "flags": 2147483712,
+            "type": 64,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": 3435973836,
+            "value": 0,
+            "data": null
+          },
+          "audio": {
+            "id": 119,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": [
+              {
+                "name": "force-dvi",
+                "value": 18446744073709551614
+              },
+              {
+                "name": "off",
+                "value": 18446744073709551615
+              },
+              {
+                "name": "auto",
+                "value": 0
+              },
+              {
+                "name": "on",
+                "value": 1
+              }
+            ],
+            "value": 0,
+            "data": null
+          },
+          "Broadcast RGB": {
+            "id": 114,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": [
+              {
+                "name": "Automatic",
+                "value": 0
+              },
+              {
+                "name": "Full",
+                "value": 1
+              },
+              {
+                "name": "Limited 16:235",
+                "value": 2
+              }
+            ],
+            "value": 0,
+            "data": null
+          },
+          "aspect ratio": {
+            "id": 120,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": [
+              {
+                "name": "Automatic",
+                "value": 0
+              },
+              {
+                "name": "4:3",
+                "value": 1
+              },
+              {
+                "name": "16:9",
+                "value": 2
+              }
+            ],
+            "value": 0,
+            "data": null
+          },
+          "Colorspace": {
+            "id": 121,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": [
+              {
+                "name": "Default",
+                "value": 0
+              },
+              {
+                "name": "SMPTE_170M_YCC",
+                "value": 1
+              },
+              {
+                "name": "BT709_YCC",
+                "value": 2
+              },
+              {
+                "name": "XVYCC_601",
+                "value": 3
+              },
+              {
+                "name": "XVYCC_709",
+                "value": 4
+              },
+              {
+                "name": "SYCC_601",
+                "value": 5
+              },
+              {
+                "name": "opYCC_601",
+                "value": 6
+              },
+              {
+                "name": "opRGB",
+                "value": 7
+              },
+              {
+                "name": "BT2020_CYCC",
+                "value": 8
+              },
+              {
+                "name": "BT2020_RGB",
+                "value": 9
+              },
+              {
+                "name": "BT2020_YCC",
+                "value": 10
+              },
+              {
+                "name": "DCI-P3_RGB_D65",
+                "value": 11
+              },
+              {
+                "name": "DCI-P3_RGB_Theater",
+                "value": 12
+              }
+            ],
+            "value": 0,
+            "data": null
+          },
+          "content type": {
+            "id": 122,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": [
+              {
+                "name": "No Data",
+                "value": 0
+              },
+              {
+                "name": "Graphics",
+                "value": 1
+              },
+              {
+                "name": "Photo",
+                "value": 2
+              },
+              {
+                "name": "Cinema",
+                "value": 3
+              },
+              {
+                "name": "Game",
+                "value": 4
+              }
+            ],
+            "value": 0,
+            "data": null
+          },
+          "max bpc": {
+            "id": 123,
+            "flags": 2,
+            "type": 2,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 12,
+            "spec": {
+              "min": 8,
+              "max": 12
+            },
+            "value": 12,
+            "data": null
+          },
+          "Content Protection": {
+            "id": 124,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": [
+              {
+                "name": "Undesired",
+                "value": 0
+              },
+              {
+                "name": "Desired",
+                "value": 1
+              },
+              {
+                "name": "Enabled",
+                "value": 2
+              }
+            ],
+            "value": 0,
+            "data": null
+          },
+          "HDCP Content Type": {
+            "id": 125,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": [
+              {
+                "name": "HDCP Type0",
+                "value": 0
+              },
+              {
+                "name": "HDCP Type1",
+                "value": 1
+              }
+            ],
+            "value": 0,
+            "data": null
+          }
+        }
+      }
+    ],
+    "encoders": [
+      {
+        "id": 109,
+        "type": 2,
+        "crtc_id": 58,
+        "possible_crtcs": 7,
+        "possible_clones": 1
+      },
+      {
+        "id": 117,
+        "type": 2,
+        "crtc_id": 0,
+        "possible_crtcs": 7,
+        "possible_clones": 2
+      }
+    ],
+    "crtcs": [
+      {
+        "id": 58,
+        "fb_id": 126,
+        "x": 0,
+        "y": 0,
+        "mode": {
+          "clock": 114620,
+          "hdisplay": 1366,
+          "hsync_start": 1434,
+          "hsync_end": 1479,
+          "htotal": 1592,
+          "hskew": 0,
+          "vdisplay": 768,
+          "vsync_start": 772,
+          "vsync_end": 779,
+          "vtotal": 800,
+          "vscan": 0,
+          "vrefresh": 90,
+          "flags": 10,
+          "type": 64,
+          "name": "1366x768"
+        },
+        "gamma_size": 256,
+        "properties": {
+          "ACTIVE": {
+            "id": 23,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 1,
+            "spec": {
+              "min": 0,
+              "max": 1
+            },
+            "value": 1,
+            "data": null
+          },
+          "MODE_ID": {
+            "id": 24,
+            "flags": 2147483664,
+            "type": 16,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 130,
+            "spec": null,
+            "value": null,
+            "data": {
+              "clock": 114620,
+              "hdisplay": 1366,
+              "hsync_start": 1434,
+              "hsync_end": 1479,
+              "htotal": 1592,
+              "hskew": 0,
+              "vdisplay": 768,
+              "vsync_start": 772,
+              "vsync_end": 779,
+              "vtotal": 800,
+              "vscan": 0,
+              "vrefresh": 90,
+              "flags": 10,
+              "type": 64,
+              "name": "1366x768"
+            }
+          },
+          "OUT_FENCE_PTR": {
+            "id": 20,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 18446744073709551615
+            },
+            "value": 0,
+            "data": null
+          },
+          "VRR_ENABLED": {
+            "id": 25,
+            "flags": 2,
+            "type": 2,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 1
+            },
+            "value": 0,
+            "data": null
+          },
+          "DEGAMMA_LUT": {
+            "id": 26,
+            "flags": 16,
+            "type": 16,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": null,
+            "value": null,
+            "data": null
+          },
+          "DEGAMMA_LUT_SIZE": {
+            "id": 27,
+            "flags": 6,
+            "type": 2,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 1024,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 1024,
+            "data": null
+          },
+          "CTM": {
+            "id": 28,
+            "flags": 16,
+            "type": 16,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": null,
+            "value": null,
+            "data": null
+          },
+          "GAMMA_LUT": {
+            "id": 29,
+            "flags": 16,
+            "type": 16,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 133,
+            "spec": null,
+            "value": null,
+            "data": null
+          },
+          "GAMMA_LUT_SIZE": {
+            "id": 30,
+            "flags": 6,
+            "type": 2,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 1024,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 1024,
+            "data": null
+          }
+        }
+      },
+      {
+        "id": 83,
+        "fb_id": 0,
+        "x": 0,
+        "y": 0,
+        "mode": null,
+        "gamma_size": 256,
+        "properties": {
+          "ACTIVE": {
+            "id": 23,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 1
+            },
+            "value": 0,
+            "data": null
+          },
+          "MODE_ID": {
+            "id": 24,
+            "flags": 2147483664,
+            "type": 16,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": null,
+            "value": null,
+            "data": null
+          },
+          "OUT_FENCE_PTR": {
+            "id": 20,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 18446744073709551615
+            },
+            "value": 0,
+            "data": null
+          },
+          "VRR_ENABLED": {
+            "id": 25,
+            "flags": 2,
+            "type": 2,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 1
+            },
+            "value": 0,
+            "data": null
+          },
+          "DEGAMMA_LUT": {
+            "id": 26,
+            "flags": 16,
+            "type": 16,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": null,
+            "value": null,
+            "data": null
+          },
+          "DEGAMMA_LUT_SIZE": {
+            "id": 27,
+            "flags": 6,
+            "type": 2,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 1024,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 1024,
+            "data": null
+          },
+          "CTM": {
+            "id": 28,
+            "flags": 16,
+            "type": 16,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": null,
+            "value": null,
+            "data": null
+          },
+          "GAMMA_LUT": {
+            "id": 29,
+            "flags": 16,
+            "type": 16,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": null,
+            "value": null,
+            "data": null
+          },
+          "GAMMA_LUT_SIZE": {
+            "id": 30,
+            "flags": 6,
+            "type": 2,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 1024,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 1024,
+            "data": null
+          }
+        }
+      },
+      {
+        "id": 108,
+        "fb_id": 0,
+        "x": 0,
+        "y": 0,
+        "mode": null,
+        "gamma_size": 256,
+        "properties": {
+          "ACTIVE": {
+            "id": 23,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 1
+            },
+            "value": 0,
+            "data": null
+          },
+          "MODE_ID": {
+            "id": 24,
+            "flags": 2147483664,
+            "type": 16,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": null,
+            "value": null,
+            "data": null
+          },
+          "OUT_FENCE_PTR": {
+            "id": 20,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 18446744073709551615
+            },
+            "value": 0,
+            "data": null
+          },
+          "VRR_ENABLED": {
+            "id": 25,
+            "flags": 2,
+            "type": 2,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 1
+            },
+            "value": 0,
+            "data": null
+          },
+          "DEGAMMA_LUT": {
+            "id": 26,
+            "flags": 16,
+            "type": 16,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": null,
+            "value": null,
+            "data": null
+          },
+          "DEGAMMA_LUT_SIZE": {
+            "id": 27,
+            "flags": 6,
+            "type": 2,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 1024,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 1024,
+            "data": null
+          },
+          "CTM": {
+            "id": 28,
+            "flags": 16,
+            "type": 16,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": null,
+            "value": null,
+            "data": null
+          },
+          "GAMMA_LUT": {
+            "id": 29,
+            "flags": 16,
+            "type": 16,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": null,
+            "value": null,
+            "data": null
+          },
+          "GAMMA_LUT_SIZE": {
+            "id": 30,
+            "flags": 6,
+            "type": 2,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 1024,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 1024,
+            "data": null
+          }
+        }
+      }
+    ],
+    "planes": [
+      {
+        "id": 34,
+        "possible_crtcs": 1,
+        "crtc_id": 58,
+        "fb_id": 126,
+        "crtc_x": 0,
+        "crtc_y": 0,
+        "x": 0,
+        "y": 0,
+        "gamma_size": 0,
+        "fb": {
+          "id": 126,
+          "width": 1366,
+          "height": 768,
+          "format": 808669784,
+          "modifier": 72057594037927937,
+          "planes": [
+            {
+              "offset": 0,
+              "pitch": 5632
+            }
+          ]
+        },
+        "formats": [
+          538982467,
+          909199186,
+          875713112,
+          875709016,
+          875713089,
+          875708993,
+          808669784,
+          808665688,
+          1211388504,
+          1211384408,
+          1448695129,
+          1431918169,
+          1498831189,
+          1498765654,
+          842094158,
+          1448434008
+        ],
+        "properties": {
+          "type": {
+            "id": 9,
+            "flags": 12,
+            "type": 8,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 1,
+            "spec": [
+              {
+                "name": "Overlay",
+                "value": 0
+              },
+              {
+                "name": "Primary",
+                "value": 1
+              },
+              {
+                "name": "Cursor",
+                "value": 2
+              }
+            ],
+            "value": 1,
+            "data": null
+          },
+          "FB_ID": {
+            "id": 18,
+            "flags": 2147483712,
+            "type": 64,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 126,
+            "spec": 4227595259,
+            "value": 126,
+            "data": {
+              "id": 126,
+              "width": 1366,
+              "height": 768,
+              "format": 808669784,
+              "modifier": 72057594037927937,
+              "planes": [
+                {
+                  "offset": 0,
+                  "pitch": 5632
+                }
+              ]
+            }
+          },
+          "IN_FENCE_FD": {
+            "id": 19,
+            "flags": 2147483776,
+            "type": 128,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 18446744073709551615,
+            "spec": {
+              "min": -1,
+              "max": 2147483647
+            },
+            "value": -1,
+            "data": null
+          },
+          "CRTC_ID": {
+            "id": 21,
+            "flags": 2147483712,
+            "type": 64,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 58,
+            "spec": 3435973836,
+            "value": 58,
+            "data": null
+          },
+          "CRTC_X": {
+            "id": 14,
+            "flags": 2147483776,
+            "type": 128,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": -2147483648,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "CRTC_Y": {
+            "id": 15,
+            "flags": 2147483776,
+            "type": 128,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": -2147483648,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "CRTC_W": {
+            "id": 16,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 1366,
+            "spec": {
+              "min": 0,
+              "max": 2147483647
+            },
+            "value": 1366,
+            "data": null
+          },
+          "CRTC_H": {
+            "id": 17,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 768,
+            "spec": {
+              "min": 0,
+              "max": 2147483647
+            },
+            "value": 768,
+            "data": null
+          },
+          "SRC_X": {
+            "id": 10,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "SRC_Y": {
+            "id": 11,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "SRC_W": {
+            "id": 12,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 89522176,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 89522176,
+            "data": 1366
+          },
+          "SRC_H": {
+            "id": 13,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 50331648,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 50331648,
+            "data": 768
+          },
+          "IN_FORMATS": {
+            "id": 31,
+            "flags": 20,
+            "type": 16,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 35,
+            "spec": null,
+            "value": null,
+            "data": [
+              {
+                "modifier": 72057594037927941,
+                "formats": [
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993
+                ]
+              },
+              {
+                "modifier": 72057594037927940,
+                "formats": [
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993
+                ]
+              },
+              {
+                "modifier": 72057594037927939,
+                "formats": [
+                  909199186,
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993,
+                  808669784,
+                  808665688,
+                  1448695129,
+                  1431918169,
+                  1498831189,
+                  1498765654,
+                  842094158,
+                  1448434008
+                ]
+              },
+              {
+                "modifier": 72057594037927938,
+                "formats": [
+                  538982467,
+                  909199186,
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993,
+                  808669784,
+                  808665688,
+                  1211388504,
+                  1211384408,
+                  1448695129,
+                  1431918169,
+                  1498831189,
+                  1498765654,
+                  842094158,
+                  1448434008
+                ]
+              },
+              {
+                "modifier": 72057594037927937,
+                "formats": [
+                  538982467,
+                  909199186,
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993,
+                  808669784,
+                  808665688,
+                  1211388504,
+                  1211384408,
+                  1448695129,
+                  1431918169,
+                  1498831189,
+                  1498765654,
+                  842094158,
+                  1448434008
+                ]
+              },
+              {
+                "modifier": 0,
+                "formats": [
+                  538982467,
+                  909199186,
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993,
+                  808669784,
+                  808665688,
+                  1211388504,
+                  1211384408,
+                  1448695129,
+                  1431918169,
+                  1498831189,
+                  1498765654,
+                  842094158,
+                  1448434008
+                ]
+              }
+            ]
+          },
+          "IN_FORMATS_ASYNC": {
+            "id": 32,
+            "flags": 20,
+            "type": 16,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 36,
+            "spec": null,
+            "value": null,
+            "data": null
+          },
+          "rotation": {
+            "id": 37,
+            "flags": 32,
+            "type": 32,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 1,
+            "spec": [
+              {
+                "name": "rotate-0",
+                "value": 0
+              },
+              {
+                "name": "rotate-90",
+                "value": 1
+              },
+              {
+                "name": "rotate-180",
+                "value": 2
+              },
+              {
+                "name": "rotate-270",
+                "value": 3
+              }
+            ],
+            "value": 1,
+            "data": null
+          },
+          "COLOR_ENCODING": {
+            "id": 38,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 1,
+            "spec": [
+              {
+                "name": "ITU-R BT.601 YCbCr",
+                "value": 0
+              },
+              {
+                "name": "ITU-R BT.709 YCbCr",
+                "value": 1
+              }
+            ],
+            "value": 1,
+            "data": null
+          },
+          "COLOR_RANGE": {
+            "id": 39,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": [
+              {
+                "name": "YCbCr limited range",
+                "value": 0
+              },
+              {
+                "name": "YCbCr full range",
+                "value": 1
+              }
+            ],
+            "value": 0,
+            "data": null
+          },
+          "alpha": {
+            "id": 40,
+            "flags": 2,
+            "type": 2,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 65535,
+            "spec": {
+              "min": 0,
+              "max": 65535
+            },
+            "value": 65535,
+            "data": null
+          },
+          "pixel blend mode": {
+            "id": 41,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": [
+              {
+                "name": "None",
+                "value": 2
+              },
+              {
+                "name": "Pre-multiplied",
+                "value": 0
+              },
+              {
+                "name": "Coverage",
+                "value": 1
+              }
+            ],
+            "value": 0,
+            "data": null
+          },
+          "zpos": {
+            "id": 42,
+            "flags": 6,
+            "type": 2,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 0
+            },
+            "value": 0,
+            "data": null
+          }
+        }
+      },
+      {
+        "id": 43,
+        "possible_crtcs": 1,
+        "crtc_id": 0,
+        "fb_id": 0,
+        "crtc_x": 0,
+        "crtc_y": 0,
+        "x": 0,
+        "y": 0,
+        "gamma_size": 0,
+        "fb": null,
+        "formats": [
+          538982467,
+          909199186,
+          875713112,
+          875709016,
+          875713089,
+          875708993,
+          808669784,
+          808665688,
+          1211388504,
+          1211384408,
+          1448695129,
+          1431918169,
+          1498831189,
+          1498765654,
+          842094158,
+          1448434008
+        ],
+        "properties": {
+          "type": {
+            "id": 9,
+            "flags": 12,
+            "type": 8,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 0,
+            "spec": [
+              {
+                "name": "Overlay",
+                "value": 0
+              },
+              {
+                "name": "Primary",
+                "value": 1
+              },
+              {
+                "name": "Cursor",
+                "value": 2
+              }
+            ],
+            "value": 0,
+            "data": null
+          },
+          "FB_ID": {
+            "id": 18,
+            "flags": 2147483712,
+            "type": 64,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": 4227595259,
+            "value": 0,
+            "data": null
+          },
+          "IN_FENCE_FD": {
+            "id": 19,
+            "flags": 2147483776,
+            "type": 128,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 18446744073709551615,
+            "spec": {
+              "min": -1,
+              "max": 2147483647
+            },
+            "value": -1,
+            "data": null
+          },
+          "CRTC_ID": {
+            "id": 21,
+            "flags": 2147483712,
+            "type": 64,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": 3435973836,
+            "value": 0,
+            "data": null
+          },
+          "CRTC_X": {
+            "id": 14,
+            "flags": 2147483776,
+            "type": 128,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": -2147483648,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "CRTC_Y": {
+            "id": 15,
+            "flags": 2147483776,
+            "type": 128,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": -2147483648,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "CRTC_W": {
+            "id": 16,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "CRTC_H": {
+            "id": 17,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "SRC_X": {
+            "id": 10,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "SRC_Y": {
+            "id": 11,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "SRC_W": {
+            "id": 12,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "SRC_H": {
+            "id": 13,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "IN_FORMATS": {
+            "id": 31,
+            "flags": 20,
+            "type": 16,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 44,
+            "spec": null,
+            "value": null,
+            "data": [
+              {
+                "modifier": 72057594037927941,
+                "formats": [
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993
+                ]
+              },
+              {
+                "modifier": 72057594037927940,
+                "formats": [
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993
+                ]
+              },
+              {
+                "modifier": 72057594037927939,
+                "formats": [
+                  909199186,
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993,
+                  808669784,
+                  808665688,
+                  1448695129,
+                  1431918169,
+                  1498831189,
+                  1498765654,
+                  842094158,
+                  1448434008
+                ]
+              },
+              {
+                "modifier": 72057594037927938,
+                "formats": [
+                  538982467,
+                  909199186,
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993,
+                  808669784,
+                  808665688,
+                  1211388504,
+                  1211384408,
+                  1448695129,
+                  1431918169,
+                  1498831189,
+                  1498765654,
+                  842094158,
+                  1448434008
+                ]
+              },
+              {
+                "modifier": 72057594037927937,
+                "formats": [
+                  538982467,
+                  909199186,
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993,
+                  808669784,
+                  808665688,
+                  1211388504,
+                  1211384408,
+                  1448695129,
+                  1431918169,
+                  1498831189,
+                  1498765654,
+                  842094158,
+                  1448434008
+                ]
+              },
+              {
+                "modifier": 0,
+                "formats": [
+                  538982467,
+                  909199186,
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993,
+                  808669784,
+                  808665688,
+                  1211388504,
+                  1211384408,
+                  1448695129,
+                  1431918169,
+                  1498831189,
+                  1498765654,
+                  842094158,
+                  1448434008
+                ]
+              }
+            ]
+          },
+          "IN_FORMATS_ASYNC": {
+            "id": 32,
+            "flags": 20,
+            "type": 16,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 45,
+            "spec": null,
+            "value": null,
+            "data": null
+          },
+          "rotation": {
+            "id": 46,
+            "flags": 32,
+            "type": 32,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 1,
+            "spec": [
+              {
+                "name": "rotate-0",
+                "value": 0
+              },
+              {
+                "name": "rotate-90",
+                "value": 1
+              },
+              {
+                "name": "rotate-180",
+                "value": 2
+              },
+              {
+                "name": "rotate-270",
+                "value": 3
+              }
+            ],
+            "value": 1,
+            "data": null
+          },
+          "COLOR_ENCODING": {
+            "id": 47,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 1,
+            "spec": [
+              {
+                "name": "ITU-R BT.601 YCbCr",
+                "value": 0
+              },
+              {
+                "name": "ITU-R BT.709 YCbCr",
+                "value": 1
+              }
+            ],
+            "value": 1,
+            "data": null
+          },
+          "COLOR_RANGE": {
+            "id": 48,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": [
+              {
+                "name": "YCbCr limited range",
+                "value": 0
+              },
+              {
+                "name": "YCbCr full range",
+                "value": 1
+              }
+            ],
+            "value": 0,
+            "data": null
+          },
+          "alpha": {
+            "id": 49,
+            "flags": 2,
+            "type": 2,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 65535,
+            "spec": {
+              "min": 0,
+              "max": 65535
+            },
+            "value": 65535,
+            "data": null
+          },
+          "pixel blend mode": {
+            "id": 50,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": [
+              {
+                "name": "None",
+                "value": 2
+              },
+              {
+                "name": "Pre-multiplied",
+                "value": 0
+              },
+              {
+                "name": "Coverage",
+                "value": 1
+              }
+            ],
+            "value": 0,
+            "data": null
+          },
+          "zpos": {
+            "id": 51,
+            "flags": 6,
+            "type": 2,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 1,
+            "spec": {
+              "min": 1,
+              "max": 1
+            },
+            "value": 1,
+            "data": null
+          }
+        }
+      },
+      {
+        "id": 52,
+        "possible_crtcs": 1,
+        "crtc_id": 58,
+        "fb_id": 128,
+        "crtc_x": 0,
+        "crtc_y": 0,
+        "x": 0,
+        "y": 0,
+        "gamma_size": 0,
+        "fb": {
+          "id": 128,
+          "width": 64,
+          "height": 64,
+          "format": 875713089,
+          "modifier": 0,
+          "planes": [
+            {
+              "offset": 0,
+              "pitch": 256
+            }
+          ]
+        },
+        "formats": [
+          875713089
+        ],
+        "properties": {
+          "type": {
+            "id": 9,
+            "flags": 12,
+            "type": 8,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 2,
+            "spec": [
+              {
+                "name": "Overlay",
+                "value": 0
+              },
+              {
+                "name": "Primary",
+                "value": 1
+              },
+              {
+                "name": "Cursor",
+                "value": 2
+              }
+            ],
+            "value": 2,
+            "data": null
+          },
+          "FB_ID": {
+            "id": 18,
+            "flags": 2147483712,
+            "type": 64,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 128,
+            "spec": 4227595259,
+            "value": 128,
+            "data": {
+              "id": 128,
+              "width": 64,
+              "height": 64,
+              "format": 875713089,
+              "modifier": 0,
+              "planes": [
+                {
+                  "offset": 0,
+                  "pitch": 256
+                }
+              ]
+            }
+          },
+          "IN_FENCE_FD": {
+            "id": 19,
+            "flags": 2147483776,
+            "type": 128,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 18446744073709551615,
+            "spec": {
+              "min": -1,
+              "max": 2147483647
+            },
+            "value": -1,
+            "data": null
+          },
+          "CRTC_ID": {
+            "id": 21,
+            "flags": 2147483712,
+            "type": 64,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 58,
+            "spec": 3435973836,
+            "value": 58,
+            "data": null
+          },
+          "CRTC_X": {
+            "id": 14,
+            "flags": 2147483776,
+            "type": 128,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 473,
+            "spec": {
+              "min": -2147483648,
+              "max": 2147483647
+            },
+            "value": 473,
+            "data": null
+          },
+          "CRTC_Y": {
+            "id": 15,
+            "flags": 2147483776,
+            "type": 128,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 609,
+            "spec": {
+              "min": -2147483648,
+              "max": 2147483647
+            },
+            "value": 609,
+            "data": null
+          },
+          "CRTC_W": {
+            "id": 16,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 64,
+            "spec": {
+              "min": 0,
+              "max": 2147483647
+            },
+            "value": 64,
+            "data": null
+          },
+          "CRTC_H": {
+            "id": 17,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 64,
+            "spec": {
+              "min": 0,
+              "max": 2147483647
+            },
+            "value": 64,
+            "data": null
+          },
+          "SRC_X": {
+            "id": 10,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "SRC_Y": {
+            "id": 11,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "SRC_W": {
+            "id": 12,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 4194304,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 4194304,
+            "data": 64
+          },
+          "SRC_H": {
+            "id": 13,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 4194304,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 4194304,
+            "data": 64
+          },
+          "IN_FORMATS": {
+            "id": 31,
+            "flags": 20,
+            "type": 16,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 53,
+            "spec": null,
+            "value": null,
+            "data": [
+              {
+                "modifier": 0,
+                "formats": [
+                  875713089
+                ]
+              }
+            ]
+          },
+          "IN_FORMATS_ASYNC": {
+            "id": 32,
+            "flags": 20,
+            "type": 16,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 54,
+            "spec": null,
+            "value": null,
+            "data": null
+          },
+          "rotation": {
+            "id": 55,
+            "flags": 32,
+            "type": 32,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 1,
+            "spec": [
+              {
+                "name": "rotate-0",
+                "value": 0
+              },
+              {
+                "name": "rotate-180",
+                "value": 2
+              }
+            ],
+            "value": 1,
+            "data": null
+          },
+          "SIZE_HINTS": {
+            "id": 33,
+            "flags": 20,
+            "type": 16,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 56,
+            "spec": null,
+            "value": null,
+            "data": null
+          },
+          "zpos": {
+            "id": 57,
+            "flags": 6,
+            "type": 2,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 2,
+            "spec": {
+              "min": 2,
+              "max": 2
+            },
+            "value": 2,
+            "data": null
+          }
+        }
+      },
+      {
+        "id": 59,
+        "possible_crtcs": 2,
+        "crtc_id": 0,
+        "fb_id": 0,
+        "crtc_x": 0,
+        "crtc_y": 0,
+        "x": 0,
+        "y": 0,
+        "gamma_size": 0,
+        "fb": null,
+        "formats": [
+          538982467,
+          909199186,
+          875713112,
+          875709016,
+          875713089,
+          875708993,
+          808669784,
+          808665688,
+          1211388504,
+          1211384408,
+          1448695129,
+          1431918169,
+          1498831189,
+          1498765654,
+          842094158,
+          1448434008
+        ],
+        "properties": {
+          "type": {
+            "id": 9,
+            "flags": 12,
+            "type": 8,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 1,
+            "spec": [
+              {
+                "name": "Overlay",
+                "value": 0
+              },
+              {
+                "name": "Primary",
+                "value": 1
+              },
+              {
+                "name": "Cursor",
+                "value": 2
+              }
+            ],
+            "value": 1,
+            "data": null
+          },
+          "FB_ID": {
+            "id": 18,
+            "flags": 2147483712,
+            "type": 64,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": 4227595259,
+            "value": 0,
+            "data": null
+          },
+          "IN_FENCE_FD": {
+            "id": 19,
+            "flags": 2147483776,
+            "type": 128,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 18446744073709551615,
+            "spec": {
+              "min": -1,
+              "max": 2147483647
+            },
+            "value": -1,
+            "data": null
+          },
+          "CRTC_ID": {
+            "id": 21,
+            "flags": 2147483712,
+            "type": 64,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": 3435973836,
+            "value": 0,
+            "data": null
+          },
+          "CRTC_X": {
+            "id": 14,
+            "flags": 2147483776,
+            "type": 128,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": -2147483648,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "CRTC_Y": {
+            "id": 15,
+            "flags": 2147483776,
+            "type": 128,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": -2147483648,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "CRTC_W": {
+            "id": 16,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "CRTC_H": {
+            "id": 17,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "SRC_X": {
+            "id": 10,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "SRC_Y": {
+            "id": 11,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "SRC_W": {
+            "id": 12,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "SRC_H": {
+            "id": 13,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "IN_FORMATS": {
+            "id": 31,
+            "flags": 20,
+            "type": 16,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 60,
+            "spec": null,
+            "value": null,
+            "data": [
+              {
+                "modifier": 72057594037927941,
+                "formats": [
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993
+                ]
+              },
+              {
+                "modifier": 72057594037927940,
+                "formats": [
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993
+                ]
+              },
+              {
+                "modifier": 72057594037927939,
+                "formats": [
+                  909199186,
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993,
+                  808669784,
+                  808665688,
+                  1448695129,
+                  1431918169,
+                  1498831189,
+                  1498765654,
+                  842094158,
+                  1448434008
+                ]
+              },
+              {
+                "modifier": 72057594037927938,
+                "formats": [
+                  538982467,
+                  909199186,
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993,
+                  808669784,
+                  808665688,
+                  1211388504,
+                  1211384408,
+                  1448695129,
+                  1431918169,
+                  1498831189,
+                  1498765654,
+                  842094158,
+                  1448434008
+                ]
+              },
+              {
+                "modifier": 72057594037927937,
+                "formats": [
+                  538982467,
+                  909199186,
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993,
+                  808669784,
+                  808665688,
+                  1211388504,
+                  1211384408,
+                  1448695129,
+                  1431918169,
+                  1498831189,
+                  1498765654,
+                  842094158,
+                  1448434008
+                ]
+              },
+              {
+                "modifier": 0,
+                "formats": [
+                  538982467,
+                  909199186,
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993,
+                  808669784,
+                  808665688,
+                  1211388504,
+                  1211384408,
+                  1448695129,
+                  1431918169,
+                  1498831189,
+                  1498765654,
+                  842094158,
+                  1448434008
+                ]
+              }
+            ]
+          },
+          "IN_FORMATS_ASYNC": {
+            "id": 32,
+            "flags": 20,
+            "type": 16,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 61,
+            "spec": null,
+            "value": null,
+            "data": null
+          },
+          "rotation": {
+            "id": 62,
+            "flags": 32,
+            "type": 32,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 1,
+            "spec": [
+              {
+                "name": "rotate-0",
+                "value": 0
+              },
+              {
+                "name": "rotate-90",
+                "value": 1
+              },
+              {
+                "name": "rotate-180",
+                "value": 2
+              },
+              {
+                "name": "rotate-270",
+                "value": 3
+              }
+            ],
+            "value": 1,
+            "data": null
+          },
+          "COLOR_ENCODING": {
+            "id": 63,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 1,
+            "spec": [
+              {
+                "name": "ITU-R BT.601 YCbCr",
+                "value": 0
+              },
+              {
+                "name": "ITU-R BT.709 YCbCr",
+                "value": 1
+              }
+            ],
+            "value": 1,
+            "data": null
+          },
+          "COLOR_RANGE": {
+            "id": 64,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": [
+              {
+                "name": "YCbCr limited range",
+                "value": 0
+              },
+              {
+                "name": "YCbCr full range",
+                "value": 1
+              }
+            ],
+            "value": 0,
+            "data": null
+          },
+          "alpha": {
+            "id": 65,
+            "flags": 2,
+            "type": 2,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 65535,
+            "spec": {
+              "min": 0,
+              "max": 65535
+            },
+            "value": 65535,
+            "data": null
+          },
+          "pixel blend mode": {
+            "id": 66,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": [
+              {
+                "name": "None",
+                "value": 2
+              },
+              {
+                "name": "Pre-multiplied",
+                "value": 0
+              },
+              {
+                "name": "Coverage",
+                "value": 1
+              }
+            ],
+            "value": 0,
+            "data": null
+          },
+          "zpos": {
+            "id": 67,
+            "flags": 6,
+            "type": 2,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 0
+            },
+            "value": 0,
+            "data": null
+          }
+        }
+      },
+      {
+        "id": 68,
+        "possible_crtcs": 2,
+        "crtc_id": 0,
+        "fb_id": 0,
+        "crtc_x": 0,
+        "crtc_y": 0,
+        "x": 0,
+        "y": 0,
+        "gamma_size": 0,
+        "fb": null,
+        "formats": [
+          538982467,
+          909199186,
+          875713112,
+          875709016,
+          875713089,
+          875708993,
+          808669784,
+          808665688,
+          1211388504,
+          1211384408,
+          1448695129,
+          1431918169,
+          1498831189,
+          1498765654,
+          842094158,
+          1448434008
+        ],
+        "properties": {
+          "type": {
+            "id": 9,
+            "flags": 12,
+            "type": 8,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 0,
+            "spec": [
+              {
+                "name": "Overlay",
+                "value": 0
+              },
+              {
+                "name": "Primary",
+                "value": 1
+              },
+              {
+                "name": "Cursor",
+                "value": 2
+              }
+            ],
+            "value": 0,
+            "data": null
+          },
+          "FB_ID": {
+            "id": 18,
+            "flags": 2147483712,
+            "type": 64,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": 4227595259,
+            "value": 0,
+            "data": null
+          },
+          "IN_FENCE_FD": {
+            "id": 19,
+            "flags": 2147483776,
+            "type": 128,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 18446744073709551615,
+            "spec": {
+              "min": -1,
+              "max": 2147483647
+            },
+            "value": -1,
+            "data": null
+          },
+          "CRTC_ID": {
+            "id": 21,
+            "flags": 2147483712,
+            "type": 64,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": 3435973836,
+            "value": 0,
+            "data": null
+          },
+          "CRTC_X": {
+            "id": 14,
+            "flags": 2147483776,
+            "type": 128,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": -2147483648,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "CRTC_Y": {
+            "id": 15,
+            "flags": 2147483776,
+            "type": 128,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": -2147483648,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "CRTC_W": {
+            "id": 16,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "CRTC_H": {
+            "id": 17,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "SRC_X": {
+            "id": 10,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "SRC_Y": {
+            "id": 11,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "SRC_W": {
+            "id": 12,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "SRC_H": {
+            "id": 13,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "IN_FORMATS": {
+            "id": 31,
+            "flags": 20,
+            "type": 16,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 69,
+            "spec": null,
+            "value": null,
+            "data": [
+              {
+                "modifier": 72057594037927941,
+                "formats": [
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993
+                ]
+              },
+              {
+                "modifier": 72057594037927940,
+                "formats": [
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993
+                ]
+              },
+              {
+                "modifier": 72057594037927939,
+                "formats": [
+                  909199186,
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993,
+                  808669784,
+                  808665688,
+                  1448695129,
+                  1431918169,
+                  1498831189,
+                  1498765654,
+                  842094158,
+                  1448434008
+                ]
+              },
+              {
+                "modifier": 72057594037927938,
+                "formats": [
+                  538982467,
+                  909199186,
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993,
+                  808669784,
+                  808665688,
+                  1211388504,
+                  1211384408,
+                  1448695129,
+                  1431918169,
+                  1498831189,
+                  1498765654,
+                  842094158,
+                  1448434008
+                ]
+              },
+              {
+                "modifier": 72057594037927937,
+                "formats": [
+                  538982467,
+                  909199186,
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993,
+                  808669784,
+                  808665688,
+                  1211388504,
+                  1211384408,
+                  1448695129,
+                  1431918169,
+                  1498831189,
+                  1498765654,
+                  842094158,
+                  1448434008
+                ]
+              },
+              {
+                "modifier": 0,
+                "formats": [
+                  538982467,
+                  909199186,
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993,
+                  808669784,
+                  808665688,
+                  1211388504,
+                  1211384408,
+                  1448695129,
+                  1431918169,
+                  1498831189,
+                  1498765654,
+                  842094158,
+                  1448434008
+                ]
+              }
+            ]
+          },
+          "IN_FORMATS_ASYNC": {
+            "id": 32,
+            "flags": 20,
+            "type": 16,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 70,
+            "spec": null,
+            "value": null,
+            "data": null
+          },
+          "rotation": {
+            "id": 71,
+            "flags": 32,
+            "type": 32,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 1,
+            "spec": [
+              {
+                "name": "rotate-0",
+                "value": 0
+              },
+              {
+                "name": "rotate-90",
+                "value": 1
+              },
+              {
+                "name": "rotate-180",
+                "value": 2
+              },
+              {
+                "name": "rotate-270",
+                "value": 3
+              }
+            ],
+            "value": 1,
+            "data": null
+          },
+          "COLOR_ENCODING": {
+            "id": 72,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 1,
+            "spec": [
+              {
+                "name": "ITU-R BT.601 YCbCr",
+                "value": 0
+              },
+              {
+                "name": "ITU-R BT.709 YCbCr",
+                "value": 1
+              }
+            ],
+            "value": 1,
+            "data": null
+          },
+          "COLOR_RANGE": {
+            "id": 73,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": [
+              {
+                "name": "YCbCr limited range",
+                "value": 0
+              },
+              {
+                "name": "YCbCr full range",
+                "value": 1
+              }
+            ],
+            "value": 0,
+            "data": null
+          },
+          "alpha": {
+            "id": 74,
+            "flags": 2,
+            "type": 2,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 65535,
+            "spec": {
+              "min": 0,
+              "max": 65535
+            },
+            "value": 65535,
+            "data": null
+          },
+          "pixel blend mode": {
+            "id": 75,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": [
+              {
+                "name": "None",
+                "value": 2
+              },
+              {
+                "name": "Pre-multiplied",
+                "value": 0
+              },
+              {
+                "name": "Coverage",
+                "value": 1
+              }
+            ],
+            "value": 0,
+            "data": null
+          },
+          "zpos": {
+            "id": 76,
+            "flags": 6,
+            "type": 2,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 1,
+            "spec": {
+              "min": 1,
+              "max": 1
+            },
+            "value": 1,
+            "data": null
+          }
+        }
+      },
+      {
+        "id": 77,
+        "possible_crtcs": 2,
+        "crtc_id": 0,
+        "fb_id": 0,
+        "crtc_x": 0,
+        "crtc_y": 0,
+        "x": 0,
+        "y": 0,
+        "gamma_size": 0,
+        "fb": null,
+        "formats": [
+          875713089
+        ],
+        "properties": {
+          "type": {
+            "id": 9,
+            "flags": 12,
+            "type": 8,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 2,
+            "spec": [
+              {
+                "name": "Overlay",
+                "value": 0
+              },
+              {
+                "name": "Primary",
+                "value": 1
+              },
+              {
+                "name": "Cursor",
+                "value": 2
+              }
+            ],
+            "value": 2,
+            "data": null
+          },
+          "FB_ID": {
+            "id": 18,
+            "flags": 2147483712,
+            "type": 64,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": 4227595259,
+            "value": 0,
+            "data": null
+          },
+          "IN_FENCE_FD": {
+            "id": 19,
+            "flags": 2147483776,
+            "type": 128,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 18446744073709551615,
+            "spec": {
+              "min": -1,
+              "max": 2147483647
+            },
+            "value": -1,
+            "data": null
+          },
+          "CRTC_ID": {
+            "id": 21,
+            "flags": 2147483712,
+            "type": 64,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": 3435973836,
+            "value": 0,
+            "data": null
+          },
+          "CRTC_X": {
+            "id": 14,
+            "flags": 2147483776,
+            "type": 128,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": -2147483648,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "CRTC_Y": {
+            "id": 15,
+            "flags": 2147483776,
+            "type": 128,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": -2147483648,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "CRTC_W": {
+            "id": 16,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "CRTC_H": {
+            "id": 17,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "SRC_X": {
+            "id": 10,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "SRC_Y": {
+            "id": 11,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "SRC_W": {
+            "id": 12,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "SRC_H": {
+            "id": 13,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "IN_FORMATS": {
+            "id": 31,
+            "flags": 20,
+            "type": 16,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 78,
+            "spec": null,
+            "value": null,
+            "data": [
+              {
+                "modifier": 0,
+                "formats": [
+                  875713089
+                ]
+              }
+            ]
+          },
+          "IN_FORMATS_ASYNC": {
+            "id": 32,
+            "flags": 20,
+            "type": 16,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 79,
+            "spec": null,
+            "value": null,
+            "data": null
+          },
+          "rotation": {
+            "id": 80,
+            "flags": 32,
+            "type": 32,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 1,
+            "spec": [
+              {
+                "name": "rotate-0",
+                "value": 0
+              },
+              {
+                "name": "rotate-180",
+                "value": 2
+              }
+            ],
+            "value": 1,
+            "data": null
+          },
+          "SIZE_HINTS": {
+            "id": 33,
+            "flags": 20,
+            "type": 16,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 81,
+            "spec": null,
+            "value": null,
+            "data": null
+          },
+          "zpos": {
+            "id": 82,
+            "flags": 6,
+            "type": 2,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 2,
+            "spec": {
+              "min": 2,
+              "max": 2
+            },
+            "value": 2,
+            "data": null
+          }
+        }
+      },
+      {
+        "id": 84,
+        "possible_crtcs": 4,
+        "crtc_id": 0,
+        "fb_id": 0,
+        "crtc_x": 0,
+        "crtc_y": 0,
+        "x": 0,
+        "y": 0,
+        "gamma_size": 0,
+        "fb": null,
+        "formats": [
+          538982467,
+          909199186,
+          875713112,
+          875709016,
+          875713089,
+          875708993,
+          808669784,
+          808665688,
+          1211388504,
+          1211384408,
+          1448695129,
+          1431918169,
+          1498831189,
+          1498765654,
+          1448434008
+        ],
+        "properties": {
+          "type": {
+            "id": 9,
+            "flags": 12,
+            "type": 8,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 1,
+            "spec": [
+              {
+                "name": "Overlay",
+                "value": 0
+              },
+              {
+                "name": "Primary",
+                "value": 1
+              },
+              {
+                "name": "Cursor",
+                "value": 2
+              }
+            ],
+            "value": 1,
+            "data": null
+          },
+          "FB_ID": {
+            "id": 18,
+            "flags": 2147483712,
+            "type": 64,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": 4227595259,
+            "value": 0,
+            "data": null
+          },
+          "IN_FENCE_FD": {
+            "id": 19,
+            "flags": 2147483776,
+            "type": 128,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 18446744073709551615,
+            "spec": {
+              "min": -1,
+              "max": 2147483647
+            },
+            "value": -1,
+            "data": null
+          },
+          "CRTC_ID": {
+            "id": 21,
+            "flags": 2147483712,
+            "type": 64,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": 3435973836,
+            "value": 0,
+            "data": null
+          },
+          "CRTC_X": {
+            "id": 14,
+            "flags": 2147483776,
+            "type": 128,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": -2147483648,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "CRTC_Y": {
+            "id": 15,
+            "flags": 2147483776,
+            "type": 128,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": -2147483648,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "CRTC_W": {
+            "id": 16,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "CRTC_H": {
+            "id": 17,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "SRC_X": {
+            "id": 10,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "SRC_Y": {
+            "id": 11,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "SRC_W": {
+            "id": 12,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "SRC_H": {
+            "id": 13,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "IN_FORMATS": {
+            "id": 31,
+            "flags": 20,
+            "type": 16,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 85,
+            "spec": null,
+            "value": null,
+            "data": [
+              {
+                "modifier": 72057594037927939,
+                "formats": [
+                  909199186,
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993,
+                  808669784,
+                  808665688,
+                  1448695129,
+                  1431918169,
+                  1498831189,
+                  1498765654,
+                  1448434008
+                ]
+              },
+              {
+                "modifier": 72057594037927938,
+                "formats": [
+                  538982467,
+                  909199186,
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993,
+                  808669784,
+                  808665688,
+                  1211388504,
+                  1211384408,
+                  1448695129,
+                  1431918169,
+                  1498831189,
+                  1498765654,
+                  1448434008
+                ]
+              },
+              {
+                "modifier": 72057594037927937,
+                "formats": [
+                  538982467,
+                  909199186,
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993,
+                  808669784,
+                  808665688,
+                  1211388504,
+                  1211384408,
+                  1448695129,
+                  1431918169,
+                  1498831189,
+                  1498765654,
+                  1448434008
+                ]
+              },
+              {
+                "modifier": 0,
+                "formats": [
+                  538982467,
+                  909199186,
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993,
+                  808669784,
+                  808665688,
+                  1211388504,
+                  1211384408,
+                  1448695129,
+                  1431918169,
+                  1498831189,
+                  1498765654,
+                  1448434008
+                ]
+              }
+            ]
+          },
+          "IN_FORMATS_ASYNC": {
+            "id": 32,
+            "flags": 20,
+            "type": 16,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 86,
+            "spec": null,
+            "value": null,
+            "data": null
+          },
+          "rotation": {
+            "id": 87,
+            "flags": 32,
+            "type": 32,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 1,
+            "spec": [
+              {
+                "name": "rotate-0",
+                "value": 0
+              },
+              {
+                "name": "rotate-90",
+                "value": 1
+              },
+              {
+                "name": "rotate-180",
+                "value": 2
+              },
+              {
+                "name": "rotate-270",
+                "value": 3
+              }
+            ],
+            "value": 1,
+            "data": null
+          },
+          "COLOR_ENCODING": {
+            "id": 88,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 1,
+            "spec": [
+              {
+                "name": "ITU-R BT.601 YCbCr",
+                "value": 0
+              },
+              {
+                "name": "ITU-R BT.709 YCbCr",
+                "value": 1
+              }
+            ],
+            "value": 1,
+            "data": null
+          },
+          "COLOR_RANGE": {
+            "id": 89,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": [
+              {
+                "name": "YCbCr limited range",
+                "value": 0
+              },
+              {
+                "name": "YCbCr full range",
+                "value": 1
+              }
+            ],
+            "value": 0,
+            "data": null
+          },
+          "alpha": {
+            "id": 90,
+            "flags": 2,
+            "type": 2,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 65535,
+            "spec": {
+              "min": 0,
+              "max": 65535
+            },
+            "value": 65535,
+            "data": null
+          },
+          "pixel blend mode": {
+            "id": 91,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": [
+              {
+                "name": "None",
+                "value": 2
+              },
+              {
+                "name": "Pre-multiplied",
+                "value": 0
+              },
+              {
+                "name": "Coverage",
+                "value": 1
+              }
+            ],
+            "value": 0,
+            "data": null
+          },
+          "zpos": {
+            "id": 92,
+            "flags": 6,
+            "type": 2,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 0
+            },
+            "value": 0,
+            "data": null
+          }
+        }
+      },
+      {
+        "id": 93,
+        "possible_crtcs": 4,
+        "crtc_id": 0,
+        "fb_id": 0,
+        "crtc_x": 0,
+        "crtc_y": 0,
+        "x": 0,
+        "y": 0,
+        "gamma_size": 0,
+        "fb": null,
+        "formats": [
+          538982467,
+          909199186,
+          875713112,
+          875709016,
+          875713089,
+          875708993,
+          808669784,
+          808665688,
+          1211388504,
+          1211384408,
+          1448695129,
+          1431918169,
+          1498831189,
+          1498765654,
+          1448434008
+        ],
+        "properties": {
+          "type": {
+            "id": 9,
+            "flags": 12,
+            "type": 8,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 0,
+            "spec": [
+              {
+                "name": "Overlay",
+                "value": 0
+              },
+              {
+                "name": "Primary",
+                "value": 1
+              },
+              {
+                "name": "Cursor",
+                "value": 2
+              }
+            ],
+            "value": 0,
+            "data": null
+          },
+          "FB_ID": {
+            "id": 18,
+            "flags": 2147483712,
+            "type": 64,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": 4227595259,
+            "value": 0,
+            "data": null
+          },
+          "IN_FENCE_FD": {
+            "id": 19,
+            "flags": 2147483776,
+            "type": 128,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 18446744073709551615,
+            "spec": {
+              "min": -1,
+              "max": 2147483647
+            },
+            "value": -1,
+            "data": null
+          },
+          "CRTC_ID": {
+            "id": 21,
+            "flags": 2147483712,
+            "type": 64,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": 3435973836,
+            "value": 0,
+            "data": null
+          },
+          "CRTC_X": {
+            "id": 14,
+            "flags": 2147483776,
+            "type": 128,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": -2147483648,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "CRTC_Y": {
+            "id": 15,
+            "flags": 2147483776,
+            "type": 128,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": -2147483648,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "CRTC_W": {
+            "id": 16,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "CRTC_H": {
+            "id": 17,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "SRC_X": {
+            "id": 10,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "SRC_Y": {
+            "id": 11,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "SRC_W": {
+            "id": 12,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "SRC_H": {
+            "id": 13,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "IN_FORMATS": {
+            "id": 31,
+            "flags": 20,
+            "type": 16,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 94,
+            "spec": null,
+            "value": null,
+            "data": [
+              {
+                "modifier": 72057594037927939,
+                "formats": [
+                  909199186,
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993,
+                  808669784,
+                  808665688,
+                  1448695129,
+                  1431918169,
+                  1498831189,
+                  1498765654,
+                  1448434008
+                ]
+              },
+              {
+                "modifier": 72057594037927938,
+                "formats": [
+                  538982467,
+                  909199186,
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993,
+                  808669784,
+                  808665688,
+                  1211388504,
+                  1211384408,
+                  1448695129,
+                  1431918169,
+                  1498831189,
+                  1498765654,
+                  1448434008
+                ]
+              },
+              {
+                "modifier": 72057594037927937,
+                "formats": [
+                  538982467,
+                  909199186,
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993,
+                  808669784,
+                  808665688,
+                  1211388504,
+                  1211384408,
+                  1448695129,
+                  1431918169,
+                  1498831189,
+                  1498765654,
+                  1448434008
+                ]
+              },
+              {
+                "modifier": 0,
+                "formats": [
+                  538982467,
+                  909199186,
+                  875713112,
+                  875709016,
+                  875713089,
+                  875708993,
+                  808669784,
+                  808665688,
+                  1211388504,
+                  1211384408,
+                  1448695129,
+                  1431918169,
+                  1498831189,
+                  1498765654,
+                  1448434008
+                ]
+              }
+            ]
+          },
+          "IN_FORMATS_ASYNC": {
+            "id": 32,
+            "flags": 20,
+            "type": 16,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 95,
+            "spec": null,
+            "value": null,
+            "data": null
+          },
+          "rotation": {
+            "id": 96,
+            "flags": 32,
+            "type": 32,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 1,
+            "spec": [
+              {
+                "name": "rotate-0",
+                "value": 0
+              },
+              {
+                "name": "rotate-90",
+                "value": 1
+              },
+              {
+                "name": "rotate-180",
+                "value": 2
+              },
+              {
+                "name": "rotate-270",
+                "value": 3
+              }
+            ],
+            "value": 1,
+            "data": null
+          },
+          "COLOR_ENCODING": {
+            "id": 97,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 1,
+            "spec": [
+              {
+                "name": "ITU-R BT.601 YCbCr",
+                "value": 0
+              },
+              {
+                "name": "ITU-R BT.709 YCbCr",
+                "value": 1
+              }
+            ],
+            "value": 1,
+            "data": null
+          },
+          "COLOR_RANGE": {
+            "id": 98,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": [
+              {
+                "name": "YCbCr limited range",
+                "value": 0
+              },
+              {
+                "name": "YCbCr full range",
+                "value": 1
+              }
+            ],
+            "value": 0,
+            "data": null
+          },
+          "alpha": {
+            "id": 99,
+            "flags": 2,
+            "type": 2,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 65535,
+            "spec": {
+              "min": 0,
+              "max": 65535
+            },
+            "value": 65535,
+            "data": null
+          },
+          "pixel blend mode": {
+            "id": 100,
+            "flags": 8,
+            "type": 8,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": [
+              {
+                "name": "None",
+                "value": 2
+              },
+              {
+                "name": "Pre-multiplied",
+                "value": 0
+              },
+              {
+                "name": "Coverage",
+                "value": 1
+              }
+            ],
+            "value": 0,
+            "data": null
+          },
+          "zpos": {
+            "id": 101,
+            "flags": 6,
+            "type": 2,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 1,
+            "spec": {
+              "min": 1,
+              "max": 1
+            },
+            "value": 1,
+            "data": null
+          }
+        }
+      },
+      {
+        "id": 102,
+        "possible_crtcs": 4,
+        "crtc_id": 0,
+        "fb_id": 0,
+        "crtc_x": 0,
+        "crtc_y": 0,
+        "x": 0,
+        "y": 0,
+        "gamma_size": 0,
+        "fb": null,
+        "formats": [
+          875713089
+        ],
+        "properties": {
+          "type": {
+            "id": 9,
+            "flags": 12,
+            "type": 8,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 2,
+            "spec": [
+              {
+                "name": "Overlay",
+                "value": 0
+              },
+              {
+                "name": "Primary",
+                "value": 1
+              },
+              {
+                "name": "Cursor",
+                "value": 2
+              }
+            ],
+            "value": 2,
+            "data": null
+          },
+          "FB_ID": {
+            "id": 18,
+            "flags": 2147483712,
+            "type": 64,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": 4227595259,
+            "value": 0,
+            "data": null
+          },
+          "IN_FENCE_FD": {
+            "id": 19,
+            "flags": 2147483776,
+            "type": 128,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 18446744073709551615,
+            "spec": {
+              "min": -1,
+              "max": 2147483647
+            },
+            "value": -1,
+            "data": null
+          },
+          "CRTC_ID": {
+            "id": 21,
+            "flags": 2147483712,
+            "type": 64,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": 3435973836,
+            "value": 0,
+            "data": null
+          },
+          "CRTC_X": {
+            "id": 14,
+            "flags": 2147483776,
+            "type": 128,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": -2147483648,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "CRTC_Y": {
+            "id": 15,
+            "flags": 2147483776,
+            "type": 128,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": -2147483648,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "CRTC_W": {
+            "id": 16,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "CRTC_H": {
+            "id": 17,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 2147483647
+            },
+            "value": 0,
+            "data": null
+          },
+          "SRC_X": {
+            "id": 10,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "SRC_Y": {
+            "id": 11,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "SRC_W": {
+            "id": 12,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "SRC_H": {
+            "id": 13,
+            "flags": 2147483650,
+            "type": 2,
+            "atomic": true,
+            "immutable": false,
+            "raw_value": 0,
+            "spec": {
+              "min": 0,
+              "max": 4294967295
+            },
+            "value": 0,
+            "data": 0
+          },
+          "IN_FORMATS": {
+            "id": 31,
+            "flags": 20,
+            "type": 16,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 103,
+            "spec": null,
+            "value": null,
+            "data": [
+              {
+                "modifier": 0,
+                "formats": [
+                  875713089
+                ]
+              }
+            ]
+          },
+          "IN_FORMATS_ASYNC": {
+            "id": 32,
+            "flags": 20,
+            "type": 16,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 104,
+            "spec": null,
+            "value": null,
+            "data": null
+          },
+          "rotation": {
+            "id": 105,
+            "flags": 32,
+            "type": 32,
+            "atomic": false,
+            "immutable": false,
+            "raw_value": 1,
+            "spec": [
+              {
+                "name": "rotate-0",
+                "value": 0
+              },
+              {
+                "name": "rotate-180",
+                "value": 2
+              }
+            ],
+            "value": 1,
+            "data": null
+          },
+          "SIZE_HINTS": {
+            "id": 33,
+            "flags": 20,
+            "type": 16,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 106,
+            "spec": null,
+            "value": null,
+            "data": null
+          },
+          "zpos": {
+            "id": 107,
+            "flags": 6,
+            "type": 2,
+            "atomic": false,
+            "immutable": true,
+            "raw_value": 2,
+            "spec": {
+              "min": 2,
+              "max": 2
+            },
+            "value": 2,
+            "data": null
+          }
+        }
+      }
+    ]
+  }
+}

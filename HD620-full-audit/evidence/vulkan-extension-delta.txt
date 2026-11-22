@@ -1,0 +1,21 @@
+Installed 183 unmodified build 199 patched build 199
+Exposed in unmodified build, absent from installed:
+VK_EXT_debug_marker
+VK_EXT_descriptor_heap
+VK_EXT_device_address_binding_report
+VK_EXT_present_timing
+VK_EXT_primitive_restart_index
+VK_EXT_vertex_address_binding_unrestricted
+VK_GOOGLE_display_timing
+VK_INTEL_device_info
+VK_KHR_copy_memory_indirect
+VK_KHR_device_address_commands
+VK_KHR_extended_flags
+VK_KHR_internally_synchronized_queues
+VK_KHR_maintenance11
+VK_KHR_maintenance12
+VK_KHR_shader_constant_data
+VK_KHR_shader_fma
+Exposed in installed, absent from unmodified build: []
+Patch-added: []
+Patch-removed: []

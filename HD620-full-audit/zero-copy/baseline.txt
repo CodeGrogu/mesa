@@ -1,0 +1,6 @@
+nv12 A vaapi->vulkan (hwmap): map failed: Invalid argument (-22)
+nv12 B vaapi->drm_prime->vulkan: mapped, 0 byte(s) differ
+exit 0
+p010le A vaapi->vulkan (hwmap): map failed: Invalid argument (-22)
+p010le B vaapi->drm_prime->vulkan: mapped, 0 byte(s) differ
+exit 0

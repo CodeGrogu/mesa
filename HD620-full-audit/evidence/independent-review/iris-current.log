@@ -1,0 +1,21 @@
+Mesa Intel(R) HD Graphics 620 (KBL GT2) 4.6 (Core Profile) Mesa 27.0.0-devel (git-0e9e1086bb)
+Mapped driver library /build/audit-iris/src/egl/libEGL.so.1.0.0
+Mapped driver library /build/audit-iris/src/gallium/targets/dri/libgallium-27.0.0-devel.so
+1048576 work-items, 16 rounds, timestamp pair, output checks passed
+  GL query difference median 0.000667 ms, samples ns [834, 750, 666, 667, 667, 667, 667, 584, 583]
+  wall time through finish median 2.417632 ms, samples ns [2775395, 2718203, 2417632, 2576119, 2353714, 2499213, 2327371, 2050197, 2025328]
+1048576 work-items, 16 rounds, time elapsed, output checks passed
+  GL query difference median 0.000000 ms, samples ns [0, 0, 83, 0, 83, 0, 0, 0, 0]
+  wall time through finish median 1.210515 ms, samples ns [1740856, 1638327, 1503486, 1456606, 1210515, 1140805, 1115496, 1171460, 1148836]
+1048576 work-items, 16 rounds, timestamp pair with explicit drains, output checks passed
+  GL query difference median 1.149416 ms, samples ns [1233500, 1225333, 1244083, 1149416, 1161583, 1076416, 1057750, 1053250, 1060500]
+  wall time through finish median 1.222300 ms, samples ns [1295198, 1283559, 1303372, 1297300, 1222300, 1140336, 1126453, 1124867, 1121893]
+1048576 work-items, 256 rounds, timestamp pair, output checks passed
+  GL query difference median 0.000250 ms, samples ns [250, 333, 333, 250, 334, 250, 250, 250, 250]
+  wall time through finish median 11.482941 ms, samples ns [11531123, 11482941, 11403134, 11509086, 11518281, 11945157, 11452744, 11427219, 11383094]
+1048576 work-items, 256 rounds, time elapsed, output checks passed
+  GL query difference median 0.000000 ms, samples ns [83, 0, 0, 83, 0, 0, 83, 83, 0]
+  wall time through finish median 11.490008 ms, samples ns [11490008, 12075798, 11398976, 11489913, 11491254, 11405149, 11205034, 11560828, 12005893]
+1048576 work-items, 256 rounds, timestamp pair with explicit drains, output checks passed
+  GL query difference median 11.549500 ms, samples ns [11504000, 11495083, 11621417, 11936833, 11583916, 11585584, 11489000, 11549500, 11386417]
+  wall time through finish median 11.606513 ms, samples ns [11562770, 11552925, 11683311, 12000767, 11649090, 11643687, 11548309, 11606513, 11444380]

@@ -1,0 +1,3 @@
+pipeline created at subgroup size 32
+submission 0: VK_ERROR_DEVICE_LOST (-4)
+exit 4

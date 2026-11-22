@@ -1,0 +1,18 @@
+#version 450
+// Sample a CCS-compressed colour texture and an ASTC texture in the same
+// dispatch, so both are in the sampler cache together (Mesa #1892).
+layout(local_size_x = 8, local_size_y = 8) in;
+layout(binding = 0) uniform sampler2D ccs_tex;
+layout(binding = 1) uniform sampler2D astc_tex;
+layout(std430, binding = 2) writeonly buffer O { vec4 o[]; };
+void main()
+{
+    vec2 uv = (vec2(gl_GlobalInvocationID.xy) + 0.5) / 256.0;
+    vec4 acc = vec4(0.0);
+    for (int k = 0; k < 64; k++) {
+        vec2 d = vec2(float(k) * 0.013, float(k) * 0.007);
+        acc += textureLod(ccs_tex, uv + d, 0.0);
+        acc += textureLod(astc_tex, uv.yx + d, 0.0);
+    }
+    o[gl_GlobalInvocationID.y * 256u + gl_GlobalInvocationID.x] = acc;
+}

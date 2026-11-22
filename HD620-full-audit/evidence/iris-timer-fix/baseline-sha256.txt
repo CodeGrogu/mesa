@@ -1,0 +1,3 @@
+8c78c8814ffdfd8a1d1ce884e8bf9efcf7b15a1fba8904daf91605afe6714e66  src/egl/libEGL.so.1.0.0
+e2f1e50851cc1243e0128305e4644893a57a2d189d16ff8bba351e94e5612535  src/gallium/targets/dri/libgallium-27.0.0-devel.so
+e450f6dd7c9c9eb6237c79c15933ddc6f9e79c967715c47b652b0e8aee8d6410  src/gbm/libgbm.so.1.0.0

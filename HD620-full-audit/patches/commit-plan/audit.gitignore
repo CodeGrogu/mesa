@@ -1,0 +1,28 @@
+# Staged packages and third-party binaries (reproducible from apt)
+HD620-full-audit/tools/
+# Compiled test programs (rebuild from the .c files)
+*.spv
+*.so
+__pycache__/
+# Large media inputs and raw dumps
+HD620-benchmark/inputs/
+*.webm
+*.mp4
+*.mkv
+*.yuv
+*.astc
+*.tga
+*.bin
+# Compiled test programs and large batch dumps
+/HD620-full-audit/hang-proofs/astc-ccs-gfx
+/HD620-full-audit/hang-proofs/hang-compute
+/HD620-full-audit/hang-proofs/astc-ccs
+/HD620-full-audit/hang-proofs/astc-ccs-stress
+/HD620-full-audit/gen9-stalls/stall-bench
+/HD620-full-audit/fp16-simd32/lanemask
+/HD620-full-audit/scratch-oom/scratch-oom
+/HD620-full-audit/scratch-oom/gemfail.so
+/HD620-full-audit/astc-host-copy/astc-host-copy
+/HD620-full-audit/bcs-copy/bin/vulkan-render-copy
+/HD620-full-audit/bcs-copy/bin/i915-bcs-copy
+/HD620-full-audit/hang-proofs/bat-*.txt

@@ -1,0 +1,12 @@
+{"test": "h264_vaapi-high-CQP", "encode_rc": 0, "decoded": {"profile": "High", "pix_fmt": "yuv420p", "nb_read_frames": "60"}, "decode_rc": 0}
+{"test": "h264_vaapi-high-CBR", "encode_rc": 0, "decoded": {"profile": "High", "pix_fmt": "yuv420p", "nb_read_frames": "60"}, "decode_rc": 0}
+{"test": "h264_vaapi-high-VBR", "encode_rc": 0, "decoded": {"profile": "High", "pix_fmt": "yuv420p", "nb_read_frames": "60"}, "decode_rc": 0}
+{"test": "hevc_vaapi-main-CQP", "encode_rc": 0, "decoded": {"profile": "Main", "pix_fmt": "yuv420p", "nb_read_frames": "60"}, "decode_rc": 0}
+{"test": "hevc_vaapi-main-CBR", "encode_rc": 0, "decoded": {"profile": "Main", "pix_fmt": "yuv420p", "nb_read_frames": "60"}, "decode_rc": 0}
+{"test": "hevc_vaapi-main-VBR", "encode_rc": 0, "decoded": {"profile": "Main", "pix_fmt": "yuv420p", "nb_read_frames": "60"}, "decode_rc": 0}
+{"test": "hevc_vaapi-main10-CQP", "encode_rc": 0, "decoded": {"profile": "Main 10", "pix_fmt": "yuv420p10le", "nb_read_frames": "60"}, "decode_rc": 0}
+{"test": "hevc_vaapi-main10-CBR", "encode_rc": 0, "decoded": {"profile": "Main 10", "pix_fmt": "yuv420p10le", "nb_read_frames": "60"}, "decode_rc": 0}
+{"test": "hevc_vaapi-main10-VBR", "encode_rc": 0, "decoded": {"profile": "Main 10", "pix_fmt": "yuv420p10le", "nb_read_frames": "60"}, "decode_rc": 0}
+{"test": "scale-default", "rc": 0, "busy_ns": {"3101": {"render": 0, "copy": 0, "video": 1395934628, "video-enhance": 1025761293}}}
+{"test": "scale-fast", "rc": 0, "busy_ns": {"3102": {"render": 1001263251, "copy": 0, "video": 1397419883, "video-enhance": 0}}}
+{"test": "scale-hq", "rc": 0, "busy_ns": {"3103": {"render": 997477547, "copy": 0, "video": 1393486889, "video-enhance": 0}}}

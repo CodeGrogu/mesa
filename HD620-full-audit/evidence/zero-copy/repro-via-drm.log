@@ -1,0 +1,63 @@
+Splitting the commandline.
+Reading option '-hide_banner' ... matched as option 'hide_banner' (do not show program banner) with argument '1'.
+Reading option '-nostdin' ... matched as option 'stdin' (enable or disable interaction on standard input) with argument 0.
+Reading option '-y' ... matched as option 'y' (overwrite output files) with argument '1'.
+Reading option '-v' ... matched as option 'v' (set logging level) with argument 'debug'.
+Reading option '-init_hw_device' ... matched as option 'init_hw_device' (initialise hardware device) with argument 'vaapi=va:/dev/dri/renderD128'.
+Reading option '-init_hw_device' ... matched as option 'init_hw_device' (initialise hardware device) with argument 'drm=dr@va'.
+Reading option '-init_hw_device' ... matched as option 'init_hw_device' (initialise hardware device) with argument 'vulkan=vk@dr'.
+Reading option '-hwaccel' ... matched as option 'hwaccel' (use HW accelerated decoding) with argument 'vaapi'.
+Reading option '-hwaccel_device' ... matched as option 'hwaccel_device' (select a device for HW acceleration) with argument 'va'.
+Reading option '-hwaccel_output_format' ... matched as option 'hwaccel_output_format' (select output format used with HW accelerated decoding) with argument 'vaapi'.
+Reading option '-i' ... matched as input url with argument 'evidence/media/h264_vaapi-nv12.h264'.
+Reading option '-vf' ... matched as option 'vf' (alias for -filter:v (apply filters to video streams)) with argument 'hwmap=derive_device=drm,hwmap=derive_device=vulkan'.
+Reading option '-frames:v' ... matched as option 'frames' (set the number of frames to output) with argument '5'.
+Reading option '-c:v' ... matched as option 'c' (select encoder/decoder ('copy' to copy stream without reencoding)) with argument 'wrapped_avframe'.
+Reading option '-f' ... matched as option 'f' (force container format (auto-detected otherwise)) with argument 'null'.
+Reading option '-' ... matched as output url.
+Finished splitting the commandline.
+Parsing a group of options: global .
+Applying option hide_banner (do not show program banner) with argument 1.
+Applying option nostdin (enable or disable interaction on standard input) with argument 0.
+Applying option y (overwrite output files) with argument 1.
+Applying option v (set logging level) with argument debug.
+Applying option init_hw_device (initialise hardware device) with argument vaapi=va:/dev/dri/renderD128.
+[VAAPI @ 0x5f00bbb4fd40] libva: VA-API version 1.23.0
+[VAAPI @ 0x5f00bbb4fd40] libva: User environment variable requested driver 'iHD'
+[VAAPI @ 0x5f00bbb4fd40] libva: Trying to open /usr/lib/x86_64-linux-gnu/dri/iHD_drv_video.so
+[VAAPI @ 0x5f00bbb4fd40] libva: Found init function __vaDriverInit_1_22
+[VAAPI @ 0x5f00bbb4fd40] libva: va_openDriver() returns 0
+[VAAPI @ 0x5f00bbb4fd40] Initialised VAAPI connection: version 1.23
+[VAAPI @ 0x5f00bbb4fd40] Format 0x41524742 -> bgra.
+[VAAPI @ 0x5f00bbb4fd40] Format 0x41424752 -> rgba.
+[VAAPI @ 0x5f00bbb4fd40] Format 0x58524742 -> bgr0.
+[VAAPI @ 0x5f00bbb4fd40] Format 0x58424752 -> rgb0.
+[VAAPI @ 0x5f00bbb4fd40] Format 0x30335241 -> unknown.
+[VAAPI @ 0x5f00bbb4fd40] Format 0x30334241 -> unknown.
+[VAAPI @ 0x5f00bbb4fd40] Format 0x30335258 -> x2rgb10le.
+[VAAPI @ 0x5f00bbb4fd40] Format 0x30334258 -> unknown.
+[VAAPI @ 0x5f00bbb4fd40] Format 0x36314752 -> unknown.
+[VAAPI @ 0x5f00bbb4fd40] Format 0x50424752 -> unknown.
+[VAAPI @ 0x5f00bbb4fd40] Format 0x50524742 -> unknown.
+[VAAPI @ 0x5f00bbb4fd40] Format 0x56555941 -> unknown.
+[VAAPI @ 0x5f00bbb4fd40] Format 0x30303859 -> gray.
+[VAAPI @ 0x5f00bbb4fd40] Format 0x3231564e -> nv12.
+[VAAPI @ 0x5f00bbb4fd40] Format 0x3132564e -> unknown.
+[VAAPI @ 0x5f00bbb4fd40] Format 0x32595559 -> yuyv422.
+[VAAPI @ 0x5f00bbb4fd40] Format 0x59565955 -> uyvy422.
+[VAAPI @ 0x5f00bbb4fd40] Format 0x32315659 -> yuv420p.
+[VAAPI @ 0x5f00bbb4fd40] Format 0x30323449 -> yuv420p.
+[VAAPI @ 0x5f00bbb4fd40] Format 0x50313134 -> yuv411p.
+[VAAPI @ 0x5f00bbb4fd40] Format 0x48323234 -> yuv422p.
+[VAAPI @ 0x5f00bbb4fd40] Format 0x56323234 -> yuv440p.
+[VAAPI @ 0x5f00bbb4fd40] Format 0x50343434 -> yuv444p.
+[VAAPI @ 0x5f00bbb4fd40] Format 0x33434d49 -> unknown.
+[VAAPI @ 0x5f00bbb4fd40] Format 0x30313050 -> p010le.
+[VAAPI @ 0x5f00bbb4fd40] VAAPI driver: Intel iHD driver for Intel(R) Gen Graphics - 26.1.2 ().
+[VAAPI @ 0x5f00bbb4fd40] Driver not found in known nonstandard list, using standard behaviour.
+Applying option init_hw_device (initialise hardware device) with argument drm=dr@va.
+Device creation failed: -38.
+Failed to set value 'drm=dr@va' for option 'init_hw_device': Function not implemented
+Error parsing global options: Function not implemented
+
+Exiting with exit code -38

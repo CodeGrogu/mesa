@@ -1,0 +1,112 @@
+[h264 @ 0x5cbeebbf2f40] Reinit context to 1920x1088, pix_fmt: yuv420p
+[vist#0:0/h264 @ 0x5cbeebbf5a00] Selecting decoder 'h264' because of requested hwaccel method vaapi
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '../../HD620-benchmark/inputs/h264_1080_slices.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.3.100
+  Duration: 00:00:32.00, start: 0.000000, bitrate: 6242 kb/s
+  Stream #0:0[0x1](und): Video: h264 (High), 1 reference frame (avc1 / 0x31637661), yuv420p(progressive, left), 1920x1080 [SAR 1:1 DAR 16:9], 6240 kb/s, 30 fps, 30 tbr, 15360 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      vendor_id       : [0][0][0][0]
+      encoder         : Lavc62.11.100 libx264
+[out#0/null @ 0x5cbeebbf66c0] No explicit maps, mapping streams automatically...
+[vost#0:0/wrapped_avframe @ 0x5cbeebc81a00] Created video stream from input stream 0:0
+[VAAPI @ 0x5cbeebc81300] libva: VA-API version 1.23.0
+[VAAPI @ 0x5cbeebc81300] libva: User environment variable requested driver 'iHD'
+[VAAPI @ 0x5cbeebc81300] libva: Trying to open /usr/lib/x86_64-linux-gnu/dri/iHD_drv_video.so
+[VAAPI @ 0x5cbeebc81300] libva: Found init function __vaDriverInit_1_22
+[VAAPI @ 0x5cbeebc81300] libva: va_openDriver() returns 0
+[VAAPI @ 0x5cbeebc81300] Initialised VAAPI connection: version 1.23
+[VAAPI @ 0x5cbeebc81300] VAAPI driver: Intel iHD driver for Intel(R) Gen Graphics - 26.1.2 ().
+[VAAPI @ 0x5cbeebc81300] Driver not found in known nonstandard list, using standard behaviour.
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+[vost#0:0/wrapped_avframe @ 0x5cbeebc81a00] Starting thread...
+[vf#0:0 @ 0x5cbeebc821c0] Starting thread...
+[vist#0:0/h264 @ 0x5cbeebbf5a00] [dec:h264 @ 0x5cbeebc80d00] Starting thread...
+[in#0/mov,mp4,m4a,3gp,3g2,mj2 @ 0x5cbeebbf1e40] Starting thread...
+[h264 @ 0x5cbeebd11840] Reinit context to 1920x1088, pix_fmt: vaapi
+[graph -1 input from stream 0:0 @ 0x7fec60002580] w:1920 h:1080 pixfmt:vaapi tb:1/15360 fr:30/1 sar:1/1 csp:unknown range:unknown
+[Vulkan @ 0x7fec60003780] Supported layers:
+[Vulkan @ 0x7fec60003780] 	VK_LAYER_MESA_device_select
+[Vulkan @ 0x7fec60003780] 	VK_LAYER_MESA_anti_lag
+[Vulkan @ 0x7fec60003780] 	VK_LAYER_MESA_screenshot
+[Vulkan @ 0x7fec60003780] 	VK_LAYER_INTEL_nullhw
+[Vulkan @ 0x7fec60003780] 	VK_LAYER_MESA_overlay
+[Vulkan @ 0x7fec60003780] Using instance extension VK_EXT_layer_settings
+[Vulkan @ 0x7fec60003780] GPU listing:
+[Vulkan @ 0x7fec60003780]     0: Intel(R) HD Graphics 620 (KBL GT2) (integrated) (0x5916)
+[Vulkan @ 0x7fec60003780] Requested device: 0x5916
+[Vulkan @ 0x7fec60003780] Device 0 selected: Intel(R) HD Graphics 620 (KBL GT2) (integrated) (0x5916)
+[Vulkan @ 0x7fec60003780] Using device extension VK_KHR_push_descriptor
+[Vulkan @ 0x7fec60003780] Using device extension VK_EXT_physical_device_drm
+[Vulkan @ 0x7fec60003780] Using device extension VK_EXT_shader_atomic_float
+[Vulkan @ 0x7fec60003780] Using device extension VK_EXT_shader_object
+[Vulkan @ 0x7fec60003780] Using device extension VK_KHR_shader_subgroup_rotate
+[Vulkan @ 0x7fec60003780] Using device extension VK_KHR_shader_expect_assume
+[Vulkan @ 0x7fec60003780] Using device extension VK_KHR_external_memory_fd
+[Vulkan @ 0x7fec60003780] Using device extension VK_EXT_external_memory_dma_buf
+[Vulkan @ 0x7fec60003780] Using device extension VK_EXT_image_drm_format_modifier
+[Vulkan @ 0x7fec60003780] Using device extension VK_KHR_external_semaphore_fd
+[Vulkan @ 0x7fec60003780] Using device extension VK_EXT_external_memory_host
+[Vulkan @ 0x7fec60003780] Queue families:
+[Vulkan @ 0x7fec60003780]     0: graphics compute transfer (queues: 1)
+[Vulkan @ 0x7fec60003780] Using device: Intel(R) HD Graphics 620 (KBL GT2)
+[Vulkan @ 0x7fec60003780] Alignments:
+[Vulkan @ 0x7fec60003780]     optimalBufferCopyRowPitchAlignment: 64
+[Vulkan @ 0x7fec60003780]     minMemoryMapAlignment:              4096
+[Vulkan @ 0x7fec60003780]     nonCoherentAtomSize:                64
+[Vulkan @ 0x7fec60003780]     minImportedHostPointerAlignment:    4096
+[Vulkan @ 0x7fec60003780] Using queue family 0 (queues: 1) for graphics compute transfers
+[graph -1 input from stream 0:0 @ 0x7fec60002580] video frame properties congruent with link at pts_time: 0
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.3.100
+  Stream #0:0(und): Video: wrapped_avframe, 1 reference frame, vaapi(progressive, left), 1920x1080 [SAR 1:1 DAR 16:9], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.11.100 wrapped_avframe
+      handler_name    : VideoHandler
+      vendor_id       : [0][0][0][0]
+[out#0/null @ 0x5cbeebbf66c0] Starting thread...
+frame=  288 fps=0.0 q=-0.0 size=N/A time=00:00:09.60 bitrate=N/A speed=19.2x elapsed=0:00:00.50    frame=  601 fps=601 q=-0.0 size=N/A time=00:00:20.03 bitrate=N/A speed=  20x elapsed=0:00:01.00    frame=  929 fps=619 q=-0.0 size=N/A time=00:00:30.96 bitrate=N/A speed=20.6x elapsed=0:00:01.50    [in#0/mov,mp4,m4a,3gp,3g2,mj2 @ 0x5cbeebbf1e40] EOF while reading input
+[vist#0:0/h264 @ 0x5cbeebbf5a00] [dec:h264 @ 0x5cbeebc80d00] Decoder thread received flush packet
+[vist#0:0/h264 @ 0x5cbeebbf5a00] [dec:h264 @ 0x5cbeebc80d00] Decoder returned EOF, resetting
+[h264 @ 0x5cbeebd11840] Reinit context to 1920x1088, pix_fmt: vaapi
+[vf#0:0 @ 0x5cbeebc821c0] Reconfiguring filter graph because hwaccel changed
+[graph -1 input from stream 0:0 @ 0x7fec60167b80] w:1920 h:1080 pixfmt:vaapi tb:1/15360 fr:30/1 sar:1/1 csp:unknown range:unknown
+[scaler_out_#0:0 @ 0x7fec60049b80] w:1920 h:1080 flags:'' interl:0
+The filters 'scaler_out_#0:0' and 'format' do not have a common format and automatic conversion is disabled.
+Link 'scaler_out_#0:0.default' -> 'format.default':
+  src: yuv420p yuyv422 rgb24 bgr24 yuv422p yuv444p yuv410p yuv411p gray monow monob pal8 yuvj420p yuvj422p yuvj444p uyvy422 bgr8 bgr4 bgr4_byte rgb8 rgb4 rgb4_byte nv12 nv21 argb rgba abgr bgra gray16be gray16le yuv440p yuvj440p yuva420p rgb48be rgb48le rgb565be rgb565le rgb555be rgb555le bgr565be bgr565le bgr555be bgr555le yuv420p16le yuv420p16be yuv422p16le yuv422p16be yuv444p16le yuv444p16be rgb444le rgb444be bgr444le bgr444be ya8 bgr48be bgr48le yuv420p9be yuv420p9le yuv420p10be yuv420p10le yuv422p10be yuv422p10le yuv444p9be yuv444p9le yuv444p10be yuv444p10le yuv422p9be yuv422p9le gbrp gbrp9be gbrp9le gbrp10be gbrp10le gbrp16be gbrp16le yuva422p yuva444p yuva420p9be yuva420p9le yuva422p9be yuva422p9le yuva444p9be yuva444p9le yuva420p10be yuva420p10le yuva422p10be yuva422p10le yuva444p10be yuva444p10le yuva420p16be yuva420p16le yuva422p16be yuva422p16le yuva444p16be yuva444p16le xyz12le xyz12be nv16 nv20le nv20be rgba64be rgba64le bgra64be bgra64le yvyu422 ya16be ya16le gbrap gbrap16be gbrap16le 0rgb rgb0 0bgr bgr0 yuv420p12be yuv420p12le yuv420p14be yuv420p14le yuv422p12be yuv422p12le yuv422p14be yuv422p14le yuv444p12be yuv444p12le yuv444p14be yuv444p14le gbrp12be gbrp12le gbrp14be gbrp14le yuvj411p yuv440p10le yuv440p10be yuv440p12le yuv440p12be ayuv64le ayuv64be p010le p010be gbrap12be gbrap12le gbrap10be gbrap10le gray12be gray12le gray10be gray10le p016le p016be gray9be gray9le gbrpf32be gbrpf32le gbrapf32be gbrapf32le gray14be gray14le grayf32be grayf32le yuva422p12be yuva422p12le yuva444p12be yuva444p12le nv24 nv42 y210le x2rgb10le x2bgr10le p210be p210le p410be p410le p216be p216le p416be p416le vuya vuyx p012le p012be y212le xv30le xv36be xv36le p212be p212le p412be p412le gbrap14be gbrap14le ayuv uyva vyu444 v30xle y216le xv48be xv48le yuv444p10msbbe yuv444p10msble yuv444p12msbbe yuv444p12msble gbrp10msbbe gbrp10msble gbrp12msbbe gbrp12msble
+  dst: vaapi
+[vf#0:0 @ 0x5cbeebc821c0] Error reinitializing filters!
+[vf#0:0 @ 0x5cbeebc821c0] Task finished with error code: -22 (Invalid argument)
+[vf#0:0 @ 0x5cbeebc821c0] Terminating thread with return code -22 (Invalid argument)
+[vost#0:0/wrapped_avframe @ 0x5cbeebc81a00] [enc:wrapped_avframe @ 0x5cbeebbf6140] Encoder thread received EOF
+[out#0/null @ 0x5cbeebbf66c0] All streams finished
+[out#0/null @ 0x5cbeebbf66c0] Terminating thread with return code 0 (success)
+[vost#0:0/wrapped_avframe @ 0x5cbeebc81a00] Terminating thread with return code 0 (success)
+[vist#0:0/h264 @ 0x5cbeebbf5a00] [dec:h264 @ 0x5cbeebc80d00] Decoder returned EOF, finishing
+[vist#0:0/h264 @ 0x5cbeebbf5a00] [dec:h264 @ 0x5cbeebc80d00] Terminating thread with return code 0 (success)
+[vist#0:0/h264 @ 0x5cbeebbf5a00] All consumers of this stream are done
+[in#0/mov,mp4,m4a,3gp,3g2,mj2 @ 0x5cbeebbf1e40] All consumers are done
+[in#0/mov,mp4,m4a,3gp,3g2,mj2 @ 0x5cbeebbf1e40] Terminating thread with return code 0 (success)
+[out#0/null @ 0x5cbeebbf66c0] Output file #0 (pipe:):
+[out#0/null @ 0x5cbeebbf66c0]   Output stream #0:0 (video): 960 frames encoded; 960 packets muxed (399360 bytes); 
+[out#0/null @ 0x5cbeebbf66c0]   Total: 960 packets (399360 bytes) muxed
+[out#0/null @ 0x5cbeebbf66c0] video:390KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  960 fps=613 q=-0.0 Lsize=N/A time=00:00:32.00 bitrate=N/A speed=20.4x elapsed=0:00:01.56    
+bench: maxrss=100840KiB
+[in#0/mov,mp4,m4a,3gp,3g2,mj2 @ 0x5cbeebbf1e40] Input file #0 (../../HD620-benchmark/inputs/h264_1080_slices.mp4):
+[in#0/mov,mp4,m4a,3gp,3g2,mj2 @ 0x5cbeebbf1e40]   Input stream #0:0 (video): 980 packets read (25504212 bytes); 965 frames decoded; 0 decode errors; 
+[in#0/mov,mp4,m4a,3gp,3g2,mj2 @ 0x5cbeebbf1e40]   Total: 980 packets (25504212 bytes) demuxed
+[AVIOContext @ 0x5cbeebbfa840] Statistics: 25578484 bytes read, 3 seeks
+Conversion failed!
+
+Exiting with exit code -22

@@ -1,0 +1,30 @@
+all / default
+  original: video extensions []; video queue [directions, codec mask] []; NV12 video flags 0x0; 199 total extensions
+  patched: video extensions []; video queue [directions, codec mask] []; NV12 video flags 0x0; 199 total extensions
+all / decode
+  original: video extensions ['decode_h264', 'decode_queue', 'decode_vp9', 'maintenance1', 'maintenance2', 'queue']; video queue [directions, codec mask] [('0x20', '0xb')]; NV12 video flags 0x6000000; 205 total extensions
+  patched: video extensions ['decode_h264', 'decode_queue', 'decode_vp9', 'maintenance1', 'maintenance2', 'queue']; video queue [directions, codec mask] [('0x20', '0x9')]; NV12 video flags 0x6000000; 205 total extensions
+all / encode
+  original: video extensions ['encode_h264', 'encode_queue', 'maintenance1', 'maintenance2', 'queue']; video queue [directions, codec mask] [('0x40', '0x40030000')]; NV12 video flags 0x18000000; 204 total extensions
+  patched: video extensions ['encode_h264', 'encode_queue', 'maintenance1', 'maintenance2', 'queue']; video queue [directions, codec mask] [('0x40', '0x10000')]; NV12 video flags 0x18000000; 204 total extensions
+all / both
+  original: video extensions ['decode_h264', 'decode_queue', 'decode_vp9', 'encode_h264', 'encode_queue', 'maintenance1', 'maintenance2', 'queue']; video queue [directions, codec mask] [('0x60', '0x3000b')]; NV12 video flags 0x1e000000; 207 total extensions
+  patched: video extensions ['decode_h264', 'decode_queue', 'decode_vp9', 'encode_h264', 'encode_queue', 'maintenance1', 'maintenance2', 'queue']; video queue [directions, codec mask] [('0x60', '0x10009')]; NV12 video flags 0x1e000000; 207 total extensions
+all / engine hidden
+  original: video extensions ['decode_h264', 'decode_queue', 'decode_vp9', 'encode_h264', 'encode_queue', 'maintenance1', 'maintenance2', 'queue']; video queue [directions, codec mask] []; NV12 video flags 0x1e000000; 207 total extensions
+  patched: video extensions []; video queue [directions, codec mask] []; NV12 video flags 0x0; 199 total extensions
+free / default
+  original: video extensions []; video queue [directions, codec mask] []; NV12 video flags 0x0; 199 total extensions
+  patched: video extensions []; video queue [directions, codec mask] []; NV12 video flags 0x0; 199 total extensions
+free / decode
+  original: video extensions ['decode_queue', 'decode_vp9', 'queue']; video queue [directions, codec mask] [('0x20', '0xb')]; NV12 video flags 0x6000000; 202 total extensions
+  patched: video extensions ['decode_queue', 'decode_vp9', 'queue']; video queue [directions, codec mask] [('0x20', '0x8')]; NV12 video flags 0x6000000; 202 total extensions
+free / encode
+  original: video extensions ['encode_queue', 'queue']; video queue [directions, codec mask] [('0x40', '0x40030000')]; NV12 video flags 0x18000000; 201 total extensions
+  patched: video extensions []; video queue [directions, codec mask] []; NV12 video flags 0x0; 199 total extensions
+free / both
+  original: video extensions ['decode_queue', 'decode_vp9', 'encode_queue', 'queue']; video queue [directions, codec mask] [('0x60', '0x3000b')]; NV12 video flags 0x1e000000; 203 total extensions
+  patched: video extensions ['decode_queue', 'decode_vp9', 'queue']; video queue [directions, codec mask] [('0x20', '0x8')]; NV12 video flags 0x6000000; 202 total extensions
+free / engine hidden
+  original: video extensions ['decode_queue', 'decode_vp9', 'encode_queue', 'queue']; video queue [directions, codec mask] []; NV12 video flags 0x1e000000; 203 total extensions
+  patched: video extensions []; video queue [directions, codec mask] []; NV12 video flags 0x0; 199 total extensions

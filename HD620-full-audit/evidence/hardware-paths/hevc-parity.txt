@@ -1,0 +1,2 @@
+hevc_vaapi-nv12: 60 Vulkan-decoded frames matched software hashes
+hevc_vaapi-p010le: 60 Vulkan-decoded frames matched software hashes
