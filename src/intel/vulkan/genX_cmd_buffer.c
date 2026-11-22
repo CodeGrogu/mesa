@@ -6045,7 +6045,11 @@ genX(flush_pipeline_select)(struct anv_cmd_buffer *cmd_buffer,
    genX(cmd_buffer_apply_pipe_flushes)(cmd_buffer);
 
 #if GFX_VER == 9
-   if (pipeline == _3D) {
+   /* anv_gfx9_skip_vfe_reemit lets users opt out of the dummy
+    * MEDIA_VFE_STATE below (see the drirc option for what was tested).
+    */
+   if (pipeline == _3D &&
+       !cmd_buffer->device->physical->drirc.perf.gfx9_skip_vfe_reemit) {
       /* There is a mid-object preemption workaround which requires you to
        * re-emit MEDIA_VFE_STATE after switching from GPGPU to 3D.  However,
        * even without preemption, we have issues with geometry flickering when

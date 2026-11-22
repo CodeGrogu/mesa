@@ -232,6 +232,14 @@ def declare_options(android_version):
           "colour into a surface state (about 0.66 us per render pass on "
           "HD 620; the SKL PRM asks for it, but testing has not needed it)",
           c_name="gfx9_skip_clear_color_state_invalidate"),
+        B("anv_gfx9_skip_vfe_reemit", False,
+          "Gfx9: skip the dummy MEDIA_VFE_STATE emitted when switching from "
+          "GPGPU to 3D (about 0.5 us per switch on HD 620).  It works around "
+          "an object-level preemption issue (i915 disables object-level 3D "
+          "preemption on Gfx9) and an unexplained geometry flicker that "
+          "3.7 million compute-to-3D switches in a pixel-checked test did "
+          "not reproduce",
+          c_name="gfx9_skip_vfe_reemit"),
         E("intel_code_motion", 0, 0, 2,
           [EV(0, "compiler default"),
            EV(1, "nir_opt_licm, hoist out of loops only"),
