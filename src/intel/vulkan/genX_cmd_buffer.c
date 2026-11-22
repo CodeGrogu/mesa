@@ -5272,14 +5272,76 @@ cmd_buffer_barrier_video(struct anv_cmd_buffer *cmd_buffer,
 }
 
 static void
+cmd_buffer_barrier(struct anv_cmd_buffer *cmd_buffer,
+                   uint32_t n_dep_infos,
+                   const VkDependencyInfo *dep_infos,
+                   const char *reason);
+
+#if GFX_VER == 9
+/* Gfx9 copy queue: the blitter never touches aux surfaces (anything with
+ * aux is copied on the companion RCS), so layout transitions of images with
+ * aux are executed on the companion RCS with the render barrier code.
+ * Queue family ownership transfers are left to the render queue, as for the
+ * other engines (see transition_color_buffer()).
+ */
+static void
+gfx9_blitter_aux_transitions_on_companion(struct anv_cmd_buffer *cmd_buffer,
+                                          uint32_t n_dep_infos,
+                                          const VkDependencyInfo *dep_infos)
+{
+   for (uint32_t d = 0; d < n_dep_infos; d++) {
+      const VkDependencyInfo *dep_info = &dep_infos[d];
+      STACK_ARRAY(VkImageMemoryBarrier2, barriers,
+                  dep_info->imageMemoryBarrierCount);
+      uint32_t count = 0;
+
+      for (uint32_t i = 0; i < dep_info->imageMemoryBarrierCount; i++) {
+         const VkImageMemoryBarrier2 *b = &dep_info->pImageMemoryBarriers[i];
+         ANV_FROM_HANDLE(anv_image, image, b->image);
+
+         bool has_aux = false;
+         for (uint32_t p = 0; p < image->n_planes; p++)
+            has_aux |= image->planes[p].aux_usage != ISL_AUX_USAGE_NONE;
+
+         const bool ownership_transfer =
+            b->srcQueueFamilyIndex != b->dstQueueFamilyIndex &&
+            b->srcQueueFamilyIndex != VK_QUEUE_FAMILY_IGNORED &&
+            b->dstQueueFamilyIndex != VK_QUEUE_FAMILY_IGNORED;
+
+         if (has_aux && !ownership_transfer && b->oldLayout != b->newLayout)
+            barriers[count++] = *b;
+      }
+
+      if (count > 0) {
+         anv_cmd_require_rcs(cmd_buffer, true) {
+            const VkDependencyInfo companion_dep = {
+               .sType = VK_STRUCTURE_TYPE_DEPENDENCY_INFO,
+               .imageMemoryBarrierCount = count,
+               .pImageMemoryBarriers = barriers,
+            };
+            cmd_buffer_barrier(cmd_buffer, 1, &companion_dep,
+                               "gfx9 copy queue aux transition");
+         }
+      }
+
+      STACK_ARRAY_FINISH(barriers);
+   }
+}
+#endif
+
+static void
 cmd_buffer_barrier_blitter(struct anv_cmd_buffer *cmd_buffer,
                            uint32_t n_dep_infos,
                            const VkDependencyInfo *dep_infos,
                            struct anv_address signal_addr,
                            uint64_t signal_value)
 {
-#if GFX_VERx10 >= 125
+#if GFX_VERx10 >= 125 || GFX_VER == 9
    assert(anv_cmd_buffer_is_blitter_queue(cmd_buffer));
+
+#if GFX_VER == 9
+   gfx9_blitter_aux_transitions_on_companion(cmd_buffer, n_dep_infos, dep_infos);
+#endif
 
    /* The blitter requires an MI_FLUSH_DW command when a buffer transitions
     * from being a destination to a source.
@@ -5396,7 +5458,9 @@ cmd_buffer_barrier_blitter(struct anv_cmd_buffer *cmd_buffer,
                                                 cmd_buffer->device);
       }
       anv_batch_emit(&cmd_buffer->batch, GENX(MI_FLUSH_DW), fd) {
+#if GFX_VER >= 12
          fd.FlushCCS = flush_ccs;
+#endif
          fd.FlushLLC = flush_llc;
 
          if (!anv_address_is_null(signal_addr)) {
@@ -7862,7 +7926,7 @@ struct anv_state
 genX(cmd_buffer_begin_companion_rcs_syncpoint)(
       struct anv_cmd_buffer   *cmd_buffer)
 {
-#if GFX_VERx10 >= 125
+#if GFX_VERx10 >= 125 || GFX_VER == 9
    const struct intel_device_info *info = cmd_buffer->device->info;
    struct anv_state syncpoint =
       anv_cmd_buffer_alloc_temporary_state(cmd_buffer, 2 * sizeof(uint32_t), 4);
@@ -7898,7 +7962,11 @@ genX(cmd_buffer_begin_companion_rcs_syncpoint)(
                                                 cmd_buffer->device);
       }
       anv_batch_emit(&cmd_buffer->batch, GENX(MI_FLUSH_DW), fd) {
+#if GFX_VER >= 12
          fd.FlushCCS = true; /* Maybe handle Flush LLC */
+#else
+         fd.FlushLLC = true;
+#endif
       }
    }
 
@@ -7947,7 +8015,7 @@ void
 genX(cmd_buffer_end_companion_rcs_syncpoint)(struct anv_cmd_buffer *cmd_buffer,
                                              struct anv_state syncpoint)
 {
-#if GFX_VERx10 >= 125
+#if GFX_VERx10 >= 125 || GFX_VER == 9
    struct anv_address xcs_wait_addr =
       anv_cmd_buffer_temporary_state_address(cmd_buffer, syncpoint);
 
@@ -8128,4 +8196,202 @@ void genX(CmdWriteMarkerToMemoryAMD)(
                 mi_imm(pInfo->marker));
 
    trace_intel_end_write_buffer_marker(&cmd_buffer->trace);
+}
+
+/*
+ * Gfx9 blitter (BCS) helpers for the opt-in Gfx9 copy queue
+ * (anv_gfx9_copy_queue).  Gfx9 genxml has no blitter packets, so the
+ * commands are encoded by hand following the PRM and the kernel's
+ * intel_gpu_commands.h.  Alignment rules were measured on a KBL GT2
+ * (HD620-full-audit/bcs-queue/):
+ *
+ *  - linear XY_FAST_COPY_BLT is only correct with 64-byte aligned base
+ *    addresses and a pitch that is a multiple of 64, at every depth;
+ *  - XY_COLOR_BLT is always correct for a single row, and for several rows
+ *    when the base is 64-byte aligned.
+ */
+#if GFX_VER == 9
+#define GFX9_BLT_FAST_COPY_ROW_B   (64u * 1023u)  /* largest 64-byte multiple pitch */
+#define GFX9_BLT_COLOR_ROW_B       (64u * 511u)   /* < 32 KiB, a 64-byte multiple */
+
+static uint64_t
+gfx9_blt_address(struct anv_cmd_buffer *cmd_buffer, struct anv_address addr)
+{
+   VkResult result = anv_reloc_list_add_bo(cmd_buffer->batch.relocs, addr.bo);
+   if (result != VK_SUCCESS)
+      anv_batch_set_error(&cmd_buffer->batch, result);
+   return anv_address_physical(addr);
+}
+
+static void
+gfx9_emit_fast_copy_linear(struct anv_cmd_buffer *cmd_buffer,
+                           struct anv_address src, struct anv_address dst,
+                           uint32_t bpp_B, uint32_t width, uint32_t height,
+                           uint32_t pitch_B)
+{
+   static const uint8_t depth[17] = { [1] = 0, [2] = 1, [4] = 3, [8] = 4, [16] = 5 };
+   uint32_t *dw = anv_batch_emit_dwords(&cmd_buffer->batch, 10);
+   if (dw == NULL)
+      return;
+   const uint64_t dst_addr = gfx9_blt_address(cmd_buffer, dst);
+   const uint64_t src_addr = gfx9_blt_address(cmd_buffer, src);
+   dw[0] = (2u << 29) | (0x42u << 22) | 8;          /* XY_FAST_COPY_BLT, linear */
+   dw[1] = ((uint32_t)depth[bpp_B] << 24) | pitch_B;
+   dw[2] = 0;
+   dw[3] = (height << 16) | width;
+   dw[4] = (uint32_t)dst_addr;
+   dw[5] = (uint32_t)(dst_addr >> 32);
+   dw[6] = 0;
+   dw[7] = pitch_B;
+   dw[8] = (uint32_t)src_addr;
+   dw[9] = (uint32_t)(src_addr >> 32);
+}
+
+static void
+gfx9_emit_color_blt(struct anv_cmd_buffer *cmd_buffer, struct anv_address dst,
+                    uint32_t width_px, uint32_t height, uint32_t pitch_B,
+                    uint32_t data)
+{
+   uint32_t *dw = anv_batch_emit_dwords(&cmd_buffer->batch, 7);
+   if (dw == NULL)
+      return;
+   const uint64_t dst_addr = gfx9_blt_address(cmd_buffer, dst);
+   dw[0] = (2u << 29) | (0x50u << 22) | (3u << 20) | 5;  /* XY_COLOR_BLT, RGBA */
+   dw[1] = (3u << 24) | (0xF0u << 16) | pitch_B;        /* 32bpp, PATCOPY */
+   dw[2] = 0;
+   dw[3] = (height << 16) | width_px;
+   dw[4] = (uint32_t)dst_addr;
+   dw[5] = (uint32_t)(dst_addr >> 32);
+   dw[6] = data;
+}
+#endif
+
+void
+genX(cmd_buffer_gfx9_blt_fast_copy)(struct anv_cmd_buffer *cmd_buffer,
+                                    uint32_t elem_B, uint32_t w, uint32_t h,
+                                    struct anv_address dst, uint32_t dst_tiling,
+                                    uint32_t dst_pitch_B, uint32_t dx, uint32_t dy,
+                                    struct anv_address src, uint32_t src_tiling,
+                                    uint32_t src_pitch_B, uint32_t sx, uint32_t sy)
+{
+#if GFX_VER == 9
+   static const uint8_t depth[17] = { [1] = 0, [2] = 1, [4] = 3, [8] = 4, [16] = 5 };
+   assert(elem_B <= 16 && util_is_power_of_two_nonzero(elem_B));
+   if (w == 0 || h == 0)
+      return;
+   uint32_t *dw = anv_batch_emit_dwords(&cmd_buffer->batch, 10);
+   if (dw == NULL)
+      return;
+   const uint64_t dst_addr = gfx9_blt_address(cmd_buffer, dst);
+   const uint64_t src_addr = gfx9_blt_address(cmd_buffer, src);
+   /* Pitch is in bytes for linear surfaces and in dwords for tiled ones. */
+   dw[0] = (2u << 29) | (0x42u << 22) | (src_tiling << 20) | (dst_tiling << 13) | 8;
+   dw[1] = ((uint32_t)depth[elem_B] << 24) |
+           (dst_tiling ? dst_pitch_B / 4 : dst_pitch_B);
+   dw[2] = (dy << 16) | dx;
+   dw[3] = ((dy + h) << 16) | (dx + w);
+   dw[4] = (uint32_t)dst_addr;
+   dw[5] = (uint32_t)(dst_addr >> 32);
+   dw[6] = (sy << 16) | sx;
+   dw[7] = src_tiling ? src_pitch_B / 4 : src_pitch_B;
+   dw[8] = (uint32_t)src_addr;
+   dw[9] = (uint32_t)(src_addr >> 32);
+#else
+   UNREACHABLE("Gfx9 only");
+#endif
+}
+
+bool
+genX(gfx9_blt_can_copy_memory)(struct anv_address src, struct anv_address dst)
+{
+#if GFX_VER == 9
+   return (anv_address_physical(src) % 64) == 0 &&
+          (anv_address_physical(dst) % 64) == 0;
+#else
+   return false;
+#endif
+}
+
+void
+genX(cmd_buffer_gfx9_blt_copy_memory)(struct anv_cmd_buffer *cmd_buffer,
+                                      struct anv_address src,
+                                      struct anv_address dst,
+                                      uint64_t size)
+{
+#if GFX_VER == 9
+   assert(genX(gfx9_blt_can_copy_memory)(src, dst));
+
+   while (size >= GFX9_BLT_FAST_COPY_ROW_B) {
+      const uint32_t rows = MIN2(size / GFX9_BLT_FAST_COPY_ROW_B, 32767);
+      gfx9_emit_fast_copy_linear(cmd_buffer, src, dst, 16,
+                                 GFX9_BLT_FAST_COPY_ROW_B / 16, rows,
+                                 GFX9_BLT_FAST_COPY_ROW_B);
+      const uint64_t bytes = (uint64_t)rows * GFX9_BLT_FAST_COPY_ROW_B;
+      src = anv_address_add(src, bytes);
+      dst = anv_address_add(dst, bytes);
+      size -= bytes;
+   }
+
+   if (size) {
+      /* One row: the base stays 64-byte aligned, the pitch is unused. */
+      uint32_t bpp = 16;
+      while (size % bpp)
+         bpp >>= 1;
+      gfx9_emit_fast_copy_linear(cmd_buffer, src, dst, bpp, size / bpp, 1,
+                                 GFX9_BLT_FAST_COPY_ROW_B);
+   }
+#else
+   UNREACHABLE("Gfx9 only");
+#endif
+}
+
+void
+genX(cmd_buffer_gfx9_blt_fill)(struct anv_cmd_buffer *cmd_buffer,
+                               struct anv_address dst, uint64_t size,
+                               uint32_t data)
+{
+#if GFX_VER == 9
+   assert(size % 4 == 0 && anv_address_physical(dst) % 4 == 0);
+
+   if (anv_address_physical(dst) % 64 == 0) {
+      while (size >= GFX9_BLT_COLOR_ROW_B) {
+         const uint32_t rows = MIN2(size / GFX9_BLT_COLOR_ROW_B, 32767);
+         gfx9_emit_color_blt(cmd_buffer, dst, GFX9_BLT_COLOR_ROW_B / 4, rows,
+                             GFX9_BLT_COLOR_ROW_B, data);
+         const uint64_t bytes = (uint64_t)rows * GFX9_BLT_COLOR_ROW_B;
+         dst = anv_address_add(dst, bytes);
+         size -= bytes;
+      }
+   }
+
+   /* Unaligned or remaining bytes: one row per command. */
+   while (size) {
+      const uint32_t row = MIN2(size, GFX9_BLT_COLOR_ROW_B);
+      gfx9_emit_color_blt(cmd_buffer, dst, row / 4, 1, GFX9_BLT_COLOR_ROW_B,
+                          data);
+      dst = anv_address_add(dst, row);
+      size -= row;
+   }
+#else
+   UNREACHABLE("Gfx9 only");
+#endif
+}
+
+void
+genX(cmd_buffer_gfx9_blt_update)(struct anv_cmd_buffer *cmd_buffer,
+                                 struct anv_address dst, uint64_t size,
+                                 const void *data)
+{
+#if GFX_VER == 9
+   assert(size % 4 == 0);
+   const uint32_t *dwords = data;
+   for (uint64_t i = 0; i < size / 4; i++) {
+      anv_batch_emit(&cmd_buffer->batch, GENX(MI_STORE_DATA_IMM), sdi) {
+         sdi.Address = anv_address_add(dst, i * 4);
+         sdi.ImmediateData = dwords[i];
+      }
+   }
+#else
+   UNREACHABLE("Gfx9 only");
+#endif
 }

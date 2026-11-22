@@ -3830,9 +3830,18 @@ anv_layout_to_aux_state(const struct intel_device_info * const devinfo,
 
    const bool read_only = vk_image_layout_is_read_only(layout, aspect);
 
+   /* On the Gfx9 copy queue only the companion RCS touches aux surfaces
+    * (see anv_blorp_execute_on_companion()), with render queue semantics, so
+    * the transfer family must agree with the render family on aux states.
+    */
+   VkQueueFlagBits filter_flags = queue_flags;
+   if (devinfo->ver == 9 &&
+       !(queue_flags & (VK_QUEUE_GRAPHICS_BIT | VK_QUEUE_COMPUTE_BIT)))
+      filter_flags |= VK_QUEUE_GRAPHICS_BIT | VK_QUEUE_COMPUTE_BIT;
+
    const VkImageUsageFlags image_aspect_usage =
       anv_image_flags_filter_for_queue(
-         vk_image_usage(&image->vk, aspect), queue_flags);
+         vk_image_usage(&image->vk, aspect), filter_flags);
    const VkImageUsageFlags usage =
       vk_image_layout_to_usage_flags(layout, aspect) & image_aspect_usage;
 

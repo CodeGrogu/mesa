@@ -562,14 +562,66 @@ anv_cmd_buffer_record_end_submit(struct anv_cmd_buffer *cmd_buffer)
 }
 
 static VkResult
+anv_cmd_buffer_grow_single_batch_bo(struct anv_cmd_buffer *cmd_buffer,
+                                    struct anv_batch *batch, uint32_t size)
+{
+   struct anv_batch_bo *old_bbo = anv_cmd_buffer_current_batch_bo(cmd_buffer);
+   const uint32_t padding = GFX9_MI_BATCH_BUFFER_START_length * 4;
+   const uint32_t used = batch->next - batch->start;
+   const uint64_t needed = (uint64_t)used + size + padding;
+   const uint64_t alloc_size = MAX2(2 * old_bbo->bo->size, align64(needed, 4096));
+
+   if (alloc_size > UINT32_MAX)
+      return vk_error(cmd_buffer, VK_ERROR_OUT_OF_DEVICE_MEMORY);
+
+   struct anv_batch_bo *new_bbo = NULL;
+   VkResult result = anv_batch_bo_create(cmd_buffer, alloc_size, &new_bbo);
+   if (result != VK_SUCCESS)
+      return result;
+
+   result = anv_reloc_list_append(&new_bbo->relocs, &old_bbo->relocs);
+   if (result != VK_SUCCESS) {
+      anv_batch_bo_destroy(new_bbo, cmd_buffer);
+      return result;
+   }
+
+   struct anv_batch_bo **seen_bbo = u_vector_add(&cmd_buffer->seen_bbos);
+   if (seen_bbo == NULL) {
+      anv_batch_bo_destroy(new_bbo, cmd_buffer);
+      return vk_error(cmd_buffer, VK_ERROR_OUT_OF_HOST_MEMORY);
+   }
+   *seen_bbo = new_bbo;
+
+   memcpy(new_bbo->bo->map, batch->start, used);
+   list_replace(&old_bbo->link, &new_bbo->link);
+   batch->allocated_batch_size += new_bbo->bo->size;
+
+   anv_batch_set_storage(batch, (struct anv_address) { .bo = new_bbo->bo, },
+                         new_bbo->bo->map, new_bbo->bo->size - padding);
+   batch->next = batch->start + used;
+   batch->relocs = &new_bbo->relocs;
+
+   anv_batch_bo_destroy(old_bbo, cmd_buffer);
+   return VK_SUCCESS;
+}
+
+static VkResult
 anv_cmd_buffer_chain_batch(struct anv_batch *batch, uint32_t size, void *_data)
 {
+   struct anv_cmd_buffer *cmd_buffer = _data;
+
+   /* Gfx9 copy queue: one batch BO, grown in place (see
+    * anv_cmd_buffer_needs_single_batch_bo()).
+    */
+   if (anv_cmd_buffer_needs_single_batch_bo(cmd_buffer) &&
+       !list_is_empty(&cmd_buffer->batch_bos))
+      return anv_cmd_buffer_grow_single_batch_bo(cmd_buffer, batch, size);
+
    /* The caller should not need that much space. Otherwise it should split
     * its commands.
     */
    assert(size <= ANV_MAX_CMD_BUFFER_BATCH_SIZE);
 
-   struct anv_cmd_buffer *cmd_buffer = _data;
    struct anv_batch_bo *new_bbo = NULL;
    /* Amount of reserved space at the end of the batch to account for the
     * chaining instruction.
@@ -1062,7 +1114,10 @@ anv_cmd_buffer_end_batch_buffer(struct anv_cmd_buffer *cmd_buffer)
        * actual ExecuteCommands implementation.
        */
       const uint32_t length = cmd_buffer->batch.next - cmd_buffer->batch.start;
-      if (!ANV_DEBUG(NO_SECONDARY_CALL)) {
+      if (anv_cmd_buffer_needs_single_batch_bo(cmd_buffer)) {
+         /* Copied inline: the Gfx9 blitter parser allows no jumps. */
+         cmd_buffer->exec_mode = ANV_CMD_BUFFER_EXEC_MODE_EMIT;
+      } else if (!ANV_DEBUG(NO_SECONDARY_CALL)) {
          cmd_buffer->exec_mode = ANV_CMD_BUFFER_EXEC_MODE_CALL_AND_RETURN;
 
          void *jump_addr =

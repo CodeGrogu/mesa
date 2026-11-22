@@ -634,6 +634,227 @@ is_image_mcs_compressed(const struct anv_image *image)
    return isl_aux_usage_has_mcs(image->planes[plane].aux_usage);
 }
 
+static inline bool
+anv_cmd_buffer_is_gfx9_blitter(const struct anv_cmd_buffer *cmd_buffer)
+{
+   return cmd_buffer->device->info->ver == 9 &&
+          anv_cmd_buffer_is_blitter_queue(cmd_buffer);
+}
+
+/* Gfx9 copy queue image copies.
+ *
+ * XY_FAST_COPY_BLT copies a rectangle of elements between two surfaces that
+ * are each linear, X-tiled or legacy Y-tiled.  Rules measured on a KBL GT2
+ * (HD620-full-audit/bcs-queue/fastcopy-*.txt):
+ *
+ *  - linear: 64-byte aligned base address, pitch a multiple of 64 bytes;
+ *  - tiled: tile (4 KiB) aligned base address;
+ *  - on both sides the first byte of each row (x * element size) must be a
+ *    multiple of 16 bytes.  Any width works.  An 8-byte aligned start gives
+ *    wrong results and eventually hangs the engine.
+ *
+ * Anything else (aux, MSAA, W tiling, 96-bit formats, emulated formats,
+ * unaligned rows) runs on the companion RCS command buffer.
+ */
+struct gfx9_blt_surf {
+   struct anv_address addr;
+   uint32_t tiling;           /* 0 linear, 1 X, 2 Y */
+   uint32_t pitch_B;
+   uint32_t x_el, y_el;
+};
+
+static bool
+gfx9_blt_fold_linear(struct gfx9_blt_surf *s, uint32_t elem_B)
+{
+   const uint64_t rem = anv_address_physical(s->addr) % 64;
+   if (rem % elem_B)
+      return false;
+   s->addr = anv_address_add(s->addr, -(int64_t)rem);
+   s->x_el += rem / elem_B;
+   return s->pitch_B % 64 == 0 && s->pitch_B < 65536;
+}
+
+static bool
+gfx9_blt_image_surf(const struct anv_image *image, VkImageAspectFlags aspect,
+                    uint32_t level, uint32_t layer, uint32_t z,
+                    VkOffset3D offset_px, uint32_t elem_B,
+                    struct gfx9_blt_surf *out)
+{
+   if (image->emu_plane_format != VK_FORMAT_UNDEFINED ||
+       image->vk.samples != 1)
+      return false;
+
+   const uint32_t plane = anv_image_aspect_to_plane(image, aspect);
+   if (image->planes[plane].aux_usage != ISL_AUX_USAGE_NONE)
+      return false;
+
+   const struct anv_surface *surface = &image->planes[plane].primary_surface;
+   const struct isl_surf *isl = &surface->isl;
+   const struct isl_format_layout *fmtl = isl_format_get_layout(isl->format);
+
+   if (isl->samples != 1 || fmtl->bpb != elem_B * 8 ||
+       !util_is_power_of_two_nonzero(elem_B) || elem_B > 16)
+      return false;
+
+   switch (isl->tiling) {
+   case ISL_TILING_LINEAR: out->tiling = 0; break;
+   case ISL_TILING_X:      out->tiling = 1; break;
+   case ISL_TILING_Y0:     out->tiling = 2; break;
+   default:                return false;
+   }
+
+   uint64_t offset_B;
+   uint32_t x_el, y_el, z_el;
+   isl_surf_get_image_offset_B_tile_el(isl, level,
+                                       isl->dim == ISL_SURF_DIM_3D ? 0 : layer,
+                                       isl->dim == ISL_SURF_DIM_3D ? z : 0,
+                                       &offset_B, &x_el, &y_el, &z_el);
+   if (z_el != 0)
+      return false;
+
+   struct anv_address addr = anv_image_address(image, &surface->memory_range);
+   if (anv_address_is_null(addr))
+      return false;
+
+   out->addr = anv_address_add(addr, offset_B);
+   out->pitch_B = isl->row_pitch_B;
+   out->x_el = x_el + offset_px.x / fmtl->bw;
+   out->y_el = y_el + offset_px.y / fmtl->bh;
+
+   if (out->tiling == 0)
+      return gfx9_blt_fold_linear(out, elem_B);
+
+   return anv_address_physical(out->addr) % 4096 == 0 &&
+          out->pitch_B / 4 < 65536;
+}
+
+static bool
+gfx9_blt_rect_ok(const struct gfx9_blt_surf *a, const struct gfx9_blt_surf *b,
+                 uint32_t elem_B, uint32_t w, uint32_t h)
+{
+   return (a->x_el * elem_B) % 16 == 0 && (b->x_el * elem_B) % 16 == 0 &&
+          a->x_el + w < 32768 && a->y_el + h < 32768 &&
+          b->x_el + w < 32768 && b->y_el + h < 32768;
+}
+
+static void
+gfx9_blt_emit(struct anv_cmd_buffer *cmd_buffer,
+              const struct gfx9_blt_surf *dst, const struct gfx9_blt_surf *src,
+              uint32_t elem_B, uint32_t w, uint32_t h)
+{
+   anv_genX(cmd_buffer->device->info, cmd_buffer_gfx9_blt_fast_copy)(
+      cmd_buffer, elem_B, w, h,
+      dst->addr, dst->tiling, dst->pitch_B, dst->x_el, dst->y_el,
+      src->addr, src->tiling, src->pitch_B, src->x_el, src->y_el);
+}
+
+/* Memory <-> image.  With emit=false only checks that every region can be
+ * done on the blitter.
+ */
+static bool
+gfx9_blt_memory_image(struct anv_cmd_buffer *cmd_buffer,
+                      const struct anv_image *image,
+                      const VkCopyDeviceMemoryImageInfoKHR *info,
+                      bool to_image, bool emit)
+{
+   for (uint32_t r = 0; r < info->regionCount; r++) {
+      const VkDeviceMemoryImageCopyKHR *region = &info->pRegions[r];
+      const struct vk_image_buffer_layout bl =
+         vk_image_memory_copy_layout(&image->vk, region);
+      const VkImageAspectFlags aspect = region->imageSubresource.aspectMask;
+      const VkExtent3D ext_el =
+         vk_image_extent_to_elements(&image->vk, region->imageExtent);
+      const uint32_t layers =
+         image->vk.image_type == VK_IMAGE_TYPE_3D ? region->imageExtent.depth :
+         vk_image_subresource_layer_count(&image->vk, &region->imageSubresource);
+      const struct anv_address mem =
+         anv_address_from_range_flags(region->addressRange, region->addressFlags);
+
+      if (util_bitcount(aspect) != 1 || bl.row_stride_B >= 65536)
+         return false;
+
+      for (uint32_t l = 0; l < layers; l++) {
+         const bool is_3d = image->vk.image_type == VK_IMAGE_TYPE_3D;
+         struct gfx9_blt_surf img, lin = {
+            .addr = anv_address_add(mem, l * bl.image_stride_B),
+            .tiling = 0,
+            .pitch_B = bl.row_stride_B,
+         };
+         if (!gfx9_blt_image_surf(image, aspect,
+                                  region->imageSubresource.mipLevel,
+                                  is_3d ? 0 : region->imageSubresource.baseArrayLayer + l,
+                                  is_3d ? region->imageOffset.z + l : 0,
+                                  region->imageOffset, bl.element_size_B, &img) ||
+             !gfx9_blt_fold_linear(&lin, bl.element_size_B) ||
+             !gfx9_blt_rect_ok(&img, &lin, bl.element_size_B,
+                               ext_el.width, ext_el.height))
+            return false;
+
+         if (emit) {
+            if (to_image)
+               gfx9_blt_emit(cmd_buffer, &img, &lin, bl.element_size_B,
+                             ext_el.width, ext_el.height);
+            else
+               gfx9_blt_emit(cmd_buffer, &lin, &img, bl.element_size_B,
+                             ext_el.width, ext_el.height);
+         }
+      }
+   }
+   return true;
+}
+
+static bool
+gfx9_blt_image_image(struct anv_cmd_buffer *cmd_buffer,
+                     const struct anv_image *src_image,
+                     const struct anv_image *dst_image,
+                     const VkCopyImageInfo2 *info, bool emit)
+{
+   for (uint32_t r = 0; r < info->regionCount; r++) {
+      const VkImageCopy2 *region = &info->pRegions[r];
+      const VkImageAspectFlags src_aspect = region->srcSubresource.aspectMask;
+      const VkImageAspectFlags dst_aspect = region->dstSubresource.aspectMask;
+      if (util_bitcount(src_aspect) != 1 || util_bitcount(dst_aspect) != 1)
+         return false;
+
+      const uint32_t src_plane = anv_image_aspect_to_plane(src_image, src_aspect);
+      const uint32_t dst_plane = anv_image_aspect_to_plane(dst_image, dst_aspect);
+      const uint32_t src_bpb = isl_format_get_layout(
+         src_image->planes[src_plane].primary_surface.isl.format)->bpb;
+      const uint32_t dst_bpb = isl_format_get_layout(
+         dst_image->planes[dst_plane].primary_surface.isl.format)->bpb;
+      if (src_bpb != dst_bpb || src_bpb % 8)
+         return false;
+      const uint32_t elem_B = src_bpb / 8;
+
+      const VkExtent3D ext_el =
+         vk_image_extent_to_elements(&src_image->vk, region->extent);
+      const bool src_3d = src_image->vk.image_type == VK_IMAGE_TYPE_3D;
+      const bool dst_3d = dst_image->vk.image_type == VK_IMAGE_TYPE_3D;
+      const uint32_t layers = src_3d ? region->extent.depth :
+         vk_image_subresource_layer_count(&src_image->vk, &region->srcSubresource);
+
+      for (uint32_t l = 0; l < layers; l++) {
+         struct gfx9_blt_surf s, d;
+         if (!gfx9_blt_image_surf(src_image, src_aspect,
+                                  region->srcSubresource.mipLevel,
+                                  src_3d ? 0 : region->srcSubresource.baseArrayLayer + l,
+                                  src_3d ? region->srcOffset.z + l : 0,
+                                  region->srcOffset, elem_B, &s) ||
+             !gfx9_blt_image_surf(dst_image, dst_aspect,
+                                  region->dstSubresource.mipLevel,
+                                  dst_3d ? 0 : region->dstSubresource.baseArrayLayer + l,
+                                  dst_3d ? region->dstOffset.z + l : 0,
+                                  region->dstOffset, elem_B, &d) ||
+             !gfx9_blt_rect_ok(&s, &d, elem_B, ext_el.width, ext_el.height))
+            return false;
+
+         if (emit)
+            gfx9_blt_emit(cmd_buffer, &d, &s, elem_B, ext_el.width, ext_el.height);
+      }
+   }
+   return true;
+}
+
 bool
 anv_blorp_execute_on_companion(struct anv_cmd_buffer *cmd_buffer,
                                const struct anv_image *src_image,
@@ -644,6 +865,13 @@ anv_blorp_execute_on_companion(struct anv_cmd_buffer *cmd_buffer,
    /* RCS can do everything, it's the Über-engine */
    if (anv_cmd_buffer_is_render_queue(cmd_buffer))
       return false;
+
+   /* The Gfx9 copy queue only implements buffer copies, fills and updates
+    * natively (XY_FAST_COPY_BLT/XY_COLOR_BLT on linear memory). Every image
+    * operation runs on the companion RCS command buffer.
+    */
+   if (devinfo->ver == 9 && anv_cmd_buffer_is_blitter_queue(cmd_buffer))
+      return true;
 
    if ((src_image && is_image_multisampled(src_image)) ||
        (dst_image && is_image_multisampled(dst_image))) {
@@ -761,6 +989,13 @@ void anv_CmdCopyImage2(
    ANV_FROM_HANDLE(anv_cmd_buffer, cmd_buffer, commandBuffer);
    ANV_FROM_HANDLE(anv_image, src_image, pCopyImageInfo->srcImage);
    ANV_FROM_HANDLE(anv_image, dst_image, pCopyImageInfo->dstImage);
+
+   if (anv_cmd_buffer_is_gfx9_blitter(cmd_buffer) &&
+       gfx9_blt_image_image(cmd_buffer, src_image, dst_image, pCopyImageInfo, false)) {
+      gfx9_blt_image_image(cmd_buffer, src_image, dst_image, pCopyImageInfo, true);
+      cmd_buffer->state.last_cmd_type = ANV_CMD_TYPE_TRANSFER;
+      return;
+   }
 
    anv_blorp_require_rcs(cmd_buffer, src_image, dst_image) {
       struct blorp_batch batch;
@@ -908,6 +1143,13 @@ void anv_CmdCopyMemoryToImageKHR(
    ANV_FROM_HANDLE(anv_cmd_buffer, cmd_buffer, commandBuffer);
    ANV_FROM_HANDLE(anv_image, dst_image, pCopyMemoryInfo->image);
 
+   if (anv_cmd_buffer_is_gfx9_blitter(cmd_buffer) &&
+       gfx9_blt_memory_image(cmd_buffer, dst_image, pCopyMemoryInfo, true, false)) {
+      gfx9_blt_memory_image(cmd_buffer, dst_image, pCopyMemoryInfo, true, true);
+      cmd_buffer->state.last_cmd_type = ANV_CMD_TYPE_TRANSFER;
+      return;
+   }
+
    bool blorp_execute_on_companion =
       anv_blorp_execute_on_companion(cmd_buffer, NULL, dst_image);
 
@@ -995,6 +1237,13 @@ void anv_CmdCopyImageToMemoryKHR(
 {
    ANV_FROM_HANDLE(anv_cmd_buffer, cmd_buffer, commandBuffer);
    ANV_FROM_HANDLE(anv_image, src_image, pCopyMemoryInfo->image);
+
+   if (anv_cmd_buffer_is_gfx9_blitter(cmd_buffer) &&
+       gfx9_blt_memory_image(cmd_buffer, src_image, pCopyMemoryInfo, false, false)) {
+      gfx9_blt_memory_image(cmd_buffer, src_image, pCopyMemoryInfo, false, true);
+      cmd_buffer->state.last_cmd_type = ANV_CMD_TYPE_TRANSFER;
+      return;
+   }
 
    bool blorp_execute_on_companion =
       anv_blorp_execute_on_companion(cmd_buffer, src_image, NULL);
@@ -1271,6 +1520,35 @@ copy_memory(struct anv_device *device,
       blorp_mem_copy(batch, src, dst, size);
 }
 
+/* Gfx9 copy queue: aligned copies run on the blitter, the rest goes through
+ * BLORP on the companion RCS command buffer.
+ */
+static void
+anv_cmd_gfx9_blitter_copy(struct anv_cmd_buffer *cmd_buffer,
+                          struct anv_address src_addr,
+                          struct anv_address dst_addr,
+                          uint64_t size)
+{
+   const struct intel_device_info *devinfo = cmd_buffer->device->info;
+
+   if (anv_genX(devinfo, gfx9_blt_can_copy_memory)(src_addr, dst_addr)) {
+      anv_genX(devinfo, cmd_buffer_gfx9_blt_copy_memory)(cmd_buffer, src_addr,
+                                                         dst_addr, size);
+      return;
+   }
+
+   anv_cmd_require_rcs(cmd_buffer, true) {
+      struct blorp_batch batch;
+      anv_blorp_batch_init(cmd_buffer, &batch,
+                           &(struct anv_blorp_batch_params) {
+                              .flags = BLORP_BATCH_SRC_UNPADDED,
+                              .allow_3d_or_compute_variant = true,
+                           });
+      copy_memory(cmd_buffer->device, &batch, src_addr, dst_addr, size);
+      anv_blorp_batch_finish(&batch);
+   }
+}
+
 void
 anv_cmd_copy_addr(struct anv_cmd_buffer *cmd_buffer,
                   struct anv_address src_addr,
@@ -1278,6 +1556,11 @@ anv_cmd_copy_addr(struct anv_cmd_buffer *cmd_buffer,
                   uint64_t size)
 {
    struct anv_device *device = cmd_buffer->device;
+
+   if (anv_cmd_buffer_is_gfx9_blitter(cmd_buffer)) {
+      anv_cmd_gfx9_blitter_copy(cmd_buffer, src_addr, dst_addr, size);
+      return;
+   }
 
    struct blorp_batch batch;
    anv_blorp_batch_init(cmd_buffer, &batch,
@@ -1297,6 +1580,20 @@ void anv_CmdCopyMemoryKHR(
     const VkCopyDeviceMemoryInfoKHR*            pCopyMemoryInfo)
 {
    ANV_FROM_HANDLE(anv_cmd_buffer, cmd_buffer, commandBuffer);
+
+   if (anv_cmd_buffer_is_gfx9_blitter(cmd_buffer)) {
+      for (unsigned r = 0; r < pCopyMemoryInfo->regionCount; r++) {
+         const VkDeviceMemoryCopyKHR *region = &pCopyMemoryInfo->pRegions[r];
+         anv_cmd_gfx9_blitter_copy(cmd_buffer,
+                                   anv_address_from_range_flags(region->srcRange,
+                                                                region->srcFlags),
+                                   anv_address_from_range_flags(region->dstRange,
+                                                                region->dstFlags),
+                                   region->srcRange.size);
+      }
+      cmd_buffer->state.last_cmd_type = ANV_CMD_TYPE_TRANSFER;
+      return;
+   }
 
    struct blorp_batch batch;
    anv_blorp_batch_init(cmd_buffer, &batch,
@@ -1330,6 +1627,13 @@ anv_cmd_buffer_update_addr(
     const void*                                 pData)
 {
    struct anv_device *device = cmd_buffer->device;
+
+   if (anv_cmd_buffer_is_gfx9_blitter(cmd_buffer)) {
+      anv_genX(device->info, cmd_buffer_gfx9_blt_update)(cmd_buffer, address,
+                                                         dataSize, pData);
+      return;
+   }
+
    struct blorp_batch batch;
    anv_blorp_batch_init(cmd_buffer, &batch,
                         &(struct anv_blorp_batch_params) {
@@ -1421,6 +1725,12 @@ anv_cmd_buffer_fill_area(struct anv_cmd_buffer *cmd_buffer,
                          VkDeviceSize size,
                          uint32_t data)
 {
+   if (anv_cmd_buffer_is_gfx9_blitter(cmd_buffer)) {
+      anv_genX(cmd_buffer->device->info, cmd_buffer_gfx9_blt_fill)(
+         cmd_buffer, address, size, data);
+      return;
+   }
+
    struct blorp_batch batch;
    anv_blorp_batch_init(cmd_buffer, &batch,
                         &(struct anv_blorp_batch_params) {

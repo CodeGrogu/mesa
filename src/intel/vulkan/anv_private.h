@@ -5164,13 +5164,27 @@ extern const struct vk_command_buffer_ops anv_cmd_buffer_ops;
  * but let's sparse ourselves some pain and misery. This optimization has no
  * benefit on the brand new Xe kernel driver.
  */
+/* The Gfx9 i915 command parser validates every blitter batch and rejects
+ * MI_BATCH_BUFFER_START to another BO (measured: EACCES for second level,
+ * EINVAL for chaining), so a Gfx9 copy-queue command buffer is kept in a
+ * single batch BO that grows in place, is never chained to other command
+ * buffers, and inlines its secondaries.
+ */
+static inline bool
+anv_cmd_buffer_needs_single_batch_bo(const struct anv_cmd_buffer *cmd_buffer)
+{
+   return cmd_buffer->device->info->ver == 9 &&
+          cmd_buffer->queue_family->engine_class == INTEL_ENGINE_CLASS_COPY;
+}
+
 static inline bool
 anv_cmd_buffer_is_chainable(struct anv_cmd_buffer *cmd_buffer)
 {
    return !(cmd_buffer->usage_flags &
             VK_COMMAND_BUFFER_USAGE_SIMULTANEOUS_USE_BIT) &&
           !(cmd_buffer->is_companion_rcs_cmd_buffer) &&
-          cmd_buffer->companion_rcs_cmd_buffer == NULL;
+          cmd_buffer->companion_rcs_cmd_buffer == NULL &&
+          !anv_cmd_buffer_needs_single_batch_bo(cmd_buffer);
 }
 
 static inline bool

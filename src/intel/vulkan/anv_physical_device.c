@@ -2976,6 +2976,17 @@ anv_physical_device_init_queue_families(struct anv_physical_device *pdevice)
          blit_count = pdevice->info.engine_class_supported_count[INTEL_ENGINE_CLASS_COPY];
       }
 
+      /* Gfx9 blitter queue, opt-in (see anv_gfx9_copy_queue).  Needs VM
+       * control for the companion render context.
+       */
+      if (pdevice->info.ver == 9 &&
+          pdevice->info.kmd_type == INTEL_KMD_TYPE_I915 &&
+          kernel_supports_non_render_engines &&
+          pdevice->drirc.features.gfx9_copy_queue) {
+         blit_count = MIN2(1, intel_engines_count(pdevice->engine_info,
+                                                  INTEL_ENGINE_CLASS_COPY));
+      }
+
       anv_override_engine_counts(pdevice, &gc_count, &g_count, &c_count, &v_count, &blit_count);
 
       enum intel_engine_class compute_class =

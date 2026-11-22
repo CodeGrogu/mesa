@@ -319,6 +319,12 @@ def declare_options(android_version):
           "firmware is loaded) without ANV_DEBUG=video-decode.  CTS video "
           "decode groups pass on HD 620 (Kaby Lake)",
           c_name="gfx9_video_decode"),
+        B("anv_gfx9_copy_queue", False,
+          "Gfx9 on i915: expose the blitter (BCS) as a transfer-only queue "
+          "family.  Copies and fills without aux run on the blitter; "
+          "aux-compressed, MSAA, W-tiled and emulated images are handled on "
+          "a companion render batch",
+          c_name="gfx9_copy_queue"),
         B("fake_sparse", False,
           "Advertise support for sparse binding of textures regardless of real support",
           c_name="fake_sparse"),

@@ -446,6 +446,27 @@ genX(cmd_buffer_begin_companion)(struct anv_cmd_buffer *buffer,
 struct anv_state
 genX(cmd_buffer_begin_companion_rcs_syncpoint)(struct anv_cmd_buffer *cmd_buffer);
 
+/* Gfx9 copy queue (see genX_cmd_buffer.c). */
+bool genX(gfx9_blt_can_copy_memory)(struct anv_address src,
+                                    struct anv_address dst);
+void genX(cmd_buffer_gfx9_blt_copy_memory)(struct anv_cmd_buffer *cmd_buffer,
+                                           struct anv_address src,
+                                           struct anv_address dst,
+                                           uint64_t size);
+void genX(cmd_buffer_gfx9_blt_fill)(struct anv_cmd_buffer *cmd_buffer,
+                                    struct anv_address dst, uint64_t size,
+                                    uint32_t data);
+void genX(cmd_buffer_gfx9_blt_fast_copy)(struct anv_cmd_buffer *cmd_buffer,
+                                         uint32_t elem_B, uint32_t w, uint32_t h,
+                                         struct anv_address dst, uint32_t dst_tiling,
+                                         uint32_t dst_pitch_B, uint32_t dx, uint32_t dy,
+                                         struct anv_address src, uint32_t src_tiling,
+                                         uint32_t src_pitch_B, uint32_t sx, uint32_t sy);
+void genX(cmd_buffer_gfx9_blt_update)(struct anv_cmd_buffer *cmd_buffer,
+                                      struct anv_address dst, uint64_t size,
+                                      const void *data);
+
+
 void
 genX(cmd_buffer_end_companion_rcs_syncpoint)(struct anv_cmd_buffer *cmd_buffer,
                                              struct anv_state syncpoint);
