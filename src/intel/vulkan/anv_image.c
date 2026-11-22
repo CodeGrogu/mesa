@@ -1919,15 +1919,15 @@ add_image_view_format(struct anv_image *image, enum isl_format view_format)
  * blorp_hiz_op()). That is only possible when the minified extent is already
  * 8x4 aligned. ANV tracks aux usage per image rather than per LOD, so enable
  * HiZ only when every LOD meets this. The sampler also needs HiZ on every LOD.
- * Scope: single-layer, single-sample, optimally tiled 2D images in the depth
- * formats listed below.
+ * Scope: single-sample, optimally tiled 2D images (any layer count) in the
+ * depth formats listed below.
  */
 static bool
 anv_gfx9_multi_lod_hiz_allowed(const struct anv_image *image)
 {
-   /* Validated per pixel on HD 620 for each of these depth formats (clears,
-    * depth-tested draws, sampling, copies and full resolves on every LOD).
-    * Array layers have not been validated, so they stay excluded.
+   /* Validated per pixel on HD 620 for each of these depth formats and for
+    * array layers (clears, depth-tested draws, sampling, copies and full
+    * resolves on every LOD of a target layer, other layers untouched).
     */
    switch (image->vk.format) {
    case VK_FORMAT_D16_UNORM:
@@ -1943,7 +1943,6 @@ anv_gfx9_multi_lod_hiz_allowed(const struct anv_image *image)
    if (image->vk.image_type != VK_IMAGE_TYPE_2D ||
        image->vk.tiling != VK_IMAGE_TILING_OPTIMAL ||
        image->vk.samples != 1 ||
-       image->vk.array_layers != 1 ||
        image->vk.extent.depth != 1)
       return false;
 
