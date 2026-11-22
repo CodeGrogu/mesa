@@ -36,7 +36,7 @@ Open work after round 2. Numbers match the master list from 2026-11-19. Effort: 
   - *CTS:* performance_query has 4 pass and 0 fail under both settings (all 12 were not supported at paranoid=1). See [perf-query/README.md](perf-query/README.md).
 - [x] **46. Native ASTC 5x5 in Iris (M–L). Done (2026-11-22).** i965's workaround is ported: aux is disabled for every texture sampled together with ASTC 5x5, and a CS stall plus texture invalidate runs on each ASTC↔aux transition in the sampler cache, including BLORP sources. With the workaround compiled out, the GL test hung on its first iteration. With it, 1,200 iterations ran clean, and output matches the software decode within 1/255. `IRIS_GFX9_EMULATE_ASTC_5X5=true` opts out. See [astc5x5-iris/README.md](astc5x5-iris/README.md).
 - [ ] **47. Software fallbacks for ray tracing, mesh shaders, VRS and sparse textures (L, low value).**
-- [ ] **48. Software AV1 decode into presentation (L).**
+- [x] **48. Software AV1 decode into presentation (L). Done.** mpv with `hwdec=auto-safe` decodes AV1 in software (dav1d, 6–9× real time at 1080p30, 0 decoder drops) and presents through gpu-next/Vulkan. The same config uses the GPU decoders for H.264 and VP9 (0 drops). Evidence: [av1-playback/](av1-playback/README.md).
 
 - [ ] **New (from test 5). Gen9 transfer queue on the copy engine (L).** `XY_FAST_COPY_BLT` ran at 10.5 GB/s versus 6.3 GB/s for render-engine copies. ANV has no Gen9 BCS command emission, and every BCS execbuf goes through i915's command parser, which limits batch chaining. Needs a design, plus concurrency, visibility and ownership tests.
 - [ ] **New (from test 15). VP9 8-bit encode on KBL through iHD (L, out of Mesa).** No driver exposes it, even though Intel marketed the hardware feature.
