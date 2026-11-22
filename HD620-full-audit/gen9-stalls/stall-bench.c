@@ -115,7 +115,7 @@ static void memory_barrier(VkCommandBuffer c, VkPipelineStageFlags2 ss, VkAccess
 
 int main(int argc, char **argv)
 {
-    if (argc != 5) { fprintf(stderr, "usage: %s vf|push|vfe|load vert frag comp\n", argv[0]); return 2; }
+    if (argc != 5) { fprintf(stderr, "usage: %s vf|push|vfe|vfe2|load|blend|blend2 vert frag comp\n", argv[0]); return 2; }
     const char *sc = argv[1];
     const int vf = !strcmp(sc, "vf"), push = !strcmp(sc, "push"), vfe = !strcmp(sc, "vfe"), load = !strcmp(sc, "load");
     const int blend = !strcmp(sc, "blend");
@@ -124,7 +124,14 @@ int main(int argc, char **argv)
      * ITER LOAD scopes without barriers, each blending a 6-pixel triangle
      * onto its own untouched 8x8 cell, so every scope reads the clear colour
      * through a freshly loaded surface state. */
-    const int blend2 = !strcmp(sc, "blend2");
+    /* vfe2: blend2's per-cell check, with a compute dispatch before every
+     * draw, so each of the ITER draws follows a GPGPU -> 3D switch (item 20:
+     * look for geometry flicker with the MEDIA_VFE_STATE re-emit removed). */
+    const int vfe2 = !strcmp(sc, "vfe2");
+    /* vfe3: like vfe2, but the dispatch writes the vertices that the next
+     * draw reads (pass geom.comp.spv as the compute shader). */
+    const int vfe3 = !strcmp(sc, "vfe3");
+    const int blend2 = !strcmp(sc, "blend2") || vfe2 || vfe3;
     if (!(vf || push || vfe || load || blend || blend2)) return 2;
 
     VkApplicationInfo app = { .sType = VK_STRUCTURE_TYPE_APPLICATION_INFO, .apiVersion = VK_API_VERSION_1_3 };
@@ -172,8 +179,10 @@ int main(int argc, char **argv)
     const float tiny[6] = { -1.0f, -1.0f, -0.953f, -1.0f, -1.0f, -0.953f };
     const float *tri = blend2 ? tiny : big;
     memcpy(vb_map, tri, sizeof(big));
-    VkBuffer sb = make_buffer(64, VK_BUFFER_USAGE_STORAGE_BUFFER_BIT, &sb_map);
-    memset(sb_map, 0, 64);
+    VkBuffer sb = make_buffer(8 + 1024 * 3 * 8,
+                              VK_BUFFER_USAGE_STORAGE_BUFFER_BIT | VK_BUFFER_USAGE_VERTEX_BUFFER_BIT,
+                              &sb_map);
+    memset(sb_map, 0, 8 + 1024 * 3 * 8);
     VkBuffer rb = make_buffer((W * H + BLEND_ITER) * 4, VK_BUFFER_USAGE_TRANSFER_DST_BIT, &rb_map);
 
     /* Graphics pipelines (two identical objects, so binding alternates) */
@@ -327,11 +336,31 @@ int main(int argc, char **argv)
             }
             if (blend2) {
                 const float cell[4] = { (i % 32) * 0.0625f, (i / 32) * 0.0625f, 0, 0 };
+                if (vfe2 || vfe3) {
+                    vkCmdBindPipeline(cb, VK_PIPELINE_BIND_POINT_COMPUTE, cp);
+                    vkCmdBindDescriptorSets(cb, VK_PIPELINE_BIND_POINT_COMPUTE, cl, 0, 1, &set, 0, NULL);
+                    vkCmdDispatch(cb, 1, 1, 1);
+                }
+                /* VFE3_NO_BARRIER=1 is the negative control: the check must fail. */
+                if (vfe3 && !getenv("VFE3_NO_BARRIER"))
+                    memory_barrier(cb, VK_PIPELINE_STAGE_2_COMPUTE_SHADER_BIT, VK_ACCESS_2_SHADER_WRITE_BIT,
+                                   VK_PIPELINE_STAGE_2_VERTEX_ATTRIBUTE_INPUT_BIT |
+                                   VK_PIPELINE_STAGE_2_COMPUTE_SHADER_BIT,
+                                   VK_ACCESS_2_VERTEX_ATTRIBUTE_READ_BIT | VK_ACCESS_2_SHADER_READ_BIT |
+                                   VK_ACCESS_2_SHADER_WRITE_BIT);
                 vkCmdBeginRendering(cb, &ri);
                 vkCmdBindPipeline(cb, VK_PIPELINE_BIND_POINT_GRAPHICS, bp);
-                vkCmdBindVertexBuffers(cb, 0, 1, &vb, &zero);
-                vkCmdPushConstants(cb, gl, VK_SHADER_STAGE_VERTEX_BIT, 0, 16, cell);
-                vkCmdDraw(cb, 3, 1, 0, 0);
+                if (vfe3) {
+                    static const float origin[4] = { 0, 0, 0, 0 };
+                    const VkDeviceSize vofs = 8;
+                    vkCmdBindVertexBuffers(cb, 0, 1, &sb, &vofs);
+                    vkCmdPushConstants(cb, gl, VK_SHADER_STAGE_VERTEX_BIT, 0, 16, origin);
+                    vkCmdDraw(cb, 3, 1, (uint32_t)i * 3, 0);
+                } else {
+                    vkCmdBindVertexBuffers(cb, 0, 1, &vb, &zero);
+                    vkCmdPushConstants(cb, gl, VK_SHADER_STAGE_VERTEX_BIT, 0, 16, cell);
+                    vkCmdDraw(cb, 3, 1, 0, 0);
+                }
                 vkCmdEndRendering(cb);
                 continue;
             }
@@ -372,6 +401,7 @@ int main(int argc, char **argv)
         VkSubmitInfo si = { .sType = VK_STRUCTURE_TYPE_SUBMIT_INFO, .commandBufferCount = 1, .pCommandBuffers = &cb };
         VK(vkResetFences(dev, 1, &fence));
         memset(rb_map, 0x55, (W * H + BLEND_ITER) * 4);
+        memset(sb_map, 0, 8);   /* vfe3 cell counter */
         VK(vkQueueSubmit(queue, 1, &si, fence));
         VK(vkWaitForFences(dev, 1, &fence, VK_TRUE, 10000000000ull));
         uint64_t ts[2];

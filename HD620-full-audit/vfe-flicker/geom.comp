@@ -1,0 +1,14 @@
+#version 450
+/* vfe3: write the 3 vertices of cell n (a 6-pixel triangle, as stall-bench's
+ * "tiny" triangle offset to the cell) and advance n.  One invocation. */
+layout(local_size_x = 1) in;
+layout(std430, binding = 0) buffer B { uint n; uint pad; vec2 v[]; };
+void main()
+{
+   uint i = n;
+   vec2 off = vec2(float(i % 32u) * 0.0625, float(i / 32u) * 0.0625);
+   v[i * 3u + 0u] = vec2(-1.0, -1.0) + off;
+   v[i * 3u + 1u] = vec2(-0.953, -1.0) + off;
+   v[i * 3u + 2u] = vec2(-1.0, -0.953) + off;
+   n = i + 1u;
+}

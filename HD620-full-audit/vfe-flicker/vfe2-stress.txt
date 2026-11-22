@@ -1,0 +1,2 @@
+STALL_EXP=4: 200 runs (1843200 compute->3D switches), 0 failing runs
+STALL_EXP=0: 50 runs (460800 compute->3D switches), 0 failing runs

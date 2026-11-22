@@ -45,7 +45,9 @@ Open work after round 2. Numbers match the master list from 2026-11-19. Effort: 
 
 Driver flushes and state:
 - [x] **19. Opt-in to skip the clear-colour state-cache invalidate (S). Done.** Set the drirc option `anv_gfx9_skip_clear_color_state_invalidate` (off by default) in drirc or the environment. On the release build, the `load` scenario drops from 2.3–2.6 µs to 1.4–1.5 µs per render pass, and every `load`/`blend2` pixel check passes (`gen9-stalls/drirc-option.txt`).
-- [ ] **20. `MEDIA_VFE_STATE` re-emit after GPGPU → 3D (M).** About 0.5 µs per switch. Find the geometry-flicker reproducer before touching it.
+- [x] **20. `MEDIA_VFE_STATE` re-emit after GPGPU → 3D (M). Done: no reproducer, so an opt-in drirc option.**
+  - *Search:* 3.7 million compute→3D switches in two pixel-checked patterns, one with the dispatch writing the vertices the draw reads, ran with the re-emit removed and never failed. A negative control fails 413 of 1,024 cells.
+  - *Decision:* the re-emit also serves a preemption workaround, so it stays by default. `anv_gfx9_skip_vfe_reemit` skips it, saving about 0.6 µs per switch. See [vfe-flicker/README.md](vfe-flicker/README.md).
 - [x] **21. Iris dynamic VAO fast path on KBL (S). Measured; no change.** Measured with glmark2 over 5 rounds. It is correct, but no scene got a measurable gain and `build:use-vbo=true` was 8% slower, which confirms the "harmful" comment. See [vao-fastpath/README.md](vao-fastpath/README.md).
 - [x] **22. Gen9 `CC_VIEWPORT` re-emit in BLORP (#11647) (S). Measured; no change.** With reuse re-enabled, the formerly flaky multiview test passed 300 of 300, but that cannot rule out a sub-1% flake, and the saving is one 32-byte allocation per BLORP operation. The workaround stays. See [blorp-ccvp/README.md](blorp-ccvp/README.md).
 - [ ] **23. Barrier flush precision (M). Investigated; deferred.** Each access category already maps to its specific cache flush; the TODO itself says the hardware allows no finer control. The remaining idea, tracking which caches are actually dirty so redundant flushes can be skipped, needs application traces to show a benefit before the design is worth it.
