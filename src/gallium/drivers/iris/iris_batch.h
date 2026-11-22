@@ -62,6 +62,13 @@ struct iris_batch {
    /** What batch is this? (e.g. IRIS_BATCH_RENDER/COMPUTE) */
    enum iris_batch_name name;
 
+   /**
+    * A timer query snapshot was written to this other batch.  Before this
+    * batch records any further command, it must wait for that snapshot
+    * (see iris_batch_apply_order_after()).
+    */
+   struct iris_batch *order_after;
+
    /** Current batchbuffer being queued up. */
    struct iris_bo *bo;
    void *map;
@@ -271,9 +278,13 @@ iris_require_command_space(struct iris_batch *batch, unsigned size)
  *
  * This should be called whenever emitting commands.
  */
+void iris_batch_apply_order_after(struct iris_batch *batch);
+
 static inline void *
 iris_get_command_space(struct iris_batch *batch, unsigned bytes)
 {
+   if (unlikely(batch->order_after))
+      iris_batch_apply_order_after(batch);
    if (!batch->begin_trace_recorded) {
       batch->begin_trace_recorded = true;
       iris_batch_maybe_begin_frame(batch);

@@ -404,12 +404,6 @@ iris_launch_grid(struct pipe_context *ctx, const struct pipe_grid_info *grid)
    if (ice->state.predicate == IRIS_PREDICATE_STATE_DONT_RENDER)
       return;
 
-   if (ice->state.compute_after_timer_snapshot) {
-      /* Keep this dispatch out of a preceding timer query interval. */
-      iris_batch_wait_for_batch(batch, &ice->batches[IRIS_BATCH_RENDER]);
-      ice->state.compute_after_timer_snapshot = false;
-   }
-
    if (INTEL_DEBUG(DEBUG_REEMIT)) {
       ice->state.dirty |= IRIS_ALL_DIRTY_FOR_COMPUTE;
       ice->state.stage_dirty |= IRIS_ALL_STAGE_DIRTY_FOR_COMPUTE;

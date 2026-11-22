@@ -196,18 +196,29 @@ write_value(struct iris_context *ice, struct iris_query *q, unsigned offset)
    case PIPE_QUERY_TIMESTAMP:
    case PIPE_QUERY_TIMESTAMP_DISJOINT:
    case PIPE_QUERY_TIMESTAMP_RAW:
-      /* Timer snapshots go in the render batch, while dispatches go in the
-       * compute batch, which is a separate hardware context.  Order the
-       * snapshot after previously submitted compute work, and make the next
-       * dispatch wait for the snapshot (see iris_launch_grid).
+   {
+      /* Draws and dispatches go in separate batches, which execute on
+       * separate hardware contexts.  Put the snapshot in the render batch
+       * unless only the compute batch has unsubmitted work (e.g. OpenCL
+       * profiling), so compute-only timing needs no forced submission.
+       * Order the snapshot after the other batch's outstanding work, and
+       * make the other batch's next command wait for the snapshot.
        */
-      iris_batch_wait_for_batch(&ice->batches[IRIS_BATCH_RENDER],
-                                &ice->batches[IRIS_BATCH_COMPUTE]);
-      ice->state.compute_after_timer_snapshot = true;
-      iris_pipelined_write(&ice->batches[IRIS_BATCH_RENDER], q,
-                           PIPE_CONTROL_WRITE_TIMESTAMP,
-                           offset);
+      struct iris_batch *render = &ice->batches[IRIS_BATCH_RENDER];
+      struct iris_batch *compute = &ice->batches[IRIS_BATCH_COMPUTE];
+      const bool use_compute = iris_batch_bytes_used(render) == 0 &&
+                               iris_batch_bytes_used(compute) > 0;
+      struct iris_batch *target = use_compute ? compute : render;
+      struct iris_batch *other = use_compute ? render : compute;
+
+      /* This wait also satisfies any pending order on the target. */
+      target->order_after = NULL;
+      iris_batch_wait_for_batch(target, other);
+      other->order_after = target;
+      q->batch_idx = target->name;
+      iris_pipelined_write(target, q, PIPE_CONTROL_WRITE_TIMESTAMP, offset);
       break;
+   }
    case PIPE_QUERY_PRIMITIVES_GENERATED:
       batch->screen->vtbl.store_register_mem64(batch,
                                      q->index == 0 ?
@@ -571,6 +582,8 @@ iris_end_query(struct pipe_context *ctx, struct pipe_query *query)
 
    if ((q->type == PIPE_QUERY_TIMESTAMP) || (q->type == PIPE_QUERY_TIMESTAMP_RAW)) {
       iris_begin_query(ctx, query);
+      /* write_value() may have moved the snapshot to another batch. */
+      batch = &ice->batches[q->batch_idx];
       iris_batch_reference_signal_syncobj(batch, &q->syncobj);
       mark_available(ice, q);
       return true;
@@ -594,6 +607,8 @@ iris_end_query(struct pipe_context *ctx, struct pipe_query *query)
                   q->query_state_ref.offset +
                   offsetof(struct iris_query_snapshots, end));
 
+   /* Timer end snapshots may land in either batch (see write_value()). */
+   batch = &ice->batches[q->batch_idx];
    iris_batch_reference_signal_syncobj(batch, &q->syncobj);
    mark_available(ice, q);
 

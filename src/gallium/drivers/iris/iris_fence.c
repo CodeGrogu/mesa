@@ -135,6 +135,19 @@ iris_batch_wait_for_batch(struct iris_batch *batch, struct iris_batch *other)
 }
 
 /**
+ * Make \p batch wait for the timer snapshot recorded in batch->order_after
+ * before it records anything else, so work recorded after a snapshot can
+ * never execute before it on the other hardware context.
+ */
+void
+iris_batch_apply_order_after(struct iris_batch *batch)
+{
+   struct iris_batch *other = batch->order_after;
+   batch->order_after = NULL;
+   iris_batch_wait_for_batch(batch, other);
+}
+
+/**
  * Walk through a batch's dependencies (any IRIS_BATCH_FENCE_WAIT syncobjs)
  * and unreference any which have already passed.
  *
