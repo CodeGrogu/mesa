@@ -426,11 +426,20 @@ namespace {
             abort();
       }
 
+      case SHADER_OPCODE_EXP2:
+      case SHADER_OPCODE_LOG2:
+         /* Measured on a KBL GT2 with dependent chains at a pinned 1 GHz:
+          * EXP2 and LOG2 take about 4 cycles longer than RCP, RSQ, SQRT,
+          * SIN and COS at both SIMD8 and SIMD16, which match the general
+          * extended-math parameters below.
+          */
+         if (devinfo->ver == 9)
+            return calculate_desc(info, EU_UNIT_EM, -2, 4, 0, 0, 4,
+                                  0, 20, 0, 0, 0, 0);
+         FALLTHROUGH;
       case SHADER_OPCODE_RCP:
       case SHADER_OPCODE_RSQ:
       case SHADER_OPCODE_SQRT:
-      case SHADER_OPCODE_EXP2:
-      case SHADER_OPCODE_LOG2:
       case SHADER_OPCODE_SIN:
       case SHADER_OPCODE_COS:
       case SHADER_OPCODE_TANH:
