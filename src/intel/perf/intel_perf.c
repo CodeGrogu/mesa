@@ -1353,6 +1353,109 @@ query_accumulator_offset(const struct intel_perf_query_info *query,
    }
 }
 
+static uint64_t
+read_field_delta(const struct intel_perf_query_field *field,
+                 const void *start, const void *end)
+{
+   uint64_t v0, v1;
+
+   if (field->size == 4) {
+      v0 = *(const uint32_t *)(start + field->location);
+      v1 = *(const uint32_t *)(end + field->location);
+   } else {
+      assert(field->size == 8);
+      v0 = *(const uint64_t *)(start + field->location);
+      v1 = *(const uint64_t *)(end + field->location);
+   }
+
+   if (field->mask) {
+      v0 = field->mask & v0;
+      v1 = field->mask & v1;
+   }
+
+   return v1 - v0;
+}
+
+void
+intel_perf_add_pipeline_statistics_fields(struct intel_perf_config *perf_cfg)
+{
+   struct intel_perf_query_field_layout *layout = &perf_cfg->query_layout;
+   unsigned max_fields = layout->n_fields;
+
+   for (int q = 0; q < perf_cfg->n_queries; q++) {
+      if (perf_cfg->queries[q].kind == INTEL_PERF_QUERY_TYPE_PIPELINE)
+         max_fields += perf_cfg->queries[q].n_counters;
+   }
+   layout->fields = reralloc(perf_cfg, layout->fields,
+                             struct intel_perf_query_field, max_fields);
+
+   for (int q = 0; q < perf_cfg->n_queries; q++) {
+      const struct intel_perf_query_info *query = &perf_cfg->queries[q];
+      if (query->kind != INTEL_PERF_QUERY_TYPE_PIPELINE)
+         continue;
+
+      for (int c = 0; c < query->n_counters; c++) {
+         const uint32_t reg = query->counters[c].pipeline_stat.reg;
+         bool present = false;
+         for (uint32_t f = 0; f < layout->n_fields; f++) {
+            if (layout->fields[f].type == INTEL_PERF_QUERY_FIELD_TYPE_SRM_PIPELINE_STAT &&
+                layout->fields[f].mmio_offset == reg)
+               present = true;
+         }
+         if (present)
+            continue;
+
+         layout->size = align(layout->size, 8);
+         layout->fields[layout->n_fields++] = (struct intel_perf_query_field) {
+            .mmio_offset = reg,
+            .location = layout->size,
+            .type = INTEL_PERF_QUERY_FIELD_TYPE_SRM_PIPELINE_STAT,
+            .size = 8,
+         };
+         layout->size += 8;
+      }
+   }
+   layout->size = align(layout->size, layout->alignment);
+}
+
+bool
+intel_perf_has_oa_queries(const struct intel_perf_config *perf_cfg)
+{
+   for (int q = 0; q < perf_cfg->n_queries; q++) {
+      if (perf_cfg->queries[q].kind != INTEL_PERF_QUERY_TYPE_PIPELINE)
+         return true;
+   }
+   return false;
+}
+
+/* Pipeline statistics passes: each counter is the delta of its register,
+ * scaled as the counter describes.
+ */
+static void
+accumulate_pipeline_statistics(struct intel_perf_query_result *result,
+                               const struct intel_perf_query_info *query,
+                               const void *start, const void *end)
+{
+   const struct intel_perf_query_field_layout *layout = &query->perf->query_layout;
+
+   for (int c = 0; c < query->n_counters; c++) {
+      const struct intel_perf_query_counter *counter = &query->counters[c];
+
+      for (uint32_t r = 0; r < layout->n_fields; r++) {
+         const struct intel_perf_query_field *field = &layout->fields[r];
+         if (field->type != INTEL_PERF_QUERY_FIELD_TYPE_SRM_PIPELINE_STAT ||
+             field->mmio_offset != counter->pipeline_stat.reg)
+            continue;
+
+         result->accumulator[counter->offset / sizeof(uint64_t)] =
+            read_field_delta(field, start, end) *
+            counter->pipeline_stat.numerator /
+            counter->pipeline_stat.denominator;
+         break;
+      }
+   }
+}
+
 void
 intel_perf_query_result_accumulate_fields(struct intel_perf_query_result *result,
                                           const struct intel_perf_query_info *query,
@@ -1363,8 +1466,16 @@ intel_perf_query_result_accumulate_fields(struct intel_perf_query_result *result
    const struct intel_perf_query_field_layout *layout = &query->perf->query_layout;
    const struct intel_device_info *devinfo = query->perf->devinfo;
 
+   if (query->kind == INTEL_PERF_QUERY_TYPE_PIPELINE) {
+      accumulate_pipeline_statistics(result, query, start, end);
+      return;
+   }
+
    for (uint32_t r = 0; r < layout->n_fields; r++) {
       const struct intel_perf_query_field *field = &layout->fields[r];
+
+      if (field->type == INTEL_PERF_QUERY_FIELD_TYPE_SRM_PIPELINE_STAT)
+         continue;
 
       if (field->type == INTEL_PERF_QUERY_FIELD_TYPE_MI_RPC) {
          intel_perf_query_result_read_frequencies(result, devinfo,

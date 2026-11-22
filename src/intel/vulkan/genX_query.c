@@ -1654,6 +1654,7 @@ void genX(CmdBeginQueryIndexedEXT)(
          case INTEL_PERF_QUERY_FIELD_TYPE_SRM_OA_B:
          case INTEL_PERF_QUERY_FIELD_TYPE_SRM_OA_C:
          case INTEL_PERF_QUERY_FIELD_TYPE_SRM_OA_PEC:
+         case INTEL_PERF_QUERY_FIELD_TYPE_SRM_PIPELINE_STAT:
             dws =
                anv_batch_emitn(&cmd_buffer->batch,
                                GENX(MI_STORE_REGISTER_MEM_length),
@@ -1886,6 +1887,7 @@ void genX(CmdEndQueryIndexedEXT)(
          case INTEL_PERF_QUERY_FIELD_TYPE_SRM_OA_B:
          case INTEL_PERF_QUERY_FIELD_TYPE_SRM_OA_C:
          case INTEL_PERF_QUERY_FIELD_TYPE_SRM_OA_PEC:
+         case INTEL_PERF_QUERY_FIELD_TYPE_SRM_PIPELINE_STAT:
             dws =
                anv_batch_emitn(&cmd_buffer->batch,
                                GENX(MI_STORE_REGISTER_MEM_length),

@@ -400,6 +400,11 @@ struct intel_perf_query_field_layout {
          INTEL_PERF_QUERY_FIELD_TYPE_SRM_OA_B,
          INTEL_PERF_QUERY_FIELD_TYPE_SRM_OA_C,
          INTEL_PERF_QUERY_FIELD_TYPE_SRM_OA_PEC,
+         /* A pipeline statistics register, matched to the counters of
+          * INTEL_PERF_QUERY_TYPE_PIPELINE queries by mmio_offset.  Only
+          * added by intel_perf_add_pipeline_statistics_fields().
+          */
+         INTEL_PERF_QUERY_FIELD_TYPE_SRM_PIPELINE_STAT,
       } type;
 
       /* Index of register in the given type (for instance A31 or B2,
@@ -586,6 +591,18 @@ void intel_perf_init_metrics(struct intel_perf_config *perf_cfg,
                              int drm_fd,
                              bool include_pipeline_statistics,
                              bool use_register_snapshots);
+
+/** Append every pipeline statistics register used by the
+ * INTEL_PERF_QUERY_TYPE_PIPELINE queries to the query layout, so a driver
+ * that snapshots the whole layout at begin and end (as ANV's
+ * VK_KHR_performance_query does) can resolve pipeline statistics passes
+ * with intel_perf_query_result_accumulate_fields(), without an OA stream.
+ * Call after intel_perf_init_metrics() with include_pipeline_statistics.
+ */
+void intel_perf_add_pipeline_statistics_fields(struct intel_perf_config *perf_cfg);
+
+/** Whether any query needs the OA unit (and so an OA stream). */
+bool intel_perf_has_oa_queries(const struct intel_perf_config *perf_cfg);
 
 /** Query i915 for a metric id using guid.
  */

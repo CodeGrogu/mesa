@@ -41,17 +41,23 @@ anv_physical_device_init_perf(struct anv_physical_device *device, int fd)
 {
    struct intel_perf_config *perf = intel_perf_new(NULL);
 
+   /* Pipeline statistics counters are plain register snapshots.  They need
+    * no OA stream, so VK_KHR_performance_query stays usable for them when
+    * the OA metric sets are unavailable (for example with the default
+    * dev.i915.perf_stream_paranoid=1).
+    */
    intel_perf_init_metrics(perf, &device->info, fd,
-                           false /* pipeline statistics */,
+                           true /* pipeline statistics */,
                            true /* register snapshots */);
+   intel_perf_add_pipeline_statistics_fields(perf);
 
    if (!perf->n_queries)
       goto err;
 
-   /* We need DRM_I915_PERF_PROP_HOLD_PREEMPTION support, only available in
-    * perf revision 2.
+   /* OA queries need DRM_I915_PERF_PROP_HOLD_PREEMPTION support, only
+    * available in perf revision 2.
     */
-   if (!INTEL_DEBUG(DEBUG_NO_OACONFIG)) {
+   if (!INTEL_DEBUG(DEBUG_NO_OACONFIG) && intel_perf_has_oa_queries(perf)) {
       if (!intel_perf_has_hold_preemption(perf))
          goto err;
    }
@@ -95,6 +101,7 @@ anv_physical_device_init_perf(struct anv_physical_device *device, int fd)
       case INTEL_PERF_QUERY_FIELD_TYPE_SRM_OA_B:
       case INTEL_PERF_QUERY_FIELD_TYPE_SRM_OA_C:
       case INTEL_PERF_QUERY_FIELD_TYPE_SRM_OA_PEC:
+      case INTEL_PERF_QUERY_FIELD_TYPE_SRM_PIPELINE_STAT:
          /* These read the context-relative OAR sub-unit, which is always zero
           * for GT-wide counters, so OAG mode does not emit them at all.
           */
@@ -705,13 +712,23 @@ VkResult anv_AcquireProfilingLockKHR(
 {
    ANV_FROM_HANDLE(anv_device, device, _device);
    struct intel_perf_config *perf = device->physical->perf;
-   struct intel_perf_query_info *first_metric_set = &perf->queries[0];
+   struct intel_perf_query_info *first_metric_set = NULL;
    int fd = -1;
 
    if (device->perf_fd != -1)
       return VK_TIMEOUT;
 
-   if (!INTEL_DEBUG(DEBUG_NO_OACONFIG)) {
+   /* The stream configures the OA unit.  Pipeline statistics counters do
+    * not use it, so with no OA metric sets there is no stream to open.
+    */
+   for (int q = 0; q < perf->n_queries; q++) {
+      if (perf->queries[q].kind != INTEL_PERF_QUERY_TYPE_PIPELINE) {
+         first_metric_set = &perf->queries[q];
+         break;
+      }
+   }
+
+   if (!INTEL_DEBUG(DEBUG_NO_OACONFIG) && first_metric_set) {
       struct anv_queue *queue = anv_device_get_perf_queue(device);
 
       if (queue == NULL)
