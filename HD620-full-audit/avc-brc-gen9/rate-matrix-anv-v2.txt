@@ -1,0 +1,32 @@
+## anv moving cbr 2M g30 bf0
+900 frames, 30 keyframes, 30.0 s: 2.746 Mbit/s (target 2.000, +37.3%)
+  per-second Mbit/s: min 2.110 max 3.404
+  VBV 2.00 Mbit: 779 underflows, 0 frames at full buffer, lowest fullness 0%
+## anv moving cbr 8M g120 bf0
+900 frames, 8 keyframes, 30.0 s: 8.017 Mbit/s (target 8.000, +0.2%)
+  per-second Mbit/s: min 6.887 max 9.791
+  VBV 8.00 Mbit: 0 underflows, 21 frames at full buffer, lowest fullness 31%
+## anv moving cbr 4M g60 bf2
+900 frames, 15 keyframes, 30.0 s: 4.052 Mbit/s (target 4.000, +1.3%)
+  per-second Mbit/s: min 2.865 max 7.031
+  VBV 4.00 Mbit: 0 underflows, 0 frames at full buffer, lowest fullness 0%
+## anv moving vbr 6M/9M g60 bf0
+900 frames, 15 keyframes, 30.0 s: 6.119 Mbit/s (target 9.000, -32.0%)
+  per-second Mbit/s: min 4.945 max 8.525
+  VBV 9.00 Mbit: 0 underflows, 797 frames at full buffer, lowest fullness 54%
+## anv static cbr 2M g30 bf0
+750 frames, 25 keyframes, 25.0 s: 2.022 Mbit/s (target 2.000, +1.1%)
+  per-second Mbit/s: min 1.819 max 2.281
+  VBV 2.00 Mbit: 0 underflows, 0 frames at full buffer, lowest fullness 59%
+## anv static cbr 8M g120 bf0
+750 frames, 7 keyframes, 25.0 s: 8.058 Mbit/s (target 8.000, +0.7%)
+  per-second Mbit/s: min 6.272 max 10.799
+  VBV 8.00 Mbit: 0 underflows, 43 frames at full buffer, lowest fullness 45%
+## anv static cbr 4M g60 bf2
+750 frames, 13 keyframes, 25.0 s: 4.012 Mbit/s (target 4.000, +0.3%)
+  per-second Mbit/s: min 2.565 max 5.867
+  VBV 4.00 Mbit: 0 underflows, 32 frames at full buffer, lowest fullness 21%
+## anv static vbr 6M/9M g60 bf0
+750 frames, 13 keyframes, 25.0 s: 6.128 Mbit/s (target 9.000, -31.9%)
+  per-second Mbit/s: min 4.690 max 9.372
+  VBV 9.00 Mbit: 0 underflows, 700 frames at full buffer, lowest fullness 63%

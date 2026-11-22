@@ -18,7 +18,12 @@ Open work after round 2. Numbers match the master list from 2026-11-19. Effort: 
 
 - [x] **6 → 11. Vulkan HEVC Main/Main10 decode on Gen9 (L). Done with HuC (2026-11-20).** After a reboot with `i915.enable_guc=2`, HuC 4.0.0 authenticated, and ANV exposes `VK_KHR_video_decode_h265` under `ANV_DEBUG=video-decode`. All 4 clips (192 frames, Main and Main10, I/P/B with multiple GOPs) decode identically to software. No code change was needed. See [hevc-huc/README.md](hevc-huc/README.md).
 - [ ] **12. Vulkan HEVC encode on Gen9 (L).** Use iHD as the reference. Start with fixed-QP Main and Main10.
-- [ ] **13. H.264/HEVC bitrate control in Vulkan encode (M–L).** Validate VBV behaviour on long streams across rate changes and GOPs.
+- [x] **13. H.264/HEVC bitrate control in Vulkan encode (M–L). Done for H.264 (2026-11-22).**
+  - *Port:* ANV's HuC BRC now runs on KBL-class Gfx9, using the firmware ABI extracted from iHD.
+  - *Results:* across 30 s 1080p streams at 2–8 Mbit/s, with GOP 30–120 and with and without B-frames, 7 of 8 configurations land within 0.2–1.3% of target with no VBV underflow, on par with iHD. CTS: the 4 rc_cbr/rc_vbr cases now pass, with 0 failures.
+  - *Limit:* noisy content needing more than QP 51 overshoots (+37% at 2 Mbit/s). iHD handles that case with a conditional re-encode, and Gen9's only conditional batch end aborts the whole command buffer (measured).
+  - *HEVC:* there is no HEVC encode on Gen9 (item 12).
+  - See [avc-brc-gen9/README.md](avc-brc-gen9/README.md).
 - [x] **14. Vulkan Video decode on by default on Gen9 (M). Done (decode).** CTS with no debug flag: dEQP-VK.video.decode h264/h265/vp9 98/98 supported cases pass, 0 failures (the other 98 need `VK_KHR_unified_image_layouts`). H.265 needs HuC, which ANV checks. The drirc option `anv_gfx9_video_decode=false` opts out. Encode stays behind `ANV_DEBUG` until rate control works (item 13); its CTS run was 22/22 supported cases passing.
 - [x] **17. Broaden multi-mip HiZ (M–L). Done, except full mip chains.** Multi-LOD HiZ now covers D16, X8_D24, D24S8, D32 and D32S8, including array images. The harness grew 10 new exact per-pixel cases (20.5M checks): other formats, resolves, and layered images with the other layers checked untouched. All 26 cases pass on debug and release, and the 7,771-case depth CTS list is unchanged (0 failures). *Not done:* full mip chains. Their 1×1/2×2 LODs can't meet the 8×4 HiZ-op rule, and ANV tracks aux per image rather than per LOD, so this needs a per-LOD aux redesign, not a gate change. See `evidence/hiz-wide/`.
 - [x] **27. `G16B16G16R16_422` / `B16G16R16G16_422` and linear YUV chroma reconstruction (M). Done (2026-11-22).**
