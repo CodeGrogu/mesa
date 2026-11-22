@@ -8326,7 +8326,14 @@ gfx9_blt_address(struct anv_cmd_buffer *cmd_buffer, struct anv_address addr)
    VkResult result = anv_reloc_list_add_bo(cmd_buffer->batch.relocs, addr.bo);
    if (result != VK_SUCCESS)
       anv_batch_set_error(&cmd_buffer->batch, result);
-   return anv_address_physical(addr);
+   /* anv addresses are canonical (bits 63:48 copy bit 47).  The blitter
+    * address fields are 48 bits wide with the upper dword bits MBZ, and
+    * genxml packing would truncate, but these commands are hand-encoded.
+    * Passing a sign-extended high address made every blit fault: on KBL
+    * that wedged bcs0 and rcs0 beyond engine reset and hard-locked the
+    * machine.
+    */
+   return intel_48b_address(anv_address_physical(addr));
 }
 
 static void
