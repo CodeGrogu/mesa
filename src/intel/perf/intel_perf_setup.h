@@ -55,7 +55,8 @@ intel_query_alloc(struct intel_perf_config *perf, int ncounters)
       query->c_offset = query->b_offset + 8;
       query->perfcnt_offset = query->c_offset + 8;
       query->rpstat_offset = query->perfcnt_offset + 2;
-   } else if (perf->devinfo->verx10 >= 120) {
+   } else if (perf->devinfo->verx10 >= 80) {
+      /* I915_OA_FORMAT_A32u40_A4u32_B8_C8, Gfx8 to Gfx12 */
       query->gpu_time_offset = 0;
       query->gpu_clock_offset = query->gpu_time_offset + 1;
       query->a_offset = query->gpu_clock_offset + 1;
@@ -64,6 +65,7 @@ intel_query_alloc(struct intel_perf_config *perf, int ncounters)
       query->perfcnt_offset = query->c_offset + 8;
       query->rpstat_offset = query->perfcnt_offset + 2;
    } else {
+      /* I915_OA_FORMAT_A45_B8_C8, Haswell */
       query->gpu_time_offset = 0;
       query->a_offset = query->gpu_time_offset + 1;
       query->b_offset = query->a_offset + 45;

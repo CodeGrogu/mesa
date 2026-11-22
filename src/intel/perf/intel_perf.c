@@ -1234,8 +1234,10 @@ intel_perf_query_result_accumulate(struct intel_perf_query_result *result,
                               result->accumulator + query->c_offset + i);
          }
       }
-   } else if (query->perf->devinfo->verx10 >= 120) {
-      /* I915_OA_FORMAT_A32u40_A4u32_B8_C8 */
+   } else if (query->perf->devinfo->verx10 >= 80) {
+      /* I915_OA_FORMAT_A32u40_A4u32_B8_C8, Gfx8 to Gfx12 (see
+       * i915_perf_get_oa_format())
+       */
       result->accumulator[query->gpu_time_offset] =
          intel_perf_report_timestamp(query, devinfo, end) -
          intel_perf_report_timestamp(query, devinfo, start);
@@ -1270,7 +1272,7 @@ intel_perf_query_result_accumulate(struct intel_perf_query_result *result,
          }
       }
    } else {
-      /* I915_OA_FORMAT_A24u40_A14u32_B8_C8 */
+      /* I915_OA_FORMAT_A45_B8_C8, Haswell */
       result->accumulator[query->gpu_time_offset] =
          intel_perf_report_timestamp(query, devinfo, end) -
          intel_perf_report_timestamp(query, devinfo, start);
