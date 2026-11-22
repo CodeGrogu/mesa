@@ -457,6 +457,7 @@ iris_batch_reset(struct iris_batch *batch)
    batch->total_chained_batch_size = 0;
    batch->contains_draw = false;
    batch->contains_fence_signal = false;
+   batch->gfx9_astc5x5_cache = 0;
    if (devinfo->ver < 11)
       batch->decoder.surface_base = batch->last_binder_address;
    else

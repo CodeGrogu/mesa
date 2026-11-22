@@ -971,6 +971,162 @@ iris_resource_set_aux_state(struct iris_context *ice,
    }
 }
 
+/**
+ * Gfx9 ASTC 5x5 sampler workaround.
+ *
+ * Gfx9 sampling hardware has a bug where an ASTC 5x5 compressed surface
+ * cannot live in the sampler cache at the same time as an aux compressed
+ * surface (Mesa issue #1892).  On a KBL GT2, native ASTC 5x5 sampled next to
+ * a HiZ depth texture hangs the GPU on the first submission.  As i965 did:
+ *
+ * - When one draw or dispatch samples ASTC 5x5, every other texture it
+ *   samples is resolved and sampled without CCS or HiZ.
+ *
+ * - When ASTC 5x5 and aux-compressed data may meet across draws, dispatches
+ *   or BLORP operations, a CS stall and a texture cache invalidate separate
+ *   them.
+ *
+ * MCS is left alone, as in i965: whether it is affected is unknown, and it
+ * cannot be resolved.
+ */
+static bool
+is_astc_5x5(enum isl_format format)
+{
+   return format == ISL_FORMAT_ASTC_LDR_2D_5X5_FLT16 ||
+          format == ISL_FORMAT_ASTC_LDR_2D_5X5_U8SRGB;
+}
+
+static bool
+is_resolvable_aux(enum isl_aux_usage aux_usage)
+{
+   return aux_usage != ISL_AUX_USAGE_NONE &&
+          aux_usage != ISL_AUX_USAGE_MCS;
+}
+
+uint8_t
+iris_gfx9_astc5x5_bits(enum isl_format format, enum isl_aux_usage aux_usage)
+{
+   return (is_resolvable_aux(aux_usage) ? IRIS_GFX9_ASTC5X5_AUX : 0) |
+          (is_astc_5x5(format) ? IRIS_GFX9_ASTC5X5_ASTC : 0);
+}
+
+void
+iris_gfx9_astc5x5_wa_flush(struct iris_batch *batch, uint8_t bits)
+{
+   const uint8_t cache = batch->gfx9_astc5x5_cache;
+
+   if (((cache & IRIS_GFX9_ASTC5X5_ASTC) && (bits & IRIS_GFX9_ASTC5X5_AUX)) ||
+       ((cache & IRIS_GFX9_ASTC5X5_AUX) && (bits & IRIS_GFX9_ASTC5X5_ASTC))) {
+      iris_emit_pipe_control_flush(batch, "Gfx9 ASTC 5x5 workaround: stall",
+                                   PIPE_CONTROL_CS_STALL);
+      iris_emit_pipe_control_flush(batch, "Gfx9 ASTC 5x5 workaround: invalidate",
+                                   PIPE_CONTROL_TEXTURE_CACHE_INVALIDATE);
+      batch->gfx9_astc5x5_cache = 0;
+   }
+
+   batch->gfx9_astc5x5_cache |= bits;
+}
+
+static void
+for_each_used_sampler_view(struct iris_context *ice, bool compute,
+                           void (*cb)(struct iris_context *ice,
+                                      struct iris_sampler_view *isv,
+                                      void *data),
+                           void *data)
+{
+   const mesa_shader_stage first = compute ? MESA_SHADER_COMPUTE : 0;
+   const mesa_shader_stage last =
+      compute ? MESA_SHADER_COMPUTE : MESA_SHADER_FRAGMENT;
+
+   for (mesa_shader_stage stage = first; stage <= last; stage++) {
+      const struct shader_info *info = iris_get_shader_info(ice, stage);
+      if (info == NULL)
+         continue;
+
+      struct iris_shader_state *shs = &ice->state.shaders[stage];
+      int i;
+      BITSET_FOREACH_SET(i, shs->bound_sampler_views, IRIS_MAX_TEXTURES) {
+         if (BITSET_TEST(info->textures_used, i))
+            cb(ice, shs->textures[i], data);
+      }
+   }
+}
+
+static void
+find_astc_5x5(struct iris_context *ice, struct iris_sampler_view *isv,
+              void *data)
+{
+   if (is_astc_5x5(isv->view.format))
+      *(bool *)data = true;
+}
+
+static void
+gather_astc5x5_bits(struct iris_context *ice, struct iris_sampler_view *isv,
+                    void *data)
+{
+   enum isl_aux_usage aux_usage = ISL_AUX_USAGE_NONE;
+
+   if (isv->res->base.b.target != PIPE_BUFFER) {
+      aux_usage = iris_resource_texture_aux_usage(ice, isv->res,
+                                                  isv->view.format,
+                                                  isv->view.base_level,
+                                                  isv->view.levels);
+   }
+
+   *(uint8_t *)data |= iris_gfx9_astc5x5_bits(isv->view.format, aux_usage);
+}
+
+/**
+ * Gfx9 only.  Call after the shaders are updated and before resolving
+ * inputs for a draw (\p compute false) or dispatch.
+ */
+void
+iris_gfx9_astc5x5_prepare(struct iris_context *ice, bool compute)
+{
+   const uint64_t resolve_dirty = compute ?
+      IRIS_DIRTY_COMPUTE_RESOLVES_AND_FLUSHES :
+      IRIS_DIRTY_RENDER_RESOLVES_AND_FLUSHES;
+   const uint64_t shader_dirty = compute ? IRIS_STAGE_DIRTY_CS :
+      (IRIS_STAGE_DIRTY_VS | IRIS_STAGE_DIRTY_TCS | IRIS_STAGE_DIRTY_TES |
+       IRIS_STAGE_DIRTY_GS | IRIS_STAGE_DIRTY_FS);
+
+   if ((ice->state.dirty & resolve_dirty) ||
+       (ice->state.stage_dirty & shader_dirty)) {
+      bool sampled = false;
+      for_each_used_sampler_view(ice, compute, find_astc_5x5, &sampled);
+
+      if (sampled != ice->state.gfx9_astc5x5_sampled[compute]) {
+         /* The aux usage of every sampled texture changes. */
+         ice->state.gfx9_astc5x5_sampled[compute] = sampled;
+         ice->state.dirty |= resolve_dirty;
+         ice->state.stage_dirty |= compute ? IRIS_STAGE_DIRTY_BINDINGS_CS :
+                                   IRIS_ALL_STAGE_DIRTY_BINDINGS_FOR_RENDER;
+      }
+
+      /* Recompute the bits after the resolves, in finish(). */
+      ice->state.gfx9_astc5x5_bits[compute] = 0xff;
+   }
+
+   ice->state.gfx9_astc5x5_active = ice->state.gfx9_astc5x5_sampled[compute];
+}
+
+/**
+ * Gfx9 only.  Call after resolving inputs and before emitting the draw or
+ * dispatch into \p batch.
+ */
+void
+iris_gfx9_astc5x5_finish(struct iris_context *ice, struct iris_batch *batch,
+                         bool compute)
+{
+   if (ice->state.gfx9_astc5x5_bits[compute] == 0xff) {
+      uint8_t bits = 0;
+      for_each_used_sampler_view(ice, compute, gather_astc5x5_bits, &bits);
+      ice->state.gfx9_astc5x5_bits[compute] = bits;
+   }
+
+   iris_gfx9_astc5x5_wa_flush(batch, ice->state.gfx9_astc5x5_bits[compute]);
+}
+
 enum isl_aux_usage
 iris_resource_texture_aux_usage(struct iris_context *ice,
                                 const struct iris_resource *res,
@@ -980,6 +1136,11 @@ iris_resource_texture_aux_usage(struct iris_context *ice,
 {
    struct iris_screen *screen = (void *) ice->ctx.screen;
    const struct intel_device_info *devinfo = screen->devinfo;
+
+   /* See iris_gfx9_astc5x5_prepare(). */
+   if (devinfo->ver == 9 && ice->state.gfx9_astc5x5_active &&
+       is_resolvable_aux(res->aux.usage))
+      return ISL_AUX_USAGE_NONE;
 
    switch (res->aux.usage) {
    case ISL_AUX_USAGE_ZCS:

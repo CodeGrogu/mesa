@@ -13,6 +13,7 @@
 #include "util/format/u_format.h"
 
 #include "iris_resource.h"
+#include "util/u_debug.h"
 #include "iris_screen.h"
 
 struct iris_format_info
@@ -195,12 +196,13 @@ iris_is_format_supported(struct pipe_screen *pscreen,
                    format == ISL_FORMAT_R32_UINT;
    }
 
-   /* TODO: Support ASTC 5x5 on Gfx9 properly.  This means implementing
-    * a complex sampler workaround (see i965's gfx9_apply_astc5x5_wa_flush).
-    * Without it, st/mesa will emulate ASTC 5x5 via uncompressed textures.
+   /* Gfx9 samples ASTC 5x5 natively with a sampler workaround (see
+    * iris_gfx9_astc5x5_wa_flush()).  IRIS_GFX9_EMULATE_ASTC_5X5=true makes
+    * st/mesa emulate it with uncompressed textures instead.
     */
    if (devinfo->ver == 9 && (format == ISL_FORMAT_ASTC_LDR_2D_5X5_FLT16 ||
-                             format == ISL_FORMAT_ASTC_LDR_2D_5X5_U8SRGB))
+                             format == ISL_FORMAT_ASTC_LDR_2D_5X5_U8SRGB) &&
+       debug_get_bool_option("IRIS_GFX9_EMULATE_ASTC_5X5", false))
       return false;
 
    return supported;

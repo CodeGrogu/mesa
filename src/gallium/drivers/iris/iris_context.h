@@ -1193,6 +1193,21 @@ struct iris_context {
 
       bool use_tbimr;
 
+      /**
+       * Gfx9 ASTC 5x5 workaround, indexed by render (0) or compute (1):
+       * whether the bound shaders sample an ASTC 5x5 texture, and the
+       * IRIS_GFX9_ASTC5X5_* bits of everything they sample.
+       */
+      bool gfx9_astc5x5_sampled[2];
+      uint8_t gfx9_astc5x5_bits[2];
+
+      /**
+       * True while a draw or dispatch that samples ASTC 5x5 is being
+       * prepared and emitted.  iris_resource_texture_aux_usage() then
+       * disables CCS and HiZ for every texture it samples.
+       */
+      bool gfx9_astc5x5_active;
+
       /* For compute engine only */
       uint8_t pixel_async_compute_thread_limit;
       uint8_t z_pass_async_compute_thread_limit;
@@ -1521,6 +1536,15 @@ void iris_predraw_resolve_inputs(struct iris_context *ice,
 void iris_predraw_resolve_framebuffer(struct iris_context *ice,
                                       struct iris_batch *batch,
                                       bool *draw_aux_buffer_disabled);
+
+#define IRIS_GFX9_ASTC5X5_ASTC (1 << 0)
+#define IRIS_GFX9_ASTC5X5_AUX  (1 << 1)
+void iris_gfx9_astc5x5_prepare(struct iris_context *ice, bool compute);
+void iris_gfx9_astc5x5_finish(struct iris_context *ice,
+                              struct iris_batch *batch, bool compute);
+void iris_gfx9_astc5x5_wa_flush(struct iris_batch *batch, uint8_t bits);
+uint8_t iris_gfx9_astc5x5_bits(enum isl_format format,
+                               enum isl_aux_usage aux_usage);
 void iris_predraw_flush_buffers(struct iris_context *ice,
                                 struct iris_batch *batch,
                                 mesa_shader_stage stage);

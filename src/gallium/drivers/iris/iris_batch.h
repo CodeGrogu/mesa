@@ -69,6 +69,13 @@ struct iris_batch {
     */
    struct iris_batch *order_after;
 
+   /**
+    * Gfx9 ASTC 5x5 workaround: IRIS_GFX9_ASTC5X5_* bits for what may be in
+    * the sampler cache from this batch (see iris_gfx9_astc5x5_wa_flush()).
+    * Each batch starts with the texture cache invalidated by the kernel.
+    */
+   uint8_t gfx9_astc5x5_cache;
+
    /** Current batchbuffer being queued up. */
    struct iris_bo *bo;
    void *map;

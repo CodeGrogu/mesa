@@ -160,6 +160,19 @@ iris_update_draw_parameters(struct iris_context *ice,
    }
 }
 
+/**
+ * Apply the Gfx9 ASTC 5x5 workaround right before emitting a draw or
+ * dispatch, after any batch flush, so the sampler-cache tracking describes
+ * the batch the command actually lands in.
+ */
+static inline void
+gfx9_astc5x5_before_emit(struct iris_context *ice, struct iris_batch *batch,
+                         bool compute)
+{
+   if (batch->screen->devinfo->ver == 9)
+      iris_gfx9_astc5x5_finish(ice, batch, compute);
+}
+
 static void
 iris_simple_draw_vbo(struct iris_context *ice,
                      const struct pipe_draw_info *draw,
@@ -170,6 +183,7 @@ iris_simple_draw_vbo(struct iris_context *ice,
    struct iris_batch *batch = &ice->batches[IRIS_BATCH_RENDER];
 
    iris_batch_maybe_flush(batch, 1500);
+   gfx9_astc5x5_before_emit(ice, batch, false);
 
    iris_update_draw_parameters(ice, draw, drawid_offset, indirect, sc);
 
@@ -203,12 +217,14 @@ iris_indirect_draw_vbo(struct iris_context *ice,
 
    if (iris_execute_indirect_draw_supported(ice, &indirect, &info)) {
       iris_batch_maybe_flush(batch, 1500);
+      gfx9_astc5x5_before_emit(ice, batch, false);
 
       iris_update_draw_parameters(ice, &info, drawid_offset, &indirect, draw);
 
       screen->vtbl.upload_indirect_render_state(ice, &info, &indirect, draw);
    } else if (iris_use_draw_indirect_generation(screen, &indirect)) {
       iris_batch_maybe_flush(batch, 1500);
+      gfx9_astc5x5_before_emit(ice, batch, false);
 
       iris_update_draw_parameters(ice, &info, drawid_offset, &indirect, draw);
 
@@ -288,6 +304,9 @@ iris_draw_vbo(struct pipe_context *ctx, const struct pipe_draw_info *info,
 
    iris_update_compiled_shaders(ice);
 
+   if (devinfo->ver == 9)
+      iris_gfx9_astc5x5_prepare(ice, false);
+
    if (ice->state.dirty & IRIS_DIRTY_RENDER_RESOLVES_AND_FLUSHES) {
       bool draw_aux_buffer_disabled[IRIS_MAX_DRAW_BUFFERS] = { };
       for (mesa_shader_stage stage = 0; stage < MESA_SHADER_COMPUTE; stage++) {
@@ -330,6 +349,7 @@ iris_draw_vbo(struct pipe_context *ctx, const struct pipe_draw_info *info,
 
    iris_postdraw_update_resolve_tracking(ice);
 
+   ice->state.gfx9_astc5x5_active = false;
    ice->state.dirty &= ~IRIS_ALL_DIRTY_FOR_RENDER;
    ice->state.stage_dirty &= ~IRIS_ALL_STAGE_DIRTY_FOR_RENDER;
 }
@@ -409,6 +429,9 @@ iris_launch_grid(struct pipe_context *ctx, const struct pipe_grid_info *grid)
       ice->state.stage_dirty |= IRIS_ALL_STAGE_DIRTY_FOR_COMPUTE;
    }
 
+   if (devinfo->ver == 9)
+      iris_gfx9_astc5x5_prepare(ice, true);
+
    if (ice->state.dirty & IRIS_DIRTY_COMPUTE_RESOLVES_AND_FLUSHES)
       iris_predraw_resolve_inputs(ice, batch, NULL, MESA_SHADER_COMPUTE, false);
 
@@ -416,6 +439,7 @@ iris_launch_grid(struct pipe_context *ctx, const struct pipe_grid_info *grid)
       iris_predraw_flush_buffers(ice, batch, MESA_SHADER_COMPUTE);
 
    iris_batch_maybe_flush(batch, 1500);
+   gfx9_astc5x5_before_emit(ice, batch, true);
 
    iris_update_compiled_compute_shader(ice);
 
@@ -449,6 +473,7 @@ iris_launch_grid(struct pipe_context *ctx, const struct pipe_grid_info *grid)
 
    iris_handle_always_flush_cache(batch);
 
+   ice->state.gfx9_astc5x5_active = false;
    ice->state.dirty &= ~IRIS_ALL_DIRTY_FOR_COMPUTE;
    ice->state.stage_dirty &= ~IRIS_ALL_STAGE_DIRTY_FOR_COMPUTE;
 

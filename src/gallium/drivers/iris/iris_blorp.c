@@ -340,6 +340,15 @@ iris_blorp_exec_render(struct blorp_batch *blorp_batch,
 
    iris_require_command_space(batch, 1400);
 
+#if GFX_VER == 9
+   /* BLORP samples its source; see iris_gfx9_astc5x5_wa_flush(). */
+   if (params->src.enabled) {
+      iris_gfx9_astc5x5_wa_flush(batch,
+                                 iris_gfx9_astc5x5_bits(params->src.view.format,
+                                                        params->src.aux_usage));
+   }
+#endif
+
 #if GFX_VER == 8
    genX(update_pma_fix)(ice, batch, false);
 #endif
