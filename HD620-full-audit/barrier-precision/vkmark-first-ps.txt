@@ -1,0 +1,6 @@
+r1 base                                    vkmark Score: 2903
+r1 skip                                    vkmark Score: 2950
+r2 base                                    vkmark Score: 3182
+r2 skip                                    vkmark Score: 3213
+r3 base                                    vkmark Score: 3092
+r3 skip                                    vkmark Score: 3389
