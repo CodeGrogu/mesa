@@ -1,0 +1,120 @@
+
+
+
+r1 up=50 down=30 period_us=8333 job_p50_us=3475 p90=3712 p99=3923 gpu_W=0.639 pkg_W=8.360 mean_MHz=367 rc6_pct=28.1
+
+
+
+r1 up=30 down=15 period_us=8333 job_p50_us=2382 p90=3174 p99=3670 gpu_W=0.758 pkg_W=9.105 mean_MHz=448 rc6_pct=34.6
+
+
+
+r1 up=70 down=40 period_us=8333 job_p50_us=3764 p90=3955 p99=4778 gpu_W=0.557 pkg_W=8.106 mean_MHz=315 rc6_pct=26.4
+
+
+
+r1 up=85 down=60 period_us=8333 job_p50_us=3846 p90=3999 p99=4428 gpu_W=0.549 pkg_W=5.578 mean_MHz=307 rc6_pct=26.1
+
+
+
+r1 up=95 down=85 period_us=8333 job_p50_us=3827 p90=3993 p99=4075 gpu_W=0.541 pkg_W=5.759 mean_MHz=307 rc6_pct=26.6
+
+
+
+r1 up=50 down=30 period_us=16667 job_p50_us=3617 p90=3856 p99=4441 gpu_W=0.356 pkg_W=4.411 mean_MHz=324 rc6_pct=53.5
+
+
+
+r1 up=30 down=15 period_us=16667 job_p50_us=2818 p90=3525 p99=3830 gpu_W=0.394 pkg_W=4.936 mean_MHz=361 rc6_pct=56.1
+
+
+
+r1 up=70 down=40 period_us=16667 job_p50_us=3845 p90=3954 p99=4390 gpu_W=0.328 pkg_W=4.347 mean_MHz=305 rc6_pct=53.7
+
+
+
+r1 up=85 down=60 period_us=16667 job_p50_us=3879 p90=3955 p99=4004 gpu_W=0.326 pkg_W=3.907 mean_MHz=305 rc6_pct=53.8
+
+
+
+r1 up=95 down=85 period_us=16667 job_p50_us=3893 p90=3956 p99=4212 gpu_W=0.325 pkg_W=3.551 mean_MHz=304 rc6_pct=54.0
+
+
+
+r1 up=50 down=30 period_us=33333 job_p50_us=3634 p90=3847 p99=3914 gpu_W=0.174 pkg_W=3.374 mean_MHz=309 rc6_pct=76.2
+
+
+
+r1 up=30 down=15 period_us=33333 job_p50_us=2887 p90=3617 p99=3860 gpu_W=0.304 pkg_W=3.871 mean_MHz=347 rc6_pct=75.5
+
+
+
+r1 up=70 down=40 period_us=33333 job_p50_us=3880 p90=3954 p99=3986 gpu_W=0.171 pkg_W=3.445 mean_MHz=303 rc6_pct=75.2
+
+
+
+r1 up=85 down=60 period_us=33333 job_p50_us=3883 p90=3953 p99=3986 gpu_W=0.169 pkg_W=3.307 mean_MHz=303 rc6_pct=75.5
+
+
+
+r1 up=95 down=85 period_us=33333 job_p50_us=3885 p90=3956 p99=3986 gpu_W=0.169 pkg_W=3.375 mean_MHz=302 rc6_pct=75.6
+
+
+
+r2 up=50 down=30 period_us=8333 job_p50_us=3637 p90=3836 p99=3909 gpu_W=0.579 pkg_W=4.169 mean_MHz=335 rc6_pct=28.0
+
+
+
+r2 up=30 down=15 period_us=8333 job_p50_us=2935 p90=3358 p99=3815 gpu_W=0.661 pkg_W=4.057 mean_MHz=397 rc6_pct=28.7
+
+
+
+r2 up=70 down=40 period_us=8333 job_p50_us=3874 p90=3957 p99=3988 gpu_W=0.550 pkg_W=3.914 mean_MHz=310 rc6_pct=27.2
+
+
+
+r2 up=85 down=60 period_us=8333 job_p50_us=3883 p90=3956 p99=3990 gpu_W=0.547 pkg_W=4.292 mean_MHz=310 rc6_pct=27.7
+
+
+
+r2 up=95 down=85 period_us=8333 job_p50_us=3890 p90=3957 p99=3994 gpu_W=0.547 pkg_W=3.922 mean_MHz=307 rc6_pct=27.2
+
+
+
+r2 up=50 down=30 period_us=16667 job_p50_us=3639 p90=3843 p99=3906 gpu_W=0.337 pkg_W=3.730 mean_MHz=318 rc6_pct=55.6
+
+
+
+r2 up=30 down=15 period_us=16667 job_p50_us=2987 p90=3624 p99=3842 gpu_W=0.352 pkg_W=4.113 mean_MHz=343 rc6_pct=59.4
+
+
+
+r2 up=70 down=40 period_us=16667 job_p50_us=3865 p90=3952 p99=3986 gpu_W=0.326 pkg_W=3.678 mean_MHz=305 rc6_pct=54.1
+
+
+
+r2 up=85 down=60 period_us=16667 job_p50_us=3880 p90=3955 p99=4008 gpu_W=0.327 pkg_W=3.618 mean_MHz=305 rc6_pct=54.0
+
+
+
+r2 up=95 down=85 period_us=16667 job_p50_us=3881 p90=3955 p99=3986 gpu_W=0.326 pkg_W=3.668 mean_MHz=304 rc6_pct=54.0
+
+
+
+r2 up=50 down=30 period_us=33333 job_p50_us=3621 p90=3836 p99=3907 gpu_W=0.176 pkg_W=3.396 mean_MHz=309 rc6_pct=76.0
+
+
+
+r2 up=30 down=15 period_us=33333 job_p50_us=2973 p90=3572 p99=3839 gpu_W=0.183 pkg_W=3.422 mean_MHz=325 rc6_pct=78.2
+
+
+
+r2 up=70 down=40 period_us=33333 job_p50_us=3878 p90=3951 p99=3985 gpu_W=0.169 pkg_W=3.169 mean_MHz=303 rc6_pct=75.5
+
+
+
+r2 up=85 down=60 period_us=33333 job_p50_us=3888 p90=3953 p99=3992 gpu_W=0.171 pkg_W=3.309 mean_MHz=301 rc6_pct=75.2
+
+
+
+r2 up=95 down=85 period_us=33333 job_p50_us=3892 p90=3956 p99=3988 gpu_W=0.169 pkg_W=3.272 mean_MHz=302 rc6_pct=75.2

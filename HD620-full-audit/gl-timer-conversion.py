@@ -477,7 +477,65 @@ def wrap_watch(seconds):
         print('NOTE wrap watch did not observe a rollover in this window')
 
 
-if len(sys.argv) > 2 and sys.argv[1] == '--wrap':
+def straddle(count):
+    """Queue `count` back-to-back TIME_ELAPSED intervals of ~11 ms compute with
+    no CPU wait in between, so the GPU timeline is tiled and a 36-bit
+    rollover must fall inside one interval.  Each interval has a TIMESTAMP at
+    its start, and each result is resolved into a query buffer while pending
+    (GPU path).  Checks: buffer == client for every interval, every interval
+    within 2x of the median, and reports the interval that wrapped."""
+    el_q = (U * count)()
+    ts_q = (U * (count + 1))()
+    gen_queries(count, el_q)
+    gen_queries(count + 1, ts_q)
+    big = U()
+    gen_buffers(1, c.byref(big))
+    bind_buffer(QUERY_BUFFER, big.value)
+    fill = (Q * count)(*([SENTINEL] * count))
+    buffer_data(QUERY_BUFFER, count * 8, fill, 0x88E8)
+    finish()
+    t_wall = time.monotonic_ns()
+    for i in range(count):
+        stamp(ts_q[i], TIMESTAMP)
+        begin(TIME_ELAPSED, el_q[i])
+        compute(256)
+        end(TIME_ELAPSED)
+        query_to_buffer(el_q[i], RESULT, P(i * 8))
+    stamp(ts_q[count], TIMESTAMP)
+    bind_buffer(QUERY_BUFFER, 0)
+    finish()
+    wall = time.monotonic_ns() - t_wall
+    out = (Q * count)()
+    bind_buffer(COPY_READ, big.value)
+    read_buffer(COPY_READ, 0, count * 8, out)
+    bind_buffer(COPY_READ, 0)
+    el = [result(el_q[i]) for i in range(count)]
+    ts = [result(ts_q[i]) for i in range(count + 1)]
+    med = statistics.median(el)
+    bad_buf = [i for i in range(count) if out[i] != el[i]]
+    bad_len = [i for i in range(count) if not (med / 2 <= el[i] <= med * 2)]
+    wrapped = [i for i in range(count) if ts[i + 1] < ts[i]]
+    print(f'straddle: {count} intervals, wall {wall/1e9:.2f} s, sum of intervals {sum(el)/1e9:.2f} s, '
+          f'median {med/1e6:.3f} ms')
+    for i in wrapped:
+        print(f'WRAP inside interval {i}: start ts {ts[i]} ns, next start ts {ts[i+1]} ns, '
+              f'elapsed client {el[i]} ns, buffer {out[i]} ns (median {med:.0f} ns)')
+    for i in (bad_buf + bad_len)[:5]:
+        print(f'FAIL interval {i}: client {el[i]} ns, buffer {out[i]} ns, median {med:.0f} ns')
+    report('straddle: every buffer (GPU-path) result equals the client result', not bad_buf,
+           f'{len(bad_buf)} mismatches')
+    report('straddle: every interval within 2x of the median', not bad_len, f'{len(bad_len)} outliers')
+    report('straddle: an interval contains the 36-bit rollover', len(wrapped) == 1,
+           f'{len(wrapped)} wrapped intervals')
+    if wrapped:
+        i = wrapped[0]
+        report('straddle: the wrapped interval measures like its neighbours',
+               med / 2 <= el[i] <= med * 2 and out[i] == el[i], f'{el[i]} ns vs median {med:.0f} ns')
+
+
+if len(sys.argv) > 2 and sys.argv[1] == '--straddle':
+    straddle(int(sys.argv[2]))
+elif len(sys.argv) > 2 and sys.argv[1] == '--wrap':
     wrap_watch(float(sys.argv[2]))
 else:
     for name, kind, work, gpu in cases:

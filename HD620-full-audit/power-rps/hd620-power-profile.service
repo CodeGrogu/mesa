@@ -1,0 +1,11 @@
+[Unit]
+Description=Apply the HD 620 GPU power profile (boot and resume)
+After=systemd-modules-load.service suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target
+
+[Service]
+Type=oneshot
+Environment=INTEL_REG=/usr/local/lib/hd620/intel_reg
+ExecStart=/usr/local/sbin/hd620-power-profile apply
+
+[Install]
+WantedBy=multi-user.target suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target

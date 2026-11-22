@@ -1,0 +1,32 @@
+#version 450
+#extension GL_KHR_cooperative_matrix : require
+#extension GL_KHR_memory_scope_semantics : require
+#extension GL_EXT_shader_explicit_arithmetic_types : require
+#extension GL_KHR_shader_subgroup_basic : require
+/* Each subgroup multiplies its own 8x32 by 32x8 int8 tile ITER times,
+ * accumulating into an 8x8 int32 tile. */
+#ifdef UNSIGNED
+#define E8 uint8_t
+#define E32 uint32_t
+#else
+#define E8 int8_t
+#define E32 int32_t
+#endif
+layout(local_size_x = 64) in;
+layout(constant_id = 0) const uint ITER = 1024;
+layout(set = 0, binding = 0) readonly buffer A { E8 a[]; };
+layout(set = 0, binding = 1) readonly buffer B { E8 b[]; };
+layout(set = 0, binding = 2) buffer C { E32 c[]; };
+void main()
+{
+   uint tile = gl_WorkGroupID.x * gl_NumSubgroups + gl_SubgroupID;
+   coopmat<E8, gl_ScopeSubgroup, 8, 32, gl_MatrixUseA> ma;
+   coopmat<E8, gl_ScopeSubgroup, 32, 8, gl_MatrixUseB> mb;
+   coopmat<E32, gl_ScopeSubgroup, 8, 8, gl_MatrixUseAccumulator> mc =
+      coopmat<E32, gl_ScopeSubgroup, 8, 8, gl_MatrixUseAccumulator>(0);
+   coopMatLoad(ma, a, tile * 256, 32, gl_CooperativeMatrixLayoutRowMajor);
+   coopMatLoad(mb, b, tile * 256, 8, gl_CooperativeMatrixLayoutRowMajor);
+   for (uint i = 0; i < ITER; i++)
+      mc = coopMatMulAdd(ma, mb, mc);
+   coopMatStore(mc, c, tile * 64, 8, gl_CooperativeMatrixLayoutRowMajor);
+}

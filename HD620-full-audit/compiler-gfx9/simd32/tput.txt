@@ -1,0 +1,27 @@
+== shading:shading=phong
+EXP tput src_hash=14ba2cb73d080f6d best_narrow=0.1244 simd32=0.1244 ratio=1.000 lat32=1466
+== shading:shading=cel
+EXP tput src_hash=be31933c46369527 best_narrow=0.1244 simd32=0.1244 ratio=1.000 lat32=1568
+== jellyfish
+EXP tput src_hash=0000000000000000 best_narrow=0.1244 simd32=0.1244 ratio=1.000 lat32=1742
+EXP tput src_hash=a1ef3c3020dfc2a0 best_narrow=0.1244 simd32=0.1168 ratio=0.938 lat32=1918
+EXP tput src_hash=b5d71b74b06f2639 best_narrow=0.1244 simd32=0.1244 ratio=1.000 lat32=1006
+== ideas
+EXP tput src_hash=0de552953857474b best_narrow=0.1244 simd32=0.1244 ratio=1.000 lat32=934
+EXP tput src_hash=0de552953857474b best_narrow=0.1244 simd32=0.1244 ratio=1.000 lat32=942
+EXP tput src_hash=0de552953857474b best_narrow=0.1244 simd32=0.1244 ratio=1.000 lat32=946
+EXP tput src_hash=0de552953857474b best_narrow=0.1244 simd32=0.1244 ratio=1.000 lat32=958
+EXP tput src_hash=2c76c93a3ccce051 best_narrow=0.1244 simd32=0.1244 ratio=1.000 lat32=1798
+EXP tput src_hash=2eab177258557edd best_narrow=0.0957 simd32=0.0847 ratio=0.884 lat32=2646
+EXP tput src_hash=5413eac63ec1a909 best_narrow=0.1244 simd32=0.1244 ratio=1.000 lat32=1676
+EXP tput src_hash=fc62903dcc1251ba best_narrow=0.1244 simd32=0.1244 ratio=1.000 lat32=934
+== effect2d
+[effect2d] duration=0.3:EXP tput src_hash=0000000000000000 best_narrow=0.1244 simd32=0.1244 ratio=1.000 lat32=1742
+EXP tput src_hash=22e3305d776d962b best_narrow=0.1244 simd32=0.1244 ratio=1.000 lat32=1706
+== bump:bump-render=high-poly
+EXP tput src_hash=8d2483564f55ff2c best_narrow=0.1244 simd32=0.1244 ratio=1.000 lat32=1198
+== desktop
+EXP tput src_hash=0000000000000000 best_narrow=0.1244 simd32=0.1244 ratio=1.000 lat32=1742
+EXP tput src_hash=083bba4ad66e3bba best_narrow=0.0948 simd32=0.0502 ratio=0.530 lat32=4458
+EXP tput src_hash=34ca04b2b0e3c40b best_narrow=0.1244 simd32=0.1244 ratio=1.000 lat32=1698
+EXP tput src_hash=42cc0368e2d10d30 best_narrow=0.0959 simd32=0.0502 ratio=0.524 lat32=4458

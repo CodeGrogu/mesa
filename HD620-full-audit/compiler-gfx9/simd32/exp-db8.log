@@ -1,0 +1,49 @@
+=======================================================
+    glmark2 2023.01
+=======================================================
+    OpenGL Information
+    GL_VENDOR:      Intel
+    GL_RENDERER:    Mesa Intel(R) HD Graphics 620 (KBL GT2)
+    GL_VERSION:     4.6 (Compatibility Profile) Mesa 27.0.0-devel
+    Surface Config: buf=32 r=8 g=8 b=8 a=8 depth=24 stencil=0 samples=0
+    Surface Size:   1920x1080 windowed
+=======================================================
+SIMD32 shader inefficient
+[shading] duration=3:shading=phong: FPS: 1885 FrameTime: 0.531 ms
+SIMD32 shader inefficient
+[shading] duration=3:shading=blinn-phong-inf: FPS: 1919 FrameTime: 0.521 ms
+SIMD32 shader inefficient
+[shading] duration=3:shading=cel: FPS: 1767 FrameTime: 0.566 ms
+SIMD32 shader inefficient
+SIMD32 shader inefficient
+SIMD32 shader inefficient
+[jellyfish] duration=3: FPS: 986 FrameTime: 1.015 ms
+SIMD32 shader inefficient
+SIMD32 shader inefficient
+SIMD32 shader inefficient
+SIMD32 shader inefficient
+SIMD32 shader inefficient
+SIMD32 shader inefficient
+SIMD32 shader inefficient
+SIMD32 shader inefficient
+SIMD32 shader inefficient
+[ideas] duration=3: FPS: 1024 FrameTime: 0.978 ms
+SIMD32 shader inefficient
+[effect2d] duration=3:SIMD32 shader inefficient
+ FPS: 1254 FrameTime: 0.798 ms
+SIMD32 shader inefficient
+[bump] bump-render=high-poly:duration=3: FPS: 1577 FrameTime: 0.634 ms
+SIMD32 shader inefficient
+SIMD32 shader inefficient
+SIMD32 shader inefficient
+SIMD32 shader inefficient
+SIMD32 shader inefficient
+SIMD32 shader inefficient
+SIMD32 shader inefficient
+SIMD32 shader inefficient
+SIMD32 shader inefficient
+SIMD32 shader inefficient
+[desktop] duration=3: FPS: 370 FrameTime: 2.705 ms
+=======================================================
+                                  glmark2 Score: 1346 
+=======================================================

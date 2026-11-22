@@ -1,0 +1,27 @@
+=== Rusticl warning: Patched Mesa libclc not detected. Upstream libclc may contain known bugs or breaking changes and isn't guaranteed to work reliably. Please visit https://gitlab.freedesktop.org/karolherbst/mesa-libclc for more information. ===
+Mesa Intel(R) HD Graphics 620 (KBL GT2) OpenCL 3.1 
+1048576 exact results, local 32
+  event duration    median   1.071250 ms  samples ns [1498333, 1463750, 1322084, 1112750, 1071250, 879500, 911000, 846333, 890917]
+  enqueue and wait  median   1.440231 ms  samples ns [1997806, 1952269, 1646243, 1440231, 1604538, 1320013, 1256526, 1406017, 1109329]
+  i915 render busy  median   1.042397 ms  samples ns [1502383, 1438556, 1369251, 1147226, 1042397, 891254, 891171, 874073, 923873]
+1048576 exact results, local 64
+  event duration    median   1.057917 ms  samples ns [1338834, 1230584, 986250, 1053667, 1055667, 1057917, 1128166, 1069000, 965750]
+  enqueue and wait  median   1.390895 ms  samples ns [1807293, 1580202, 1359476, 1390895, 1315572, 1454664, 2089818, 1330089, 1287934]
+  i915 render busy  median   1.097011 ms  samples ns [1316878, 1282433, 970685, 1043227, 1135440, 1097011, 1072111, 1132369, 1002308]
+1048576 exact results, local 128
+  event duration    median   1.273583 ms  samples ns [1330333, 1673083, 1273583, 1406750, 1276167, 1159334, 1063333, 1071167, 1042750]
+  enqueue and wait  median   1.634127 ms  samples ns [1746148, 1985057, 1764162, 1634127, 1767030, 1629940, 1465558, 1520255, 1462998]
+  i915 render busy  median   1.235538 ms  samples ns [1459638, 1355058, 1237530, 1463456, 1235538, 1177853, 1083067, 1081573, 1053104]
+1048576 exact results, local 256
+  event duration    median   1.231667 ms  samples ns [1462833, 1310500, 1388667, 1323250, 1180667, 1231667, 1226584, 1189416, 1149833]
+  enqueue and wait  median   1.682737 ms  samples ns [1902046, 1859953, 1869284, 1573851, 1706841, 1675704, 1682737, 1482051, 1596226]
+  i915 render busy  median   1.207401 ms  samples ns [1375559, 1351821, 1359125, 1367508, 1207069, 1207401, 1149550, 1176027, 1167810]
+1048576 work-items, 16 dependent rounds, stride-1021 output checks
+  event duration    median   1.308750 ms  samples ns [3474666, 2920000, 2325583, 1686083, 1308750, 1086500, 1126083, 1148167, 1159167]
+  enqueue and wait  median   1.694181 ms  samples ns [3886212, 3239577, 2866710, 2072581, 1694181, 1551218, 1551996, 1487078, 1336546]
+  i915 render busy  median   1.295630 ms  samples ns [3281654, 2819178, 2307981, 1685896, 1295630, 1100746, 1132286, 1113777, 1114856]
+1048576 work-items, 256 dependent rounds, stride-1021 output checks
+  event duration    median  11.455084 ms  samples ns [11455916, 11373500, 11416166, 11542916, 11491250, 11558500, 11433250, 11350917, 11455084]
+  enqueue and wait  median  11.847526 ms  samples ns [11858881, 11747059, 11758356, 11847526, 11851090, 11942985, 11921727, 11540677, 11791938]
+  i915 render busy  median  11.137687 ms  samples ns [11105317, 11083820, 11096851, 11137936, 11119178, 11138268, 11476659, 11175369, 11137687]
+PASS OpenCL event timestamps cover profiled compute

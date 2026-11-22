@@ -1,0 +1,14 @@
+shading:duration=3:shading=phong: 1905
+shading:duration=3:shading=blinn-phong-inf: 1833
+shading:duration=3:shading=cel: 1795
+refract:duration=3: 160
+terrain:duration=3: 86
+jellyfish:duration=3: 982
+ideas:duration=3: 1022
+effect2d:duration=3: 1232
+bump:bump-render=high-poly:duration=3: 1564
+conditionals:duration=3:fragment-steps=5: 1376
+loop:duration=3:fragment-steps=5: 1375
+function:duration=3:fragment-steps=5: 1354
+desktop:duration=3: 371
+buffer:duration=3: 670

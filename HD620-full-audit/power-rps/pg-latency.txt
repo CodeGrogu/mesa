@@ -1,0 +1,4 @@
+r1 0xfa small dispatch, no query=11.2;small dispatch inside time elapsed=13.7;small draw, no query=185.0;small draw inside time elapsed=189.7;small draw+dispatch, no query=199.9;small draw+dispatch inside time elapsed=264.0;
+r1 0x3c small dispatch, no query=11.4;small dispatch inside time elapsed=15.4;small draw, no query=186.9;small draw inside time elapsed=189.8;small draw+dispatch, no query=201.9;small draw+dispatch inside time elapsed=283.0;
+r2 0xfa small dispatch, no query=11.0;small dispatch inside time elapsed=13.6;small draw, no query=184.9;small draw inside time elapsed=188.2;small draw+dispatch, no query=201.3;small draw+dispatch inside time elapsed=269.3;
+r2 0x3c small dispatch, no query=11.2;small dispatch inside time elapsed=13.8;small draw, no query=186.7;small draw inside time elapsed=188.4;small draw+dispatch, no query=202.6;small draw+dispatch inside time elapsed=278.2;

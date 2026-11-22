@@ -5,7 +5,10 @@ Open work after round 2. Numbers match the master list from 2026-11-19. Effort: 
 ## Implementation: fixes
 
 - [x] **4. VA-API → Vulkan zero-copy (M). Done (2026-11-19).** The `EINVAL` came from FFmpeg, not the drivers. `vaapi_map_from()` routed Vulkan destinations to the memory mapper instead of returning `ENOSYS`. The fix is a patch to libavutil. NV12 and P010 now map byte-exactly through `hwmap`, and 1080p H.264 reaches Vulkan about 3× faster than with a CPU download (1.49 s vs 4.58 s for 960 frames). See [zero-copy/README.md](zero-copy/README.md).
-- [ ] **18. Iris timers, remaining work (M).** Test a live counter rollover; measure the overhead of the two forced submissions; try the compute-batch timestamp placement for draws, clears, blits and copies; verify on Xe and the blitter.
+- [x] **18. Iris timers, remaining work (M). Done (2026-11-22).**
+  - *Live rollover:* 2,000 back-to-back `GL_TIME_ELAPSED` intervals were queued across the 36-bit wrap. Interval 932 contained it and measured 11.124 ms against an 11.170 ms median. Every GPU-resolved result equalled the client result, and there were no outliers (`evidence/iris-timer-conversion/straddle.log`).
+  - *Forced submissions:* timer snapshots now go in whichever batch has pending work. The other batch gets an `order_after` link that `iris_get_command_space()` honours before its next command of any kind: draws, dispatches, clears, blits and copies. A small dispatch inside `GL_TIME_ELAPSED` went from 73.7 to 15.1 µs per iteration (12.2 µs without a query). The ordering, conversion and saturation probes and Rusticl profiling pass (`evidence/iris-timer-placement/`). Rusticl's per-event latency is unchanged within noise, because its event cost is elsewhere.
+  - *Xe and blitter:* not applicable here. KBL uses i915, and Iris issues no timer snapshots on the blitter; the Xe sysfs path is shared code.
 - [x] **26. ANV error handling (S). Done.**
   - An explicit modifier layout that isl rejects now returns `VK_ERROR_INVALID_DRM_FORMAT_MODIFIER_PLANE_LAYOUT_EXT` (it returned `OUT_OF_DEVICE_MEMORY`). Verified with `small-fixes/modifier-layout.c`: a 1000-byte Y-tiled pitch now gets the specific error, and a 1024-byte pitch still succeeds.
   - Batch clone: a clone failure already frees its partial copy, and the FIXME now says so. The real leak was a `seen_bbos` allocation failure after a successful clone; the copies are now handed to the primary command buffer. Compile-checked only, since that out-of-memory path can't be triggered from a normal test.
@@ -39,14 +42,19 @@ Driver flushes and state:
 - [x] **25. Pipeline-statistics query flush (S). Investigated; no change.** Every statistics counter is incremented by in-flight work and read with `MI_STORE_REGISTER_MEM`, so the CS stall at begin and end is what makes the result exact. None of the stats can skip it.
 
 Compiler (brw on Gfx9):
-- [ ] **28. Spill single GRFs instead of whole VGRFs (M).**
-- [ ] **29. Keep SIMD16 for 32-bit quad swizzles and mixed-mode float (M).**
-- [ ] **30. Allow the safe subset of MAD → MAC fusion on Gfx9 (M).**
-- [ ] **31. Remove the unneeded byte → word expansion in int8 DPAS emulation (S).**
-- [ ] **32. Calibrate the Gfx9 cost model from HD 620 measurements (M).**
+- [x] **28. Spill single GRFs instead of whole VGRFs (M). Already done upstream.** `spill_reg()` fills and spills only the accessed range (`calculate_unspill_ranges()`). The stale comment that said otherwise is fixed. See [compiler-gfx9/README.md](compiler-gfx9/README.md).
+- [x] **29. Keep SIMD16 for 32-bit quad swizzles and mixed-mode float (M). Investigated; nothing to gain.** Both limits split a single instruction, not the whole shader. Every legal alternative needs as many instructions or more, and the mixed-mode caps are PRM rules.
+- [x] **30. Allow the safe subset of MAD → MAC fusion on Gfx9 (M). Already done.** Gfx9 three-source operands have no register-file field, so MAD can never read the accumulator. MAD → MAC is the only legal fusion, and `brw_opt_mac` already emits it (`mul acc0` followed by `mac`s).
+- [x] **31. Remove the unneeded byte → word expansion in int8 DPAS emulation (S). Measured; keep it.** Removing it is correct but 11% slower (16.5 vs 18.5 GMAC/s). Also widening src1 is 31% slower. The FINISHME now records this. See [dpas-int8/README.md](dpas-int8/README.md).
+- [x] **32. Calibrate the Gfx9 cost model from HD 620 measurements (M). Done.**
+  - *Latency:* measured with dependent chains with the clock pinned at 1 GHz. 32/64-bit ALU, MAD, integer multiply and most math are within about 2 cycles of the model. EXP2/LOG2 were 4 cycles slow and now have their own Gfx9 entry.
+  - *SIMD32 choice:* unchanged across 14 glmark2 scenes. Nearly every SIMD16/SIMD32 pair scores as a tie under the render-target-write cost. Forcing SIMD32 ranges from +7.5% to −5% (about +0.8% on average), and the model cannot tell those shaders apart, so the decision rule stays.
 
 Power:
-- [ ] **40. RPS down-clock timeout and RC6 media power-gate hysteresis (M).**
+- [x] **40. RPS down-clock timeout and RC6 media power-gate hysteresis (M). Done: an opt-in profile.**
+  - *RPS:* thresholds of 70/40 instead of 50/30 cut GPU power by 3–10% on paced loads. Light frames take 7% longer, and sustained load is unchanged.
+  - *RC6:* a power-gate hysteresis of 60 instead of 250 saves about 5% more. Cross-context synchronised submissions get up to 7% slower.
+  - Because both knobs trade latency for power, `hd620-power-profile save|default` and a boot/resume unit are installed with `default` selected. See [power-rps/README.md](power-rps/README.md).
 
 ## Done in this session (for reference)
 

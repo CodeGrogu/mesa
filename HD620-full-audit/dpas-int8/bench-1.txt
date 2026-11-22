@@ -1,0 +1,12 @@
+1 base signed int8, 2688 tiles x 1024 iterations: 0 wrong of 172032; GPU median 303.648 ms (min 291.526, max 317.293), 18.56 GMAC/s
+1 base unsigned int8, 2688 tiles x 1024 iterations: 0 wrong of 172032; GPU median 306.212 ms (min 297.591, max 321.243), 18.41 GMAC/s
+1 new signed int8, 2688 tiles x 1024 iterations: 0 wrong of 172032; GPU median 342.859 ms (min 336.881, max 354.186), 16.44 GMAC/s
+1 new unsigned int8, 2688 tiles x 1024 iterations: 0 wrong of 172032; GPU median 342.462 ms (min 334.880, max 348.815), 16.46 GMAC/s
+2 base signed int8, 2688 tiles x 1024 iterations: 0 wrong of 172032; GPU median 302.393 ms (min 294.395, max 320.796), 18.64 GMAC/s
+2 base unsigned int8, 2688 tiles x 1024 iterations: 0 wrong of 172032; GPU median 308.477 ms (min 294.644, max 317.896), 18.27 GMAC/s
+2 new signed int8, 2688 tiles x 1024 iterations: 0 wrong of 172032; GPU median 340.283 ms (min 331.123, max 351.302), 16.57 GMAC/s
+2 new unsigned int8, 2688 tiles x 1024 iterations: 0 wrong of 172032; GPU median 342.452 ms (min 333.856, max 353.505), 16.46 GMAC/s
+3 base signed int8, 2688 tiles x 1024 iterations: 0 wrong of 172032; GPU median 306.300 ms (min 283.335, max 324.534), 18.40 GMAC/s
+3 base unsigned int8, 2688 tiles x 1024 iterations: 0 wrong of 172032; GPU median 303.968 ms (min 298.605, max 326.226), 18.55 GMAC/s
+3 new signed int8, 2688 tiles x 1024 iterations: 0 wrong of 172032; GPU median 340.114 ms (min 331.383, max 345.718), 16.57 GMAC/s
+3 new unsigned int8, 2688 tiles x 1024 iterations: 0 wrong of 172032; GPU median 339.956 ms (min 333.717, max 351.716), 16.58 GMAC/s

@@ -1,0 +1,16 @@
+ioctl=0 raw=0x618ef4670 bits_above_36=0x0 freq=12000000 now=1795330190 seconds_to_wrap=3544.3
+sleeping 3533 s
+ioctl=0 raw=0xff7f7ebaf bits_above_36=0x0 freq=12000000 now=1795333723 seconds_to_wrap=11.2
+120d52c1b5115cd997b4e00835d02fc578bbbea936f972e50e843f6d21a23657  /home/polarbear/.local/mesa-round2/lib/x86_64-linux-gnu/libgallium-27.0.0-devel.so
+Mesa Intel(R) HD Graphics 620 (KBL GT2) 4.6 (Core Profile) Mesa 27.0.0-devel
+Mapped driver library /home/polarbear/.local/mesa-round2/lib/x86_64-linux-gnu/libEGL.so.1.0.0
+Mapped driver library /home/polarbear/.local/mesa-round2/lib/x86_64-linux-gnu/libgallium-27.0.0-devel.so
+straddle: 2000 intervals, wall 22.24 s, sum of intervals 22.22 s, median 11.170 ms
+WRAP inside interval 932: start ts 5726620233083 ns, next start ts 8303750 ns, elapsed client 11124000 ns, buffer 11124000 ns (median 11169583 ns)
+PASS straddle: every buffer (GPU-path) result equals the client result: 0 mismatches
+PASS straddle: every interval within 2x of the median: 0 outliers
+PASS straddle: an interval contains the 36-bit rollover: 1 wrapped intervals
+PASS straddle: the wrapped interval measures like its neighbours: 11124000 ns vs median 11169583 ns
+0 check(s) failed
+exit status 0
+ioctl=0 raw=0x88d77eb bits_above_36=0x0 freq=12000000 now=1795333746 seconds_to_wrap=5714.7

@@ -1,0 +1,16 @@
+r1 hyst=0xfa (reads 0x000000fa) render30 gpu_W=0.191 rc6_pct=72.7 out=3785166 178562 191 p90=3875166 p99=4039250
+r1 hyst=0xfa (reads 0x000000fa) decode gpu_W=0.130 rc6_pct=72.5 out=rc=0
+r1 hyst=0x3c (reads 0x0000003c) render30 gpu_W=0.183 rc6_pct=74.9 out=3755000 185176 249 p90=3860500 p99=3933000
+r1 hyst=0x3c (reads 0x0000003c) decode gpu_W=0.123 rc6_pct=74.4 out=rc=0
+r1 hyst=0x25 (reads 0x00000025) render30 gpu_W=0.181 rc6_pct=75.4 out=3758000 124151 31 p90=3864750 p99=3940250
+r1 hyst=0x25 (reads 0x00000025) decode gpu_W=0.122 rc6_pct=74.4 out=rc=0
+r1 hyst=0x0a (reads 0x0000000a) render30 gpu_W=0.179 rc6_pct=76.2 out=3761333 119282 65 p90=3906166 p99=4182916
+r1 hyst=0x0a (reads 0x0000000a) decode gpu_W=0.121 rc6_pct=74.8 out=rc=0
+r2 hyst=0xfa (reads 0x000000fa) render30 gpu_W=0.192 rc6_pct=73.4 out=3776000 150827 17 p90=4055833 p99=4239250
+r2 hyst=0xfa (reads 0x000000fa) decode gpu_W=0.130 rc6_pct=72.2 out=rc=0
+r2 hyst=0x3c (reads 0x0000003c) render30 gpu_W=0.181 rc6_pct=75.4 out=3748583 187592 330 p90=3865416 p99=3935416
+r2 hyst=0x3c (reads 0x0000003c) decode gpu_W=0.126 rc6_pct=74.5 out=rc=0
+r2 hyst=0x25 (reads 0x00000025) render30 gpu_W=0.183 rc6_pct=75.1 out=3805000 164232 985 p90=3911583 p99=4264833
+r2 hyst=0x25 (reads 0x00000025) decode gpu_W=0.122 rc6_pct=74.7 out=rc=0
+r2 hyst=0x0a (reads 0x0000000a) render30 gpu_W=0.178 rc6_pct=75.6 out=3821333 143783 75 p90=3882500 p99=3950666
+r2 hyst=0x0a (reads 0x0000000a) decode gpu_W=0.122 rc6_pct=74.7 out=rc=0

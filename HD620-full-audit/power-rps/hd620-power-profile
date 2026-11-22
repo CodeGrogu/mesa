@@ -1,0 +1,32 @@
+#!/bin/sh
+# HD 620 (Gen9 i915) GPU power profile.  Measured trade-offs (power-rps/README.md):
+#   save:    RPS up/down busy thresholds 70/40 % and render/media power-gate
+#            idle hysteresis 60 (x1.28 us).  GPU power -5..-14 % on light,
+#            paced loads; light-frame GPU time +7 %, cross-context
+#            synchronised submissions up to +7 %.  Sustained load unchanged.
+#   default: i915 defaults (50/30, hysteresis 250).
+# usage: hd620-power-profile save|default|status       (root)
+# The hysteresis registers are reprogrammed by i915 on resume, so the
+# systemd unit re-applies the profile after sleep.
+set -e
+G=$(ls -d /sys/class/drm/card*/gt/gt0 2>/dev/null | head -1)
+[ -n "$G" ] || { echo "no i915 gt0 in sysfs" >&2; exit 1; }
+INTEL_REG=${INTEL_REG:-intel_reg}
+CONF=/etc/hd620-power-profile
+case "$1" in
+  save)    up=70; down=40; hyst=0x3c ;;
+  default) up=50; down=30; hyst=0xfa ;;
+  apply)   exec "$0" "$(cat $CONF 2>/dev/null || echo default)" ;;
+  status)
+    echo "profile: $(cat $CONF 2>/dev/null || echo default)"
+    echo "rps up/down: $(cat $G/rps_up_threshold_pct)/$(cat $G/rps_down_threshold_pct)"
+    $INTEL_REG read 0xa0c4 0xa0c8 2>/dev/null || echo "(intel_reg not available)"
+    exit 0 ;;
+  *) echo "usage: $0 save|default|apply|status" >&2; exit 2 ;;
+esac
+echo $up > $G/rps_up_threshold_pct
+echo $down > $G/rps_down_threshold_pct
+$INTEL_REG write 0xa0c4 $hyst >/dev/null   # GEN9_MEDIA_PG_IDLE_HYSTERESIS
+$INTEL_REG write 0xa0c8 $hyst >/dev/null   # GEN9_RENDER_PG_IDLE_HYSTERESIS
+echo "$1" > $CONF
+echo "hd620 GPU power profile: $1 (rps $up/$down, pg hysteresis $hyst)"
