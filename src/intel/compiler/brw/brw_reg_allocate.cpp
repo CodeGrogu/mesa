@@ -1536,9 +1536,9 @@ brw_reg_alloc::spill_reg(unsigned spill_reg)
    const struct bblock_t *cur_block = NULL;
 
    /* Generate spill/unspill instructions for the objects being
-    * spilled.  Right now, we spill or unspill the whole thing to a
-    * virtual grf of the same size.  For most instructions, though, we
-    * could just spill/unspill the GRF being accessed.
+    * spilled.  Each instruction only fills and spills the registers it
+    * accesses (see calculate_unspill_ranges()), into a temporary of that
+    * size.
     */
    int ip = 0;
    foreach_block_and_inst (block, brw_inst, inst, fs->cfg) {
