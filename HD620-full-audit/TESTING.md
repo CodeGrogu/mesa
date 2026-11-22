@@ -36,6 +36,59 @@ VK-GL-CTS main `5bb4c7e` (2026-11-13), `deqp-vk` built in the container and run 
 
 No regressions. The only differences were 6 tests that moved from not supported to Pass: `image.host_image_copy.simple.astc_5x5_srgb_block.linear.*`. Linear ASTC 5x5 images gained host-transfer support through the new Gfx9 5x5 emulation, and they pass. Per-test results are in `control.status` and `round2.status`. Video tests are mostly not supported because Vulkan Video is behind debug flags by default.
 
+## 8b. Vulkan Video CTS (2026-11-22)
+
+### Setup
+
+After rebooting with `i915.enable_guc=2`, i915 logged `HuC firmware i915/kbl_huc_4.0.0.bin version 4.0.0` and `HuC: authenticated for all workloads`. GuC submission stays disabled.
+
+CTS video sample clips were fetched with `fetch_video_decode_samples.py` (45 files) and `fetch_video_encode_samples.py` (6 YUV files), 148 MB in total, and copied into the host CTS data dir.
+
+### Full run
+
+Round-2 driver, `ANV_DEBUG=video-decode,video-encode`, 400 cases (`video.decode` h264/h265/vp9, `video.encode.h264`, `video.capabilities`).
+
+| Result | Cases |
+| --- | --- |
+| Passed | **146** |
+| Failed | **0** |
+| Not supported | 254 |
+| GPU hangs | 0 |
+
+| Group | Passed / Not supported |
+| --- | --- |
+| capabilities.extended_flags | 13 / 15 |
+| capabilities.none | 13 / 15 |
+| decode.h264 | 30 / 30 |
+| decode.h265 | 28 / 28 |
+| decode.vp9 | 40 / 40 |
+| encode.h264 | 22 / 126 |
+
+Not-supported reasons:
+
+| Missing extension or limit | Cases |
+| --- | --- |
+| VK_KHR_unified_image_layouts | 124 |
+| VK_KHR_video_encode_intra_refresh | 46 |
+| VK_KHR_video_encode_feedback2 | 30 |
+| VK_KHR_video_encode_quantization_map | 24 |
+| VK_KHR_video_encode_av1 | 10 |
+| VK_KHR_video_encode_h265 | 10 |
+| VK_KHR_video_decode_av1 | 6 |
+| "Implementation does not support constant bitrate control" | 4 |
+
+An earlier attempt stopped after 68 of 400 tests. It ran as a background job of a helper agent and was cut off when that agent ended. The logs show no crash and no GPU hang. The test it stopped on passes when run alone. The complete rerun is the result above.
+
+### Decode without ANV_DEBUG
+
+After the change "anv: expose Vulkan Video decode by default on Gfx9" (commit `04d82daeed8` on `hd620-round2`), the 196 decode cases were rerun with no `ANV_DEBUG`: 98 passed, 0 failed, 98 not supported (`VK_KHR_unified_image_layouts` variants).
+
+| Check | Result |
+| --- | --- |
+| `vulkaninfo`, no debug flag | Lists `VK_KHR_video_decode_h264`, `_h265`, `_vp9` and `_queue` |
+| `vulkaninfo`, `anv_gfx9_video_decode=false` | Lists none |
+| HEVC frame checks (`hevc-huc/check.sh`) | Match software 60/60, 60/60, 36/36, 36/36 |
+
 ## 15. VP9 encode on Kaby Lake
 
 | Route | Result |

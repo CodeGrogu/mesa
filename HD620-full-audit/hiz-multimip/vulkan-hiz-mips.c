@@ -14,6 +14,7 @@
  */
 #define _GNU_SOURCE
 #include <link.h>
+#include <math.h>
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -33,7 +34,9 @@ static VkQueue queue;
 static VkCommandPool pool;
 static VkCommandBuffer cmd;
 static VkPhysicalDeviceMemoryProperties types;
-static VkPipeline depth_pipe, fetch_pipe;
+static VkPipeline depth_pipe, depth_pipes[5], fetch_pipe;
+static const VkFormat depth_formats[5] = { VK_FORMAT_D32_SFLOAT, VK_FORMAT_D16_UNORM,
+    VK_FORMAT_X8_D24_UNORM_PACK32, VK_FORMAT_D24_UNORM_S8_UINT, VK_FORMAT_D32_SFLOAT_S8_UINT };
 static VkPipelineLayout depth_layout, fetch_layout;
 static VkDescriptorSetLayout fetch_dsl;
 static VkDescriptorPool dpool;
@@ -84,6 +87,54 @@ static void submit(void)
 }
 
 /* Conservative full barrier between the stages this test uses. */
+/* Per-format depth codec for the case under test (set by pixel_test). */
+static VkFormat g_fmt = VK_FORMAT_D32_SFLOAT;
+static VkImageAspectFlags g_aspect = VK_IMAGE_ASPECT_DEPTH_BIT;
+static unsigned g_layer = 0;
+
+static double fmt_scale(void)
+{
+    switch (g_fmt) {
+    case VK_FORMAT_D16_UNORM: return 65535.0;
+    case VK_FORMAT_X8_D24_UNORM_PACK32:
+    case VK_FORMAT_D24_UNORM_S8_UINT: return 16777215.0;
+    default: return 0.0; /* float */
+    }
+}
+
+/* What the format stores for depth v. */
+static float quant(float v)
+{
+    const double s = fmt_scale();
+    return s ? (float)((double)lrint((double)v * s) / s) : v;
+}
+
+/* Packed depth-aspect buffer layout (VkBufferImageCopy, tightly packed). */
+static void encode_texel(void *region, size_t i, float v)
+{
+    switch (g_fmt) {
+    case VK_FORMAT_D16_UNORM: ((uint16_t *)region)[i] = (uint16_t)lrint((double)v * 65535.0); break;
+    case VK_FORMAT_X8_D24_UNORM_PACK32:
+    case VK_FORMAT_D24_UNORM_S8_UINT: ((uint32_t *)region)[i] = (uint32_t)lrint((double)v * 16777215.0) & 0xffffffu; break;
+    default: ((float *)region)[i] = v; break;
+    }
+}
+
+/* Unpack a copy readback in place into floats comparable with quant(). */
+static void decode_region(float *region, size_t n)
+{
+    const double s = fmt_scale();
+    if (!s) return;
+    float *tmp = malloc(n * sizeof(float));
+    for (size_t i = 0; i < n; i++) {
+        double raw = g_fmt == VK_FORMAT_D16_UNORM ? ((uint16_t *)region)[i]
+                                                 : (((uint32_t *)region)[i] & 0xffffffu);
+        tmp[i] = (float)(raw / s);
+    }
+    memcpy(region, tmp, n * sizeof(float));
+    free(tmp);
+}
+
 static void transition(VkImage image, unsigned lod, unsigned count, VkImageLayout from, VkImageLayout to)
 {
     VkImageMemoryBarrier b = { .sType = VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER,
@@ -94,7 +145,7 @@ static void transition(VkImage image, unsigned lod, unsigned count, VkImageLayou
                          VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT | VK_ACCESS_SHADER_READ_BIT,
         .oldLayout = from, .newLayout = to,
         .srcQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED, .dstQueueFamilyIndex = VK_QUEUE_FAMILY_IGNORED,
-        .image = image, .subresourceRange = { VK_IMAGE_ASPECT_DEPTH_BIT, lod, count, 0, 1 } };
+        .image = image, .subresourceRange = { g_aspect, lod, count, 0, VK_REMAINING_ARRAY_LAYERS } };
     if (from == VK_IMAGE_LAYOUT_UNDEFINED) b.srcAccessMask = 0;
     vkCmdPipelineBarrier(cmd, VK_PIPELINE_STAGE_ALL_COMMANDS_BIT, VK_PIPELINE_STAGE_ALL_COMMANDS_BIT,
                          0, 0, NULL, 0, NULL, 1, &b);
@@ -118,14 +169,14 @@ static void model_fill(float *m, unsigned w, struct rect r, float v)
 {
     for (unsigned y = r.y; y < r.y + r.h; y++)
         for (unsigned x = r.x; x < r.x + r.w; x++)
-            m[y * w + x] = v;
+            m[y * w + x] = quant(v);
 }
 
 static void model_draw_less(float *m, unsigned w, struct rect r, float z)
 {
     for (unsigned y = r.y; y < r.y + r.h; y++)
         for (unsigned x = r.x; x < r.x + r.w; x++)
-            if (z < m[y * w + x]) m[y * w + x] = z;
+            if (quant(z) < m[y * w + x]) m[y * w + x] = quant(z);
 }
 
 struct draw { struct rect scissor; float z; };
@@ -203,7 +254,11 @@ static void create_pipelines(void)
         .pInputAssemblyState = &ia, .pViewportState = &vps, .pRasterizationState = &rs,
         .pMultisampleState = &ms, .pDepthStencilState = &ds, .pColorBlendState = &cb,
         .pDynamicState = &dy, .layout = depth_layout };
-    VK(vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, 1, &gp, NULL, &depth_pipe));
+    for (unsigned f = 0; f < 5; f++) {
+        prc.depthAttachmentFormat = depth_formats[f];
+        VK(vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, 1, &gp, NULL, &depth_pipes[f]));
+    }
+    depth_pipe = depth_pipes[0];
     vkDestroyShaderModule(device, vs, NULL);
 
     VkDescriptorSetLayoutBinding binds[2] = {
@@ -243,6 +298,7 @@ struct image_case {
     bool in_scope;     /* expected to receive multi-LOD HiZ */
     bool pixel_test;   /* run the D32 per-pixel test */
     bool resolve_phase; /* add INPUT_ATTACHMENT usage and run phase 3 */
+    unsigned target_layer; /* layer the phases run on; others must stay untouched */
 };
 
 static const struct image_case cases[] = {
@@ -260,6 +316,19 @@ static const struct image_case cases[] = {
     { "unaligned-32x32x5",   VK_FORMAT_D32_SFLOAT,   32,   32, 5, 1, false, true, false },
     { "unaligned-2049x1026x2", VK_FORMAT_D32_SFLOAT, 2049, 1026, 2, 1, false, true, false },
     { "fullchain-64x32x7",   VK_FORMAT_D32_SFLOAT,   64,   32, 7, 1, false, true, false },
+    /* Other depth formats with aligned LODs: exact per-pixel tests.  They
+     * receive multi-LOD HiZ only with the wider gate. */
+    { "px-d16-704x288x4",    VK_FORMAT_D16_UNORM,   704,  288, 4, 1, false, true, false },
+    { "px-x8d24-256x128x6",  VK_FORMAT_X8_D24_UNORM_PACK32, 256, 128, 6, 1, false, true, false },
+    { "px-d24s8-704x288x4",  VK_FORMAT_D24_UNORM_S8_UINT, 704, 288, 4, 1, false, true, false },
+    { "px-d32s8-256x128x6",  VK_FORMAT_D32_SFLOAT_S8_UINT, 256, 128, 6, 1, false, true, false },
+    { "px-resolve-d24s8-256x128x6", VK_FORMAT_D24_UNORM_S8_UINT, 256, 128, 6, 1, false, true, true },
+    { "px-resolve-d16-704x288x4", VK_FORMAT_D16_UNORM, 704, 288, 4, 1, false, true, true },
+    /* Array layers: phases on one layer, every other layer checked untouched. */
+    { "px-layers-d32-256x128x6-l2of3", VK_FORMAT_D32_SFLOAT, 256, 128, 6, 3, false, true, true, 2 },
+    { "px-layers-d32-704x288x4-l0of2", VK_FORMAT_D32_SFLOAT, 704, 288, 4, 2, false, true, false, 0 },
+    { "px-layers-d24s8-704x288x4-l1of2", VK_FORMAT_D24_UNORM_S8_UINT, 704, 288, 4, 2, false, true, true, 1 },
+    { "px-layers-d16-256x128x6-l3of4", VK_FORMAT_D16_UNORM, 256, 128, 6, 4, false, true, false, 3 },
     /* Out of scope by format/layers: allocation only. */
     { "d16-64x32x4",         VK_FORMAT_D16_UNORM,    64,   32, 4, 1, false, false, false },
     { "x8d24-64x32x4",       VK_FORMAT_X8_D24_UNORM_PACK32, 64, 32, 4, 1, false, false, false },
@@ -320,7 +389,9 @@ static int compare(const char *what, const struct image_case *c, unsigned lod, u
 {
     for (unsigned y = 0; y < h; y++)
         for (unsigned x = 0; x < w; x++)
-            if (memcmp(&got[y * w + x], &want[y * w + x], sizeof(float))) {
+            if (strstr(what, "sampled") && fmt_scale() ?
+                fabs((double)got[y * w + x] - (double)want[y * w + x]) > 0.5 / fmt_scale() :
+                memcmp(&got[y * w + x], &want[y * w + x], sizeof(float))) {
                 fprintf(stderr, "FAIL %s %s lod %u (%u,%u): got %.9g expected %.9g\n",
                         c->name, what, lod, x, y, got[y * w + x], want[y * w + x]);
                 return 1;
@@ -332,6 +403,13 @@ static int compare(const char *what, const struct image_case *c, unsigned lod, u
 static int pixel_test(const struct image_case *c)
 {
     const unsigned levels = c->levels;
+    g_fmt = c->format;
+    g_layer = c->target_layer;
+    g_aspect = VK_IMAGE_ASPECT_DEPTH_BIT |
+        (c->format == VK_FORMAT_D24_UNORM_S8_UINT || c->format == VK_FORMAT_D32_SFLOAT_S8_UINT ?
+         VK_IMAGE_ASPECT_STENCIL_BIT : 0);
+    for (unsigned f = 0; f < 5; f++)
+        if (depth_formats[f] == c->format) depth_pipe = depth_pipes[f];
     VkDeviceMemory image_mem;
     VkDeviceSize image_bytes;
     VkImage image = make_image(c, &image_mem, &image_bytes);
@@ -346,17 +424,17 @@ static int pixel_test(const struct image_case *c)
         H[l] = c->height >> l ? c->height >> l : 1;
         VkImageViewCreateInfo v = { .sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO,
             .image = image, .viewType = VK_IMAGE_VIEW_TYPE_2D, .format = c->format,
-            .subresourceRange = { VK_IMAGE_ASPECT_DEPTH_BIT, l, 1, 0, 1 } };
+            .subresourceRange = { VK_IMAGE_ASPECT_DEPTH_BIT, l, 1, g_layer, 1 } };
         VK(vkCreateImageView(device, &v, NULL, &views[l]));
         off[l] = total;
         regions[l] = (VkBufferImageCopy){ .bufferOffset = total * sizeof(float),
-            .imageExtent = { W[l], H[l], 1 }, .imageSubresource = { VK_IMAGE_ASPECT_DEPTH_BIT, l, 0, 1 } };
+            .imageExtent = { W[l], H[l], 1 }, .imageSubresource = { VK_IMAGE_ASPECT_DEPTH_BIT, l, g_layer, 1 } };
         total += (size_t)W[l] * H[l];
     }
     VkImageView all_view;
     VkImageViewCreateInfo av = { .sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO,
         .image = image, .viewType = VK_IMAGE_VIEW_TYPE_2D, .format = c->format,
-        .subresourceRange = { VK_IMAGE_ASPECT_DEPTH_BIT, 0, levels, 0, 1 } };
+        .subresourceRange = { VK_IMAGE_ASPECT_DEPTH_BIT, 0, levels, g_layer, 1 } };
     VK(vkCreateImageView(device, &av, NULL, &all_view));
 
     /* Buffer: [upload | copy readback | sampled readback] */
@@ -392,12 +470,38 @@ static int pixel_test(const struct image_case *c)
     int fail = 0;
     VkImageLayout layout = VK_IMAGE_LAYOUT_UNDEFINED;
 
+    /* Other layers: fill with their own pattern; checked at the end. */
+    if (c->layers > 1) {
+        begin();
+        transition(image, 0, levels, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
+        for (unsigned L = 0; L < c->layers; L++) {
+            if (L == g_layer) continue;
+            for (unsigned l = 0; l < levels; l++)
+                for (unsigned y = 0; y < H[l]; y++)
+                    for (unsigned x = 0; x < W[l]; x++)
+                        encode_texel(upload + off[l], (size_t)y * W[l] + x, quant(pattern(x, y, l, 9 + L)));
+            for (unsigned l = 0; l < levels; l++) {
+                VkBufferImageCopy r = regions[l];
+                r.imageSubresource.baseArrayLayer = L;
+                vkCmdCopyBufferToImage(cmd, buf, image, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &r);
+            }
+            submit();
+            begin();
+        }
+        submit();
+        layout = VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL;
+    }
+
     /* Phase 1: transfer upload -> per-mip attachment work -> readback, both orders. */
     for (unsigned reverse = 0; reverse < 2 && !fail; reverse++) {
         for (unsigned l = 0; l < levels; l++)
             for (unsigned y = 0; y < H[l]; y++)
                 for (unsigned x = 0; x < W[l]; x++)
-                    model[off[l] + y * W[l] + x] = upload[off[l] + y * W[l] + x] = pattern(x, y, l, reverse);
+                {
+                    const float v = quant(pattern(x, y, l, reverse));
+                    model[off[l] + y * W[l] + x] = v;
+                    encode_texel(upload + off[l], (size_t)y * W[l] + x, v);
+                }
         memset(copied, 0xff, total * sizeof(float));
 
         begin();
@@ -429,6 +533,8 @@ static int pixel_test(const struct image_case *c)
         }
         submit();
         layout = VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL;
+        for (unsigned l = 0; l < levels; l++)
+            decode_region(copied + off[l], (size_t)W[l] * H[l]);
         for (unsigned l = 0; l < levels && !fail; l++)
             fail = compare(reverse ? "phase1-reverse-copy" : "phase1-forward-copy", c, l, W[l], H[l],
                            copied + off[l], model + off[l], &checked);
@@ -488,9 +594,11 @@ static int pixel_test(const struct image_case *c)
          * preserved upper LOD; the run must then fail. */
         if (getenv("HIZ_TEST_PERTURB") && levels > 1 && t == 0) {
             const unsigned pl = levels - 1;
-            model[off[pl] + (H[pl] / 2) * W[pl] + W[pl] / 2] += 1.0f / 1024.0f;
+            model[off[pl] + (H[pl] / 2) * W[pl] + W[pl] / 2] += fmt_scale() ? (float)(4.0 / fmt_scale()) : 1.0f / 1024.0f;
         }
         char what[64];
+        for (unsigned l = 0; l < levels; l++)
+            decode_region(copied + off[l], (size_t)W[l] * H[l]);
         for (unsigned l = 0; l < levels && !fail; l++) {
             snprintf(what, sizeof(what), "phase2-target%u-%s-sampled", t, l == t ? "cleared" : "preserved");
             fail = compare(what, c, l, W[l], H[l], sampled + off[l], model + off[l], &checked);
@@ -538,6 +646,9 @@ static int pixel_test(const struct image_case *c)
             vkCmdCopyImageToBuffer(cmd, image, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, buf, 1, &rr);
         }
         submit();
+        decode_region(sampled + off[t], (size_t)w * h);
+        for (unsigned l = 0; l < levels; l++)
+            decode_region(copied + off[l], (size_t)W[l] * H[l]);
         char what[64];
         snprintf(what, sizeof(what), "phase3-target%u-resolved-general-copy", t);
         fail = compare(what, c, t, w, h, sampled + off[t], mid, &checked);
@@ -546,6 +657,30 @@ static int pixel_test(const struct image_case *c)
             fail = compare(what, c, l, W[l], H[l], copied + off[l], model + off[l], &checked);
         }
         free(mid);
+    }
+
+    for (unsigned L = 0; L < c->layers && !fail; L++) {
+        if (L == g_layer) continue;
+        memset(copied, 0xff, total * sizeof(float));
+        begin();
+        transition(image, 0, levels, layout, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
+        layout = VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL;
+        for (unsigned l = 0; l < levels; l++) {
+            VkBufferImageCopy r = regions[l];
+            r.imageSubresource.baseArrayLayer = L;
+            r.bufferOffset += total * sizeof(float);
+            vkCmdCopyImageToBuffer(cmd, image, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL, buf, 1, &r);
+        }
+        submit();
+        for (unsigned l = 0; l < levels && !fail; l++) {
+            decode_region(copied + off[l], (size_t)W[l] * H[l]);
+            for (unsigned y = 0; y < H[l]; y++)
+                for (unsigned x = 0; x < W[l]; x++)
+                    model[off[l] + y * W[l] + x] = quant(pattern(x, y, l, 9 + L));
+            char what[64];
+            snprintf(what, sizeof(what), "other-layer%u-untouched-copy", L);
+            fail = compare(what, c, l, W[l], H[l], copied + off[l], model + off[l], &checked);
+        }
     }
 
     if (!fail)
@@ -695,7 +830,8 @@ int main(int argc, char **argv)
         printf("SUMMARY %u/%u pixel cases passed\n", passed, run);
     }
     vkDeviceWaitIdle(device);
-    vkDestroyPipeline(device, depth_pipe, NULL);
+    for (unsigned f = 0; f < 5; f++)
+        vkDestroyPipeline(device, depth_pipes[f], NULL);
     vkDestroyPipeline(device, fetch_pipe, NULL);
     vkDestroyPipelineLayout(device, depth_layout, NULL);
     vkDestroyPipelineLayout(device, fetch_layout, NULL);

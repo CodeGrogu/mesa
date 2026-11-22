@@ -16,6 +16,9 @@ This round swept ANV, Iris, ISL, BLORP, the brw compiler, i915 and the upstream 
 | **Fixed (verified)** | ANV scratch allocation | `anv_scratch_pool_alloc()` failure was ignored, and Gfx9 programmed scratch at address 0. With an `LD_PRELOAD` shim failing the 42 MiB scratch BO, pipeline creation returned `VK_SUCCESS` before the fix and now returns `VK_ERROR_OUT_OF_DEVICE_MEMORY`. Success-path output is unchanged. | [Results](scratch-oom/README.md) · [Patch](patches/anv-scratch-alloc-errors.patch) |
 | **Measured, unchanged** | Four Gen9-only flushes | Null PIPE_CONTROL before VF invalidate: about 50 ns, no measurable cost. Forced push-constant reallocation: no measurable cost. `MEDIA_VFE_STATE` re-emit: about 0.5 µs per compute → 3D switch. State-cache invalidate after clear-colour reload: about 0.66 µs per render pass. Removing that last one passed stricter blend checks, but the PRM requires it, so nothing was changed. | [Measurements](gen9-stalls/README.md) |
 | **No regressions found** | Round-2 build | The round-2 build carries the eight ANV patches, multi-mip HiZ, MR 45047 and the ASTC patch (`b614763e…`). The buffer compute probe gave 1,048,576 exact values. FP16 lane-mask: 0 mismatches. All four HiZ pixel-correctness runs and the size verdict passed. | `evidence/compute-round2.txt` · `evidence/round2-hiz/` |
+| **Fixed (verified)** | ANV Gfx9 VF cache | An upstream bug queued the VF cache invalidate after the draw that needed it. Two vertex buffers 4 GiB apart rendered stale vertices 50/50 times (also on Mesa 26.0.8). Fixed by invalidating before binding. Secondary command buffers are now tracked: 2000 → 2 invalidates per 1000 executions. | [Results](vf-secondary/README.md) |
+| **Works (HuC)** | Vulkan HEVC decode | With HuC loaded, all four HEVC clips (192 frames, Main and Main10) decode bit-identically to software. No code change needed. | [Results](hevc-huc/README.md) |
+| **Enabled by default** | Vulkan Video decode (Gfx9) | H.264, VP9 and H.265 (with HuC) decode is exposed without `ANV_DEBUG`. CTS decode: 98/98 supported cases pass, 0 failures. Opt out with drirc `anv_gfx9_video_decode=false`. Encode still needs `ANV_DEBUG`. | [TESTING.md](TESTING.md) |
 
 ## Found in source, not hardware-tested
 
@@ -36,13 +39,15 @@ This round swept ANV, Iris, ISL, BLORP, the brw compiler, i915 and the upstream 
 
 ## Local Mesa tree state
 
-`mesa/` is uncommitted. On top of `0e9e108` it contains the eight ANV video patches, the Iris timer and saturation fixes, multi-mip HiZ, upstream MR 45047, the ASTC patch and the scratch fix. The tested binaries are in `~/.local/state/catchingup/round2/`:
+`mesa/` is on branch `hd620-round2`. On top of `0e9e108` it contains the eight ANV video patches, the Iris timer and saturation fixes, multi-mip HiZ, upstream MR 45047, the ASTC patch and the scratch fix. The tested binaries are in `~/.local/state/catchingup/round2/`:
 
 - `fp16-mr45047`: MR 45047 only.
 - `scratch` (`31ced66e…`): the complete tree.
 - `stall-exp`: the complete tree plus the measurement toggles. Not for use.
 
 Nothing has been sent upstream.
+
+The work is committed as 12 commits on branch hd620-round2 and pushed to https://github.com/CodeGrogu/mesa, with tests and evidence on branch hd620-audit and issues #1-#7.
 
 ## Next candidates
 

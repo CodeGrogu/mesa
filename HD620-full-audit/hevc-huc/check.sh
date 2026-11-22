@@ -10,7 +10,7 @@ fail=0
 for spec in evidence/media/hevc_vaapi-nv12.hevc:nv12 evidence/media/hevc_vaapi-p010le.hevc:p010le \
             evidence/hevc-regression/inputs/main.hevc:nv12 evidence/hevc-regression/inputs/main10.hevc:p010le; do
     clip=${spec%%:*} pix=${spec#*:} base=$(basename "$clip" .hevc)
-    VK_DRIVER_FILES=$icd ANV_DEBUG=video-decode VK_LOADER_DEBUG=driver timeout 60 ffmpeg -y -hide_banner -nostdin -xerror \
+    VK_DRIVER_FILES=$icd VK_LOADER_DEBUG=driver timeout 60 ffmpeg -y -hide_banner -nostdin -xerror \
         -loglevel debug -hwaccel vulkan -hwaccel_output_format vulkan -i "$clip" -map 0:v:0 \
         -vf "hwdownload,format=$pix" -c:v rawvideo -f framemd5 "$out/$base-vulkan.md5" > "$out/$base-vulkan.log" 2>&1
     rc=$?

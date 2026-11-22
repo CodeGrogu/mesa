@@ -1,0 +1,4 @@
+hevc_vaapi-nv12        PASS  60/60 Vulkan frames match software
+hevc_vaapi-p010le      PASS  60/60 Vulkan frames match software
+main                   PASS  36/36 Vulkan frames match software
+main10                 PASS  36/36 Vulkan frames match software

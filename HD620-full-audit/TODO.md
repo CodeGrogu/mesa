@@ -13,11 +13,11 @@ Open work after round 2. Numbers match the master list from 2026-11-19. Effort: 
 
 ## Implementation: new features
 
-- [ ] **6 → 11. Vulkan HEVC Main/Main10 decode on Gen9 (L).** *Item 6 result:* `kbl_huc_4.0.0` firmware is installed, but i915 reports "HuC disabled". Gen9 loads HuC only with boot parameter `i915.enable_guc=2`. That needs a reboot; reloading i915 live would kill the desktop session. **Blocked on the user rebooting with that parameter.** First check whether HuC can load (i915 has it off on Gen9). If it can, use the existing HuC path; otherwise write a queue-ordered slice parser. Verify DPB and references, slices, tiles and stream changes.
+- [x] **6 → 11. Vulkan HEVC Main/Main10 decode on Gen9 (L). Done with HuC (2026-11-20).** After a reboot with `i915.enable_guc=2`, HuC 4.0.0 authenticated, and ANV exposes `VK_KHR_video_decode_h265` under `ANV_DEBUG=video-decode`. All 4 clips (192 frames, Main and Main10, I/P/B with multiple GOPs) decode identically to software. No code change was needed. See [hevc-huc/README.md](hevc-huc/README.md).
 - [ ] **12. Vulkan HEVC encode on Gen9 (L).** Use iHD as the reference. Start with fixed-QP Main and Main10.
 - [ ] **13. H.264/HEVC bitrate control in Vulkan encode (M–L).** Validate VBV behaviour on long streams across rate changes and GOPs.
-- [ ] **14. Default-on Vulkan H.264 and VP9 (M).** Gate on per-codec conformance: profiles, DPB, stream changes, and concurrent graphics.
-- [ ] **17. Broaden multi-mip HiZ (M–L).** Full mip chains, a nonzero base mip in sampled views, array layers, more depth formats, then application frame times.
+- [x] **14. Vulkan Video decode on by default on Gen9 (M). Done (decode).** CTS with no debug flag: dEQP-VK.video.decode h264/h265/vp9 98/98 supported cases pass, 0 failures (the other 98 need `VK_KHR_unified_image_layouts`). H.265 needs HuC, which ANV checks. The drirc option `anv_gfx9_video_decode=false` opts out. Encode stays behind `ANV_DEBUG` until rate control works (item 13); its CTS run was 22/22 supported cases passing.
+- [x] **17. Broaden multi-mip HiZ (M–L). Done, except full mip chains.** Multi-LOD HiZ now covers D16, X8_D24, D24S8, D32 and D32S8, including array images. The harness grew 10 new exact per-pixel cases (20.5M checks): other formats, resolves, and layered images with the other layers checked untouched. All 26 cases pass on debug and release, and the 7,771-case depth CTS list is unchanged (0 failures). *Not done:* full mip chains. Their 1×1/2×2 LODs can't meet the 8×4 HiZ-op rule, and ANV tracks aux per image rather than per LOD, so this needs a per-LOD aux redesign, not a gate change. See `evidence/hiz-wide/`.
 - [ ] **27. `G16B16G16R16_422` / `B16G16R16G16_422` and linear YUV chroma reconstruction (M).**
 - [ ] **36. Vulkan OA performance counters (M).** Separate pipeline statistics from OA sampling and test under authorised profiling access.
 - [ ] **46. Native ASTC 5x5 in Iris (M–L).** Resolve HiZ (and, to be safe, CCS) instead of emulating. Round 2 found that HiZ triggers the hang on KBL.
@@ -50,7 +50,7 @@ Power:
 
 ## Done in this session (for reference)
 
-- **Commits:** the round-2 work is committed on branch `hd620-round2` and pushed to `github.com/CodeGrogu/mesa`.
+- **Commits:** 11 commits on `hd620-round2` and the tests/evidence on `hd620-audit` are at https://github.com/CodeGrogu/mesa, with issues #1–#6 (bug reports) and #7 (this TODO).
 - **Drivers for daily use:** round-2 Vulkan and Rusticl OpenCL; OpenGL is available through `mesa-round2 <app>`.
 - **VA-API:** iHD only; i965 removed.
 - **Tests:** 5 (copy-engine fixture), 8 (CTS subsets) and 15 (VP9 encode) are done. Results are in [TESTING.md](TESTING.md): 8,956 CTS cases with 0 failures and 0 regressions; the copy-engine fast blit runs at 10.5 GB/s versus 6.3 GB/s for render copies; VP9 encode is not exposed by any driver on KBL.
